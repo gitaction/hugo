@@ -2,14 +2,14 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <sitemap>
-    <loc>/en/sitemap.xml</loc>
+    <loc>https://hugo.gitaction.com/en/sitemap.xml</loc>
     
-      <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+      <lastmod>2022-09-02T22:13:36+08:00</lastmod>
     
   </sitemap>
   
   <sitemap>
-    <loc>/zh/sitemap.xml</loc>
+    <loc>https://hugo.gitaction.com/zh/sitemap.xml</loc>
     
   </sitemap>
   

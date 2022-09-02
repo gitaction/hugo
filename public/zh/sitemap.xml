@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/zh/categories/</loc>
+    <loc>https://hugo.gitaction.com/zh/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/"
+                href="https://hugo.gitaction.com/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/zh/categories/"
+                href="https://hugo.gitaction.com/zh/categories/"
                 />
   </url><url>
-    <loc>/zh/</loc>
+    <loc>https://hugo.gitaction.com/zh/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/"
+                href="https://hugo.gitaction.com/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/zh/"
+                href="https://hugo.gitaction.com/zh/"
                 />
   </url><url>
-    <loc>/zh/tags/</loc>
+    <loc>https://hugo.gitaction.com/zh/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/"
+                href="https://hugo.gitaction.com/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/zh/tags/"
+                href="https://hugo.gitaction.com/zh/tags/"
                 />
   </url>
 </urlset>
