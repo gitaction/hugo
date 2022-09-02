@@ -1,6 +1,7 @@
 baseURL = 'https://hugo.gitaction.com/'
 title = 'Hugo Source Code Magic'
 theme = "github.com/gitaction/hugo-book"
+publishDir = "docs"
 
 # Book configuration
 disablePathToLower = true
