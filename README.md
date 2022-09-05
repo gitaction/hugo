@@ -21,3 +21,4 @@ Show me the code
 14. render - minify, 404
 15. 多语言
 16. rss
+17. server mode
