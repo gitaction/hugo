@@ -15,47 +15,46 @@ type: docs
 为了更好地理解Hugo的设计理念，我们会从全局架构出发，一层层的展开并进行剖析。
 光讲理论还不够，还要实际动手。
 只有这样，才能达到我们阅读源码的最终目标：**学习优秀开源项目设计，掌握高效站点构建的领域知识，解锁该领域的新能力。
-以帮助这些优秀的开源项目**
-
+和更多的人分享Hugo这杯美酒，也希望通过这些分享，能够持续回馈这些优秀的开源项目。**
 
 ## 源码解读步骤
 
-1. 用实际用例帮助理解Hugo的使用方法。
+1. 用两个实例帮助理解Hugo的使用方法，一个是用Hugo重构建自己的个人站点，另一个是提取出站点的主题。
+2. 准备一个Hugo游乐场（源码精简版），让我们专注于核心框架梳理。
+3. 用事件驱动设计（DDD）中的事件风暴实践，帮助我们梳理Hugo的核心事件，并从这些领域事件中了解领域知识。
+4. 根据领域事件，梳理出整体架构，以及关键领域知识。
+5. 最后根据基础框架，从源码入手，以时序图帮助理解源码逻辑，通过抽象总结，分析设计思路，再结合可运行源码样例，做到不仅理解，还要掌握。
 
 
+## 写作过程回顾
 
+**初心：**
 
+让自己更享受源码阅读。
+丰富自己的知识储备库，将知识转换成能力。
+可视化知识图谱，让维度更丰富，清楚的知道有哪些待补充的知识点，做到不重复，每日一步，持续积累。
 
-Lorem **markdownum** emicat gestu. Cannis sol pressit ducta. **Est** Idaei,
-tremens ausim se tutaeque, illi ulnis hausit, sed, lumina cutem. Quae avis
-sequens!
+**掌握标准：**
 
-    var panel = ram_design;
-    if (backup + system) {
-        file.readPoint = network_native;
-        sidebar_engine_device(cell_tftp_raster,
-                dual_login_paper.adf_vci.application_reader_design(
-                graphicsNvramCdma, lpi_footer_snmp, integer_model));
-    }
-
-## Locis suis novi cum suoque decidit eadem
-
-Idmoniae ripis, at aves, ali missa adest, ut _et autem_, et ab?
+让其它人也能理解，也能动手，才叫真的会了。
+讲解要简单易懂，动手实践要足够方便。
+有理论，有实践。
 
 {{< columns >}}
-## Astris ipse furtiva
+## 可以坚持的地方
 
-Est in vagis et Pittheus tu arge accipiter regia iram vocatur nurus. Omnes ut
-olivae sensit **arma sorori** deducit, inesset **crudus**, ego vetuere aliis,
-modo arsit? Utinam rapta fiducia valuere litora _adicit cursu_, ad facies
+* 写起来有步骤了。从事件风暴出发，划分领域知识。然后从时序图逐个拆分梳理，通过画图来帮助理解。最终用代码实现来验证。
+* 图画的越来越得心应手。时序图看实现步骤，架构图帮助直观理解设计理念。最后的样例实现，帮助回顾和验证理念。
+* 完整的从理念出发，到最后样例实现。过程完整，为坚持到最后的自己点赞。
 
 <--->
 
-## Suis quot vota
+## 可以有一些改变的地方
 
-Ea _furtique_ risere fratres edidit terrae magis. Colla tam mihi tenebat:
-miseram excita suadent es pecudes iam. Concilio _quam_ velatus posset ait quod
-nunc! Fragosis suae dextra geruntur functus vulgata.
+* 文章源码和样例源码过于分散，用了两套源码库。
+* 样例中源码的重用部分，目前没有专门的讲解部分。隐藏知识点不利于读者理解。
+* 重用性差，如果下一个开源代码库也用到了这些知识，如何用已经掌握的知识点，加速下一份源码的阅读？
+* 获取反馈的周期较长，如何快速获取反馈，不断调整写作细节。
+* 写作平台是一种传播渠道，但现在写作平台太多，支持的格式还不态一样，不希望被束缚。
+
 {{< /columns >}}
-
-
