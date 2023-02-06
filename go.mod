@@ -1,5 +1,5 @@
-module github.com/gitaction/hugo
+module github.com/sunwei/hugo-notes
 
 go 1.19
 
-require github.com/gitaction/hugo-book v0.0.0-20220902132016-535b34a3e4ee // indirect
+require github.com/sunwei/hugo-book v0.0.0-20230206074833-7608a401078c // indirect

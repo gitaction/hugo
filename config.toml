@@ -1,7 +1,8 @@
-baseURL = 'https://hugo.gitaction.com/'
-title = 'Hugo Source Code Magic'
-theme = "github.com/gitaction/hugo-book"
+baseURL = 'https://hugo.notes.sunwei.xyz/'
+title = 'Deep Understanding of Hugo'
+theme = "github.com/sunwei/hugo-book"
 publishDir = "public"
+defaultContentLanguage = "zh"
 
 # Book configuration
 disablePathToLower = true
@@ -20,21 +21,21 @@ enableGitInfo = true
 # See https://gohugo.io/content-management/multilingual/#translation-by-filename
 # And https://gohugo.io/content-management/multilingual/#translation-by-content-directory
 [languages]
-[languages.en]
-  languageName = 'English'
-  contentDir = 'content'
-  weight = 1
-
 [languages.zh]
   languageName = 'Chinese'
   contentDir = 'content.zh'
-  weight = 3
+  weight = 1
+
+[languages.en]
+  languageName = 'English'
+  contentDir = 'content'
+  weight = 2
 
 [menu]
 # [[menu.before]]
 [[menu.after]]
   name = "Github"
-  url = "https://github.com/gitaction/hugo-book"
+  url = "https://github.com/sunwei/hugo-book"
   weight = 10
 
 [[menu.after]]
@@ -67,7 +68,7 @@ enableGitInfo = true
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
-  BookRepo = 'https://github.com/gitaction/hugo'
+  BookRepo = 'https://github.com/sunwei/hugo-notes'
 
   # (Optional, default 'commit') Specifies commit portion of the link to the page's last modified
   # commit hash for 'doc' page type.
