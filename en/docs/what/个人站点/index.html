@@ -1,0 +1,258 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="个人站点样例: https://sunwei.xyz # Hugo能很方便的帮助我们构建站点，接下来我们来重放一下我的个人站点是如何构建出来的。
+需求 # 将原有的纯HTML站点切换成Hugo站点。
+原站点一览：
+功能也不复杂，让我们切换到原始版本。 通过git history可以查到提交记录如下： ➜ xyz git:(master) git checkout ef51befc96f398dcfac1b5c04eb4dc7101633012 得到源码如下：
+<!DOCTYPE html> <html lang=&#34;zh&#34;> <head> <meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=UTF-8&#34;> <meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;> <title>sunwei.xyz</title> </head> <body> <div style=&#34;width: 400px; margin: 20px auto;&#34;> <a href=&#34;/&#34;>中文</a> <a href=&#34;/en.html&#34;>English</a> <div> <h2>孙伟</h2> <p>专注企业级端到端解决方案</p> </div> <hr> <h5> <span>读书笔记</span> </h5> <ul> <li> <a href=&#34;https://ent.sunwei.xyz&#34; target=&#34;_blank&#34;> 企业级应用 </a> </li> <li> <a href=&#34;https://buildkit.notes.sunwei.xyz/&#34; target=&#34;_blank&#34;> Moby Buildkit 源码读书笔记 </a> </li> </ul> <h5><span>工具</span></h5> <ul> <li> <a href=&#34;https://jsoneditoronline."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="个人站点样例: https://sunwei.xyz # Hugo能很方便的帮助我们构建站点，接下来我们来重放一下我的个人站点是如何构建出来的。
+需求 # 将原有的纯HTML站点切换成Hugo站点。
+原站点一览：
+功能也不复杂，让我们切换到原始版本。 通过git history可以查到提交记录如下： ➜ xyz git:(master) git checkout ef51befc96f398dcfac1b5c04eb4dc7101633012 得到源码如下：
+<!DOCTYPE html> <html lang=&#34;zh&#34;> <head> <meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=UTF-8&#34;> <meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;> <title>sunwei.xyz</title> </head> <body> <div style=&#34;width: 400px; margin: 20px auto;&#34;> <a href=&#34;/&#34;>中文</a> <a href=&#34;/en.html&#34;>English</a> <div> <h2>孙伟</h2> <p>专注企业级端到端解决方案</p> </div> <hr> <h5> <span>读书笔记</span> </h5> <ul> <li> <a href=&#34;https://ent.sunwei.xyz&#34; target=&#34;_blank&#34;> 企业级应用 </a> </li> <li> <a href=&#34;https://buildkit.notes.sunwei.xyz/&#34; target=&#34;_blank&#34;> Moby Buildkit 源码读书笔记 </a> </li> </ul> <h5><span>工具</span></h5> <ul> <li> <a href=&#34;https://jsoneditoronline."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/en/docs/what/%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/"><meta property="article:section" content="docs"><title>Index | Deep Understanding of Hugo</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=alternate hreflang=zh href=https://hugo.notes.sunwei.xyz/docs/what/%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/ title=Index><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.c98160fa6f4aa79e276a9f93bf3e03585aebb29154355ea4baba38533229965a.js integrity="sha256-yYFg+m9Kp54nap+Tvz4DWFrrspFUNV6kuro4UzIpllo=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/en/><span>Deep Understanding of Hugo</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+English</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/docs/what/%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/>Chinese</a></li></ul></li></ul><ul><li><p><strong>Hugo使用实例</strong></p></li><li><p><a href=/en/docs/what/%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/ class=active>创建站点</a></p></li><li><p><a href=/en/docs/what/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98/>自定义主题</a><br></p></li><li><p><strong>Hugo架构</strong></p></li><li><p><a href=/en/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/>游乐场</a></p></li><li><p><a href=/en/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>事件风暴</a></p></li><li><p><a href=/en/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/>基础架构</a><br></p></li><li><p><a href=/en/docs/code/><strong>源码解析</strong></a></p></li><li><p><a href=/en/docs/code/%E9%85%8D%E7%BD%AE/>配置</a></p></li><li><p><a href=/en/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/>依赖管理</a></p><ul><li><a href=/en/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/%E8%B7%AF%E5%BE%84%E8%A7%84%E8%8C%83/>PathSpec</a></li><li><a href=/en/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/%E5%86%85%E5%AE%B9%E8%A7%84%E8%8C%83/>ContentSpec</a></li></ul></li><li><p><a href=/en/docs/code/%E7%AB%99%E7%82%B9/>站点创建</a></p><ul><li><a href=/en/docs/code/%E7%AB%99%E7%82%B9/%E5%88%9B%E5%BB%BA/>创建站点</a></li><li><a href=/en/docs/code/%E7%AB%99%E7%82%B9/%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/>加载资源</a></li><li><a href=/en/docs/code/%E7%AB%99%E7%82%B9/markdown/>Markdown</a></li></ul></li><li><p><a href=/en/docs/code/%E6%9E%84%E5%BB%BA/>站点构建</a></p><ul><li><a href=/en/docs/code/%E6%9E%84%E5%BB%BA/%E6%A8%A1%E6%9D%BF/>模板执行</a><br></li></ul></li></ul><ul><li><a href=/en/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Index</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#个人站点样例-httpssunweixyz>个人站点样例: <a href=https://sunwei.xyz>https://sunwei.xyz</a></a><ul><li><a href=#需求>需求</a></li><li><a href=#切换前结合hugo进行分析>切换前结合Hugo进行分析</a></li><li><a href=#开始将sunweixyz切换成hugo模式>开始将sunwei.xyz切换成Hugo模式</a><ul><li><a href=#hugo项目的基础结构>Hugo项目的基础结构</a></li><li><a href=#配置站点基本信息>配置站点基本信息</a></li><li><a href=#提取header>提取Header</a></li><li><a href=#提取footer>提取Footer</a></li><li><a href=#配置多语言信息提取多语言切换功能组件>配置多语言信息，提取多语言切换功能组件</a></li><li><a href=#提取样式>提取样式</a></li><li><a href=#并将内容分别放在中英内容文件夹下>并将内容分别放在中，英内容文件夹下</a></li><li><a href=#首页汇总>首页汇总</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=个人站点样例-httpssunweixyz>个人站点样例:
+<a href=https://sunwei.xyz>https://sunwei.xyz</a>
+<a class=anchor href=#%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9%e6%a0%b7%e4%be%8b-httpssunweixyz>#</a></h1><p>Hugo能很方便的帮助我们构建站点，接下来我们来重放一下我的个人站点是如何构建出来的。</p><h2 id=需求>需求
+<a class=anchor href=#%e9%9c%80%e6%b1%82>#</a></h2><p><strong>将原有的纯HTML站点切换成Hugo站点。</strong></p><p>原站点一览：</p><p><img src=images/old-xyz.png alt="Old sunwei.xyz"></p><p>功能也不复杂，让我们切换到原始版本。
+通过<code>git history</code>可以查到提交记录如下：
+<img src=images/xyz-commits.png alt="xyz commits"></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  xyz git:<span style=color:#f92672>(</span>master<span style=color:#f92672>)</span> git checkout ef51befc96f398dcfac1b5c04eb4dc7101633012
+</span></span></code></pre></div><p>得到源码如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;zh&#34;</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>head</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>http-equiv</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Content-Type&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/html; charset=UTF-8&#34;</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>title</span>&gt;sunwei.xyz&lt;/<span style=color:#f92672>title</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>head</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width: 400px; margin: 20px auto;&#34;</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/&#34;</span>&gt;中文&lt;/<span style=color:#f92672>a</span>&gt; &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/en.html&#34;</span>&gt;English&lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>h2</span>&gt;孙伟&lt;/<span style=color:#f92672>h2</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>p</span>&gt;专注企业级端到端解决方案&lt;/<span style=color:#f92672>p</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>hr</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>h5</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>span</span>&gt;读书笔记&lt;/<span style=color:#f92672>span</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>h5</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>ul</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://ent.sunwei.xyz&#34;</span> <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span>&gt;
+</span></span><span style=display:flex><span>                企业级应用
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://buildkit.notes.sunwei.xyz/&#34;</span> <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span>&gt;
+</span></span><span style=display:flex><span>                Moby Buildkit 源码读书笔记
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>ul</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>h5</span>&gt;&lt;<span style=color:#f92672>span</span>&gt;工具&lt;/<span style=color:#f92672>span</span>&gt;&lt;/<span style=color:#f92672>h5</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>ul</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://jsoneditoronline.cn/&#34;</span> <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span>&gt;
+</span></span><span style=display:flex><span>                JSON 在线编缉器
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://fsky.top&#34;</span> <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span>&gt;
+</span></span><span style=display:flex><span>                程序员创作素材 - Top Funny Sky
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>a</span>&gt;&lt;/<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>ul</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>h5</span>&gt;&lt;<span style=color:#f92672>span</span>&gt;关于&lt;/<span style=color:#f92672>span</span>&gt;&lt;/<span style=color:#f92672>h5</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>ul</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://github.com/sunwei&#34;</span> <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span>&gt;
+</span></span><span style=display:flex><span>                GitHub
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mailto:me@sunwei.xyz&#34;</span> <span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;_blank&#34;</span>&gt;
+</span></span><span style=display:flex><span>                邮箱：me@sunwei.xyz
+</span></span><span style=display:flex><span>            &lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>li</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>ul</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>hr</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>footer</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>small</span>&gt;
+</span></span><span style=display:flex><span>            © Copyright 2020, sunwei.xyz
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>br</span>&gt;
+</span></span><span style=display:flex><span>            兼容 &lt;<span style=color:#f92672>strong</span>&gt;IE6&lt;/<span style=color:#f92672>strong</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>span</span>&gt;&amp;#128526;&lt;/<span style=color:#f92672>span</span>&gt;
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>small</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>footer</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>html</span>&gt;
+</span></span></code></pre></div><p>可以看到，纯HTML，为了让站点居中，使用了简单的样式，同时还支持中英双语。
+兼容性更不用说，把IE6刨出来，都测不出任何BUG。</p><h2 id=切换前结合hugo进行分析>切换前结合Hugo进行分析
+<a class=anchor href=#%e5%88%87%e6%8d%a2%e5%89%8d%e7%bb%93%e5%90%88hugo%e8%bf%9b%e8%a1%8c%e5%88%86%e6%9e%90>#</a></h2><p>结合Hugo的使用方法，结合上述源码，我们把需要完成的工作拆分成如下任务：</p><ul><li>配置站点基本信息</li><li>提取Header</li><li>提取Footer</li><li>配置多语言信息，提取多语言切换功能组件</li><li>提取样式</li><li>并将内容分别放在中，英内容文件夹下</li><li>首页汇总</li></ul><h2 id=开始将sunweixyz切换成hugo模式>开始将sunwei.xyz切换成Hugo模式
+<a class=anchor href=#%e5%bc%80%e5%a7%8b%e5%b0%86sunweixyz%e5%88%87%e6%8d%a2%e6%88%90hugo%e6%a8%a1%e5%bc%8f>#</a></h2><p>通过以上分析，及任务的拆分，我们现在正式进入切换环节。</p><h3 id=hugo项目的基础结构>Hugo项目的基础结构
+<a class=anchor href=#hugo%e9%a1%b9%e7%9b%ae%e7%9a%84%e5%9f%ba%e7%a1%80%e7%bb%93%e6%9e%84>#</a></h3><p>创建一个Hugo站点很方便，通过以下命令：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  tmp hugo new site xyz
+</span></span></code></pre></div><p>查看目录结构：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  xyz tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── archetypes
+</span></span><span style=display:flex><span>│   └── default.md
+</span></span><span style=display:flex><span>├── config.toml
+</span></span><span style=display:flex><span>├── content
+</span></span><span style=display:flex><span>├── data
+</span></span><span style=display:flex><span>├── layouts
+</span></span><span style=display:flex><span>├── public
+</span></span><span style=display:flex><span>├── static
+</span></span><span style=display:flex><span>└── themes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>7</span> directories, <span style=color:#ae81ff>2</span> files
+</span></span></code></pre></div><p>可以看到默认的文件夹有7个，根据我们的需求，我们需要保留：</p><ul><li>content，用来存放站点内容，如果content文件夹用来存放中文，我们还需要再创建一个content.en来存放英文</li><li>layouts，用来存放站点页面模板</li><li>static，因为有对站点用到居中样式，所以要存放样式文件</li><li>config.toml， 基本配置信息和多语言信息都会存放在其中</li></ul><p>文件结构看起来如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  xyz git:<span style=color:#f92672>(</span>master<span style=color:#f92672>)</span> tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── README.md
+</span></span><span style=display:flex><span>├── config.toml
+</span></span><span style=display:flex><span>├── content
+</span></span><span style=display:flex><span>├── content.en
+</span></span><span style=display:flex><span>├── layouts
+</span></span><span style=display:flex><span>└── static
+</span></span></code></pre></div><p>之所以移除<code>public</code>目录，是因为我们将会使用Github Pages + Actions来发布我们的站点，所以每次都会在构建时自动创建发布目录。</p><h3 id=配置站点基本信息>配置站点基本信息
+<a class=anchor href=#%e9%85%8d%e7%bd%ae%e7%ab%99%e7%82%b9%e5%9f%ba%e6%9c%ac%e4%bf%a1%e6%81%af>#</a></h3><p>我们只需要配置baseURL和title就行，打开config.toml并输入：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#a6e22e>baseURL</span> = <span style=color:#e6db74>&#39;https://sunwei.xyz/&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>title</span> = <span style=color:#e6db74>&#39;sunwei.xyz&#39;</span>
+</span></span></code></pre></div><h3 id=提取header>提取Header
+<a class=anchor href=#%e6%8f%90%e5%8f%96header>#</a></h3><p>通过查询Hugo的layouts说明，我们发现，是支持模板互相引用的，所以我们先把这些重复使用较多的代码提取出来，方便重用。</p><p>进入到layouts，并创建分类目录partials，创建文件head.html，并将原站点header内容拷贝其中：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>head</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>http-equiv</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Content-Type&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/html; charset=UTF-8&#34;</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stylesheet&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/css&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/css/style.css&#34;</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>title</span>&gt;sunwei.xyz&lt;/<span style=color:#f92672>title</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>head</span>&gt;
+</span></span></code></pre></div><h3 id=提取footer>提取Footer
+<a class=anchor href=#%e6%8f%90%e5%8f%96footer>#</a></h3><p>同理，进入到layouts，在分类目录partials下，创建文件foot.html，并将原站点footer内容拷贝其中：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>&lt;<span style=color:#f92672>footer</span>&gt;
+</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>small</span>&gt;
+</span></span><span style=display:flex><span>    Copyright (c) {{ now.Format &#34;2006&#34;}}, sunwei.xyz
+</span></span><span style=display:flex><span>  &lt;/<span style=color:#f92672>small</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>footer</span>&gt;
+</span></span></code></pre></div><p>这里比较有意思的是这个Copyright，从2006年开始计算，得到当前年份。
+对细节感兴趣的小伙伴，可以参考
+<a href=https://pkg.go.dev/time#pkg-constants>golang time</a></p><h3 id=配置多语言信息提取多语言切换功能组件>配置多语言信息，提取多语言切换功能组件
+<a class=anchor href=#%e9%85%8d%e7%bd%ae%e5%a4%9a%e8%af%ad%e8%a8%80%e4%bf%a1%e6%81%af%e6%8f%90%e5%8f%96%e5%a4%9a%e8%af%ad%e8%a8%80%e5%88%87%e6%8d%a2%e5%8a%9f%e8%83%bd%e7%bb%84%e4%bb%b6>#</a></h3><p>当点击多语言链接时需要切换到对应语言内容。
+将语言切换控件切换成Hugo layouts模板前，先更新配置文件如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#a6e22e>baseURL</span> = <span style=color:#e6db74>&#39;https://sunwei.xyz/&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>title</span> = <span style=color:#e6db74>&#39;sunwei.xyz&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>defaultContentLanguage</span> = <span style=color:#e6db74>&#39;zh&#39;</span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>]
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>.<span style=color:#a6e22e>zh</span>]
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>languageName</span> = <span style=color:#e6db74>&#39;中文&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>contentDir</span> = <span style=color:#e6db74>&#39;content&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>.<span style=color:#a6e22e>en</span>]
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>languageName</span> = <span style=color:#e6db74>&#39;English&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>contentDir</span> = <span style=color:#e6db74>&#39;content.en&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>weight</span> = <span style=color:#ae81ff>2</span>
+</span></span></code></pre></div><p>接下来还是一样，进入到layouts，在分类目录partials下，创建文件language.html，并将原站点footer内容拷贝其中：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span>{{ range $.Site.Home.AllTranslations }}
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ .Permalink }}&#34;</span>&gt;{{ .Language.LanguageName }}&lt;/<span style=color:#f92672>a</span>&gt;
+</span></span><span style=display:flex><span>{{ end }}
+</span></span></code></pre></div><p>可以看到，这里要用到Hugo提供的函数range，以及获取语言相关的配置信息，并设置上对应链接。
+是不是很方便，不用再硬编码这些链接了。</p><h3 id=提取样式>提取样式
+<a class=anchor href=#%e6%8f%90%e5%8f%96%e6%a0%b7%e5%bc%8f>#</a></h3><p>因为原站点中有用到样式，让内容居中显示。
+我们需要把样式，提取出来，并放在相应的位置。</p><p>这一次不再是layouts，而是static目录下。
+进入目录后，创建css文件夹，并在里面创建样式文件style.css:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css><span style=display:flex><span>.<span style=color:#a6e22e>content</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>width</span>: <span style=color:#ae81ff>400</span><span style=color:#66d9ef>px</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>margin</span>: <span style=color:#ae81ff>20</span><span style=color:#66d9ef>px</span> <span style=color:#66d9ef>auto</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=并将内容分别放在中英内容文件夹下>并将内容分别放在中，英内容文件夹下
+<a class=anchor href=#%e5%b9%b6%e5%b0%86%e5%86%85%e5%ae%b9%e5%88%86%e5%88%ab%e6%94%be%e5%9c%a8%e4%b8%ad%e8%8b%b1%e5%86%85%e5%ae%b9%e6%96%87%e4%bb%b6%e5%a4%b9%e4%b8%8b>#</a></h3><p>因为需要中英双语，在之前已经为中英切换组件配置了多语言相关信息。
+这次需要将内容放入对应的文件夹中。</p><p>在配置项中，中文对应的文件夹是content：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#a6e22e>defaultContentLanguage</span> = <span style=color:#e6db74>&#39;zh&#39;</span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>]
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>.<span style=color:#a6e22e>zh</span>]
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>languageName</span> = <span style=color:#e6db74>&#39;中文&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>contentDir</span> = <span style=color:#e6db74>&#39;content&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>weight</span> = <span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><p>在content目录下，创建表示章节的文件_index.md：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>---
+</span></span><span style=display:flex><span>title: Introduction
+</span></span><span style=display:flex><span>date: 2022-09-05T16:32:38+08:00
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>敏捷咨询、研发效能治理、云原生、源码分享
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 读书笔记
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> [<span style=color:#f92672>企业级应用</span>](<span style=color:#a6e22e>https://ent.sunwei.xyz</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> [<span style=color:#f92672>Moby Buildkit 源码读书笔记</span>](<span style=color:#a6e22e>https://buildkit.notes.sunwei.xyz/</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 工具
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> [<span style=color:#f92672>JSON 在线编缉器</span>](<span style=color:#a6e22e>https://jsoneditoronline.cn/</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> [<span style=color:#f92672>程序员创作素材 - Top Funny Sky</span>](<span style=color:#a6e22e>https://fsky.top</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 关于
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> [<span style=color:#f92672>GitHub</span>](<span style=color:#a6e22e>https://github.com/sunwei</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> [<span style=color:#f92672>邮箱：me@sunwei.xyz</span>](<span style=color:#a6e22e>mailto:me@sunwei.xyz</span>)
+</span></span></code></pre></div><p>同理，在content.en目录下，放入英文版内容。</p><p>在Hugo中，index.md表示一个常规页面，访问路径就是对应所在目录的目录名，可以包含其它页面。
+比如content/about/index.md，对应的访问链接就是<code>baseURL/about</code>。</p><p>而_index.md，通常是列表类型，通常有子目录，但不能包含其它页面。</p><p>不过目前官方关于index.md和_index.md的明确比较说明，还没有准备好。
+所以很多时候并没有那么明确的区分。</p><h3 id=首页汇总>首页汇总
+<a class=anchor href=#%e9%a6%96%e9%a1%b5%e6%b1%87%e6%80%bb>#</a></h3><p>准备好内容后，接下来要做的就是用首页对header, footer, language, content进行汇总了。</p><p>因为我们的站点是个人品牌站点，重点是向其它人介绍所专注的领域，相关的博文，工具。
+目前并不需要在首页展示博客列表，对首页的定位也不是一个单纯的页面，所以我们选择用_index.md。</p><p>我们的输出格式是默认的HTML。
+想要把主页渲染出来，我们同样需要layout中的模板。
+先来看一下Hugo主页Layout的
+<a href=https://gohugo.io/templates/lookup-order/#examples-layout-lookup-for-home-page>查找规则</a>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>1.</span> layouts/index.html.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span> layouts/home.html.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span> layouts/list.html.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span> layouts/index.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>5.</span> layouts/home.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>6.</span> layouts/list.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>7.</span> layouts/_default/index.html.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>8.</span> layouts/_default/home.html.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>9.</span> layouts/_default/list.html.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>10.</span> layouts/_default/index.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>11.</span> layouts/_default/home.html
+</span></span><span style=display:flex><span><span style=color:#66d9ef>12.</span> layouts/_default/list.html
+</span></span></code></pre></div><p>没错，任意选择其中一个就行。</p><p>在这我们选择了最常见的index.html，那接下来我们就要进入layouts目录，并创建index.html文件，汇总所有提取出来的内容：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=display:flex><span><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;{{ default .Site.Language.Lang .Site.LanguageCode  }}&#34;</span>&gt;
+</span></span><span style=display:flex><span>{{- partial &#34;head.html&#34; . -}}
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;content&#34;</span>&gt;
+</span></span><span style=display:flex><span>    {{- partial &#34;language.html&#34; . -}}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>h1</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;title&#34;</span>&gt;{{ .Site.Title }}&lt;/<span style=color:#f92672>h1</span>&gt;
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>p</span>&gt;{{ .Content }}&lt;/<span style=color:#f92672>p</span>&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    {{- partial &#34;foot.html&#34; . -}}
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>body</span>&gt;
+</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>html</span>&gt;
+</span></span></code></pre></div><p>可以看出，模板语言很容易理解。</p><p>接下来，我们可以直接在本地查看实际效果：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>hugo serve
+</span></span></code></pre></div><p>输入地址
+<a href=http://localhost:1313/>http://localhost:1313/</a>，就能看到我们的站点了：</p><p><img src=images/new-xyz.png alt="Hugo sunwei.xyz"></p><p>简直一模一样。</p><p>以后想要加入
+<a href=https://juejin.cn/column/7145825003198480391>深入理解Hugo</a>系列，更新站点的时候，直接写MD就可以了。
+真的很方便。</p><p>最后的目录结构看起来是这个样子的：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  xyz git:<span style=color:#f92672>(</span>master<span style=color:#f92672>)</span> tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── CNAME
+</span></span><span style=display:flex><span>├── README.md
+</span></span><span style=display:flex><span>├── command.sh
+</span></span><span style=display:flex><span>├── config.toml
+</span></span><span style=display:flex><span>├── content
+</span></span><span style=display:flex><span>│   └── _index.md
+</span></span><span style=display:flex><span>├── content.en
+</span></span><span style=display:flex><span>│   └── _index.md
+</span></span><span style=display:flex><span>├── layouts
+</span></span><span style=display:flex><span>│   ├── index.html
+</span></span><span style=display:flex><span>│   ├── partials
+</span></span><span style=display:flex><span>│   │   ├── foot.html
+</span></span><span style=display:flex><span>│   │   ├── head.html
+</span></span><span style=display:flex><span>│   │   └── language.html
+</span></span><span style=display:flex><span>│   └── taxonomy
+</span></span><span style=display:flex><span>│       └── taxonomy.html
+</span></span><span style=display:flex><span>└── static
+</span></span><span style=display:flex><span>    └── css
+</span></span><span style=display:flex><span>        └── style.css
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>11</span> directories, <span style=color:#ae81ff>12</span> files
+</span></span></code></pre></div><p>源码可参考Github
+<a href=https://github.com/sunwei/xyz/tree/v0.1.0-zero>sunwei/xyz</a></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content/docs/what/%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#个人站点样例-httpssunweixyz>个人站点样例: <a href=https://sunwei.xyz>https://sunwei.xyz</a></a><ul><li><a href=#需求>需求</a></li><li><a href=#切换前结合hugo进行分析>切换前结合Hugo进行分析</a></li><li><a href=#开始将sunweixyz切换成hugo模式>开始将sunwei.xyz切换成Hugo模式</a><ul><li><a href=#hugo项目的基础结构>Hugo项目的基础结构</a></li><li><a href=#配置站点基本信息>配置站点基本信息</a></li><li><a href=#提取header>提取Header</a></li><li><a href=#提取footer>提取Footer</a></li><li><a href=#配置多语言信息提取多语言切换功能组件>配置多语言信息，提取多语言切换功能组件</a></li><li><a href=#提取样式>提取样式</a></li><li><a href=#并将内容分别放在中英内容文件夹下>并将内容分别放在中，英内容文件夹下</a></li><li><a href=#首页汇总>首页汇总</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
