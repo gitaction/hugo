@@ -1,0 +1,720 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Config源码分析 # 在 基础架构中，从基础架构的视角出发。 有提到配置模块，以及 配置和语言的关系。
+下面我们从源码实现的角度，详细的来看看Hugo是如何设计和实现配置模块的。
+跬步千里 - Config模块源码 # 将 游乐场源码， 切换到 01-config分支：
+➜ hugo-playground git:(main) git checkout 01-config Switched to branch '01-config' Your branch is up to date with 'origin/01-config'. ➜ hugo-playground git:(01-config) 通过将源码按配置模块进行裁剪，Config模块在我们面前也变得清晰，让我们在Hugo源码学习的道路上迈出了自信的一步。 通过命令行，我们可以看看具体的目录结构：
+➜ hugo-playground git:(01-config) tree . ├── LICENSE ├── README.md ├── command.sh ├── common │ ├── maps │ │ ├── maps.go │ │ └── params.go │ └── paths │ └── path.go ├── config │ ├── commonConfig."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Config源码分析 # 在 基础架构中，从基础架构的视角出发。 有提到配置模块，以及 配置和语言的关系。
+下面我们从源码实现的角度，详细的来看看Hugo是如何设计和实现配置模块的。
+跬步千里 - Config模块源码 # 将 游乐场源码， 切换到 01-config分支：
+➜ hugo-playground git:(main) git checkout 01-config Switched to branch '01-config' Your branch is up to date with 'origin/01-config'. ➜ hugo-playground git:(01-config) 通过将源码按配置模块进行裁剪，Config模块在我们面前也变得清晰，让我们在Hugo源码学习的道路上迈出了自信的一步。 通过命令行，我们可以看看具体的目录结构：
+➜ hugo-playground git:(01-config) tree . ├── LICENSE ├── README.md ├── command.sh ├── common │ ├── maps │ │ ├── maps.go │ │ └── params.go │ └── paths │ └── path.go ├── config │ ├── commonConfig."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/docs/code/%E9%85%8D%E7%BD%AE/"><meta property="article:section" content="docs"><title>Index | Deep Understanding of Hugo</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.1ecc359d6bd3fe3a685cff1b637cce441a384b9cb4f84087d4cd56e5ecb09365.js integrity="sha256-Hsw1nWvT/jpoXP8bY3zORBo4S5y0+ECH1M1W5eywk2U=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Deep Understanding of Hugo</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+Chinese</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/en/>English</a></li></ul></li></ul><ul><li><p><strong>Hugo使用实例</strong></p></li><li><p><a href=/docs/what/%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/>创建站点</a></p></li><li><p><a href=/docs/what/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98/>自定义主题</a><br></p></li><li><p><strong>Hugo架构</strong></p></li><li><p><a href=/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/>游乐场</a></p></li><li><p><a href=/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>事件风暴</a></p></li><li><p><a href=/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/>基础架构</a><br></p></li><li><p><a href=/docs/code/><strong>源码解析</strong></a></p></li><li><p><a href=/docs/code/%E9%85%8D%E7%BD%AE/ class=active>配置</a></p></li><li><p><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/>依赖管理</a></p><ul><li><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/%E8%B7%AF%E5%BE%84%E8%A7%84%E8%8C%83/>PathSpec</a></li><li><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/%E5%86%85%E5%AE%B9%E8%A7%84%E8%8C%83/>ContentSpec</a></li></ul></li><li><p><a href=/docs/code/%E7%AB%99%E7%82%B9/>站点创建</a></p><ul><li><a href=/docs/code/%E7%AB%99%E7%82%B9/%E5%88%9B%E5%BB%BA/>创建站点</a></li><li><a href=/docs/code/%E7%AB%99%E7%82%B9/%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/>加载资源</a></li><li><a href=/docs/code/%E7%AB%99%E7%82%B9/markdown/>Markdown</a></li></ul></li><li><p><a href=/docs/code/%E6%9E%84%E5%BB%BA/>站点构建</a></p><ul><li><a href=/docs/code/%E6%9E%84%E5%BB%BA/%E6%A8%A1%E6%9D%BF/>模板执行</a><br></li></ul></li></ul><ul><li><a href=/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Index</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#config源码分析>Config源码分析</a><ul><li><a href=#跬步千里---config模块源码>跬步千里 - Config模块源码</a></li><li><a href=#了然于胸---loadconfig时序图>了然于胸 - loadConfig时序图</a></li><li><a href=#抽象总结---输入配置文件输出map格式数据>抽象总结 - 输入配置文件，输出Map格式数据</a></li><li><a href=#动手实践---show-me-the-code-of-loadconfig>动手实践 - Show Me the Code of loadConfig</a></li><li><a href=#了然于胸---applyconfigdefaults时序图>了然于胸 - applyConfigDefaults时序图</a></li><li><a href=#抽象总结---输入不同类型的值输出标准的configprovider>抽象总结 - 输入不同类型的值，输出标准的configProvider</a></li><li><a href=#动手实践---show-me-the-code-of-applyconfigdefaults>动手实践 - Show Me the Code of applyConfigDefaults</a></li><li><a href=#了然于胸---collectmodules时序图>了然于胸 - collectModules时序图</a></li><li><a href=#抽象总结---输入不同类型的值输出标准的configprovider-1>抽象总结 - 输入不同类型的值，输出标准的configProvider</a></li><li><a href=#动手实践---show-me-the-code-of-collectmodules>动手实践 - Show Me the Code of collectModules</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h2 id=config源码分析>Config源码分析
+<a class=anchor href=#config%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90>#</a></h2><p>在
+<a href=../how/%e5%9f%ba%e7%a1%80%e6%9e%b6%e6%9e%84.md>基础架构</a>中，从基础架构的视角出发。
+有提到配置模块，以及
+<a href=../how/%e5%9f%ba%e7%a1%80%e6%9e%b6%e6%9e%84.md#%e9%85%8d%e7%bd%ae%e5%92%8c%e8%af%ad%e8%a8%80%e7%9a%84%e5%85%b3%e7%b3%bb>配置和语言的关系</a>。</p><p>下面我们从源码实现的角度，详细的来看看Hugo是如何设计和实现配置模块的。</p><h3 id=跬步千里---config模块源码>跬步千里 - Config模块源码
+<a class=anchor href=#%e8%b7%ac%e6%ad%a5%e5%8d%83%e9%87%8c---config%e6%a8%a1%e5%9d%97%e6%ba%90%e7%a0%81>#</a></h3><p>将
+<a href=https://github.com/sunwei/hugo-playground>游乐场</a>源码， 切换到
+<a href=https://github.com/sunwei/hugo-playground/tree/01-config>01-config</a>分支：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  hugo-playground git:<span style=color:#f92672>(</span>main<span style=color:#f92672>)</span> git checkout 01-config
+</span></span><span style=display:flex><span>Switched to branch <span style=color:#e6db74>&#39;01-config&#39;</span>
+</span></span><span style=display:flex><span>Your branch is up to date with <span style=color:#e6db74>&#39;origin/01-config&#39;</span>.
+</span></span><span style=display:flex><span>➜  hugo-playground git:<span style=color:#f92672>(</span>01-config<span style=color:#f92672>)</span> 
+</span></span></code></pre></div><p>通过将源码按配置模块进行裁剪，Config模块在我们面前也变得清晰，让我们在Hugo源码学习的道路上迈出了自信的一步。
+通过命令行，我们可以看看具体的目录结构：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>➜  hugo-playground git:(01-config) tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── LICENSE
+</span></span><span style=display:flex><span>├── README.md
+</span></span><span style=display:flex><span>├── command.sh
+</span></span><span style=display:flex><span>├── common
+</span></span><span style=display:flex><span>│    ├── maps
+</span></span><span style=display:flex><span>│    │    ├── maps.go
+</span></span><span style=display:flex><span>│    │    └── params.go
+</span></span><span style=display:flex><span>│    └── paths
+</span></span><span style=display:flex><span>│         └── path.go
+</span></span><span style=display:flex><span>├── config
+</span></span><span style=display:flex><span>│    ├── commonConfig.go
+</span></span><span style=display:flex><span>│    ├── compositeConfig.go
+</span></span><span style=display:flex><span>│    ├── configLoader.go
+</span></span><span style=display:flex><span>│    ├── configProvider.go
+</span></span><span style=display:flex><span>│    ├── defaultConfigProvider.go
+</span></span><span style=display:flex><span>│    └── env.go
+</span></span><span style=display:flex><span>├── go.mod
+</span></span><span style=display:flex><span>├── go.sum
+</span></span><span style=display:flex><span>├── hugo-playground
+</span></span><span style=display:flex><span>├── hugofs
+</span></span><span style=display:flex><span>│    ├── files
+</span></span><span style=display:flex><span>│    │    └── classifier.go
+</span></span><span style=display:flex><span>│    └── fs.go
+</span></span><span style=display:flex><span>├── hugolib
+</span></span><span style=display:flex><span>│    └── config.go
+</span></span><span style=display:flex><span>├── langs
+</span></span><span style=display:flex><span>│    ├── config.go
+</span></span><span style=display:flex><span>│    └── language.go
+</span></span><span style=display:flex><span>├── log
+</span></span><span style=display:flex><span>│    └── logger.go
+</span></span><span style=display:flex><span>├── main.go
+</span></span><span style=display:flex><span>├── modules
+</span></span><span style=display:flex><span>│    ├── client.go
+</span></span><span style=display:flex><span>│    ├── collect.go
+</span></span><span style=display:flex><span>│    ├── config.go
+</span></span><span style=display:flex><span>│    └── module.go
+</span></span><span style=display:flex><span>├── parser
+</span></span><span style=display:flex><span>│    └── metadecoders
+</span></span><span style=display:flex><span>│         ├── decoder.go
+</span></span><span style=display:flex><span>│         └── format.go
+</span></span><span style=display:flex><span>└── types
+</span></span><span style=display:flex><span>    ├── convert.go
+</span></span><span style=display:flex><span>    └── types.go
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>13 directories, 30 files
+</span></span></code></pre></div><p>总共也就13个文件夹，30个文件，其中还包含了一些Github和Golang工程的默认文件。</p><p>我们看看<code>main.go</code>文件中主要干了什么：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 1. config
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Process</span>(<span style=color:#e6db74>&#34;main&#34;</span>, <span style=color:#e6db74>&#34;load configurations from config.toml and themes&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>cfg</span>, <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>hugolib</span>.<span style=color:#a6e22e>LoadConfig</span>(
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>hugolib</span>.<span style=color:#a6e22e>ConfigSourceDescriptor</span>{
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>WorkingDir</span>: <span style=color:#a6e22e>tempDir</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>Fs</span>:         <span style=color:#a6e22e>afs</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>Filename</span>:   <span style=color:#e6db74>&#34;config.toml&#34;</span>,
+</span></span><span style=display:flex><span>		},
+</span></span><span style=display:flex><span>	)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%#v\n&#34;</span>, <span style=color:#a6e22e>cfg</span>)
+</span></span></code></pre></div><p>主要就是调用了LoadConfig函数，生成了配置信息，最打印出来。
+主文件中其它的代码我们有在
+<a href=../how/%e6%b8%b8%e4%b9%90%e5%9c%ba.md>游乐场</a>的介绍中提到过，感兴趣的小伙伴可以前往查看。</p><p>如果想要运行程序，查看输出的配置信息长啥样，也可以进入到工程根目录，简单运行命令：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>go run .
+</span></span></code></pre></div><p>得到运行结果如下：
+<img src=images/8.0-go-run.png alt="Go Run Result"></p><p>进一步查看<code>LoadConfig</code>函数，我们发现主要做了三件事：</p><ol><li><code>loadConfig</code>，加载用户项目中的配置文件，如<code>config.toml</code>。</li><li><code>applyConfigDefaults</code>，如果说上面是用户的自定义信息，那这里就是Hugo用到的默认信息。</li><li><code>collectModules</code>，加载完自定义信息和默认信息后，根据得到的模块信息，准备模块，并将解析过后的模块信息，也放入配置信息中。</li></ol><p>在本章我们重点看第1步<code>loadConfig</code>，在后续的章节里会有第2步<code>applyConfigDefaults</code>，和第3步<code>collectModules</code>的介绍。</p><h3 id=了然于胸---loadconfig时序图>了然于胸 - loadConfig时序图
+<a class=anchor href=#%e4%ba%86%e7%84%b6%e4%ba%8e%e8%83%b8---loadconfig%e6%97%b6%e5%ba%8f%e5%9b%be>#</a></h3><p><img src=images/8.0-LoadConfig-sequence-flow.svg alt="Config Sequence Flow"></p><p>从时序图中，我们可以清晰的看到<code>loadConfig</code>被调用的环境。
+由主函数发起调用，在<code>hugolib/config.go</code>中先是构建好<code>configLoader</code>，调用<code>loadConfig</code>函数，将<code>config.toml</code>文件转换成Map类型数据。</p><p>在<code>loadConfig</code>中，通过函数名可以观察到Hugo的实现思路。
+这也说明好的命名是多么的重要。</p><p>（温馨提示，在阅读下述流程函数时，可打开
+<a href=https://github.com/sunwei/hugo-playground/tree/01-config>配置源码</a>对照查看。）</p><ul><li><code>FromFileToMap</code>，将目标文件<code>config.toml</code>转换成Map类型的数据。</li><li><code>loadConfigFromFile</code>，为了达到上面的目的，首先要从硬盘加载这个文件。</li><li><code>UnmarshalFileToMap</code>，加载后，需要将字符弃，解组成Map类型的数据。</li><li><code>UnmarshalToMap</code>，解组对应的输出格式要求，可能不一样，这里是要求解组成Map类型，还有可能是其它类型。</li><li><code>FormatFromString</code>，从文件名获取文件格式<code>toml</code>。</li><li><code>UnmarshaTo</code>，通过获取的文件格式信息，以及文件数据信息，和对应的输出格式Map信息，解组总函数，知道该让谁具体负责了。</li><li><code>toml.Unmarshal</code>，所有信息被传送到具体操作员<code>toml</code>，可以外聘，也可以自己实现。Hugo选择了外聘<code>github.com/pelletier/go-toml/v2</code>。</li></ul><h3 id=抽象总结---输入配置文件输出map格式数据>抽象总结 - 输入配置文件，输出Map格式数据
+<a class=anchor href=#%e6%8a%bd%e8%b1%a1%e6%80%bb%e7%bb%93---%e8%be%93%e5%85%a5%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e8%be%93%e5%87%bamap%e6%a0%bc%e5%bc%8f%e6%95%b0%e6%8d%ae>#</a></h3><p><img src=images/8.1-LoadConfig-toml-to-map.svg alt="Config to Map"></p><p>首先了解用户的需求，是将config.toml文件作为输入，要求输出Map类型的数据。
+Hugo先是收集信息，包括文件数据<code>data</code>，文件格式<code>toml</code>，和输出类型<code>map[string]any</code>，找到专业的人<code>go-toml</code>，进行处理。
+最终得到符合要求的Map信息。</p><h3 id=动手实践---show-me-the-code-of-loadconfig>动手实践 - Show Me the Code of loadConfig
+<a class=anchor href=#%e5%8a%a8%e6%89%8b%e5%ae%9e%e8%b7%b5---show-me-the-code-of-loadconfig>#</a></h3><p>在知道<code>loadConfig</code>的实现原理后，我们再来动动小手，用代码来总结代码，巩固一下知识。</p><p>可以这里线上尝试，
+<a href=https://c.sunwei.xyz/config-map.html>Show Me the Code, try it yourself</a></p><p>代码里有注解说明，代码样例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;bytes&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>toml</span> <span style=color:#e6db74>&#34;github.com/pelletier/go-toml/v2&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;golang.org/x/tools/txtar&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;path/filepath&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;strings&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 文件结构
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 文件名: config.toml
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 文件内容：theme = &#39;mytheme&#39;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>files</span> = <span style=color:#e6db74>&#34;-- config.toml --\n&#34;</span> <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;theme = &#39;mytheme&#39;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Format 文件格式类型
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Format</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// TOML 支持的格式，为简单示例，只支持TOML格式
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> (
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>TOML</span> <span style=color:#a6e22e>Format</span> = <span style=color:#e6db74>&#34;toml&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 解析上面的文件结构
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>data</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>txtar</span>.<span style=color:#a6e22e>Parse</span>([]byte(<span style=color:#a6e22e>files</span>))
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;File start:&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Input: 数据，格式，输出类型
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>configData</span> []<span style=color:#66d9ef>byte</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>format</span> <span style=color:#a6e22e>Format</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>m</span> <span style=color:#f92672>:=</span> make(<span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 遍历解析生成的所有文件，通过File结构体获取文件名和文件数据
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// f.Name 获取文件名
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// f.Data 获取文件数据
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// 如果是config.toml文件，则获取文件数据
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>f</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>Files</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;config.toml&#34;</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>f</span>.<span style=color:#a6e22e>Name</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>configData</span> = <span style=color:#a6e22e>bytes</span>.<span style=color:#a6e22e>TrimSuffix</span>(
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>f</span>.<span style=color:#a6e22e>Data</span>, []byte(<span style=color:#e6db74>&#34;\n&#34;</span>))
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>format</span> = <span style=color:#a6e22e>FormatFromString</span>(<span style=color:#a6e22e>f</span>.<span style=color:#a6e22e>Name</span>)
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>UnmarshalTo</span>(<span style=color:#a6e22e>configData</span>, <span style=color:#a6e22e>format</span>, <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>m</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>	} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#a6e22e>m</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;File end.&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// FormatFromString turns formatStr, typically a file extension without any &#34;.&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// into a Format. It returns an empty string for unknown formats.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// Hugo 实现
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>FormatFromString</span>(<span style=color:#a6e22e>formatStr</span> <span style=color:#66d9ef>string</span>) <span style=color:#a6e22e>Format</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>formatStr</span> = <span style=color:#a6e22e>strings</span>.<span style=color:#a6e22e>ToLower</span>(<span style=color:#a6e22e>formatStr</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>strings</span>.<span style=color:#a6e22e>Contains</span>(<span style=color:#a6e22e>formatStr</span>, <span style=color:#e6db74>&#34;.&#34;</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#75715e>// Assume a filename
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>		<span style=color:#a6e22e>formatStr</span> = <span style=color:#a6e22e>strings</span>.<span style=color:#a6e22e>TrimPrefix</span>(
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>filepath</span>.<span style=color:#a6e22e>Ext</span>(<span style=color:#a6e22e>formatStr</span>), <span style=color:#e6db74>&#34;.&#34;</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>switch</span> <span style=color:#a6e22e>formatStr</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#34;toml&#34;</span>:
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>TOML</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// UnmarshalTo unmarshals data in format f into v.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>UnmarshalTo</span>(<span style=color:#a6e22e>data</span> []<span style=color:#66d9ef>byte</span>, <span style=color:#a6e22e>f</span> <span style=color:#a6e22e>Format</span>, <span style=color:#a6e22e>v</span> <span style=color:#a6e22e>any</span>) <span style=color:#66d9ef>error</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>switch</span> <span style=color:#a6e22e>f</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>case</span> <span style=color:#a6e22e>TOML</span>:
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>toml</span>.<span style=color:#a6e22e>Unmarshal</span>(<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>v</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>default</span>:
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(
+</span></span><span style=display:flex><span>			<span style=color:#e6db74>&#34;unmarshal of format %q is not supported&#34;</span>, <span style=color:#a6e22e>f</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>程序输出结果：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e># 解析后得到文件config.toml</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 准备Input：config file data, format, map[string]any</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 得到Output: map[theme:mytheme]</span>
+</span></span><span style=display:flex><span>File start:
+</span></span><span style=display:flex><span>map<span style=color:#f92672>[</span>theme:mytheme<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>File end.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Program exited.
+</span></span></code></pre></div><h3 id=了然于胸---applyconfigdefaults时序图>了然于胸 - applyConfigDefaults时序图
+<a class=anchor href=#%e4%ba%86%e7%84%b6%e4%ba%8e%e8%83%b8---applyconfigdefaults%e6%97%b6%e5%ba%8f%e5%9b%be>#</a></h3><p>上面的<code>loadConfig</code>帮助我们读取了文件系统里的config.toml文件，并将结果以<code>map[string]any</code>的格式。
+那我们会把用户自定义的这些配置信息最终存储到哪儿，又将以什么形式提供服务呢？</p><p>我们来通过<code>applyConfigDefaults</code>时序图找寻一下线索：
+<img src=images/8.2-LoadConfig-sequence%20flow-applyConfigDefaults.svg alt="Sequence Flow - applyConfigDefaults"></p><p>从上图左下脚可以看到在<code>configLoader</code>调用<code>applyConfigDefaults</code>方法后，实际调用的是<code>l.cfg.SetDefaults</code>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugolib/config.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 54
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>l</span> <span style=color:#a6e22e>configLoader</span>) <span style=color:#a6e22e>applyConfigDefaults</span>() <span style=color:#66d9ef>error</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>defaultSettings</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>maps</span>.<span style=color:#a6e22e>Params</span>{
+</span></span><span style=display:flex><span>		<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;timeout&#34;</span>:                              <span style=color:#e6db74>&#34;30s&#34;</span>,
+</span></span><span style=display:flex><span>		<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>l</span>.<span style=color:#a6e22e>cfg</span>.<span style=color:#a6e22e>SetDefaults</span>(<span style=color:#a6e22e>defaultSettings</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>那<code>l.cfg</code>从哪儿来呢？
+我们可以往时序图左上方看。
+在创建<code>configLoader</code>实例的时候，有一同创建<code>cfg</code>，直接调用<code>config.New()</code>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/config/defaultConfigProvider.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 16
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// New creates a Provider backed by an empty maps.Params.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>New</span>() <span style=color:#a6e22e>Provider</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>defaultConfigProvider</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>root</span>: make(<span style=color:#a6e22e>maps</span>.<span style=color:#a6e22e>Params</span>),
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>实际返回的是一个接口<code>Provider</code>，而实现了这个接口的对象就是<code>defaultConfigProvider</code>，一起初始化的还有字段<code>maps.Params</code>类型的<code>root</code>。</p><p>看来<code>Provider</code>就是默认配置项的接收者。
+为了进一步验证我们的猜测，我们继续往右边看。
+果然，在从config.toml中读到取用户的自定义配置信息后，也是调用的<code>Provider(cfg)</code>的<code>Set</code>方法，将解析后的<code>map[string]any</code>值设置到了<code>""</code>字段。</p><p>回到我们最初的问题：我们会把用户自定义的这些配置信息最终存储到哪儿，又将以什么形式提供服务呢？</p><p>这时我们已经知道，不管是用户自定义信息，还是默认配置信息，我们都存储在了这个配置提供者里面。
+相信<code>ConfigProvider</code>就是我们要找寻的答案。
+是时候来看看这个<code>Provider</code>接口的定义了：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/config/configProvider.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 9
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// Provider provides the configuration settings for Hugo.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Provider</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Get</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>) <span style=color:#a6e22e>any</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Set</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>value</span> <span style=color:#a6e22e>any</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>SetDefaults</span>(<span style=color:#a6e22e>params</span> <span style=color:#a6e22e>maps</span>.<span style=color:#a6e22e>Params</span>)
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>确实，<code>Provider</code>不仅提供了<code>Set</code>方法，还提供了<code>Get</code>方法，那就没跑了。</p><p>弄清了起点和终点后，我们继续看看过程，<code>Set</code>和<code>SetDefaults</code>方法具体是怎么将不同类型的数据设置到<code>Provider</code>中的。</p><p>先看负责用户自定义配置项的<code>Set</code>方法。
+拿到用户的配置信息后，首先需要将配置信息转换成<code>Params</code>类型：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/common/maps/params.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 9
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// Params is a map where all keys are lower case.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Params</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>
+</span></span></code></pre></div><p>实际他俩类型是一样的，都是<code>map[string]any</code>。</p><p>在类型转换成<code>Params</code>后，需要通过<code>PrepareParams</code>进行处理，让内部格式保持统一。
+而<code>Params</code>所做的主要事情包括两项：一是将所有key都转换成小写字符串，二是将所有的值都转换成通用类型any。
+这样的好处就是信息都按统一标准<code>Params</code>格式进行存储，因为类型确定，所以方便拓展和提供其它类型的数据服务。
+比如想要获取整形数据，可以在<code>Provider</code>接口中定义<code>GetInt</code>方法，那我们就可以将所获取的any类型的值，转换成Int。
+同理，如果需要其它类型的数据服务，一样可以满足。</p><p>再看负责默认配置的<code>SetDefaults</code>方法，比<code>Set</code>方法更简单，直接调用的就是<code>PrepareParams</code>。
+因为自己定义的格式，自己最清楚如何使用。
+相对面向用户的配置信息多样性，自己定义的默认值更具备确定性。</p><h3 id=抽象总结---输入不同类型的值输出标准的configprovider>抽象总结 - 输入不同类型的值，输出标准的configProvider
+<a class=anchor href=#%e6%8a%bd%e8%b1%a1%e6%80%bb%e7%bb%93---%e8%be%93%e5%85%a5%e4%b8%8d%e5%90%8c%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%80%bc%e8%be%93%e5%87%ba%e6%a0%87%e5%87%86%e7%9a%84configprovider>#</a></h3><p><img src=images/8.3-LoadConfig-config.svg alt="Config input output"></p><p>从输入来看，我们要接收来自用户的自定义配置信息，同时也要接收默认的自定义配置信息，还有以后可能会碰到的单项更新信息。</p><p>从输出来看，我们需要提供一个通用的配置信息提供方，统一标准，方便满足获取不同数据类型的需求。</p><p>为了正确处理接收到的数据，并满足多样性数据服务的需求，Hugo将所有接收到的数据进行标准化处理，以统一的<code>Params</code>格式式进行存储。
+这样就可以在标准化的基础上进行拓展，从而满足不同的数据需求。</p><h3 id=动手实践---show-me-the-code-of-applyconfigdefaults>动手实践 - Show Me the Code of applyConfigDefaults
+<a class=anchor href=#%e5%8a%a8%e6%89%8b%e5%ae%9e%e8%b7%b5---show-me-the-code-of-applyconfigdefaults>#</a></h3><p>在知道<code>applyConfigDefaults</code>的实现原理后，我们再来动动小手，用代码来总结代码，巩固一下知识。</p><p>可以这里线上尝试，
+<a href=https://c.sunwei.xyz/config-provider.html>Show Me the Code, try it yourself</a></p><p>代码里有注解说明，代码样例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;reflect&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;strings&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Provider 定义提供方需要具备的能力
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 通过Key查询值
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 设置键值对
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 设置默认参数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Provider</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Get</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>) <span style=color:#a6e22e>any</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Set</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>value</span> <span style=color:#a6e22e>any</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>SetDefaults</span>(<span style=color:#a6e22e>params</span> <span style=color:#a6e22e>Params</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Params 参数格式定义
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 关键字为字符类型
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 值为通用类型any
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Params</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Set 根据新传入参数，对应层级进行重写
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// pp为新传入参数
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// p为当前参数
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 将pp的值按层级结构写入p
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 递归完成
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>p</span> <span style=color:#a6e22e>Params</span>) <span style=color:#a6e22e>Set</span>(<span style=color:#a6e22e>pp</span> <span style=color:#a6e22e>Params</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>k</span>, <span style=color:#a6e22e>v</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>pp</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>vv</span>, <span style=color:#a6e22e>found</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>p</span>[<span style=color:#a6e22e>k</span>]
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>found</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>p</span>[<span style=color:#a6e22e>k</span>] = <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>		} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>switch</span> <span style=color:#a6e22e>vvv</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>vv</span>.(<span style=color:#66d9ef>type</span>) {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>case</span> <span style=color:#a6e22e>Params</span>:
+</span></span><span style=display:flex><span>				<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>pv</span>, <span style=color:#a6e22e>ok</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>v</span>.(<span style=color:#a6e22e>Params</span>); <span style=color:#a6e22e>ok</span> {
+</span></span><span style=display:flex><span>					<span style=color:#a6e22e>vvv</span>.<span style=color:#a6e22e>Set</span>(<span style=color:#a6e22e>pv</span>)
+</span></span><span style=display:flex><span>				} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>					<span style=color:#a6e22e>p</span>[<span style=color:#a6e22e>k</span>] = <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>				}
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>default</span>:
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>p</span>[<span style=color:#a6e22e>k</span>] = <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>			}
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>New</span>() <span style=color:#a6e22e>Provider</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>defaultConfigProvider</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>root</span>: make(<span style=color:#a6e22e>Params</span>),
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// defaultConfigProvider Provider接口实现对象
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>defaultConfigProvider</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>root</span> <span style=color:#a6e22e>Params</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Get 按key获取值
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 约定&#34;&#34;键对应的是c.root
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 嵌套获取值
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>defaultConfigProvider</span>) <span style=color:#a6e22e>Get</span>(<span style=color:#a6e22e>k</span> <span style=color:#66d9ef>string</span>) <span style=color:#a6e22e>any</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>k</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&#34;</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>root</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>key</span>, <span style=color:#a6e22e>m</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>getNestedKeyAndMap</span>(<span style=color:#a6e22e>strings</span>.<span style=color:#a6e22e>ToLower</span>(<span style=color:#a6e22e>k</span>))
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>m</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>v</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>m</span>[<span style=color:#a6e22e>key</span>]
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// getNestedKeyAndMap 支持多级查询
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 通过分隔符&#34;.&#34;获取查询路径
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>defaultConfigProvider</span>) <span style=color:#a6e22e>getNestedKeyAndMap</span>(
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>) (<span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>Params</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>parts</span> []<span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>parts</span> = <span style=color:#a6e22e>strings</span>.<span style=color:#a6e22e>Split</span>(<span style=color:#a6e22e>key</span>, <span style=color:#e6db74>&#34;.&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>current</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>root</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>:=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> &lt; len(<span style=color:#a6e22e>parts</span>)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>next</span>, <span style=color:#a6e22e>found</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>current</span>[<span style=color:#a6e22e>parts</span>[<span style=color:#a6e22e>i</span>]]
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>found</span> {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>ok</span> <span style=color:#66d9ef>bool</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>current</span>, <span style=color:#a6e22e>ok</span> = <span style=color:#a6e22e>next</span>.(<span style=color:#a6e22e>Params</span>)
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>ok</span> {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>parts</span>[len(<span style=color:#a6e22e>parts</span>)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], <span style=color:#a6e22e>current</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Set 设置键值对
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 统一key的格式为小写字母
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 如果传入的值符合Params的要求，通过root进行设置
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 如果为非Params类型，则直接赋值
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>defaultConfigProvider</span>) <span style=color:#a6e22e>Set</span>(<span style=color:#a6e22e>k</span> <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>v</span> <span style=color:#a6e22e>any</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>k</span> = <span style=color:#a6e22e>strings</span>.<span style=color:#a6e22e>ToLower</span>(<span style=color:#a6e22e>k</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>p</span>, <span style=color:#a6e22e>ok</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ToParamsAndPrepare</span>(<span style=color:#a6e22e>v</span>); <span style=color:#a6e22e>ok</span> {
+</span></span><span style=display:flex><span>		<span style=color:#75715e>// Set the values directly in root.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>		<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>Set</span>(<span style=color:#a6e22e>p</span>)
+</span></span><span style=display:flex><span>	} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>root</span>[<span style=color:#a6e22e>k</span>] = <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// SetDefaults will set values from params if not already set.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>defaultConfigProvider</span>) <span style=color:#a6e22e>SetDefaults</span>(
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>params</span> <span style=color:#a6e22e>Params</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>PrepareParams</span>(<span style=color:#a6e22e>params</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>k</span>, <span style=color:#a6e22e>v</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>params</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>found</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>root</span>[<span style=color:#a6e22e>k</span>]; !<span style=color:#a6e22e>found</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>root</span>[<span style=color:#a6e22e>k</span>] = <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ToParamsAndPrepare converts in to Params and prepares it for use.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// If in is nil, an empty map is returned.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// See PrepareParams.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>ToParamsAndPrepare</span>(<span style=color:#a6e22e>in</span> <span style=color:#a6e22e>any</span>) (<span style=color:#a6e22e>Params</span>, <span style=color:#66d9ef>bool</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>IsNil</span>(<span style=color:#a6e22e>in</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>Params</span>{}, <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>m</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ToStringMapE</span>(<span style=color:#a6e22e>in</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>PrepareParams</span>(<span style=color:#a6e22e>m</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>m</span>, <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// IsNil reports whether v is nil.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>IsNil</span>(<span style=color:#a6e22e>v</span> <span style=color:#a6e22e>any</span>) <span style=color:#66d9ef>bool</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>value</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>reflect</span>.<span style=color:#a6e22e>ValueOf</span>(<span style=color:#a6e22e>v</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>switch</span> <span style=color:#a6e22e>value</span>.<span style=color:#a6e22e>Kind</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>case</span> <span style=color:#a6e22e>reflect</span>.<span style=color:#a6e22e>Chan</span>, <span style=color:#a6e22e>reflect</span>.<span style=color:#a6e22e>Func</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>reflect</span>.<span style=color:#a6e22e>Interface</span>, <span style=color:#a6e22e>reflect</span>.<span style=color:#a6e22e>Map</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>reflect</span>.<span style=color:#a6e22e>Ptr</span>, <span style=color:#a6e22e>reflect</span>.<span style=color:#a6e22e>Slice</span>:
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>value</span>.<span style=color:#a6e22e>IsNil</span>()
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ToStringMapE converts in to map[string]interface{}.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>ToStringMapE</span>(<span style=color:#a6e22e>in</span> <span style=color:#a6e22e>any</span>) (<span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>, <span style=color:#66d9ef>error</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>switch</span> <span style=color:#a6e22e>vv</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>in</span>.(<span style=color:#66d9ef>type</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>case</span> <span style=color:#a6e22e>Params</span>:
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>vv</span>, <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>case</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#66d9ef>string</span>:
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>m</span> = <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>{}
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>k</span>, <span style=color:#a6e22e>v</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>vv</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>m</span>[<span style=color:#a6e22e>k</span>] = <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>m</span>, <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>default</span>:
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;value type not supported yet&#34;</span>)
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// PrepareParams
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// * makes all the keys lower cased
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// * This will modify the map given.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// * Any nested map[string]interface{}, map[string]string
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// * will be converted to Params.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>PrepareParams</span>(<span style=color:#a6e22e>m</span> <span style=color:#a6e22e>Params</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>k</span>, <span style=color:#a6e22e>v</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>m</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>retyped</span> <span style=color:#66d9ef>bool</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>lKey</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>strings</span>.<span style=color:#a6e22e>ToLower</span>(<span style=color:#a6e22e>k</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>switch</span> <span style=color:#a6e22e>vv</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>v</span>.(<span style=color:#66d9ef>type</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>case</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>:
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>p</span> <span style=color:#a6e22e>Params</span> = <span style=color:#a6e22e>v</span>.(<span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>)
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>v</span> = <span style=color:#a6e22e>p</span>
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>PrepareParams</span>(<span style=color:#a6e22e>p</span>)
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>retyped</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>case</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#66d9ef>string</span>:
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>p</span> <span style=color:#f92672>:=</span> make(<span style=color:#a6e22e>Params</span>)
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>k</span>, <span style=color:#a6e22e>v</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>vv</span> {
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>p</span>[<span style=color:#a6e22e>k</span>] = <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>			}
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>v</span> = <span style=color:#a6e22e>p</span>
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>PrepareParams</span>(<span style=color:#a6e22e>p</span>)
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>retyped</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>retyped</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>k</span> <span style=color:#f92672>!=</span> <span style=color:#a6e22e>lKey</span> {
+</span></span><span style=display:flex><span>			delete(<span style=color:#a6e22e>m</span>, <span style=color:#a6e22e>k</span>)
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>m</span>[<span style=color:#a6e22e>lKey</span>] = <span style=color:#a6e22e>v</span>
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 新建Config Provider实例
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// 实例中defaultConfigProvider实现了接口
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>provider</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>New</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 模拟设置用户自定义配置项
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// config.toml中关于主题的配置信息
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// 类型是map[string]string
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// 需要转换成map[string]any，也就是Params类型
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>provider</span>.<span style=color:#a6e22e>Set</span>(<span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#66d9ef>string</span>{
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;theme&#34;</span>: <span style=color:#e6db74>&#34;mytheme&#34;</span>,
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 模拟默认配置项
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// 超时默认时间为30秒
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>provider</span>.<span style=color:#a6e22e>SetDefaults</span>(<span style=color:#a6e22e>Params</span>{
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;timeout&#34;</span>: <span style=color:#e6db74>&#34;30s&#34;</span>,
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 输出提前设置的所有配置信息
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%#v\n&#34;</span>, <span style=color:#a6e22e>provider</span>.<span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#34;&#34;</span>))
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%#v\n&#34;</span>, <span style=color:#a6e22e>provider</span>.<span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#34;theme&#34;</span>))
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%#v\n&#34;</span>, <span style=color:#a6e22e>provider</span>.<span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#34;timeout&#34;</span>))
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>程序输出结果：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e># 输出Config Provider提前设置好的信息</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 包括用户自定义信息，和默认信息</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 准备Input：自定义信息，默认信息</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 得到Output: 通过Config Provider获取所有配置信息</span>
+</span></span><span style=display:flex><span>main.Params<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;theme&#34;</span>:<span style=color:#e6db74>&#34;mytheme&#34;</span>, <span style=color:#e6db74>&#34;timeout&#34;</span>:<span style=color:#e6db74>&#34;30s&#34;</span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;mytheme&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;30s&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Program exited.
+</span></span></code></pre></div><h3 id=了然于胸---collectmodules时序图>了然于胸 - collectModules时序图
+<a class=anchor href=#%e4%ba%86%e7%84%b6%e4%ba%8e%e8%83%b8---collectmodules%e6%97%b6%e5%ba%8f%e5%9b%be>#</a></h3><p>经过<code>loadConfig</code>和<code>applyConfigDefaults</code>，我们已经将用户自定义信息和默认信息都归置妥当，并且放在了<code>Config Provider</code>中，方便查用。</p><p>Hugo在拿到这些信息后，立马着手的事情就是<code>collectModules</code>，也就是收集模块信息了。</p><p><img src=images/8.4-LoadConfig-sequence%20flow-loadModulesConfig.svg alt="LoadConfig Sequence Flow loadModulesConfig"></p><p>正如上图中<code>loadModulesConfig</code>所示，拿到配置信息后，就进行解码<code>decodeConfig</code>操作。
+在我们的
+<a href=../how/%e6%b8%b8%e4%b9%90%e5%9c%ba.md>示例</a>中，我们的项目用到了名为<code>mytheme</code>的主题，所以在项目配置信息中，我们需要把主题添加到导入项<code>Imports</code>中。</p><p><img src=images/8.5-LoadConfig-sequence-flow-collectModules.svg alt="LoadConfig Sequence Flow collectModules"></p><p>准备好了模块的配置信息后，接下来就是要根据这些配置信息，对模块进行处理了。</p><p>需要先准备好回调函数<code>beforeFinalizeHook</code>，为什么要准备这和个回调函数呢？
+我们先把这个疑问放一放，一会我们就能发现实际的触发场景。</p><p>回调函数设置好后，接着就开始收集模块了。
+如上图左上角所示，首先需要创建<code>Module Client</code>用来具体处理模块的收集工作。
+为什么要叫<code>Client</code>呢？
+这是因为现在Hugo支持Golang的mod模式，意味着可以用<code>go.mod</code>来导入主题，那我们就需要下载依赖包 - 主题工程来管理依赖了。
+这样来看，叫客户端是不是就不难理解了。
+在我们的
+<a href=../how/%e6%b8%b8%e4%b9%90%e5%9c%ba.md>示例</a>中，主题目录是用来做流程讲解示范的，只有一个文本文件，所以这里的场景并不涉线上go模块加载。</p><p>客户端设置好后，开始收集，如上图中间所示，收集过程总共分四步：</p><ul><li>按配置递归收集所有模块 - Collect</li><li>设置处于活跃状态的模块 - setActiveMods</li><li>触发提前设置的回调函数 - HookBeforeFinalize</li><li>移除重复的挂载信息 - Finalize</li></ul><p><strong>Collect</strong></p><p>先为项目创建工程模块<code>Project Module</code>，然后开始递归收集模块：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>collector</span>) <span style=color:#a6e22e>collect</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// c.gomods is [], GetMain() returns ni
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>projectMod</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>createProjectModule</span>(<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>gomods</span>.<span style=color:#a6e22e>GetMain</span>(), <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>ccfg</span>.<span style=color:#a6e22e>WorkingDir</span>, <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>moduleConfig</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// module structure, [project, others...]
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>addAndRecurse</span>(<span style=color:#a6e22e>projectMod</span>, <span style=color:#66d9ef>false</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>err</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>这里为什么会用到递归呢？
+因为在Hugo中，模块之间是有相互依赖的。
+通过最开始的模块配置信息也可以看出，我们把依赖的模块放在了Imports中，Project Module就需要导入"mytheme"模块。
+在实际情况中，&ldquo;mytheme"有可能也是依赖于其它的主题，所以也需要导入其它模块。</p><p>从上面时序图右下方可以看到，<code>addAndRecurse</code>做了四件事：</p><ol><li>为导入的模块创建模块文件夹，用来放置模块所有文件</li><li>应用主题配置，就像最开始解析项目模块的配置信息一样，看是否还需要导入其它模块</li><li>将模块添加到模块列表中</li><li>为新模块重复上述步骤</li></ol><p>这样，我们就能顺着项目模块的配置信息，逐个将所有的模块信息收集齐全了。</p><p><strong>setActiveMods</strong></p><p>递归收集完所有模块信息后，需要根据用户配置，进一步将禁用的模块给过滤到，留下这一次构建所需要的模块。</p><p><strong>HookBeforeFinalize</strong></p><p>过滤完模块后，在<code>Finalize</code>敲定前，是时候回调我们之前设置好地回调函数了。</p><p>除了加载多语言设置处，回调函数所做的操作主要集中在上面时序图的右下脚。
+就是为项目模块准备好所有的挂载<code>Mount</code>，包括Content, Static, Layouts, Archetypes, Data, Assets, i18n，共七个组件。
+其中Content和其它的组件有点不一样。
+因为Content挂载点和多语言一一对应，也就是说有几种语言，就会有几个内容目录。</p><p><strong>Finalize</strong></p><p>等有了所有的模块的信息，挂载点也收集完毕后，我们还要做一件事情。
+那就是要保证这些挂载点在全局视野下，没有重复。</p><p>结合时序图，我们进一步将其中的关键对象结构体，根据这些结构体的属性和行为，按流程处理后所得到的最终结果放在一起，可视化出来。
+方便大家理解：</p><p><img src=images/8.7-LoadConfig-Module.svg alt="LoadConfig Modules"></p><h3 id=抽象总结---输入不同类型的值输出标准的configprovider-1>抽象总结 - 输入不同类型的值，输出标准的configProvider
+<a class=anchor href=#%e6%8a%bd%e8%b1%a1%e6%80%bb%e7%bb%93---%e8%be%93%e5%85%a5%e4%b8%8d%e5%90%8c%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%80%bc%e8%be%93%e5%87%ba%e6%a0%87%e5%87%86%e7%9a%84configprovider-1>#</a></h3><p>在上图中，通过下方输出部分可以看出，一个模块配置项，对应一个模块。</p><p>在左边的模块配置信息中，包含了模块之间的依赖信息。
+在上面的示例中项目模块饱含了主题模块。</p><p>在右边的模块实例中，首先要区分哪一个是项目模块，因为项目模块是站点构建的起点。
+所以在模块中需要能标识身份信息的字段<code>projectMod</code>。</p><p>如果从挂载<code>Mounts</code>的角度来看模块，那每个模块实际上就是一个合并后的根文件系统。
+Hugo将这个文件系统用七个组件进行了划分。</p><p>项目模块必需得包含这些信息，但因为依赖于其它模块，所以需要将项目模块放在最后处理。
+Hugo将项目模块放在了模块队列的第一个，并用一个回调函数帮助在合适的时间点，对项目模的挂载进行了统一的处理。</p><p>再用<code>Input -> [?] -> Output</code>模型来进行分析，可以抽象为以下模型：
+<img src=images/8.6-LoadConfig-collectModules.svg alt="LoadConfig collectModules"></p><p>主题信息来源于用户自定义信息，作为输入传入收集模块功能单元。
+在处理过程中，Hugo按Name, Module Config, Module, Mounts的对应关系，将模块相关信息进行处理。
+最终生成所有模块的信息，并通过将这些信息设置在Config Provider中，为后续的操作做好准备。</p><h3 id=动手实践---show-me-the-code-of-collectmodules>动手实践 - Show Me the Code of collectModules
+<a class=anchor href=#%e5%8a%a8%e6%89%8b%e5%ae%9e%e8%b7%b5---show-me-the-code-of-collectmodules>#</a></h3><p>在知道<code>collectModules</code>的实现原理后。
+按照我们的传统，让我们动动小手，用代码来总结代码，巩固一下知识。</p><p>可以这里线上尝试，
+<a href=https://c.sunwei.xyz/collect-module.html>Show Me the Code, try it yourself</a></p><p>代码里有注解说明，代码样例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> <span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Mount</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// relative path in source repo, e.g. &#34;scss&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Source</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// relative target path, e.g. &#34;assets/bootstrap/scss&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Target</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// any language code associated with this mount.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Lang</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Import</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Module path
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Path</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Config holds a module config.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Config</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Mounts</span>  []<span style=color:#a6e22e>Mount</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Imports</span> []<span style=color:#a6e22e>Import</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Module</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Config The decoded module config and mounts.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Config</span>() <span style=color:#a6e22e>Config</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Owner In the dependency tree, this is the first module that defines this module
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// as a dependency.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Owner</span>() <span style=color:#a6e22e>Module</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Mounts Any directory remappings.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Mounts</span>() []<span style=color:#a6e22e>Mount</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Modules</span> []<span style=color:#a6e22e>Module</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>modules</span> <span style=color:#a6e22e>Modules</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// moduleAdapter implemented Module interface
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>moduleAdapter</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>projectMod</span> <span style=color:#66d9ef>bool</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>owner</span>      <span style=color:#a6e22e>Module</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>mounts</span>     []<span style=color:#a6e22e>Mount</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>config</span>     <span style=color:#a6e22e>Config</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>m</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>moduleAdapter</span>) <span style=color:#a6e22e>Config</span>() <span style=color:#a6e22e>Config</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>config</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>m</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>moduleAdapter</span>) <span style=color:#a6e22e>Mounts</span>() []<span style=color:#a6e22e>Mount</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>mounts</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>m</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>moduleAdapter</span>) <span style=color:#a6e22e>Owner</span>() <span style=color:#a6e22e>Module</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>owner</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// happy path to easily understand
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// project module config
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>moduleConfig</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>Config</span>{}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>imports</span> <span style=color:#f92672>:=</span> []<span style=color:#66d9ef>string</span>{<span style=color:#e6db74>&#34;mytheme&#34;</span>}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>imp</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>imports</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>moduleConfig</span>.<span style=color:#a6e22e>Imports</span> = append(<span style=color:#a6e22e>moduleConfig</span>.<span style=color:#a6e22e>Imports</span>, <span style=color:#a6e22e>Import</span>{
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>Path</span>: <span style=color:#a6e22e>imp</span>,
+</span></span><span style=display:flex><span>		})
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Need to run these after the modules are loaded, but before
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// they are finalized.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>collectHook</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>mods</span> <span style=color:#a6e22e>Modules</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#75715e>// Apply default project mounts.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>		<span style=color:#75715e>// Default folder structure for hugo project
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>		<span style=color:#a6e22e>ApplyProjectConfigDefaults</span>(<span style=color:#a6e22e>mods</span>[<span style=color:#ae81ff>0</span>])
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>collectModules</span>(<span style=color:#a6e22e>moduleConfig</span>, <span style=color:#a6e22e>collectHook</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>m</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>modules</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%#v\n&#34;</span>, <span style=color:#a6e22e>m</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Module folder structure
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> (
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderArchetypes</span> = <span style=color:#e6db74>&#34;archetypes&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderStatic</span>     = <span style=color:#e6db74>&#34;static&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderLayouts</span>    = <span style=color:#e6db74>&#34;layouts&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderContent</span>    = <span style=color:#e6db74>&#34;content&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderData</span>       = <span style=color:#e6db74>&#34;data&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderAssets</span>     = <span style=color:#e6db74>&#34;assets&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderI18n</span>       = <span style=color:#e6db74>&#34;i18n&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ApplyProjectConfigDefaults applies default/missing module configuration for
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// the main project.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>ApplyProjectConfigDefaults</span>(<span style=color:#a6e22e>mod</span> <span style=color:#a6e22e>Module</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>projectMod</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>mod</span>.(<span style=color:#f92672>*</span><span style=color:#a6e22e>moduleAdapter</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>dirKeyComponent</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>key</span>          <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>component</span>    <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>multilingual</span> <span style=color:#66d9ef>bool</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>dirKeys</span> <span style=color:#f92672>:=</span> []<span style=color:#a6e22e>dirKeyComponent</span>{
+</span></span><span style=display:flex><span>		{<span style=color:#e6db74>&#34;contentDir&#34;</span>, <span style=color:#a6e22e>ComponentFolderContent</span>, <span style=color:#66d9ef>true</span>},
+</span></span><span style=display:flex><span>		{<span style=color:#e6db74>&#34;dataDir&#34;</span>, <span style=color:#a6e22e>ComponentFolderData</span>, <span style=color:#66d9ef>false</span>},
+</span></span><span style=display:flex><span>		{<span style=color:#e6db74>&#34;layoutDir&#34;</span>, <span style=color:#a6e22e>ComponentFolderLayouts</span>, <span style=color:#66d9ef>false</span>},
+</span></span><span style=display:flex><span>		{<span style=color:#e6db74>&#34;i18nDir&#34;</span>, <span style=color:#a6e22e>ComponentFolderI18n</span>, <span style=color:#66d9ef>false</span>},
+</span></span><span style=display:flex><span>		{<span style=color:#e6db74>&#34;archetypeDir&#34;</span>, <span style=color:#a6e22e>ComponentFolderArchetypes</span>, <span style=color:#66d9ef>false</span>},
+</span></span><span style=display:flex><span>		{<span style=color:#e6db74>&#34;assetDir&#34;</span>, <span style=color:#a6e22e>ComponentFolderAssets</span>, <span style=color:#66d9ef>false</span>},
+</span></span><span style=display:flex><span>		{<span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#a6e22e>ComponentFolderStatic</span>, <span style=color:#66d9ef>false</span>},
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>mounts</span> []<span style=color:#a6e22e>Mount</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>d</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>dirKeys</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>multilingual</span> {
+</span></span><span style=display:flex><span>			<span style=color:#75715e>// based on language content configuration
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>			<span style=color:#75715e>// multiple language has multiple source folders
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>			<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>component</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>ComponentFolderContent</span> {
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>mounts</span> = append(<span style=color:#a6e22e>mounts</span>, <span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Lang</span>: <span style=color:#e6db74>&#34;en&#34;</span>, <span style=color:#a6e22e>Source</span>: <span style=color:#e6db74>&#34;mycontent&#34;</span>, <span style=color:#a6e22e>Target</span>: <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>component</span>})
+</span></span><span style=display:flex><span>			}
+</span></span><span style=display:flex><span>		} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>mounts</span> = append(<span style=color:#a6e22e>mounts</span>, <span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>: <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>component</span>, <span style=color:#a6e22e>Target</span>: <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>component</span>})
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>projectMod</span>.<span style=color:#a6e22e>mounts</span> = <span style=color:#a6e22e>mounts</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>collectModules</span>(<span style=color:#a6e22e>modConfig</span> <span style=color:#a6e22e>Config</span>, <span style=color:#a6e22e>hookBeforeFinalize</span> <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>m</span> <span style=color:#a6e22e>Modules</span>)) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>projectMod</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>moduleAdapter</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>projectMod</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>config</span>:     <span style=color:#a6e22e>modConfig</span>,
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// module structure, [project, others...]
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>addAndRecurse</span>(<span style=color:#a6e22e>projectMod</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Add the project mod on top.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>modules</span> = append(<span style=color:#a6e22e>Modules</span>{<span style=color:#a6e22e>projectMod</span>}, <span style=color:#a6e22e>modules</span><span style=color:#f92672>...</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>hookBeforeFinalize</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>hookBeforeFinalize</span>(<span style=color:#a6e22e>modules</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// addAndRecurse Project Imports -&gt; Import imports
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>addAndRecurse</span>(<span style=color:#a6e22e>owner</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>moduleAdapter</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>moduleConfig</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>owner</span>.<span style=color:#a6e22e>Config</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// theme may depend on other theme
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>moduleImport</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>moduleConfig</span>.<span style=color:#a6e22e>Imports</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>tc</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>owner</span>, <span style=color:#a6e22e>moduleImport</span>)
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>tc</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>		<span style=color:#75715e>// tc is mytheme with no config file
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>		<span style=color:#a6e22e>addAndRecurse</span>(<span style=color:#a6e22e>tc</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>owner</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>moduleAdapter</span>, <span style=color:#a6e22e>moduleImport</span> <span style=color:#a6e22e>Import</span>) <span style=color:#f92672>*</span><span style=color:#a6e22e>moduleAdapter</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;start to create `%s` module\n&#34;</span>, <span style=color:#a6e22e>moduleImport</span>.<span style=color:#a6e22e>Path</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ma</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>moduleAdapter</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>owner</span>: <span style=color:#a6e22e>owner</span>,
+</span></span><span style=display:flex><span>		<span style=color:#75715e>// in the example, mytheme has no other import
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>		<span style=color:#a6e22e>config</span>: <span style=color:#a6e22e>Config</span>{},
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>modules</span> = append(<span style=color:#a6e22e>modules</span>, <span style=color:#a6e22e>ma</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>ma</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>输出结果：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#a6e22e>collect</span> <span style=color:#a6e22e>theme</span> <span style=color:#a6e22e>as</span> <span style=color:#a6e22e>module</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>start</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>create</span> <span style=color:#e6db74>`mytheme`</span> <span style=color:#a6e22e>module</span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#a6e22e>project</span> <span style=color:#a6e22e>module</span> <span style=color:#a6e22e>has</span> <span style=color:#a6e22e>no</span> <span style=color:#a6e22e>owner</span> <span style=color:#a6e22e>with</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>mounts</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&amp;</span><span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>moduleAdapter</span>{<span style=color:#a6e22e>projectMod</span>:<span style=color:#66d9ef>true</span>, <span style=color:#a6e22e>owner</span>:<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Module</span>(<span style=color:#66d9ef>nil</span>), <span style=color:#a6e22e>mounts</span>:[]<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;mycontent&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;content&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;en&#34;</span>}, <span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;data&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;data&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, <span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;layouts&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;layouts&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, <span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;i18n&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;i18n&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, <span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;archetypes&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;archetypes&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, <span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;assets&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;assets&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, <span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;static&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;static&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}}, <span style=color:#a6e22e>config</span>:<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Config</span>{<span style=color:#a6e22e>Mounts</span>:[]<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>(<span style=color:#66d9ef>nil</span>), <span style=color:#a6e22e>Imports</span>:[]<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Import</span>{<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Import</span>{<span style=color:#a6e22e>Path</span>:<span style=color:#e6db74>&#34;mytheme&#34;</span>}}}}
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#a6e22e>theme</span> <span style=color:#a6e22e>module</span> <span style=color:#a6e22e>owned</span> <span style=color:#a6e22e>by</span> <span style=color:#a6e22e>project</span> <span style=color:#a6e22e>module</span> <span style=color:#a6e22e>with</span> <span style=color:#a6e22e>no</span> <span style=color:#f92672>import</span> <span style=color:#a6e22e>in</span> <span style=color:#a6e22e>the</span> <span style=color:#a6e22e>example</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&amp;</span><span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>moduleAdapter</span>{<span style=color:#a6e22e>projectMod</span>:<span style=color:#66d9ef>false</span>, <span style=color:#a6e22e>owner</span>:(<span style=color:#f92672>*</span><span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>moduleAdapter</span>)(<span style=color:#ae81ff>0xc000102120</span>), <span style=color:#a6e22e>mounts</span>:[]<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>(<span style=color:#66d9ef>nil</span>), <span style=color:#a6e22e>config</span>:<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Config</span>{<span style=color:#a6e22e>Mounts</span>:[]<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Mount</span>(<span style=color:#66d9ef>nil</span>), <span style=color:#a6e22e>Imports</span>:[]<span style=color:#a6e22e>main</span>.<span style=color:#a6e22e>Import</span>(<span style=color:#66d9ef>nil</span>)}}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Program</span> <span style=color:#a6e22e>exited</span>.
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content.zh/docs/code/%e9%85%8d%e7%bd%ae/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#config源码分析>Config源码分析</a><ul><li><a href=#跬步千里---config模块源码>跬步千里 - Config模块源码</a></li><li><a href=#了然于胸---loadconfig时序图>了然于胸 - loadConfig时序图</a></li><li><a href=#抽象总结---输入配置文件输出map格式数据>抽象总结 - 输入配置文件，输出Map格式数据</a></li><li><a href=#动手实践---show-me-the-code-of-loadconfig>动手实践 - Show Me the Code of loadConfig</a></li><li><a href=#了然于胸---applyconfigdefaults时序图>了然于胸 - applyConfigDefaults时序图</a></li><li><a href=#抽象总结---输入不同类型的值输出标准的configprovider>抽象总结 - 输入不同类型的值，输出标准的configProvider</a></li><li><a href=#动手实践---show-me-the-code-of-applyconfigdefaults>动手实践 - Show Me the Code of applyConfigDefaults</a></li><li><a href=#了然于胸---collectmodules时序图>了然于胸 - collectModules时序图</a></li><li><a href=#抽象总结---输入不同类型的值输出标准的configprovider-1>抽象总结 - 输入不同类型的值，输出标准的configProvider</a></li><li><a href=#动手实践---show-me-the-code-of-collectmodules>动手实践 - Show Me the Code of collectModules</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
