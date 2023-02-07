@@ -1,13 +1,7 @@
 ---
-author: "Michael Henderson"
-date: 2014-09-28
-linktitle: Creating a New Theme
-menu:
-  main:
-    parent: tutorials
-next: /tutorials/github-pages-blog
-prev: /tutorials/automated-deployments
-title: Creating a New Theme
+author: "Sun Wei"
+date: 2023-02-01
+title: 为什么要读Hugo源码
 weight: 10
 ---
 
