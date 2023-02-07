@@ -1,0 +1,616 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Hugo基础架构 # 通过 个人站点和 自定义主题实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。 使用起来很简单，很快就能上手。
+同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。
+比如针对源码领域的站点，像 深入理解Hugo，将源码和注解分离，并可以在 Golang Play上执行。 让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。
+目前Hugo还无法支持构建这样的站点，主要有两个原因。 一是 内容格式，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。 其次是 功能函数，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。 虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。
+不过，源码都给我们了，还能要求更多吗？ 毕竟我们可是有追求的软件工程师啊！
+无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。
+本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
+对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。
+出发吧，伟大的工程师啊！
+Hugo的架构设计 # 结合Hugo站点构建领域 事件，和 Hugo游乐场源码，Hugo的架构设计会变得很清晰：
+Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
+配置模块
+Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
+type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Hugo基础架构 # 通过 个人站点和 自定义主题实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。 使用起来很简单，很快就能上手。
+同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。
+比如针对源码领域的站点，像 深入理解Hugo，将源码和注解分离，并可以在 Golang Play上执行。 让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。
+目前Hugo还无法支持构建这样的站点，主要有两个原因。 一是 内容格式，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。 其次是 功能函数，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。 虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。
+不过，源码都给我们了，还能要求更多吗？ 毕竟我们可是有追求的软件工程师啊！
+无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。
+本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
+对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。
+出发吧，伟大的工程师啊！
+Hugo的架构设计 # 结合Hugo站点构建领域 事件，和 Hugo游乐场源码，Hugo的架构设计会变得很清晰：
+Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
+配置模块
+Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
+type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/en/docs/how/arch/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-02-07T19:41:29+08:00"><title>Index | Deep Understanding of Hugo</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.a084d7ae45527db69f83aa971956dd058f18f2c3cfa4785717bf542ce4f781d7.js integrity="sha256-oITXrkVSfbafg6qXGVbdBY8Y8sPPpHhXF79ULOT3gdc=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/en/><span>Deep Understanding of Hugo</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+English</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/>Chinese</a></li></ul></li></ul><ul><li><p><strong>Hugo usage examples</strong></p></li><li><p><a href=/en/docs/what/site/>Create Site</a></p></li><li><p><a href=/en/docs/what/theme/>Custom Theme</a><br></p></li><li><p><strong>Hugo Architecture</strong></p></li><li><p><a href=/en/docs/how/playground/>Playground</a></p></li><li><p><a href=/en/docs/how/event-storming/>Event Storming</a></p></li><li><p><a href=/en/docs/how/arch/ class=active>Architecture</a><br></p></li><li><p><a href=/en/docs/code/><strong>Source Code</strong></a></p></li><li><p><a href=/en/docs/code/config/>Configuration</a></p></li><li><p><a href=/en/docs/code/deps/>Deps Management</a></p><ul><li><a href=/en/docs/code/deps/pathspec/>PathSpec</a></li><li><a href=/en/docs/code/deps/contentspec/>ContentSpec</a></li></ul></li><li><p><a href=/en/docs/code/site/>Site Creating</a></p><ul><li><a href=/en/docs/code/site/create/>Create Site</a></li><li><a href=/en/docs/code/site/resources/>Load Resources</a></li><li><a href=/en/docs/code/site/markdown/>Markdown</a></li></ul></li><li><p><a href=/en/docs/code/build/>Site Building</a></p><ul><li><a href=/en/docs/code/build/template/>Template Exec</a><br></li></ul></li></ul><ul><li><a href=/en/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Index</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#hugo基础架构>Hugo基础架构</a><ul><li><a href=#hugo的架构设计>Hugo的架构设计</a></li><li><a href=#hugo的组件设计>Hugo的组件设计</a><ul><li><a href=#配置和语言的关系>配置和语言的关系</a></li><li><a href=#hugo的模块>Hugo的模块</a></li><li><a href=#文件系统的组织>文件系统的组织</a></li><li><a href=#站点内容的收集方案>站点内容的收集方案</a></li><li><a href=#模板的生命周期>模板的生命周期</a></li><li><a href=#发布的流程>发布的流程</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=hugo基础架构>Hugo基础架构
+<a class=anchor href=#hugo%e5%9f%ba%e7%a1%80%e6%9e%b6%e6%9e%84>#</a></h1><p>通过
+<a href=../what/%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9.md>个人站点</a>和
+<a href=../what/%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%bb%e9%a2%98.md>自定义主题</a>实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。
+使用起来很简单，很快就能上手。</p><p>同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。</p><p>比如针对源码领域的站点，像
+<a href=https://c.sunwei.xyz/>深入理解Hugo</a>，将源码和注解分离，并可以在
+<a href=https://go.dev/play/>Golang Play</a>上执行。
+让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。</p><p>目前Hugo还无法支持构建这样的站点，主要有两个原因。
+一是
+<a href=https://gohugo.io/content-management/formats/>内容格式</a>，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。
+其次是
+<a href=https://gohugo.io/functions/>功能函数</a>，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。
+虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。</p><p>不过，源码都给我们了，还能要求更多吗？
+毕竟我们可是有追求的软件工程师啊！</p><p>无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。</p><p>本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：</p><ul><li>对架构思路做一个概要说明，对基础架构有一个全貌的理解</li><li>从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。</li></ul><p>通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。</p><p>出发吧，伟大的工程师啊！</p><h2 id=hugo的架构设计>Hugo的架构设计
+<a class=anchor href=#hugo%e7%9a%84%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1>#</a></h2><p>结合Hugo站点构建领域
+<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>事件</a>，和
+<a href=https://github.com/sunwei/hugo-playground>Hugo游乐场</a>源码，Hugo的架构设计会变得很清晰：</p><p><img src=images/3.0-hugo-arch.svg alt="Hugo Arch"></p><p>Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。</p><p><strong>配置模块</strong></p><p>Hugo最先解析的，就是用户项目的配置文件<code>config.toml</code>。
+由<code>configLoader</code>发起，从硬盘读取配置文件，解析后存储为键值对对象。
+<code>configLoader</code>主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。
+第二件是补全默认配置<code>Defaults Config</code>，这样才能保其它模块正常运作。
+第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - <code>project module</code>，在我们的实例中还有第二个模块，那就是主题模块<code>mytheme</code>。
+模块之间有依赖关系，并且只有一个所有者<code>Owner</code>。
+项目模块<code>project module</code>比较特殊，因为是初始模块，所以不属于任何其它模块。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Module</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Owner In the dependency tree, this is the first 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// module that defines this module as a dependency.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Owner</span>() <span style=color:#a6e22e>Module</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>所有信息收集齐全后，会对外提供<code>config.Provider</code>服务：可查询，可更新配置项。</p><p><strong>HugoSites模块</strong></p><p>这是构建站点的核心模块，相当于DDD中的聚合根，内部组织构建站点所需要的全部信息，对外提供站点构建服务。</p><p><code>HugoSites</code>的初始化依赖于<code>DepsCfg</code>和<code>Site</code>，没错，有两个site。
+HugoSites和Site的关系是一对多，Site和Language的关系是一一对应的，所以多语言站点会为每一个语言创建一个站点，共同组成了HugoSites。</p><p>语言项是由DepsCfg创建的，但会存储在<code>config.Provider</code>中，所以都用浅黄色标明。
+而DepsCfg的初始化则依赖于<code>Fs</code>和<code>config.Provider</code>。
+<code>Fs</code>记载了源文件地址和发布地址。
+源文件来自于用户项目，也就是实际的硬盘文件系统。
+发布地址是获取自config.Provider，默认的是public文件夹，在这里会检测是否已经存在，如果没有则主动创建。
+最后将新创建的信息如<code>workingDir</code>等信息同步回config.Provider。</p><p>可以看出，他们的依赖关系是<code>HugoSites &lt;- Site &lt;- Language &lt;- DepsCfg &lt;- Fs</code>。</p><p><strong>Deps模块</strong></p><p>Hugo将构建站点所需要的所有服务和对象都称作依赖，全部放在了<code>Deps</code>中。</p><p>在构建依赖的过程中，会生成提供模板的<code>TemplateProvider</code>；
+明确输入输出的媒体类型<code>MediaType</code>；和输出格式的<code>OutputFormats</code>；都会更新到<code>config.Provider</code>中。</p><p>也会为收集站点内容做好准备，会有<code>Page Collection</code>帮助收集。
+最终发布站点时需要用到的发布服务则是<code>Publisher</code>。
+这些都会更新到<code>Site</code>中。</p><p>同时，还需要将资源统一管理，明确规范，这样可以保障在使用时的便捷性，也符合面向对向设计原则中的单一职责原则。
+包含提供统一标准文件结构服务的<code>Path Spec</code>；
+和拥有所有媒体类型和输出格式信息的<code>Resources Spec</code>；
+以及针对<code>Content</code>信息提供服务的<code>Content Spec</code>；
+加上帮助定义资源策略，如过滤功能的<code>Source Spec</code>。</p><p>有了Deps的帮助，所有构建站点所需的信息，如原材料、规则和输出格式等，都已准备妥当。</p><p>万事俱备，只欠东风！</p><h2 id=hugo的组件设计>Hugo的组件设计
+<a class=anchor href=#hugo%e7%9a%84%e7%bb%84%e4%bb%b6%e8%ae%be%e8%ae%a1>#</a></h2><p>架构图可以帮助我们从全局视角理解Hugo的架构设计。
+现在让我们更近一步，从模块的角度来观察Hugo架构的细节</p><h3 id=配置和语言的关系>配置和语言的关系
+<a class=anchor href=#%e9%85%8d%e7%bd%ae%e5%92%8c%e8%af%ad%e8%a8%80%e7%9a%84%e5%85%b3%e7%b3%bb>#</a></h3><p>Hugo提供了强大的配置功能，如配置文件、配置目录、配置主题等等。
+构建站点过程中，只要是你能想到的定制化需求，基本都能通过配置实现。</p><p>为了满足不同的定制化需求，Hugo的思路是首先要处理好多配置文件之间的关系，所以需要合并一些配置项，这样就需要大小写不敏感。
+定制化只是一小部分，其它的通用信息，就用默认配置来进行说明。</p><p>支持多语言是常见需求，现在好多软件遵循的策略就是国际化优先。
+那Hugo是怎么理解语言和配置的关系呢？</p><p>在
+<a href=../what/%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9.md>个人站点</a>实例中，我们在<code>config.toml</code>中和语言相关的配置如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#a6e22e>defaultContentLanguage</span> = <span style=color:#e6db74>&#39;zh&#39;</span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>]
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>.<span style=color:#a6e22e>zh</span>]
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>languageName</span> = <span style=color:#e6db74>&#39;中文&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>contentDir</span> = <span style=color:#e6db74>&#39;content&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>weight</span> = <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>.<span style=color:#a6e22e>en</span>]
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>languageName</span> = <span style=color:#e6db74>&#39;English&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>contentDir</span> = <span style=color:#e6db74>&#39;content.en&#39;</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>weight</span> = <span style=color:#ae81ff>2</span>
+</span></span></code></pre></div><p>可以配置默认语言，支持的多语言有中文和英语。</p><p>那这样看来，配置应该包含语言。
+也就是说语言应该是配置结构体中的一个字段。
+而事实是这样的吗？
+让我们还是从
+<a href=https://github.com/sunwei/hugo-playground>Hugo游乐场</a>源码出发，来一探究竟。</p><p>在此之前，我们先从架构图中寻找线索：
+<img src=images/3.1-hugo-arch-config-language.svg alt="Language and Config"></p><p>可以看到，最终创建Language的地方是在DepsCfg，并不是Config。
+这和我们的直觉是相反的，让我们来看看关键的config.Provider，DepsCfg和Language相关代码片断。</p><p><strong>config.Provider</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Provider provides the configuration settings for Hugo.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Provider</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Get</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>) <span style=color:#a6e22e>any</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Set</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>value</span> <span style=color:#a6e22e>any</span>)
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>可以看出，Provider接口提供了<code>Get</code>和<code>Set</code>方法，就像一个key/value仓库。
+那语言相关的配置同样也存储在了Provider里面。</p><p><strong>DepsCfg</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// DepsCfg contains configuration options that can be used to configure Hugo
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// on a global level, i.e. logging etc.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// Nil values will be given default values.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>DepsCfg</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// The language to use.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Language</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>langs</span>.<span style=color:#a6e22e>Language</span>
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// The configuration to use.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Cfg</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>Provider</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>DepsCfg中包含了config.Provider以及Language。</p><p>创建站点的时候，直接传入的就是DepsCfg:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// newSite creates a new site with the given configuration.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>newSite</span>(<span style=color:#a6e22e>cfg</span> <span style=color:#a6e22e>deps</span>.<span style=color:#a6e22e>DepsCfg</span>) (<span style=color:#f92672>*</span><span style=color:#a6e22e>Site</span>, <span style=color:#66d9ef>error</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>在调用创建站点前，DepsCfg就已经把Language准备好了:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>createSitesFromConfig</span>(<span style=color:#a6e22e>cfg</span> <span style=color:#a6e22e>deps</span>.<span style=color:#a6e22e>DepsCfg</span>) ([]<span style=color:#f92672>*</span><span style=color:#a6e22e>Site</span>, <span style=color:#66d9ef>error</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>languages</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>getLanguages</span>(<span style=color:#a6e22e>cfg</span>.<span style=color:#a6e22e>Cfg</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>lang</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>languages</span> {
+</span></span><span style=display:flex><span>		<span style=color:#f92672>...</span> 
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>cfg</span>.<span style=color:#a6e22e>Language</span> = <span style=color:#a6e22e>lang</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>s</span>, <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>newSite</span>(<span style=color:#a6e22e>cfg</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>sites</span>, <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>而从Language结构体可以看出：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Language manages specific-language configuration.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Language</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Lang</span>   <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Weight</span> <span style=color:#66d9ef>int</span> <span style=color:#75715e>// for sort
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Global config.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// For internal use.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Cfg</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>Provider</span>
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Language是包含了Cfg config.Provider的。
+也就是说Language和Config的关系实际上是包含关系，并不像我们上面感受到的那样。
+仔细一想，合情合理。
+Config专注提供配置key/value仓库管理服务，而Language和Site是一一对应的，需要其它配置信息补充说明。</p><h3 id=hugo的模块>Hugo的模块
+<a class=anchor href=#hugo%e7%9a%84%e6%a8%a1%e5%9d%97>#</a></h3><p>提到模块化，大家可能会想到的是Nginx模块，IDEA插件等等。
+通常是我可以通过上传一些模块，来满足我的差异化需求。
+之所以大家都喜欢这种模块，主要是因为足够灵活，不用费太大的劲就可以满足自身的需求。
+因为很多时候，虽然大体上差不多，但总有一些细节上的差异。
+这也正说明软件的复杂度，除了技术上的复杂度，还有业务上的复杂度。
+大多数情况下，我们面对的主要是业务复杂度。
+这也正是在软件领域，对"隔行如隔山"这句俗语最好的阐述。
+如今，不仅互联网行业，金融行业，就算传统的制造业，都已经使用上了信息化系统，来帮助企业的生产和管理。
+同样是请假系统，哪怕在同样的行业，不同的公司，都会有所差异。</p><p>而Hugo的模块和大家印象中的模块有点不一样，并不是以功能为单位，来满足差异化需求。
+而是以目录结构为主，来识别相同的结构。</p><p>先来看看在我们架构中，模块的位置：</p><p><img src=images/3.2-hugo-arch-module.svg alt="Hugo Arch Module"></p><p>在架构图中，<code>Modules</code>需要统一组织起来，依赖于<code>Modules Config</code>描述信息，而这个信息的加载是由configLoader负责的。</p><p>我们再从
+<a href=https://github.com/sunwei/hugo-playground>Hugo游乐场</a>源码来看一看实际的调用时序：</p><p><img src=images/3.2.1-hugo-arch-module.svg alt="Hugo Arch Module flow"></p><p>可以看出，在我们的游乐场中，由主函数，调用<code>LoadConfig</code>方法，并在该方法中为<code>Modules</code>做了两件事。
+一件是<code>loadModulesConfig</code>，把和Modules相关的配置信息整理到Module Config中。
+另一件则是<code>collectModules</code>，根据收集到的配置信息，按模块的标准，将模块信息标准化。</p><p>先来看看<code>Module Config</code>的源码定义：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Config holds a module config.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Config</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Mounts</span>  []<span style=color:#a6e22e>Mount</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Imports</span> []<span style=color:#a6e22e>Import</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Meta info about this module (license information etc.).
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Params</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>可以看出，重要字段有两个，一个是Mounts，一个是Imports。
+<code>loadModulesConfig</code>中主要是对Imports字段进行处理，在我们实例中：</p><pre tabindex=0><code>-- config.toml --
+theme = &#34;mytheme&#34;
+...
+</code></pre><p>主题的配置信息是<code>theme = "mytheme"</code>，解析成模块配置信息就成了<code>c.Imports = [mytheme]</code>。</p><p>接下来就是收集模块<code>collectModules</code>了：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>l</span> <span style=color:#a6e22e>configLoader</span>) <span style=color:#a6e22e>collectModules</span>(<span style=color:#a6e22e>modConfig</span> <span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Config</span>, <span style=color:#f92672>...</span>) (<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Modules</span>, <span style=color:#f92672>...</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>传入刚收集到的模块配置信息，输出标准的模块信息。
+而我们刚收集到的配置信息只有Imports有值，并且只有一个值"mytheme"，输出实例如下图所示：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%#v\n&#34;</span>, <span style=color:#a6e22e>modulesConfig</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Config</span>{
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Mounts</span>:[]<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>(<span style=color:#66d9ef>nil</span>), 
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Imports</span>:[]<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Import</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Import</span>{
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>Path</span>:<span style=color:#e6db74>&#34;mytheme&#34;</span>, 
+</span></span><span style=display:flex><span>			<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>	}}, 
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Params</span>:<span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#66d9ef>interface</span> {}(<span style=color:#66d9ef>nil</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><strong>为什么Hugo管Theme叫模块呢？</strong></p><p>输入以下命令，创建一个站点：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  tmp hugo new site xyz
+</span></span></code></pre></div><p>查看目录结构：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  xyz tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── archetypes
+</span></span><span style=display:flex><span>│   └── default.md
+</span></span><span style=display:flex><span>├── config.toml
+</span></span><span style=display:flex><span>├── content
+</span></span><span style=display:flex><span>├── data
+</span></span><span style=display:flex><span>├── layouts
+</span></span><span style=display:flex><span>├── public
+</span></span><span style=display:flex><span>├── static
+</span></span><span style=display:flex><span>└── themes
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>7</span> directories, <span style=color:#ae81ff>2</span> files
+</span></span></code></pre></div><p>再输入以下命令，创建一个主题:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  tmp hugo new theme mytheme
+</span></span></code></pre></div><p>同样查看目录结构：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  mytheme tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── LICENSE
+</span></span><span style=display:flex><span>├── archetypes
+</span></span><span style=display:flex><span>│   └── default.md
+</span></span><span style=display:flex><span>├── layouts
+</span></span><span style=display:flex><span>│   ├── 404.html
+</span></span><span style=display:flex><span>│   ├── _default
+</span></span><span style=display:flex><span>│   │   ├── baseof.html
+</span></span><span style=display:flex><span>│   │   ├── list.html
+</span></span><span style=display:flex><span>│   │   └── single.html
+</span></span><span style=display:flex><span>│   ├── index.html
+</span></span><span style=display:flex><span>│   └── partials
+</span></span><span style=display:flex><span>│       ├── footer.html
+</span></span><span style=display:flex><span>│       ├── head.html
+</span></span><span style=display:flex><span>│       └── header.html
+</span></span><span style=display:flex><span>├── static
+</span></span><span style=display:flex><span>│   ├── css
+</span></span><span style=display:flex><span>│   └── js
+</span></span><span style=display:flex><span>└── theme.toml
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>7</span> directories, <span style=color:#ae81ff>11</span> files
+</span></span></code></pre></div><p>我们把Site和Theme的目录结构放在一起比对一下：</p><p><img src=images/3.2.2-hugo-arch-site-theme-folder-struct.png alt="Hugo Arch Modules site and theme folder structure"></p><p>通过对比，我们不难发现，目录结构基本上是一到的，都包含了<code>archetypes</code>, <code>layouts</code>, <code>static</code>等等。</p><p>在Hugo官网中，有对
+<a href=https://gohugo.io/getting-started/directory-structure/>目录结构</a>有明确说明。
+从源码中也可以看到：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugofs/files/classifier.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> (
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderArchetypes</span> = <span style=color:#e6db74>&#34;archetypes&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderStatic</span>     = <span style=color:#e6db74>&#34;static&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderLayouts</span>    = <span style=color:#e6db74>&#34;layouts&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderContent</span>    = <span style=color:#e6db74>&#34;content&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderData</span>       = <span style=color:#e6db74>&#34;data&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderAssets</span>     = <span style=color:#e6db74>&#34;assets&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolderI18n</span>       = <span style=color:#e6db74>&#34;i18n&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> (
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ComponentFolders</span> = []<span style=color:#66d9ef>string</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ComponentFolderArchetypes</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ComponentFolderStatic</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ComponentFolderLayouts</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ComponentFolderContent</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ComponentFolderData</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ComponentFolderAssets</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ComponentFolderI18n</span>,
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><p>可以看出，Hugo通过标准化目录结构的方式，让每一个模块都遵循这一统一原则，这样无论在解析主题还是用户项目的时候，都有章可循。</p><p>再看看Hugo对
+<a href=https://gohugo.io/hugo-modules/configuration/>模块</a>的说明：</p><blockquote><p>Hugo Modules are the core building blocks in Hugo.
+A module can be your main project or a smaller module providing
+one or more of the 7 component types defined in Hugo:
+static, content, layouts, data, assets, i18n, and archetypes.</p></blockquote><p>也就是说
+<code>static, content, layouts, data, assets, i18n, and archetypes</code>
+这7个组件的任意组合，我们都认为是符合模块的要求。</p><p>Hugo的模块是基于Go Modules构建的，使用起来也很方便：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span>[<span style=color:#a6e22e>module</span>]
+</span></span><span style=display:flex><span>[[<span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>imports</span>]]
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>path</span> = <span style=color:#e6db74>&#39;github.com/sunwei/zero&#39;</span>
+</span></span></code></pre></div><p>也就是说，我们现在加载主题可以通过加载模块的形式，不用再把主题以git submodule的导入，更方便，更合理了。</p><p>搞清楚为什么主题也是模块后，我们再一起看下最终，我们得到了什么样的模块详细配置信息：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugolib/config.go 
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 140
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Process</span>(<span style=color:#e6db74>&#34;collectModules&#34;</span>, <span style=color:#e6db74>&#34;set active modules to config with key &#39;allModules&#39;&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> <span style=color:#a6e22e>i</span>, <span style=color:#a6e22e>m</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>moduleConfig</span>.<span style=color:#a6e22e>ActiveModules</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#a6e22e>i</span>)
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%#v\n&#34;</span>, <span style=color:#a6e22e>m</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>Output</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>==</span>&gt; <span style=color:#a6e22e>Process</span> <span style=color:#a6e22e>collectModules</span>: <span style=color:#a6e22e>set</span> <span style=color:#a6e22e>active</span> <span style=color:#a6e22e>modules</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>config</span> <span style=color:#a6e22e>with</span> <span style=color:#a6e22e>key</span> <span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#a6e22e>allModules</span><span style=color:#960050;background-color:#1e0010>&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&amp;</span><span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>moduleAdapter</span>{<span style=color:#a6e22e>path</span>:<span style=color:#e6db74>&#34;project&#34;</span>, <span style=color:#f92672>...</span> <span style=color:#a6e22e>projectMod</span>:<span style=color:#66d9ef>true</span>, <span style=color:#a6e22e>owner</span>:<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Module</span>(<span style=color:#66d9ef>nil</span>), 
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>mounts</span>:[]<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>{
+</span></span><span style=display:flex><span>	    <span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;mycontent&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;content&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;en&#34;</span>}, 
+</span></span><span style=display:flex><span>	    <span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;data&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;data&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, 
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;layouts&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;layouts&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, 
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;i18n&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;i18n&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, 
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;archetypes&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;archetypes&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, 
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;assets&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;assets&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}, 
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>{<span style=color:#a6e22e>Source</span>:<span style=color:#e6db74>&#34;static&#34;</span>, <span style=color:#a6e22e>Target</span>:<span style=color:#e6db74>&#34;static&#34;</span>, <span style=color:#a6e22e>Lang</span>:<span style=color:#e6db74>&#34;&#34;</span>}}, <span style=color:#f92672>...</span>}
+</span></span><span style=display:flex><span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&amp;</span><span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>moduleAdapter</span>{<span style=color:#a6e22e>path</span>:<span style=color:#e6db74>&#34;mytheme&#34;</span>, <span style=color:#f92672>...</span> <span style=color:#a6e22e>projectMod</span>:<span style=color:#66d9ef>false</span>, <span style=color:#a6e22e>owner</span>:(<span style=color:#f92672>*</span><span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>moduleAdapter</span>)(<span style=color:#ae81ff>0xc00019e410</span>), 
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>mounts</span>:[]<span style=color:#a6e22e>modules</span>.<span style=color:#a6e22e>Mount</span>(<span style=color:#66d9ef>nil</span>), <span style=color:#f92672>...</span>}
+</span></span></code></pre></div><p>从输出结果看，一共有两个模块，一个是<code>project</code>，另一个是<code>mytheme</code>。
+因为在我们的实例中，<code>mytheme</code>只有一个txt文件，七个组件中的任何一个都没有，所以mounts为空，而project模块则有每个组件的Mount。</p><p>Hugo通过巧妙的标准化目录结构设计，实现了Hugo Module。
+强大的拓展性和便捷性，让用户可以专注于内容创作，个性化也得到了大大的满足。</p><h3 id=文件系统的组织>文件系统的组织
+<a class=anchor href=#%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%bb%84%e7%bb%87>#</a></h3><p>Hugo目前主要的操作都是对本地文件进行的。
+比如读取配置信息、模版信息、博客内容，写入站点信息等等。
+因为这些操作都离不开文件系统，Hugo因此对文件信息的组织做了许多工作，以确保调用方良好的使用体验。</p><h4 id=afero>Afero
+<a class=anchor href=#afero>#</a></h4><p>首先是选择基础文件系统
+<a href=https://github.com/spf13/afero>afero.Fs</a>:</p><blockquote><p>Afero is a filesystem framework providing a simple,
+uniform and universal API interacting with any filesystem,
+as an abstraction layer providing interfaces, types and methods.
+Afero has an exceptionally clean interface and simple design without needless
+constructors or initialization methods.</p></blockquote><p>Afero提供的服务基本和Golang原生Fs接口一致，其次兼容多操作系统，这样就既对语言兼容，还对系统兼容，并且使用体验还和原生一致。
+确实为Hugo提供了良好的文件系统基础。</p><p>为了直观查看Hugo中多种Fs的关联，我们把afero.Fs标作如下结构，包含文件系统的基础操作样例：</p><p><img src=images/4.1-hfs-afero.Fs.svg alt="Hugo FS afero.Fs"></p><h4 id=hugo架构中的fs>Hugo架构中的Fs
+<a class=anchor href=#hugo%e6%9e%b6%e6%9e%84%e4%b8%ad%e7%9a%84fs>#</a></h4><p>我们再来回顾下，Hugo架构中Fs应用的场景：</p><p><img src=images/4.0-hugo-arch-fs.svg alt="Hugo Arch Fs"></p><p>最先出现的是Fs，用来记录最贴近真实目录的文件系统，作为DpesCfg的参数，最终由HugoSites创建Deps的时候，透传给了Deps。
+Deps是真正组织构建整个文件系统体系的模块，最终用PathSpec将前面的原始文件系统组织成了Hugo所需要的文件系统。
+最终供给Template和Page相关操作使用。</p><h4 id=hugofs>HugoFs
+<a class=anchor href=#hugofs>#</a></h4><p>我们先看基础的Fs，也就是HugoFs：</p><p><img src=images/4.2-hgf-hugoFs.svg alt="Hugo Fs hugoFs"></p><p>可以看到，基础hugoFs包含输入源Source，和输出目标地址PublishDir，以及用来只读的WorkingDir。
+并且第一项都是afero.Fs类型，所以颜色和afero.Fs颜色一致。
+后面也会用来颜色来对不同类型的文件系统进行关联。</p><h4 id=pathspec>PathSpec
+<a class=anchor href=#pathspec>#</a></h4><p>通过上面的Hugo架构图我们知道，最终HugoFs被传入Dpes，并由PathSpec来统一组织和管理所有路径相关信息：</p><p><img src=images/4.3-hfs-PathSpec.svg alt="Hugo Fs PathSpec"></p><p>从上图看出PathSpec包含了hugoFs和Paths，还有另一个重要的BaseFs。</p><p>先看Paths，包含了基础文件系统，还包含了主题和工作目录信息，以及Modules相关的信息。
+基于Fs和Path，PathSpec需要消化这些基础信息，并提供完整的文件系统服务。</p><h4 id=basefs>BaseFs
+<a class=anchor href=#basefs>#</a></h4><p>通过准备好的基础信息hugoFs和Paths，BaseFs不仅要提供一些基础服务，比如源文件系统和发布目标文件系统，以及工作目录等相关信息。
+还需要按Hugo要求的基础目录对文件进行组织，像Content, Data, i18n, Layouts, Archetypes, Assets。
+并且要求严格按模块加载顺序，提供最终的文件服务，比如用户在工程目录增自定义了一些模板，需要覆盖主题里自带的模板时。</p><p><img src=images/4.4-hfs-BaseFs.svg alt="Hugo Fs BaseFs"></p><p>如上图所示，BaseFs用SourceFilesystems来对基础目录进行组织，用theBigFs来提供最终合并文件系统服务。</p><h4 id=sourcefilesystems>SourceFilesystems
+<a class=anchor href=#sourcefilesystems>#</a></h4><p><img src=images/4.5-hfs-SourceFilesystems.svg alt="Hugo Fs SourceFilesystems"></p><p>想要映射出Hugo的基础文件结构，Hugo设计出了对应的结构SourceFilesystems来表示，并用字段一一对应。
+每一项又具有共同的特征，既SourceFilesystem。</p><p>大家可以回忆下，在上一节
+<a href=/en/#hugo%e7%9a%84%e6%a8%a1%e5%9d%97>Hugo的模块</a>中有提到，每一个模块是如何在Mount中存储这些信息的。</p><h4 id=thebigfs>theBigFs
+<a class=anchor href=#thebigfs>#</a></h4><p><img src=images/4.6-hgs-theBigFs.svg alt="Hugo Fs theBigFs"></p><p>多模块会生成多个相同结构的文件系统，谁在前，谁在后，由模块配置信息决定。
+那最终如何合并这些文件系统呢？
+由上图可以看出，Hugo给出的答案是Overlay，工作原理可参考
+<a href=https://zh.wikipedia.org/wiki/OverlayFS>Wikipedia OverlayFS</a>。</p><p>Overlay的组织是由filesystemCollector来进行的，用到了文件元数据FileMetaInfo来进行描述，方便相关的文件操作，如查询，排序等。
+在生成最终状态的Overlay视图前，需要RootMappingFs来帮助组织按Content, Static等进行分类的文件系统。
+最终由Collector来将对应的文件放到对应的集合中。</p><p>有了以上这些组织好的文件系统后，想想可能的应用场景？</p><h4 id=文件系统场景一---contentspec>文件系统场景一 - ContentSpec
+<a class=anchor href=#%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%9c%ba%e6%99%af%e4%b8%80---contentspec>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/deps/deps.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 145
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Process</span>(<span style=color:#e6db74>&#34;New content Spec&#34;</span>, <span style=color:#e6db74>&#34;content converter provider inside&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>contentSpec</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>helpers</span>.<span style=color:#a6e22e>NewContentSpec</span>(<span style=color:#a6e22e>cfg</span>.<span style=color:#a6e22e>Language</span>, <span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>BaseFs</span>.<span style=color:#a6e22e>Content</span>.<span style=color:#a6e22e>Fs</span>)
+</span></span></code></pre></div><p>准备好PathSpec后，ContentSpec的创建立马就用到了Content.Fs，也就是SourceFilesystem.Fs，依赖于theBigFs.overlayMountsContent。</p><h4 id=文件系统场景二---loadtemplates>文件系统场景二 - loadTemplates
+<a class=anchor href=#%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e5%9c%ba%e6%99%af%e4%ba%8c---loadtemplates>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/tpl/tplimpl/template.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 340
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>helpers</span>.<span style=color:#a6e22e>SymbolicWalk</span>(<span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Layouts</span>.<span style=color:#a6e22e>Fs</span>, <span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#a6e22e>walker</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>IsNotExist</span>(<span style=color:#a6e22e>err</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>在加载用户自定义模板时，就用到了<code>Layouts.Fs</code>。
+通过walker对文件系统中的模板文件进行相应的处理，依赖于<code>b.theBigFs.overlayDirs[files.ComponentFolderLayouts]</code></p><p>结合以上文件系统的设计和应用，我们可以感受到Hugo文件系统的设计需求来自于自身的特点。
+因为用到了模块的理念，以及模块基础结构的设计。
+基础的hugoFs并不能满足Hugo在操作文件系统过程中的所有需求，因此需要进一步封装。</p><p>Hugo的做法是用PathSpec来组织所有信息，隐藏复杂度，抽象出BaseFs提供更为贴近使用场景的综合服务。
+用SourceFilesystems组织出符合Hugo基础结构特点的直观服务，并用OverlayFs底层技术，实现了多文件系统合并的需求，最终支持到真正的实际使用场景。
+包括提供文章内容服务的Content文件系统，和加载自定义模板时的Layouts文件系统，等等。</p><h3 id=站点内容的收集方案>站点内容的收集方案
+<a class=anchor href=#%e7%ab%99%e7%82%b9%e5%86%85%e5%ae%b9%e7%9a%84%e6%94%b6%e9%9b%86%e6%96%b9%e6%a1%88>#</a></h3><p><a href=/en/#%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%9a%84%e7%bb%84%e7%bb%87>文件系统的组织</a>已经帮我们将用户站点项目按Hugo基础组件的结构进行了组织。
+我们从<code>BaseFs.Content.Fs</code>可以直接获取站点内容的文件系统索引，可以直接读取文件信息，生成站点面面了。</p><p>但Hugo不这么认为，我们可以用下面两个场景来了解一下Hugo的鸿鹄之志。</p><p><strong>场景一：Headless Bundle</strong></p><p>有一种页面，我们不希望她单独作为一个页面来发布。
+但可以在需要她的时候，以变量的形式获取到她。
+这就是Hugo对这种需求提供的解决方案：
+<a href=https://gohugo.io/content-management/page-bundles/#headless-bundle>Headless Bundle</a>。</p><p>如果直接遍历文件系统，我们在处理该文件的时候，需要知道她的类型，如果是Headless类型的，就不按常规类型处理。
+那文件类型就需要在解析文件的时候，从文件信息中获取到。
+页面类型的信息可以放在文件配置中，也可以通过特殊的命名规则来表明，此类方案还有许多。</p><p>如果其它的页面依赖于Headless页面，就要考虑页面解析顺序所带来的问题。
+如果Headless在前面被解析，就要存储好相关索引信息，以方便后续依赖于她的文件进行查询。
+如果在其它页面之后解析，可能的方案是将之前处理的页面标记为未完成状态，并指明所依赖的Headless页面，并挂起等待条件成熟时被唤醒。
+等相应的Headless页面解析完成后，时机成熟时，恢复之前页面的解析流程。
+这种方案在依赖的Headless页面较多的情况下，会出现不断挂起的状况。
+加上这些配置都依赖于手工维护，解析效率和正确性都很难保障。</p><p><strong>场景二：Page Resources</strong></p><p>Hugo Page可以包含不同的资源，常见的有图片类型的，还有音频、视频、数据、压缩包等等多种类型的资源。</p><p>下载页面会提供资源的下载链接，比如软件的安装包，针对不同的操作系统，会提供不同的版本。
+Hugo可以很聪明的识别，哪个文件是页面文件，哪些页面是资源文件，并将资源文件信息放在页面的<code>Resources</code>属性里。
+这样就方便用户根据页面，来灵活组织这些资源，可以生成一个某一类型软件的下载汇总信息，还可以生成某一章节的下载软件信息。</p><p>如果直接遍历文件系统，每个文件都是相对独立的，需要通过配置信息或者其它的方式标明同一层级的从属关系，还要标明不同层级之间的引用关系。
+这些都需要在全局构建信息中存储。
+因为互相独立，遍历过程中又会有先后顺序，关系越复杂，重复信息出现的概率就会越高。
+当有新的需求出现时，复杂的逻辑处理也不利于软件的拓展。</p><p>从以上两个场景中，可以观察到。
+简单的遍历文件系统，确实可以获取基本的文件信息。
+但如果需要灵活地组织各种不同的信息，如依赖关系，资源汇总等等跨页面处理场景，我们还需要进一步对站点内容进行发掘，以页面为单位进行组织和管理。</p><h4 id=磨刀不误砍柴工>磨刀不误砍柴工
+<a class=anchor href=#%e7%a3%a8%e5%88%80%e4%b8%8d%e8%af%af%e7%a0%8d%e6%9f%b4%e5%b7%a5>#</a></h4><p>从
+<a href=./%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>Hugo事件风暴</a>中可以清楚的看到Hugo正式收集站点内容是在<code>Hugo Build</code>阶段，之前都是在做准备：</p><p><img src=images/5.1-hugo-ddd-content-collection.svg alt="Hugo DDD - Content Collection"></p><h4 id=分工明确高效协作>分工明确，高效协作
+<a class=anchor href=#%e5%88%86%e5%b7%a5%e6%98%8e%e7%a1%ae%e9%ab%98%e6%95%88%e5%8d%8f%e4%bd%9c>#</a></h4><p>电商现在的状态已然不是正在融入我们的生活，而是成为了我们生活的一部分。
+并且过了拼产品类目的时期，基本上你家有的，我这也有。
+现在拼的更多的是特色，和服务。
+既然是特色，那每家多多少少都有些不一样。
+而服务，基本上都是相同的，其中最重要的要属快递服务。
+谁能以最短的时间将包裹送达消费者手中，谁将最容易获得消费者的认可，从而占有更高的市场份额，获得投资者的青睐，进入良性的循环发展。</p><p>Hugo也认同最短时间送达这样的服务理念。
+拿到待处理的内容后，立马出库装车送到离消费者最近的分拣中心，再由高效的分类机器人对货品进行分类。</p><p><strong>Hugo对内容处理的目标</strong></p><p><img src=images/5.2-cpf-goal.svg alt="Content Process Flow Goal"></p><p>在我们的样例中，我们的Content就是<code>mycontent</code>目录所代表的文件系统，经过<code>PathSpec</code>处理后，文件系统可通过<code>site.BaseFs.Content.Fs</code>得到。
+最终，Hugo需要对内容文件系统中的所有内容进行分类，并存放在PageMap货架上，这样方便快递小哥快速取货，装车并将包裹送达用户手中。</p><p>那Hugo到底是怎么做到的呢？</p><p><strong>陆地集装箱 &ndash; 大卡车</strong></p><p><img src=images/5.3-cpf-pagescollector.svg alt="Content Process Flow PagesCollector"></p><p>在实际生活中，包裹会从全球各地通过分拣中心网络，靠大卡车运输到离消费者最近的分拣点。
+而Hugo的"大卡车"就是PagesCollector，不像现实世界那么复杂，货物都在<code>site.BaseFs.Content.Fs</code>中。</p><p><strong>分拣机器人</strong></p><p><img src=images/5.4-cpf-pagesprocessor.svg alt="Content Process Flow PagesProcessor"></p><p>等货物运到分拣中心后，经过不断对分拣效率进行优化，现在已经做到可以完全自动化。
+PagesController将所有文件送达后，自动分拣机器人PagesProcessor便开始工作，无缝衔接。
+为了提高处理效率，Hugo为每一个站点都提供了一个机器人，由PagesProcessor负责分发任务，sitePagesProcessor专注处理自己所擅长的语言类别。</p><p>通过明确的分工，高效的协作，最终将所有文件分门别类，规整的放在中心货架上。</p><p><img src=images/5.0-content-process-flow.svg alt="Content Process Flow"></p><h3 id=模板的生命周期>模板的生命周期
+<a class=anchor href=#%e6%a8%a1%e6%9d%bf%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f>#</a></h3><p>在
+<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>Hugo事件风暴</a>中，我们了解到Hugo的设计理念 - 给用户提供始终如一的轻松写作体现。
+而实现这一理念则是以Golang Template为基础，开发出更多实用功能，让内容创造者专于内容创作的同时，还拥有良好的体验。</p><p>让我们回顾一下Golang Template的实现步骤：
+<img src=images/1-golang-template.svg alt="Golang Template"></p><p>再看看Hugo是如何围绕其展开的：
+<img src=images/2.1-hugo-whole-process-map-go-template.svg alt="hugo whole process with golang template"></p><p>Hugo围绕着Golang Template做了很多设计，现在我们通过和模板相关的领域事件，一起来看看模板的生命周期，从而能够有更全面的理解。</p><h4 id=hugo模板生命周期领域事件>Hugo模板生命周期领域事件
+<a class=anchor href=#hugo%e6%a8%a1%e6%9d%bf%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e9%a2%86%e5%9f%9f%e4%ba%8b%e4%bb%b6>#</a></h4><p>还是从领域事件入手，来看看有哪些关键事件和模板强相关：</p><p><img src=images/6.0-template-ddd-events.svg alt="Template DDD Events"></p><p>除了上面和Golang Template一一映射的事件外，还有更细节的事件，为了直观好看，我们把这些事件收集到一起来进行分析：</p><p><img src=images/6.0.1-template-ddd-events-simple.svg alt="Template DDD Events simple version"></p><p>可以看到和模板强相关的事件，主要集中在创建HugoSites和Build阶段。
+进一步细分，可发现模板生命周期可分为三个阶段：</p><ol><li>开始阶段，包括注册回调，并选定模板服务提供方，并出发模板更新。<ul><li>注册layouts回调到HugoSites初始化字段</li><li>设置默认模板提供方到配置项</li><li>通知模板提供者开始更新</li></ul></li><li>准备阶段，包括准备好模板执行器，收集模板相关的功能函数，解析Hugo内置和用户自定义模板，将所有模板存储到模板命名空间，以及用layout处理器连接layout和模板。<ul><li>新建模板执行器</li><li>收集模板函数到函数映射</li><li>收集文本函数到函数映射</li><li>新建模板命名空间</li><li>新建layout处理器</li></ul></li><li>渲染阶段，准备好页面内容后，回调在开始阶段注册的layouts事项，通过layout处理器查找相应的模板，最终用模板进行渲染，生成站点页面<ul><li>为内容结点创建页面</li><li>回调layout注册项进行初始化</li><li>为页面查找模板</li><li>用模板渲染页面</li></ul></li></ol><p>事件可以帮助我们清晰地了解到Hugo设计的模板生命周期。
+下面我们再通过
+<a href=%e6%b8%b8%e4%b9%90%e5%9c%ba.md>Hugo游乐场</a>源码梳理一遍具体实现流程，好让我们能更立体地了解到模板生命周期，同时也可以为后面的代码实现讲解章节做好准备。</p><p><strong>Template vs Layouts</strong></p><p>我们先来看看Hugo中两个容易混淆的概念，Template和Layouts。</p><p>在创建
+<a href=../what/%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%bb%e9%a2%98.md>自定义Hugo主题</a>的时候，我们接触最多的就是Layouts。
+官方文档解释Layouts就是用来当模板的，这样解释并没有问题，但这会让我们很容易产生一种Layouts既模板的错觉，并将Layouts和模板直接划上等号。</p><p>但真的是这样的吗，让我们从代码层面看看他们的关联：</p><p><img src=images/6.2-layouts-vs-template.svg alt="Template vs Layouts"></p><p>通过查看新建主题的目录结构，我们会发现自动生成的的文件主要在layouts目录下，里面有首页模板，还有页头和页尾模板，等等。
+在代码中，Layouts的出现通过都是以<code>[]string</code>字符串数组的形式出现的。
+也就是说在<strong>代码中Layouts就是用来记录layout相关的文件路径信息</strong>的。</p><p>如果想将Layouts转换成Golang Template，首先需要将其转换成<code>templateInfo</code>。
+并记录文件名，分析是否是文本类型，将layout文件内容以字符串存储在tempalte字段中。</p><p>其中是否是文本类型，涉及到Golang Template的设计知识。</p><blockquote><p>Golang将Template按类型进行了划分。如HTML和Text，通过对HTML标签进行转换，最终也会被转换成Text。
+说到底，通过对不同模板类型的转换，都会变成文本类型。</p></blockquote><p>通过templateInfo，最终Hugo会生成真正的Hugo模板结构体<code>templateState</code>。
+可以看出该结构体实现了<code>Template</code>接口。</p><p>所以我们可以得出结论：Layouts不等于Template，是制作Template的原材料。</p><p>弄清了Template和Layouts之间的关系，我们分别来看看Template生命周期中的开始、准备和渲染阶段。</p><p><strong>开始阶段</strong></p><p><img src=images/6.1.1-template-cycle-start.svg alt="Template Cycle Start"></p><p><code>HugoSites</code>中的init字段是<code>hugoSitesInit</code>类型的，其中就包含了lazy.init类型的layouts。
+这样就可以在layouts字段注册一些回调方法，方便在时机成熟的时候回调。</p><p>同时，对于HugoSites而言，直接面对的是模板服务的提供商，所以需要在这个阶段将<code>TemplateProvider</code>作为提供商，设置在配置信息中。
+等信息都准备妥当后，就可以通知模板服务提供商开始工作更新了。</p><p><strong>准备阶段</strong></p><p><img src=images/6.1.2-template-cycle-prepare.svg alt="Template Cycle Prepare"></p><p>对外提供整体服务，并和Deps关联的是<code>templateExec</code>。
+包含了<code>texttemplate.executer</code>和<code>templateHandler</code>，以及所有的模板功能函数。
+颜色表明各结构之间的关联关系。</p><p>可以看出，<code>texttemplate.executer</code>包含了<code>templateExecHelper</code>，因为在执行的过程中，通过对模板的分析，可能会用上功能函数。</p><p>而<code>templateHander</code>则需要处理和template相关的一些操作。
+<code>main</code>字段是<code>templateNamespace</code>类型，里面存储了HTML和Text原型信息，并存储了由原型创建的所有<code>templateState</code>在<code>templateStateMap</code>中。
+<code>layoutHandler</code>则是连接layout和template的关键，比如通过layout查询template时，就由layoutHandler全权负责。</p><p><strong>渲染阶段</strong></p><p>结合开始阶段和准备阶段一览：</p><p><img src=images/6.1.3-template-cycle-start-and-prepare.svg alt="Template Cycle Start and Prepare"></p><p>通过前期的准备和组织，我们来看看渲染阶段是怎么发生的：</p><p><img src=images/6.3-template-cycle-execute.svg alt="Template Cycle Render"></p><p>页面渲染发生在<code>site_render.go</code>中，从<code>pageRender</code>正式开始。</p><p>总共分为两大步，一是<code>page.resolveTemplate</code>解析模板，拿到模板后再开始<code>site.renderAndWritePage</code>渲染和写入页面。</p><ol><li><p>解析模板
+因为Site组合了Deps，所以也和Deps一样，同样持有<code>templateExec</code>信息，通过调用<code>templateExec</code>的<code>LookupLayout</code>方法，查询模板信息。
+因为这些模板信息都已经存储在了<code>templateNamespace</code>里的<code>templateStateMap</code>中。</p></li><li><p>渲染页面
+在<code>pageRender</code>中已经拥有了页面信息<code>pageState</code>，通过上一步又获取了模板信息，所以是时候开始真正地<code>site.renderForTemplate</code>渲染了。
+还是通过<code>templateExec</code>调用<code>Execute</code>方法。
+因为当前的执行器是<code>texttemplate.executer</code>类型，所以真正地执行是在<code>texttemplate.executer</code>的<code>ExecuteWithContext</code>方法中。
+这里是直接用的Golang Template源码，而不是调用Golang的默认包。
+因为Golang默认包中自带的功能函数，并不能完全满足Hugo的诉求。
+在后续代码实现章节将会详细讲述，这里还是专注在基础架构的初步理解上。</p></li></ol><h4 id=小结>小结
+<a class=anchor href=#%e5%b0%8f%e7%bb%93>#</a></h4><p><img src=images/6.1-template-cycle.svg alt="Template Cycle"></p><p>从Golang Template应用示例开始，我们了解到了Golang中模板工作的基本流程。
+这有助于我们进一步理解Hugo的设计和实现。</p><p>通过对Hugo领域事件中模板强相关的核心事件进行分析，我们将Hugo模板的生命周期大致分为三个阶段：开始、准备、渲染。</p><p>为了立体的理解模板生命周期，我们不仅从领域事件进行梳理，还从代码结构进行分析。
+看到了Hugo是基于HTML和Text模板原型，帮助将所有的Layouts转换成Template，并存储在了Template命名空间中。
+还看到为了拓展Golang Template的功能，Hugo将强大的自定义函数保存在了执行器中。
+这让模板在渲染过程中，有了更多的帮手。
+而这一切，都封装在了对外统一提供的服务<code>templateExec</code>中，不仅对内进行封装，还对外提供了便捷。</p><p>还有更多有意思的事情，比如Hugo为什么不能直接用Golang内置的Template包，而要独立维护？
+我们也会在后续代码实现章节，进一步展开讲解。
+和大家一起，一探究竟。</p><h3 id=发布的流程>发布的流程
+<a class=anchor href=#%e5%8f%91%e5%b8%83%e7%9a%84%e6%b5%81%e7%a8%8b>#</a></h3><p>通过
+<a href=/en/#%e6%a8%a1%e6%9d%bf%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f>模板的生命周期</a>我们可以看到在最后的渲染阶段，先找到页面的Template，然后对页面进行渲染。
+这样我们就有了根据模板生成的待发布内容。</p><p>站点发布主要的任务就是将作者所创作的内容，通过模板转换生成待发布的内容，按照站点的输出格式，写入到我们指定的文件目录。</p><p>那这里就会有两个问题：</p><ol><li>作者所创作的内容是怎么存储在页面中的，又要怎么使用呢？</li><li>发布过程中的信息，如输出格式、文件名、写入地址又是谁提供的呢？</li></ol><p>我们还是从Golang Template基本原理出发:</p><p><img src=images/1-golang-template.svg alt="Golang Template"></p><p>在index.html模板中，我们计划用<code>{{.Content}}</code>属性来获取内容。
+如果要成功获取，就需要在我们的内容提供商<code>Post</code>实例中，在Content字段设置上正确的值。
+如果都按约定准备好后，在最终Golang Template执行结果中，我们就能发现右上角的内容。</p><p>在我们的
+<a href=%e6%b8%b8%e4%b9%90%e5%9c%ba.md>游乐场示例</a>中，我们也有一个用到了<code>.Content</code>的layout - <code>layouts/_default/single.html</code>：</p><pre tabindex=0><code>-- mycontent/blog/post.md --
+---
+title: &#34;Post Title&#34;
+---
+### first blog
+Hello Blog
+
+-- layouts/_default/single.html --
+{{ .Content }}
+===
+Static Content
+===
+</code></pre><p>single.html会用做独立页面的模板，如上面的<code>mycontent/blog/post.md</code>。
+通过模板渲染过后，<code>post.md</code>中的内容就会替换掉<code>single.html</code>中的<code>{{ .Content }}</code>。</p><p>那Hugo的页面对象PageState又是怎么提供内容服务的呢，也和上面一样，放在属性里吗？
+我们在
+<a href=https://github.com/sunwei/hugo-playground>Hugo Playground</a>源码中，很快找到了答案：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Page is the core interface in Hugo.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Page</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ContentProvider</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ContentProvider provides the content related values for a Page.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ContentProvider</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Content</span>() (<span style=color:#a6e22e>any</span>, <span style=color:#66d9ef>error</span>)
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>没错，就是ContentProvider。
+可以看出Golang Template不仅支持属性，同时还支持方法。
+共同的特点就是要对外可见 - 都是大写字母开头。</p><p>那上面的两个问题就变得更具体了：</p><ol><li>PageState中的ContentProvider是谁？</li><li>发布流程中所需的详细信息是怎么来的？</li></ol><p><strong>发布相关的领域事件</strong></p><p>同样，我们还是可以通过
+<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>领域事件风暴</a>中，发布相关的领域事件入手：</p><p><img src=images/7.0-publish-events.svg alt="Publish Events"></p><p>可以看到，关键时机有两个。
+一个是在站点Site创建的时期，另一个则是在构建时期。</p><p>让我们专注在和发布相关的事件上：</p><p><img src=images/7.0.1-publish-events-simple.svg alt="Publish Events Simple"></p><p>这些事件的解读在
+<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>领域事件风暴</a>中有具体描述，这里就不再赘叙。</p><p>结合
+<a href=https://github.com/sunwei/hugo-playground>源码</a>，我们进一步将上述事件转换成代码流程图：</p><p><img src=images/7.1-publish-work-flow.svg alt="Publish Work Flow"></p><p>不出所料，为PageState提供内容和其它信息服务的对象确实存在，那就是<code>pageOutputs</code>。
+但心中不禁升起一丝疑问，为什么是个复数？</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// We create a pageOutput for every output format combination, even if this
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// particular page isn&#39;t configured to be rendered to that format.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>pageOutput</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// These interface provides the functionality that is specific for this
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// output format.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>pagePerOutputProviders</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>ContentProvider</span>
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// these will be shifted out when rendering a given output format.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>pagePerOutputProviders</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>targetPather</span>
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>通过查阅上述源码定义，我们更加确定了我们分析的正确性。
+<code>PageOutput</code>确实如我们所料，提供了<code>ContentProvider</code>服务和<code>targetPather</code>服务，这样我们前面的两个问题就有了着落。
+再加上注解：</p><blockquote><p>We create a pageOutput for every output format combination, even if this
+particular page isn&rsquo;t configured to be rendered to that format.</p></blockquote><p>我们发现pageOutput是和output format一一对应的，也就是说有多少种输出格式，就有多少个pageOutput，这也解释了上面关于复数的疑问。</p><p>那究竟是个什么样的对应关系，为什么要这样设计呢？
+让我们还是结合上面的流程图来进行分析。</p><p><strong>站点创建时做的准备工作</strong></p><p><img src=images/7.2-publish-start.svg alt="Publish Site Creating"></p><p>我们先看在创建Site的时候，都准备了哪些和发布相关的信息。
+上图右边是流程图站点的部分，从对象引用关系来看，可以了解到OutputFormats依赖于OutputFormat，但不是聚合关系。
+而OutputFormat又依赖于MediaType。</p><p><strong>MediaType</strong></p><p>从上图左侧的结构图可以看出，OutputFormat是拥有MediaType字段的。
+在MediaType包含的主要字段是main和sub。</p><p>那这些字段是干什么用的呢？
+我们可以通过上图中间的部分来进一步了解。
+在Hugo的DefaultTypes中，经过简化，我们保留了HTML, MD, TOML, TEXT四种类型。
+拿HTML MediaType举例，实际上长这样<code>text/html</code>。
+没错main字段就是text，而sub字段才是html。
+因为首先HTML媒体类型的文件是以文本形式存储在磁盘上的，然后才是内容是以HTML格式进行组织的。
+关于Media Type的详细介绍，可以参考
+<a href=https://en.wikipedia.org/wiki/Media_type>Wikipedia</a>。</p><p><strong>OutputFormat</strong></p><p>再来看看OutputFormat：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Format represents an output representation, usually to a file on disk.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Format</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>   <span style=color:#75715e>// The Name is used as an identifier. Internal output formats (i.e. HTML and RSS)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>   <span style=color:#75715e>// can be overridden by providing a new definition for those types.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>   <span style=color:#a6e22e>Name</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;name&#34;`</span>
+</span></span><span style=display:flex><span>   
+</span></span><span style=display:flex><span>   <span style=color:#a6e22e>MediaType</span> <span style=color:#a6e22e>media</span>.<span style=color:#a6e22e>Type</span> <span style=color:#e6db74>`json:&#34;-&#34;`</span>
+</span></span><span style=display:flex><span>   
+</span></span><span style=display:flex><span>   <span style=color:#75715e>// The base output file name used when not using &#34;ugly URLs&#34;, defaults to &#34;index&#34;.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>   <span style=color:#a6e22e>BaseName</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;baseName&#34;`</span>
+</span></span><span style=display:flex><span>   
+</span></span><span style=display:flex><span>   <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>通过注解可以看到，实际的作用就是记载了要将一个文件输出到磁盘上的相关说明信息。
+比如BaseName的默认值就是index，首页就会用到，默认文件名是index.html。</p><p>Hugo提供的<code>DefaultFormats</code>根据我们的示例简化后，保留了HTML, JSON, MD三种。
+其中HTML是指我们将以HTML的输出格式将文件写入到磁盘。</p><p>实例如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>HTMLFormat</span> = <span style=color:#a6e22e>Format</span>{
+</span></span><span style=display:flex><span>     <span style=color:#a6e22e>Name</span>:          <span style=color:#e6db74>&#34;HTML&#34;</span>,
+</span></span><span style=display:flex><span>     <span style=color:#a6e22e>MediaType</span>:     <span style=color:#a6e22e>media</span>.<span style=color:#a6e22e>HTMLType</span>,
+</span></span><span style=display:flex><span>     <span style=color:#a6e22e>BaseName</span>:      <span style=color:#e6db74>&#34;index&#34;</span>,
+</span></span><span style=display:flex><span>     <span style=color:#a6e22e>Rel</span>:           <span style=color:#e6db74>&#34;canonical&#34;</span>,
+</span></span><span style=display:flex><span>     <span style=color:#a6e22e>IsHTML</span>:        <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>     <span style=color:#a6e22e>Permalinkable</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#75715e>// Weight will be used as first sort criteria. HTML will, by default,
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>     <span style=color:#75715e>// be rendered first, but set it to 10 so it&#39;s easy to put one above it.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>     <span style=color:#a6e22e>Weight</span>: <span style=color:#ae81ff>10</span>,
+</span></span><span style=display:flex><span> }
+</span></span></code></pre></div><p><strong>OutputFormats</strong></p><p>如果OutputFormats和OutputFormat不是聚合关系，那又是什么关系呢？</p><p>我们直接来看看OutputFormats的结构，就清楚答案了。</p><p><img src=images/7.2.1-publish-start-output-formats.svg alt="Publish Start Output Formats"></p><p>这里的OutputFormats实际上就是按照Hugo页面的五种类型，分别提供的OutputFormat映射关系。
+如果是home类型的页面，那这种类型的页面只提供按HTML格式渲染的结果，而不是其它的格式，如JSON。
+也就是说<strong>在一个站点下，会为每个类型的页面都定义清楚合法的输出格式</strong>。
+这将会有效保障页面在渲染的过程中，输出格式的有效性。</p><p><strong>renderFormats</strong></p><p>有了全面的站点页面输出规范后，为什么还要这个renderFormats呢？</p><p><img src=images/7.3-publish-output.svg alt="Publish Output"></p><p>从上图右下角可以看到，实际上renderFormats来自于outputFormats。
+是将所有页面的outputFormats合并，去重后产生的。
+可以理解为renderFormats代表着这个站点所有输出的类型。
+在我们的实例中，因为所有页面只支持HTML一种类型，所以合并去重后，自然我们这个站点的renderFormats只有一个，就是HTML了。</p><p>从值的角度我们已经知道了两者之间的关联了，那为何Hugo要设置一个renderFormats呢？
+从名字上看是以站点Site为单位，可以理解为站点在渲染时所有的渲染格式。</p><p>那为什么HugoSites也有一个一模一样的renderFormats呢？
+从上图左上方可以看出，Site的renderFormats组成了HugoSites的renderFormats。
+这个好理解，因为HugoSites是由多个不同语言的Site所组成的，那就是说HugoSites的renderFormats代表了全站点的渲染格式。</p><p>继续通过上图往右看，可以发现更多的线索。
+原来pageOutputs和HugoSites的renderFormats是一一对应关系，也就是说全站点有多少种渲染格式，就有多少个pageOutputs。</p><p>这里不禁又冒出另一个大大的问号 - 每个站点都拥有自己的页面，也都有自己的输出格式，<strong>为什么要为单个站点页面提供全站点输出格式的pageOutputs呢？</strong></p><p>同样，我们还是可以从源码中找到答案：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugolib/page__new.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 97
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Prepare output formats for all sites.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// We do this even if this page does not get rendered on
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// its own. It may be referenced via .Site.GetPage and
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// it will then need an output format.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>pageOutputs</span> = make([]<span style=color:#f92672>*</span><span style=color:#a6e22e>pageOutput</span>, len(<span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>h</span>.<span style=color:#a6e22e>renderFormats</span>))
+</span></span></code></pre></div><p>从上面的代码中可以看到，这样设计的原因是页面可能会被其它的页面引用，甚至被不同语言的页面所调用。</p><p>对应的<code>.Site.GetPage</code>功能函数在多语言使用场景下的
+<a href=https://gohugo.io/functions/getpage/#getpage-and-multilingual-sites>具体说明</a>如下：</p><blockquote><p>The previous examples have used the full content filename to lookup the post.
+Depending on how you have organized your content (whether you have the language
+code in the file name or not, e.g. my-post.en.md), you may want to do the lookup
+without extension. This will get you the current language’s version of the page:</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>{{ <span style=color:#a6e22e>with</span> .<span style=color:#a6e22e>Site</span>.<span style=color:#a6e22e>GetPage</span> <span style=color:#e6db74>&#34;/blog/my-post&#34;</span> }}{{ .<span style=color:#a6e22e>Title</span> }}{{ <span style=color:#a6e22e>end</span> }}
+</span></span></code></pre></div><p>既然存在跨站点调用的情况，那就得为调用方准备好调用方所需要的输出格式。
+这样回过头来看，为每个页面pageState准备全站点渲染格式的pageOutputs是必需的。</p><p><strong>pageOutputs</strong></p><p>在发布流程中，除了内容，还有一些基础信息也很重用，如发布到哪，以什么名字写入等等。
+pageOutput做为输出信息的总载体，这些信息自然了也包在其中，通过上图右上方可以看到负责提供这些信息的对象是PagePaths。
+其中提供目标文件名的则是其中的targetPaths。</p><p><strong>PagePaths</strong></p><p>细心的小伙伴会发现Site的OutputFormats和PagePaths之间有一条虚线连接。
+之所以是虚线，是因为PagePaths实际上是从pageMeta中获取的信息，但根源，实际上还是来源于Site的OutputFormats。</p><p>结合中下方有进一步实样例解释。
+可以看到PagePaths会根据当前页面pageState的类型<code>pageKind</code>来获取当前类型的OutputFormats。
+会根据每一种OutputFormat生成相应的targetPathsHolder。</p><p>根据每一个PageOutput的OutputFormat类型，选中相应的targetPathsHolder，设置在<code>pagePerOutputProviders</code>之中。
+这样在渲染页面时：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>pageRenderer</span>(
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ctx</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>siteRenderContext</span>,
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Site</span>,
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>pages</span> <span style=color:#f92672>&lt;-</span><span style=color:#66d9ef>chan</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>pageState</span>,
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>results</span> <span style=color:#66d9ef>chan</span><span style=color:#f92672>&lt;-</span> <span style=color:#66d9ef>error</span>,
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>wg</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>sync</span>.<span style=color:#a6e22e>WaitGroup</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>wg</span>.<span style=color:#a6e22e>Done</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>p</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>pages</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>templ</span>, <span style=color:#a6e22e>found</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>resolveTemplate</span>()
+</span></span><span style=display:flex><span>		<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>targetPath</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>targetPaths</span>().<span style=color:#a6e22e>TargetFilename</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>renderAndWritePage</span>(<span style=color:#e6db74>&#34;page &#34;</span><span style=color:#f92672>+</span><span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>Title</span>(), <span style=color:#a6e22e>targetPath</span>, <span style=color:#a6e22e>p</span>, <span style=color:#a6e22e>templ</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34; render err&#34;</span>)
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%#v&#34;</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>results</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>err</span>
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>就可以通过<code>p.targetPaths().TargetFilename</code>获取到目标文件名了。</p><h4 id=独立页面的发布流程>独立页面的发布流程
+<a class=anchor href=#%e7%8b%ac%e7%ab%8b%e9%a1%b5%e9%9d%a2%e7%9a%84%e5%8f%91%e5%b8%83%e6%b5%81%e7%a8%8b>#</a></h4><p>Hugo将页面分成了两大类，一类就是上面介绍的常规页面，另一类就是接下来要看的独立Standalone页面，如404页面。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Site</span>) <span style=color:#a6e22e>render404</span>() <span style=color:#66d9ef>error</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>p</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>newPageStandalone</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>pageMeta</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>s</span>:    <span style=color:#a6e22e>s</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>kind</span>: <span style=color:#a6e22e>kind404</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>urlPaths</span>: <span style=color:#a6e22e>pagemeta</span>.<span style=color:#a6e22e>URLPath</span>{
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>URL</span>: <span style=color:#e6db74>&#34;404.html&#34;</span>,
+</span></span><span style=display:flex><span>		},
+</span></span><span style=display:flex><span>	},
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>output</span>.<span style=color:#a6e22e>HTMLFormat</span>,
+</span></span><span style=display:flex><span>	)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>render</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>d</span> <span style=color:#a6e22e>output</span>.<span style=color:#a6e22e>LayoutDescriptor</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Kind</span> = <span style=color:#a6e22e>kind404</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>templ</span>, <span style=color:#a6e22e>found</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>Tmpl</span>().<span style=color:#a6e22e>LookupLayout</span>(<span style=color:#a6e22e>d</span>, <span style=color:#a6e22e>output</span>.<span style=color:#a6e22e>HTMLFormat</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>found</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>targetPath</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>targetPaths</span>().<span style=color:#a6e22e>TargetFilename</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>targetPath</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&#34;</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>New</span>(<span style=color:#e6db74>&#34;failed to create targetPath for 404 page&#34;</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>renderAndWritePage</span>(<span style=color:#e6db74>&#34;404 page&#34;</span>, <span style=color:#a6e22e>targetPath</span>, <span style=color:#a6e22e>p</span>, <span style=color:#a6e22e>templ</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>代码流程很清晰，先通过<code>newPageStandalone</code>创建页面，紧接着查找模板，获取目标文件名，最后渲染并写入页面。
+整体流程基本一致。</p><p>既然PageOutput是发布流程上的关系所在，那我们还是用PageOutput的视角来看看独立页面会有哪些不同，同时也可以检测一下我们之前的理解是否正确。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugolib/page__new.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// line 92
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>newPageFromMeta</span>(
+</span></span><span style=display:flex><span><span style=color:#a6e22e>n</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>contentNode</span>,
+</span></span><span style=display:flex><span><span style=color:#a6e22e>parentBucket</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>pagesMapBucket</span>,
+</span></span><span style=display:flex><span><span style=color:#a6e22e>meta</span> <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#a6e22e>any</span>,
+</span></span><span style=display:flex><span><span style=color:#a6e22e>metaProvider</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>pageMeta</span>) (<span style=color:#f92672>*</span><span style=color:#a6e22e>pageState</span>, <span style=color:#66d9ef>error</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>standalone</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>pageOutput</span> = <span style=color:#a6e22e>makeOut</span>(<span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>outputFormats</span>()[<span style=color:#ae81ff>0</span>], <span style=color:#a6e22e>shouldRenderPage</span>)
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>outputFormatsForPage</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>outputFormats</span>()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>通过<code>newPageFromMeta</code>源码我们发现，对<code>standalone</code>的页面是有特殊处理的，而且用的就是<code>render404</code>中传入的<code>output.HTMLFormat</code>生成了pageOutput。</p><p>这样一来，我们可以确定的说，无论是普通页面，还是独立页面，基本上都是以pageOutput为核心进行展开的，符合同一套发布流程。
+让我们再来回顾一下发布流程全景图：</p><p><img src=images/7.4-publish-full.svg alt="Publish Process Full Process"></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/commit/1ef7760866ad1f04b1423099007532b22f57a593 title='Last modified by sunwei | February 7, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>February 7, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content/docs/how/arch/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#hugo基础架构>Hugo基础架构</a><ul><li><a href=#hugo的架构设计>Hugo的架构设计</a></li><li><a href=#hugo的组件设计>Hugo的组件设计</a><ul><li><a href=#配置和语言的关系>配置和语言的关系</a></li><li><a href=#hugo的模块>Hugo的模块</a></li><li><a href=#文件系统的组织>文件系统的组织</a></li><li><a href=#站点内容的收集方案>站点内容的收集方案</a></li><li><a href=#模板的生命周期>模板的生命周期</a></li><li><a href=#发布的流程>发布的流程</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
