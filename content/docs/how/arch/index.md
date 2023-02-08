@@ -1,49 +1,60 @@
-# Hugo基础架构
+# Hugo Architecture
 
-通过[个人站点](../what/个人站点.md)和[自定义主题](../what/自定义主题.md)实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。
-使用起来很简单，很快就能上手。
+We can learn how to use Hugo to create our own sites and theme.
+Here are examples: [Personal Site](https://hugo.notes.sunwei.xyz/s/what/site/) and [Custom Theme](https://hugo.notes.sunwei.xyz/en/docs/what/theme/).
+It is easy to learn and use.
 
-同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。
+At the same time, Hugo is an open source project based on the Apache 2.0 protocol, which means that you can boldly use your creativity.
 
-比如针对源码领域的站点，像[深入理解Hugo](https://c.sunwei.xyz/)，将源码和注解分离，并可以在[Golang Play](https://go.dev/play/)上执行。
-让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。
+For example, for sites in the source code field, such as [Understanding Hugo in Depth](https://c.sunwei.xyz/), the source code and notes are separated and can be executed on [GolangPlay](https://go.dev/play/).
+Make the learning experience of source code more three-dimensional, not only have interpretation, but also participate in it, modify the example to further help understanding.
 
-目前Hugo还无法支持构建这样的站点，主要有两个原因。
-一是[内容格式](https://gohugo.io/content-management/formats/)，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。
-其次是[功能函数](https://gohugo.io/functions/)，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。
-虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。
+At present, Hugo cannot support the construction of such a site for two main reasons.
+The first reason is [Content Format](https://gohugo.io/content-network/formats/). 
+The content format currently supported by Hugo is Markdown, and the above content format is .go source code file.
+The second reason is [Functions](https://gohugo.io/functions/). 
+Hugo does not have a function that handles code and can be used directly. 
+To parse the source code and notes.
+Although the string function can be combined for processing, it is cumbersome to use, difficult to expand, and even more impressive to maintain.
 
-不过，源码都给我们了，还能要求更多吗？
-毕竟我们可是有追求的软件工程师啊！
+But we have the source codes. 
+Can we ask for more?
+After all, we are software engineers in pursuit!
 
-无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。
+Whether it is from a practical perspective or from the perspective of learning excellent sources to communicate and learn, we have every reason to explore this treasure.
 
-本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
+The goal of this chapter is to open the Treasure Map to understand the infrastructure of the Hugo, which is mainly carried out in the following two directions:
 
-* 对架构思路做一个概要说明，对基础架构有一个全貌的理解
-* 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。
+* Provides an overview of the architectural thinking and a comprehensive understanding of the infrastructure
+* Start with module code and discuss the relationship between configuration and language, Hugo modules, organization of file systems, collection of site content, lifecycle of templates, and publishing processes.
 
-通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。
+* By reading this chapter, we will have a comprehensive understanding of the Hugo site construction tool and a clear understanding of the relationship between the stages, laying a foundation for the next detailed source implementation chapters.
 
-出发吧，伟大的工程师啊！
+Let's go, great engineer!
 
-## Hugo的架构设计
+## Architecture Design of Hugo
 
-结合Hugo站点构建领域[事件](事件风暴.md)，和[Hugo游乐场](https://github.com/sunwei/hugo-playground)源码，Hugo的架构设计会变得很清晰：
+Combining the Hugo site construction domain [event](https://hugo.notes.sunwei.xyz//en/docs/how/event-storming/), 
+and [Hugo playground](https://github.com/sun.com/hugo-playground) source code, the architecture design of Hugo will become very clear:
 
 ![Hugo Arch](images/3.0-hugo-arch.svg)
 
-Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
+Hugo's architecture idea is easy to understand. 
+It is mainly divided into three major blocks: configuration module, site module and dependency module.
 
-**配置模块**
+**Configuration Module**
 
-Hugo最先解析的，就是用户项目的配置文件`config.toml`。
-由`configLoader`发起，从硬盘读取配置文件，解析后存储为键值对对象。
-`configLoader`主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。
-第二件是补全默认配置`Defaults Config`，这样才能保其它模块正常运作。
-第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - `project module`，在我们的实例中还有第二个模块，那就是主题模块`mytheme`。
-模块之间有依赖关系，并且只有一个所有者`Owner`。
-项目模块`project module`比较特殊，因为是初始模块，所以不属于任何其它模块。
+The first thing Hugo parses is the configuration file `config.toml` of the user project.
+Initiated by `configLoader`, the configuration file is read from the hard disk and stored as a key-value pair object after parsing.
+
+`configLoader` mainly needs to complete three things:
+1. Load the user project configuration file to understand the user's custom requirements.
+2. Complete the default configuration `Defaults Config`, to ensure the normal operation of other modules.
+3. Generate module configuration information, starting from the user project, using the user project as the first module - `project module`, and in our example there is a second module, that is the theme module `mytheme`.
+
+There are dependencies between modules and there is only one Owner `Owner`.
+The project module `project module` is special, because it is the initial module, so it does not belong to any other modules.
+
 ```go
 type Module interface {
 	...
@@ -53,62 +64,76 @@ type Module interface {
 	...
 }
 ```
-所有信息收集齐全后，会对外提供`config.Provider`服务：可查询，可更新配置项。
 
-**HugoSites模块**
+After all the information is collected, the `config.Provider` service will be provided externally: it can be queried and configuration items can be updated.
 
-这是构建站点的核心模块，相当于DDD中的聚合根，内部组织构建站点所需要的全部信息，对外提供站点构建服务。
+**HugoSites Module**
 
-`HugoSites`的初始化依赖于`DepsCfg`和`Site`，没错，有两个site。
-HugoSites和Site的关系是一对多，Site和Language的关系是一一对应的，所以多语言站点会为每一个语言创建一个站点，共同组成了HugoSites。
+This is the core module of building a site, which is equivalent to the aggregate root in DDD. 
+It organizes all the information needed to build a site internally and provides site building services externally.
 
-语言项是由DepsCfg创建的，但会存储在`config.Provider`中，所以都用浅黄色标明。
-而DepsCfg的初始化则依赖于`Fs`和`config.Provider`。
-`Fs`记载了源文件地址和发布地址。
-源文件来自于用户项目，也就是实际的硬盘文件系统。
-发布地址是获取自config.Provider，默认的是public文件夹，在这里会检测是否已经存在，如果没有则主动创建。
-最后将新创建的信息如`workingDir`等信息同步回config.Provider。
+The initialization of `HugoSites` depends on `DepsCfg` and `Site`, yes, there are two sites.
+The relationship between HugoSites and Site is one-to-many, and the relationship between Site and Language is one-to-one, 
+so a multilingual site will create a site for each language, which together form HugoSites.
 
-可以看出，他们的依赖关系是`HugoSites <- Site <- Language <- DepsCfg <- Fs`。
+Language items are created by DepsCfg, but will be stored in `config.Provider`, so they are marked in light yellow.
+The initialization of DepsCfg depends on `Fs` and `config.Provider`.
+`Fs` records the source file address and release address.
+The source files come from the user project, which is the actual hard disk file system.
+The publishing address is obtained from config.Provider, and the default is the public folder. 
+It will check whether it already exists here, and create it actively if not.
+Finally, synchronize the newly created information such as `workingDir` back to config.Provider.
 
-**Deps模块**
+As can be seen, their dependencies are `HugoSites <- Site <- Language <- DepsCfg <- Fs`.
 
-Hugo将构建站点所需要的所有服务和对象都称作依赖，全部放在了`Deps`中。
+**Deps Module**
 
-在构建依赖的过程中，会生成提供模板的`TemplateProvider`；
-明确输入输出的媒体类型`MediaType`；和输出格式的`OutputFormats`；都会更新到`config.Provider`中。
+Hugo refers to all the services and objects needed to build a site as dependencies, and puts them all in `Deps`.
 
-也会为收集站点内容做好准备，会有`Page Collection`帮助收集。
-最终发布站点时需要用到的发布服务则是`Publisher`。
-这些都会更新到`Site`中。
+In the process of building dependencies, `TemplateProvider` that provides templates will be generated;
+Clear input and output media type `MediaType`; and output format `OutputFormats`; 
+will be updated to `config.Provider`.
 
-同时，还需要将资源统一管理，明确规范，这样可以保障在使用时的便捷性，也符合面向对向设计原则中的单一职责原则。
-包含提供统一标准文件结构服务的`Path Spec`；
-和拥有所有媒体类型和输出格式信息的`Resources Spec`；
-以及针对`Content`信息提供服务的`Content Spec`；
-加上帮助定义资源策略，如过滤功能的`Source Spec`。
+It will also be prepared for collecting site content, and there will be a `Page Collection` to help collect.
+The publishing service that needs to be used when finally publishing the site is `Publisher`.
+These will be updated to `Site`.
 
-有了Deps的帮助，所有构建站点所需的信息，如原材料、规则和输出格式等，都已准备妥当。
+At the same time, it is also necessary to manage resources in a unified manner with clear specifications, 
+which can ensure the convenience of use and conform to the principle of single responsibility in the principle of oriented design.
+Contains `Path Spec` that provides a unified standard file structure service;
+and a `Resources Spec` with all media type and output format information;
+and a `Content Spec` that provides services for `Content` information;
+Plus `Source Spec` to help define resource policies, such as filtering functions.
 
-万事俱备，只欠东风！
+With the help of Deps, all the information needed to build the site, such as raw materials, rules, 
+and output formats, etc., are prepared.
 
-## Hugo的组件设计
+All is ready except for the opportunity!
 
-架构图可以帮助我们从全局视角理解Hugo的架构设计。
-现在让我们更近一步，从模块的角度来观察Hugo架构的细节
+## Hugo's component design
 
-### 配置和语言的关系
+The architecture diagram can help us understand Hugo's architecture design from a global perspective.
+Now let's go a step closer and look at the details of Hugo's architecture from a module perspective
 
-Hugo提供了强大的配置功能，如配置文件、配置目录、配置主题等等。
-构建站点过程中，只要是你能想到的定制化需求，基本都能通过配置实现。
+### The relationship between configuration and language
 
-为了满足不同的定制化需求，Hugo的思路是首先要处理好多配置文件之间的关系，所以需要合并一些配置项，这样就需要大小写不敏感。
-定制化只是一小部分，其它的通用信息，就用默认配置来进行说明。
+Hugo provides powerful configuration features, such as configuration files, configuration directories, 
+configuration themes, and more.
+In the process of building a site, as long as it is a customized requirement that you can think of, 
+it can basically be realized through configuration.
 
-支持多语言是常见需求，现在好多软件遵循的策略就是国际化优先。
-那Hugo是怎么理解语言和配置的关系呢？
+In order to meet different customization needs, 
+Hugo's idea is to deal with the relationship between many configuration files first, 
+so some configuration items need to be merged, which requires case insensitivity.
+Customization is only a small part, and other general information is explained with the default configuration.
 
-在[个人站点](../what/个人站点.md)实例中，我们在`config.toml`中和语言相关的配置如下：
+Supporting multiple languages is a common requirement, 
+and the strategy followed by much software is to give priority to internationalization.
+So how does Hugo understand the relationship between language and configuration?
+
+In the [personal site](https://hugo.notes.sunwei.xyz/en/docs/what/site/) example, 
+we configure language-related configurations in `config.toml` as follows:
+
 ```toml
 defaultContentLanguage = 'zh'
 [languages]
@@ -122,18 +147,19 @@ defaultContentLanguage = 'zh'
   contentDir = 'content.en'
   weight = 2
 ```
-可以配置默认语言，支持的多语言有中文和英语。
 
-那这样看来，配置应该包含语言。
-也就是说语言应该是配置结构体中的一个字段。
-而事实是这样的吗？
-让我们还是从[Hugo游乐场](https://github.com/sunwei/hugo-playground)源码出发，来一探究竟。
+The default language can be configured, and the supported languages are Chinese and English.
 
-在此之前，我们先从架构图中寻找线索：
+From this point of view, the configuration should include the language.
+In other words, the language should be a field in the configuration structure.
+And is this the case?
+Let's start from the source code of [Hugo Playground](https://github.com/sunwei/hugo-playground) to find out.
+
+Before that, let's look for clues from the architecture diagram:
 ![Language and Config](images/3.1-hugo-arch-config-language.svg)
 
-可以看到，最终创建Language的地方是在DepsCfg，并不是Config。
-这和我们的直觉是相反的，让我们来看看关键的config.Provider，DepsCfg和Language相关代码片断。
+It can be seen that the place where Language is finally created is in DepsCfg, not Config.
+This is counter to our intuition, let's take a look at the key config.Provider, DepsCfg and Language related code snippets.
 
 **config.Provider**
 
@@ -147,8 +173,8 @@ type Provider interface {
 }
 ```
 
-可以看出，Provider接口提供了`Get`和`Set`方法，就像一个key/value仓库。
-那语言相关的配置同样也存储在了Provider里面。
+It can be seen that the Provider interface provides `Get` and `Set` methods, just like a key/value warehouse.
+The language-related configuration is also stored in the Provider.
 
 **DepsCfg**
 
@@ -167,9 +193,9 @@ type DepsCfg struct {
 }
 ```
 
-DepsCfg中包含了config.Provider以及Language。
+DepsCfg contains config.Provider and Language.
 
-创建站点的时候，直接传入的就是DepsCfg:
+When creating a site, the direct input is DepsCfg:
 
 ```go
 // newSite creates a new site with the given configuration.
@@ -178,7 +204,7 @@ func newSite(cfg deps.DepsCfg) (*Site, error) {
 }
 ```
 
-在调用创建站点前，DepsCfg就已经把Language准备好了:
+Before calling to create a site, DepsCfg has already prepared Language:
 
 ```go
 func createSitesFromConfig(cfg deps.DepsCfg) ([]*Site, error) {
@@ -195,7 +221,7 @@ func createSitesFromConfig(cfg deps.DepsCfg) ([]*Site, error) {
 }
 ```
 
-而从Language结构体可以看出：
+From the Language structure, it can be seen that:
 
 ```go
 // Language manages specific-language configuration.
@@ -211,41 +237,47 @@ type Language struct {
 }
 ```
 
-Language是包含了Cfg config.Provider的。
-也就是说Language和Config的关系实际上是包含关系，并不像我们上面感受到的那样。
-仔细一想，合情合理。
-Config专注提供配置key/value仓库管理服务，而Language和Site是一一对应的，需要其它配置信息补充说明。
+Language contains Cfg config.Provider.
+That is to say, the relationship between Language and Config is actually an inclusive relationship, not as we felt above.
+Think about it carefully, it makes sense.
+Config focuses on providing configuration key/value warehouse management services, 
+while Language and Site are in one-to-one correspondence, and additional configuration information is required.
 
-### Hugo的模块
+### Hugo modules
 
-提到模块化，大家可能会想到的是Nginx模块，IDEA插件等等。
-通常是我可以通过上传一些模块，来满足我的差异化需求。
-之所以大家都喜欢这种模块，主要是因为足够灵活，不用费太大的劲就可以满足自身的需求。
-因为很多时候，虽然大体上差不多，但总有一些细节上的差异。
-这也正说明软件的复杂度，除了技术上的复杂度，还有业务上的复杂度。
-大多数情况下，我们面对的主要是业务复杂度。
-这也正是在软件领域，对"隔行如隔山"这句俗语最好的阐述。
-如今，不仅互联网行业，金融行业，就算传统的制造业，都已经使用上了信息化系统，来帮助企业的生产和管理。
-同样是请假系统，哪怕在同样的行业，不同的公司，都会有所差异。
+When it comes to modularization, you may think of Nginx modules, IDEA plug-ins and so on.
+Usually, I can meet my differentiated needs by uploading some modules.
+The reason why everyone likes this kind of module is mainly because it is flexible enough to meet their own needs without too much effort.
+Because many times, although they are roughly the same, there are always some differences in details.
+This also shows the complexity of software, in addition to technical complexity, there is also business complexity.
+In most cases, what we are facing is mainly business complexity.
+This is also the best explanation of the saying "interlacing lines are like mountains" in the field of software.
+Nowadays, not only the Internet industry, the financial industry, 
+but also the traditional manufacturing industry have used information systems to help enterprises in production and management.
+The same leave application system, even in the same industry and different companies, will be different.
 
-而Hugo的模块和大家印象中的模块有点不一样，并不是以功能为单位，来满足差异化需求。
-而是以目录结构为主，来识别相同的结构。
+However, Hugo's modules are a bit different from the modules in everyone's impression. 
+They do not use functions as units to meet differentiated needs.
+Instead, the directory structure is used to identify the same structure.
 
-先来看看在我们架构中，模块的位置：
+Let's take a look at the location of the module in our architecture:
 
 ![Hugo Arch Module](images/3.2-hugo-arch-module.svg)
 
-在架构图中，`Modules`需要统一组织起来，依赖于`Modules Config`描述信息，而这个信息的加载是由configLoader负责的。
+In the architecture diagram, `Modules` needs to be organized in a unified manner, 
+relying on the description information of `Modules Config`, 
+and the loading of this information is the responsibility of configLoader.
 
-我们再从[Hugo游乐场](https://github.com/sunwei/hugo-playground)源码来看一看实际的调用时序：
+Let's take a look at the actual call timing from the source code of [Hugo Playground](https://github.com/sunwei/hugo-playground):
 
 ![Hugo Arch Module flow](images/3.2.1-hugo-arch-module.svg)
 
-可以看出，在我们的游乐场中，由主函数，调用`LoadConfig`方法，并在该方法中为`Modules`做了两件事。
-一件是`loadModulesConfig`，把和Modules相关的配置信息整理到Module Config中。
-另一件则是`collectModules`，根据收集到的配置信息，按模块的标准，将模块信息标准化。
+It can be seen that in our playground, the main function calls the `LoadConfig` method, 
+and does two things for `Modules` in this method.
+One is `loadModulesConfig`, which organizes configuration information related to Modules into Module Config.
+The other is `collectModules`, which standardizes the module information according to the module standard according to the collected configuration information.
 
-先来看看`Module Config`的源码定义：
+Let's take a look at the source code definition of `Module Config`:
 
 ```go
 // Config holds a module config.
@@ -258,23 +290,30 @@ type Config struct {
 }
 ```
 
-可以看出，重要字段有两个，一个是Mounts，一个是Imports。
-`loadModulesConfig`中主要是对Imports字段进行处理，在我们实例中：
+It can be seen that there are two important fields, one is Mounts and the other is Imports.
+`loadModulesConfig` mainly deals with the Imports field, in our example:
+
 ```
 -- config.toml --
 theme = "mytheme"
 ...
 ```
-主题的配置信息是`theme = "mytheme"`，解析成模块配置信息就成了`c.Imports = [mytheme]`。
 
-接下来就是收集模块`collectModules`了：
+The configuration information of the theme is `theme = "mytheme"`, 
+and when parsed into module configuration information, it becomes `c.Imports = [mytheme]`.
+
+The next step is to collect the module `collectModules`:
+
 ```go
 func (l configLoader) collectModules(modConfig modules.Config, ...) (modules.Modules, ...) {
 	...
 }
 ```
-传入刚收集到的模块配置信息，输出标准的模块信息。
-而我们刚收集到的配置信息只有Imports有值，并且只有一个值"mytheme"，输出实例如下图所示：
+
+Pass in the module configuration information just collected, and output standard module information.
+However, the configuration information we just collected has only Imports and only one value "mytheme". 
+The output example is shown in the following figure:
+
 ```go
 fmt.Printf("%#v\n", modulesConfig)
 
@@ -289,9 +328,9 @@ modules.Config{
 }
 ```
 
-**为什么Hugo管Theme叫模块呢？**
+**Why does Hugo call Theme a module? **
 
-输入以下命令，创建一个站点：
+Enter the following command to create a site:
 ```shell
 ➜  tmp hugo new site xyz
 ```
@@ -312,11 +351,14 @@ modules.Config{
 7 directories, 2 files
 ```
 
-再输入以下命令，创建一个主题:
+Then enter the following command to create a theme:
+
 ```shell
 ➜  tmp hugo new theme mytheme
 ```
-同样查看目录结构：
+
+Also look at the directory structure:
+
 ```shell
 ➜  mytheme tree
 .
@@ -342,14 +384,16 @@ modules.Config{
 7 directories, 11 files
 ```
 
-我们把Site和Theme的目录结构放在一起比对一下：
+Let's compare the directory structures of Site and Theme together:
 
 ![Hugo Arch Modules site and theme folder structure](images/3.2.2-hugo-arch-site-theme-folder-struct.png)
 
-通过对比，我们不难发现，目录结构基本上是一到的，都包含了`archetypes`, `layouts`, `static`等等。
+By comparison, it is not difficult to find that the directory structure is basically the same, 
+including `archetypes`, `layouts`, `static` and so on.
 
-在Hugo官网中，有对[目录结构](https://gohugo.io/getting-started/directory-structure/)有明确说明。
-从源码中也可以看到：
+On the Hugo official website, there is a clear description of [directory structure](https://gohugo.io/getting-started/directory-structure/).
+You can also see from the source code:
+
 ```go
 // hugo-playground/hugofs/files/classifier.go
 
@@ -376,27 +420,34 @@ var (
 )
 
 ```
-可以看出，Hugo通过标准化目录结构的方式，让每一个模块都遵循这一统一原则，这样无论在解析主题还是用户项目的时候，都有章可循。
 
-再看看Hugo对[模块](https://gohugo.io/hugo-modules/configuration/)的说明：
+It can be seen that Hugo makes each module follow this unified principle by standardizing the directory structure, 
+so that there are rules to follow no matter when parsing themes or user projects.
+
+
+Take a look at Hugo's description of [module](https://gohugo.io/hugo-modules/configuration/):
+
 > Hugo Modules are the core building blocks in Hugo. 
 > A module can be your main project or a smaller module providing 
 > one or more of the 7 component types defined in Hugo: 
 > static, content, layouts, data, assets, i18n, and archetypes.
 
-也就是说
-`static, content, layouts, data, assets, i18n, and archetypes`
-这7个组件的任意组合，我们都认为是符合模块的要求。
+That is to say `static, content, layouts, data, assets, i18n, and archetypes`
+Any combination of these 7 components is considered to meet the requirements of the module.
 
-Hugo的模块是基于Go Modules构建的，使用起来也很方便：
+Hugo's modules are built on top of Go Modules and are easy to use:
+
 ```toml
 [module]
 [[module.imports]]
   path = 'github.com/sunwei/zero'
 ```
-也就是说，我们现在加载主题可以通过加载模块的形式，不用再把主题以git submodule的导入，更方便，更合理了。
 
-搞清楚为什么主题也是模块后，我们再一起看下最终，我们得到了什么样的模块详细配置信息：
+That is to say, we can now load the theme in the form of loading modules, 
+instead of importing the theme as a git submodule, which is more convenient and reasonable.
+
+After figuring out why the theme is also a module, 
+let's take a look at the final configuration information of the module we got:
 
 ```go
 // hugo-playground/hugolib/config.go 
@@ -427,11 +478,13 @@ Output:
 	mounts:[]modules.Mount(nil), ...}
 
 ```
-从输出结果看，一共有两个模块，一个是`project`，另一个是`mytheme`。
-因为在我们的实例中，`mytheme`只有一个txt文件，七个组件中的任何一个都没有，所以mounts为空，而project模块则有每个组件的Mount。
 
-Hugo通过巧妙的标准化目录结构设计，实现了Hugo Module。
-强大的拓展性和便捷性，让用户可以专注于内容创作，个性化也得到了大大的满足。
+From the output results, there are two modules in total, one is `project` and the other is `mytheme`.
+Because in our example, `mytheme` has only one txt file, none of the seven components, 
+so the mounts are empty, and the project module has Mounts for each component.
+
+Hugo implements Hugo Module through a clever standardized directory structure design.
+Strong scalability and convenience allow users to focus on content creation, and personalization is also greatly satisfied.
 
 ### 文件系统的组织
 
