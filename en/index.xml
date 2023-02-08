@@ -92,20 +92,9 @@ Goldmark先将文本信息读取到内存，如上图左所示。 那Goldmark是
 结合我们的MD写作习惯，让我们回想一下，是不是很多格式需要用换行来辅助说明。 比如段落，我们可以以每个句号为一行，可以换行，只要没有空行，就认为这些句子都是一个段落。 如果想要另起一个段落，直接用空行分隔就行。</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/en/docs/code/site/resources/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/en/docs/code/site/resources/</guid><description>LoadResources # 创建HugoSites的最后一步就是LoadResources，没错，不知不觉中，我们已经走到了这一步。
 // LoadResources loads translations and templates. func (d *Deps) LoadResources() error { if err := d.templateProvider.Update(d); err != nil { return fmt.Errorf(&amp;#34;loading templates: %w&amp;#34;, err) } return nil } LoadResources也就做了一件事，就是专注在通知templateProvider，可以开始更新了。
 我们的templateProvider就是默认的tplimpl.DefaultTemplateProvider。
-// Update updates the Hugo Template System in the provided Deps // with all the additional features, templates &amp;amp; functions. func (*TemplateProvider) Update(d *deps.Deps) error { tmpl, err := newTemplateExec(d) if err != nil { return err } return tmpl.</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/en/docs/how/arch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/en/docs/how/arch/</guid><description>Hugo基础架构 # 通过 个人站点和 自定义主题实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。 使用起来很简单，很快就能上手。
-同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。
-比如针对源码领域的站点，像 深入理解Hugo，将源码和注解分离，并可以在 Golang Play上执行。 让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。
-目前Hugo还无法支持构建这样的站点，主要有两个原因。 一是 内容格式，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。 其次是 功能函数，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。 虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。
-不过，源码都给我们了，还能要求更多吗？ 毕竟我们可是有追求的软件工程师啊！
-无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。
-本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
-对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。
-出发吧，伟大的工程师啊！
-Hugo的架构设计 # 结合Hugo站点构建领域 事件，和 Hugo游乐场源码，Hugo的架构设计会变得很清晰：
-Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
-配置模块
-Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
-type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency.</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/</guid><description>Hugo 事件风暴 # Hugo的功能很全面，拥有强大的自定义函数库，可以用来制作模板、短代码等。 这在站点的构建过程中，可以帮助提供各种数据，如获取目录结构，主动加载文件。 以及页面信息汇总，方便展示分页列表或者搜索。 还可以帮助分类，提供标签服务。
+// Update updates the Hugo Template System in the provided Deps // with all the additional features, templates &amp;amp; functions. func (*TemplateProvider) Update(d *deps.Deps) error { tmpl, err := newTemplateExec(d) if err != nil { return err } return tmpl.</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/en/docs/how/arch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/en/docs/how/arch/</guid><description>Hugo Architecture # We can learn how to use Hugo to create our own sites and theme. Here are examples: Personal Site and Custom Theme. It is easy to learn and use.
+At the same time, Hugo is an open source project based on the Apache 2.0 protocol, which means that you can boldly use your creativity.
+For example, for sites in the source code field, such as Understanding Hugo in Depth, the source code and notes are separated and can be executed on GolangPlay.</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/</guid><description>Hugo 事件风暴 # Hugo的功能很全面，拥有强大的自定义函数库，可以用来制作模板、短代码等。 这在站点的构建过程中，可以帮助提供各种数据，如获取目录结构，主动加载文件。 以及页面信息汇总，方便展示分页列表或者搜索。 还可以帮助分类，提供标签服务。
 支持多语言，创建国际化站点一样简单。
 主题库更是能满足各种不同的个性化需求，更贴近专业使用场景，你还可以零成本切换。
 Hugo是如何一步步将博客变成站点的？ 下面我们还是通过 游乐场实例，来一探究竟。
