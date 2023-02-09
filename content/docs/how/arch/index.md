@@ -486,15 +486,16 @@ so the mounts are empty, and the project module has Mounts for each component.
 Hugo implements Hugo Module through a clever standardized directory structure design.
 Strong scalability and convenience allow users to focus on content creation, and personalization is also greatly satisfied.
 
-### 文件系统的组织
+### Organization of the file system
 
-Hugo目前主要的操作都是对本地文件进行的。
-比如读取配置信息、模版信息、博客内容，写入站点信息等等。
-因为这些操作都离不开文件系统，Hugo因此对文件信息的组织做了许多工作，以确保调用方良好的使用体验。
+Currently, the main operations of Hugo are performed on local files.
+For example, read configuration information, template information, blog content, write site information, and so on.
+Because these operations are inseparable from the file system, 
+Hugo has done a lot of work on the organization of file information to ensure a good user experience for the caller.
 
 #### Afero
 
-首先是选择基础文件系统[afero.Fs](https://github.com/spf13/afero): 
+The first is to select the basic file system [afero.Fs](https://github.com/spf13/afero):
 
 > Afero is a filesystem framework providing a simple, 
 > uniform and universal API interacting with any filesystem, 
@@ -502,78 +503,98 @@ Hugo目前主要的操作都是对本地文件进行的。
 > Afero has an exceptionally clean interface and simple design without needless 
 > constructors or initialization methods.
 
-Afero提供的服务基本和Golang原生Fs接口一致，其次兼容多操作系统，这样就既对语言兼容，还对系统兼容，并且使用体验还和原生一致。
-确实为Hugo提供了良好的文件系统基础。
+The services provided by Afero are basically consistent with Golang's native Fs interface, 
+and secondly, it is compatible with multiple operating systems, so that it is compatible with both languages and systems, 
+and the user experience is also consistent with the original.
+does provide a good file system foundation for Hugo.
 
-为了直观查看Hugo中多种Fs的关联，我们把afero.Fs标作如下结构，包含文件系统的基础操作样例：
+In order to visually view the association of various Fs in Hugo, 
+we mark afero.Fs as the following structure, including basic operation examples of the file system:
 
 ![Hugo FS afero.Fs](images/4.1-hfs-afero.Fs.svg)
 
-#### Hugo架构中的Fs
+#### Fs in Hugo architecture
 
-我们再来回顾下，Hugo架构中Fs应用的场景：
+Let's review the scenario of Fs application in the Hugo architecture:
 
 ![Hugo Arch Fs](images/4.0-hugo-arch-fs.svg)
 
-最先出现的是Fs，用来记录最贴近真实目录的文件系统，作为DpesCfg的参数，最终由HugoSites创建Deps的时候，透传给了Deps。
-Deps是真正组织构建整个文件系统体系的模块，最终用PathSpec将前面的原始文件系统组织成了Hugo所需要的文件系统。
-最终供给Template和Page相关操作使用。
+The first thing to appear is Fs, which is used to record the file system closest to the real directory. 
+As a parameter of DpesCfg, when HugoSites creates Deps, it is transparently passed to Deps.
+Deps is the module that really organizes and builds the entire file system, 
+and finally uses PathSpec to organize the previous original file system into the file system required by Hugo.
+Finally, it is used for Template and Page related operations.
 
 #### HugoFs
 
-我们先看基础的Fs，也就是HugoFs：
+Let's first look at the basic Fs, which is HugoFs:
 
 ![Hugo Fs hugoFs](images/4.2-hgf-hugoFs.svg)
 
-可以看到，基础hugoFs包含输入源Source，和输出目标地址PublishDir，以及用来只读的WorkingDir。
-并且第一项都是afero.Fs类型，所以颜色和afero.Fs颜色一致。
-后面也会用来颜色来对不同类型的文件系统进行关联。
+It can be seen that the basic hugoFs includes the input Source, 
+the output target address PublishDir, and the WorkingDir for read-only.
+And the first item is of type afero.Fs, so the color is the same as that of afero.Fs.
+Colors will also be used later to associate different types of file systems.
 
 #### PathSpec
 
-通过上面的Hugo架构图我们知道，最终HugoFs被传入Dpes，并由PathSpec来统一组织和管理所有路径相关信息：
+From the above Hugo architecture diagram, we know that HugoFs is finally passed into Dpes, 
+and PathSpec is used to organize and manage all path-related information in a unified way:
 
 ![Hugo Fs PathSpec](images/4.3-hfs-PathSpec.svg)
 
-从上图看出PathSpec包含了hugoFs和Paths，还有另一个重要的BaseFs。
+It can be seen from the above figure that PathSpec contains hugoFs and Paths, and there is another important BaseFs.
 
-先看Paths，包含了基础文件系统，还包含了主题和工作目录信息，以及Modules相关的信息。
-基于Fs和Path，PathSpec需要消化这些基础信息，并提供完整的文件系统服务。
+Let’s look at Paths first, which includes the basic file system, 
+theme and working directory information, and Modules-related information.
+Based on Fs and Path, PathSpec needs to digest these basic information and provide complete file system services.
 
 #### BaseFs
 
-通过准备好的基础信息hugoFs和Paths，BaseFs不仅要提供一些基础服务，比如源文件系统和发布目标文件系统，以及工作目录等相关信息。
-还需要按Hugo要求的基础目录对文件进行组织，像Content, Data, i18n, Layouts, Archetypes, Assets。
-并且要求严格按模块加载顺序，提供最终的文件服务，比如用户在工程目录增自定义了一些模板，需要覆盖主题里自带的模板时。
+Through the prepared basic information hugoFs and Paths, BaseFs not only provides some basic services, 
+such as source file system and release target file system, and related information such as working directory.
+It is also necessary to organize the files according to the basic directories required by Hugo, 
+such as Content, Data, i18n, Layouts, Archetypes, Assets.
+And it is required to strictly follow the module loading order to provide the final file service. 
+For example, when the user adds some templates in the project directory and needs to overwrite the templates that come with the theme.
 
 ![Hugo Fs BaseFs](images/4.4-hfs-BaseFs.svg)
 
-如上图所示，BaseFs用SourceFilesystems来对基础目录进行组织，用theBigFs来提供最终合并文件系统服务。
+As shown in the figure above, BaseFs uses SourceFilesystems to organize the basic directory, 
+and uses theBigFs to provide the final merged file system service.
 
 #### SourceFilesystems
 
 ![Hugo Fs SourceFilesystems](images/4.5-hfs-SourceFilesystems.svg)
 
-想要映射出Hugo的基础文件结构，Hugo设计出了对应的结构SourceFilesystems来表示，并用字段一一对应。
-每一项又具有共同的特征，既SourceFilesystem。
+In order to map out the basic file structure of Hugo, 
+Hugo designed the corresponding structure SourceFilesystems to represent, and use fields to correspond one by one.
+Each item has a common feature, namely SourceFilesystem.
 
 大家可以回忆下，在上一节[Hugo的模块](#hugo的模块)中有提到，每一个模块是如何在Mount中存储这些信息的。
+You can recall that in the previous section [Hugo's module](https://hugo.notes.sunwei.xyz/en/docs/how/arch/#hugo-modules), 
+it was mentioned how each module stores this information in Mount.
 
 #### theBigFs
 
 ![Hugo Fs theBigFs](images/4.6-hgs-theBigFs.svg)
 
-多模块会生成多个相同结构的文件系统，谁在前，谁在后，由模块配置信息决定。
-那最终如何合并这些文件系统呢？
-由上图可以看出，Hugo给出的答案是Overlay，工作原理可参考[Wikipedia OverlayFS](https://zh.wikipedia.org/wiki/OverlayFS)。
+Multiple modules will generate multiple file systems with the same structure, 
+who is in the front and who is in the back is determined by the module configuration information.
+So how do you end up merging these filesystems?
+As can be seen from the figure above, the answer given by Hugo is Overlay. 
+For the working principle, please refer to [Wikipedia OverlayFS](https://zh.wikipedia.org/wiki/OverlayFS).
 
-Overlay的组织是由filesystemCollector来进行的，用到了文件元数据FileMetaInfo来进行描述，方便相关的文件操作，如查询，排序等。
-在生成最终状态的Overlay视图前，需要RootMappingFs来帮助组织按Content, Static等进行分类的文件系统。
-最终由Collector来将对应的文件放到对应的集合中。
+The organization of the Overlay is carried out by the filesystemCollector, 
+and the file metadata FileMetaInfo is used to describe it, which is convenient for related file operations, 
+such as query and sorting.
+Before generating the Overlay view of the final state, 
+RootMappingFs is needed to help organize the file system classified by Content, Static, etc.
+Finally, the Collector will put the corresponding files into the corresponding collection.
 
-有了以上这些组织好的文件系统后，想想可能的应用场景？
+With the above organized file systems, think about the possible use scenarios?
 
-#### 文件系统场景一 - ContentSpec
+#### File system scenario 1 - ContentSpec
 
 ```go
 // hugo-playground/deps/deps.go
@@ -582,9 +603,10 @@ log.Process("New content Spec", "content converter provider inside")
 contentSpec, err := helpers.NewContentSpec(cfg.Language, ps.BaseFs.Content.Fs)
 ```
 
-准备好PathSpec后，ContentSpec的创建立马就用到了Content.Fs，也就是SourceFilesystem.Fs，依赖于theBigFs.overlayMountsContent。
+After the PathSpec is prepared, the creation of ContentSpec immediately uses Content.Fs, 
+which is SourceFilesystem.Fs, which depends on theBigFs.overlayMountsContent.
 
-#### 文件系统场景二 - loadTemplates
+#### File system scenario 2 - loadTemplates
 
 ```go
 // hugo-playground/tpl/tplimpl/template.go
@@ -597,18 +619,24 @@ if err := helpers.SymbolicWalk(t.Layouts.Fs, "", walker); err != nil {
 }
 ```
 
-在加载用户自定义模板时，就用到了`Layouts.Fs`。
-通过walker对文件系统中的模板文件进行相应的处理，依赖于`b.theBigFs.overlayDirs[files.ComponentFolderLayouts]`
+`Layouts.Fs` is used when loading user-defined templates.
+Process the template files in the file system through walker, relying on `b.theBigFs.overlayDirs[files.ComponentFolderLayouts]`
 
-结合以上文件系统的设计和应用，我们可以感受到Hugo文件系统的设计需求来自于自身的特点。
-因为用到了模块的理念，以及模块基础结构的设计。
-基础的hugoFs并不能满足Hugo在操作文件系统过程中的所有需求，因此需要进一步封装。
+Combining the design and application of the above file system, 
+we can feel that the design requirements of the Hugo file system come from its own characteristics.
+Because the concept of modules and the design of the module infrastructure are used.
+The basic hugoFs cannot meet all the needs of Hugo in the process of operating the file system, 
+so further encapsulation is required.
 
-Hugo的做法是用PathSpec来组织所有信息，隐藏复杂度，抽象出BaseFs提供更为贴近使用场景的综合服务。
-用SourceFilesystems组织出符合Hugo基础结构特点的直观服务，并用OverlayFs底层技术，实现了多文件系统合并的需求，最终支持到真正的实际使用场景。
-包括提供文章内容服务的Content文件系统，和加载自定义模板时的Layouts文件系统，等等。
+Hugo's approach is to use PathSpec to organize all information, hide complexity, 
+and abstract BaseFs to provide comprehensive services that are closer to usage scenarios.
+Use SourceFilesystems to organize intuitive services that conform to the characteristics of Hugo's infrastructure, 
+and use the underlying technology of OverlayFs to realize the requirements for merging multiple file systems, 
+and finally support the real actual usage scenarios.
+Including the Content file system that provides article content services, 
+and the Layouts file system when loading custom templates, etc.
 
-### 站点内容的收集方案
+### Site content collection solutions
 
 [文件系统的组织](#文件系统的组织)已经帮我们将用户站点项目按Hugo基础组件的结构进行了组织。
 我们从`BaseFs.Content.Fs`可以直接获取站点内容的文件系统索引，可以直接读取文件信息，生成站点面面了。
