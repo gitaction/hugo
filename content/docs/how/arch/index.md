@@ -42,7 +42,7 @@ and [Hugo playground](https://github.com/sun.com/hugo-playground) source code, t
 Hugo's architecture idea is easy to understand. 
 It is mainly divided into three major blocks: configuration module, site module and dependency module.
 
-**Configuration Module**
+### Configuration Module
 
 The first thing Hugo parses is the configuration file `config.toml` of the user project.
 Initiated by `configLoader`, the configuration file is read from the hard disk and stored as a key-value pair object after parsing.
@@ -67,7 +67,7 @@ type Module interface {
 
 After all the information is collected, the `config.Provider` service will be provided externally: it can be queried and configuration items can be updated.
 
-**HugoSites Module**
+### HugoSites Module
 
 This is the core module of building a site, which is equivalent to the aggregate root in DDD. 
 It organizes all the information needed to build a site internally and provides site building services externally.
@@ -86,7 +86,7 @@ Finally, synchronize the newly created information such as `workingDir` back to 
 
 As can be seen, their dependencies are `HugoSites <- Site <- Language <- DepsCfg <- Fs`.
 
-**Deps Module**
+### Deps Module
 
 Hugo refers to all the services and objects needed to build a site as dependencies, and puts them all in `Deps`.
 
@@ -161,7 +161,7 @@ Before that, let's look for clues from the architecture diagram:
 It can be seen that the place where Language is finally created is in DepsCfg, not Config.
 This is counter to our intuition, let's take a look at the key config.Provider, DepsCfg and Language related code snippets.
 
-**config.Provider**
+### config.Provider
 
 ```go
 // Provider provides the configuration settings for Hugo.
@@ -176,7 +176,7 @@ type Provider interface {
 It can be seen that the Provider interface provides `Get` and `Set` methods, just like a key/value warehouse.
 The language-related configuration is also stored in the Provider.
 
-**DepsCfg**
+### DepsCfg
 
 ```go
 // DepsCfg contains configuration options that can be used to configure Hugo
@@ -486,14 +486,14 @@ so the mounts are empty, and the project module has Mounts for each component.
 Hugo implements Hugo Module through a clever standardized directory structure design.
 Strong scalability and convenience allow users to focus on content creation, and personalization is also greatly satisfied.
 
-### Organization of the file system
+## Organization of the file system
 
 Currently, the main operations of Hugo are performed on local files.
 For example, read configuration information, template information, blog content, write site information, and so on.
 Because these operations are inseparable from the file system, 
 Hugo has done a lot of work on the organization of file information to ensure a good user experience for the caller.
 
-#### Afero
+### Afero
 
 The first is to select the basic file system [afero.Fs](https://github.com/spf13/afero):
 
@@ -513,7 +513,7 @@ we mark afero.Fs as the following structure, including basic operation examples 
 
 ![Hugo FS afero.Fs](images/4.1-hfs-afero.Fs.svg)
 
-#### Fs in Hugo architecture
+### Fs in Hugo architecture
 
 Let's review the scenario of Fs application in the Hugo architecture:
 
@@ -525,7 +525,7 @@ Deps is the module that really organizes and builds the entire file system,
 and finally uses PathSpec to organize the previous original file system into the file system required by Hugo.
 Finally, it is used for Template and Page related operations.
 
-#### HugoFs
+### HugoFs
 
 Let's first look at the basic Fs, which is HugoFs:
 
@@ -536,7 +536,7 @@ the output target address PublishDir, and the WorkingDir for read-only.
 And the first item is of type afero.Fs, so the color is the same as that of afero.Fs.
 Colors will also be used later to associate different types of file systems.
 
-#### PathSpec
+### PathSpec
 
 From the above Hugo architecture diagram, we know that HugoFs is finally passed into Dpes, 
 and PathSpec is used to organize and manage all path-related information in a unified way:
@@ -549,7 +549,7 @@ Let’s look at Paths first, which includes the basic file system,
 theme and working directory information, and Modules-related information.
 Based on Fs and Path, PathSpec needs to digest these basic information and provide complete file system services.
 
-#### BaseFs
+### BaseFs
 
 Through the prepared basic information hugoFs and Paths, BaseFs not only provides some basic services, 
 such as source file system and release target file system, and related information such as working directory.
@@ -563,7 +563,7 @@ For example, when the user adds some templates in the project directory and need
 As shown in the figure above, BaseFs uses SourceFilesystems to organize the basic directory, 
 and uses theBigFs to provide the final merged file system service.
 
-#### SourceFilesystems
+### SourceFilesystems
 
 ![Hugo Fs SourceFilesystems](images/4.5-hfs-SourceFilesystems.svg)
 
@@ -575,7 +575,7 @@ Each item has a common feature, namely SourceFilesystem.
 You can recall that in the previous section [Hugo's module](https://hugo.notes.sunwei.xyz/en/docs/how/arch/#hugo-modules), 
 it was mentioned how each module stores this information in Mount.
 
-#### theBigFs
+### theBigFs
 
 ![Hugo Fs theBigFs](images/4.6-hgs-theBigFs.svg)
 
@@ -594,7 +594,7 @@ Finally, the Collector will put the corresponding files into the corresponding c
 
 With the above organized file systems, think about the possible use scenarios?
 
-#### File system scenario 1 - ContentSpec
+### File system scenario 1 - ContentSpec
 
 ```go
 // hugo-playground/deps/deps.go
@@ -606,7 +606,7 @@ contentSpec, err := helpers.NewContentSpec(cfg.Language, ps.BaseFs.Content.Fs)
 After the PathSpec is prepared, the creation of ContentSpec immediately uses Content.Fs, 
 which is SourceFilesystem.Fs, which depends on theBigFs.overlayMountsContent.
 
-#### File system scenario 2 - loadTemplates
+### File system scenario 2 - loadTemplates
 
 ```go
 // hugo-playground/tpl/tplimpl/template.go
@@ -636,7 +636,7 @@ and finally support the real actual usage scenarios.
 Including the Content file system that provides article content services, 
 and the Layouts file system when loading custom templates, etc.
 
-### Site content collection solutions
+## Site content collection solutions
 
 [Organization of the file system](https://hugo.notes.sunwei.xyz/en/docs/how/arch/#organization-of-the-file-system) 
 has helped us organize user site projects according to the Hugo basic components The structure is organized.
@@ -693,7 +693,7 @@ Simply traversing the file system can indeed obtain basic file information.
 However, if we need to flexibly organize various information, such as dependencies, resource summarization, 
 and other cross-page processing scenarios, we need to further explore the content of the site and organize and manage it in units of pages.
 
-#### Sharpening a knife does not delay woodcutters
+### Sharpening a knife does not delay woodcutters
 
 From [Hugo Event Storm](https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/), 
 it can be clearly seen that Hugo’s official collection of site content is in the `Hugo Build` stage, 
@@ -701,7 +701,7 @@ and it was all in preparation before:
 
 ![Hugo DDD - Content Collection](images/5.1-hugo-ddd-content-collection.svg)
 
-#### Clear division of labor and efficient collaboration
+### Clear division of labor and efficient collaboration
 
 The current state of e-commerce is no longer integrating into our lives, but has become a part of our lives.
 And after the period of competing product categories, basically what your family has, I also have.
@@ -751,7 +751,7 @@ all documents are finally classified and neatly placed on the center shelf.
 
 ![Content Process Flow](images/5.0-content-process-flow.svg)
 
-### Template Lifecycle
+## Template Lifecycle
 
 In [Hugo event storm](https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/), 
 we learned about Hugo's design philosophy - to provide users with a consistent and easy writing expression.
@@ -770,7 +770,7 @@ Hugo has done a lot of design around the Golang Template.
 Now let's take a look at the life cycle of the template through the domain events related to the template, 
 to have a more comprehensive understanding.
 
-#### Hugo Template Lifecycle Domain Events
+### Hugo Template Lifecycle Domain Events
 
 Let’s start with domain events to see which key events are strongly related to templates:
 
@@ -902,7 +902,7 @@ Because the functions that come with Golang’s default package cannot fully mee
 It will be described in detail in the subsequent code implementation chapters, 
 and here we still focus on the initial understanding of the infrastructure.
 
-#### summary
+### summary
 
 ![Template Cycle](images/6.1-template-cycle.svg)
 
@@ -927,28 +927,31 @@ but maintain it independently?
 We will also further expand the explanation in the subsequent code implementation chapter.
 Together with everyone, find out.
 
-### Publish process
+## Publish process
 
-通过[模板的生命周期](#模板的生命周期)我们可以看到在最后的渲染阶段，先找到页面的Template，然后对页面进行渲染。
-这样我们就有了根据模板生成的待发布内容。
-Through [template life cycle](https://hugo.notes.sunwei.xyz/en/docs/how/arch/#%E6%A8%A1%E6%9D%BF%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F), we can see that in the final rendering stage, the Template of the page is first found, and then the page is rendered.
+Through [template life cycle](https://hugo.notes.sunwei.xyz/en/docs/how/arch/#template-lifecycle), 
+we can see that in the final rendering stage, the Template of the page is first found, and then the page is rendered.
 In this way, we have the content to be published based on the template.
 
-站点发布主要的任务就是将作者所创作的内容，通过模板转换生成待发布的内容，按照站点的输出格式，写入到我们指定的文件目录。
+The main task of site publishing is to convert the content created by the author into the content to be published through template conversion, 
+and write it into the file directory we specify according to the output format of the site.
 
-那这里就会有两个问题：
-1. 作者所创作的内容是怎么存储在页面中的，又要怎么使用呢？
-2. 发布过程中的信息，如输出格式、文件名、写入地址又是谁提供的呢？
+Then there will be two problems here:
+1. How is the content created by the author stored on the page and how to use it?
+2. Who provided the information during the publishing process, such as output format, file name, and writing address?
 
-我们还是从Golang Template基本原理出发:
+We still start from the basic principles of Golang Template:
 
 ![Golang Template](images/1-golang-template.svg)
 
-在index.html模板中，我们计划用`{{.Content}}`属性来获取内容。
-如果要成功获取，就需要在我们的内容提供商`Post`实例中，在Content字段设置上正确的值。
-如果都按约定准备好后，在最终Golang Template执行结果中，我们就能发现右上角的内容。
+In the index.html template, we plan to use the `{{.Content}}` attribute to get the content.
+To get it successfully, we need to set the correct value in the Content field in our content provider `Post` instance.
+If everything is prepared according to the agreement, 
+we can find the content in the upper right corner in the final Golang Template execution result.
 
-在我们的[游乐场示例](游乐场.md)中，我们也有一个用到了`.Content`的layout - `layouts/_default/single.html`：
+In our [playground example](https://hugo.notes.sunwei.xyz/en/docs/how/playground/), 
+we also have a layout that uses `.Content` - `layouts/_default/single.html`:
+
 ```
 -- mycontent/blog/post.md --
 ---
@@ -964,11 +967,13 @@ Static Content
 ===
 
 ```
-single.html会用做独立页面的模板，如上面的`mycontent/blog/post.md`。
-通过模板渲染过后，`post.md`中的内容就会替换掉`single.html`中的`{{ .Content }}`。
 
-那Hugo的页面对象PageState又是怎么提供内容服务的呢，也和上面一样，放在属性里吗？
-我们在[Hugo Playground](https://github.com/sunwei/hugo-playground)源码中，很快找到了答案：
+single.html will be used as a template for individual pages, such as `mycontent/blog/post.md` above.
+After rendering through the template, the content in `post.md` will replace `{{ .Content }}` in `single.html`.
+
+How does Hugo's page object PageState provide content services? 
+Is it the same as above, is it placed in the attribute?
+We quickly found the answer in the source code of [Hugo Playground](https://github.com/sunwei/hugo-playground):
 
 ```go
 // Page is the core interface in Hugo.
@@ -984,35 +989,39 @@ type ContentProvider interface {
 }
 ```
 
-没错，就是ContentProvider。
-可以看出Golang Template不仅支持属性，同时还支持方法。
-共同的特点就是要对外可见 - 都是大写字母开头。
+That's right, it's ContentProvider.
+It can be seen that Golang Template not only supports attributes, but also supports methods.
+The common feature is to be visible to the outside world - all start with a capital letter.
 
-那上面的两个问题就变得更具体了：
-1. PageState中的ContentProvider是谁？
-2. 发布流程中所需的详细信息是怎么来的？
+Then the above two questions become more specific:
+1. Who is the ContentProvider in PageState?
+2. Where do the details needed in the release process come from?
 
-**发布相关的领域事件**
 
-同样，我们还是可以通过[领域事件风暴](事件风暴.md)中，发布相关的领域事件入手：
+**Publish related domain events**
+
+Similarly, we can start by publishing related domain events in [Domain Event Storm](https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/):
 
 ![Publish Events](images/7.0-publish-events.svg)
 
-可以看到，关键时机有两个。
-一个是在站点Site创建的时期，另一个则是在构建时期。
+It can be seen that there are two key moments.
+One is during the site creation period, and the other is during the construction period.
 
-让我们专注在和发布相关的事件上：
+Let's focus on publishing related events:
 
 ![Publish Events Simple](images/7.0.1-publish-events-simple.svg)
 
-这些事件的解读在[领域事件风暴](事件风暴.md)中有具体描述，这里就不再赘叙。
+The interpretation of these events is described in detail in [Domain Event Storm](https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/), 
+so I won’t go into details here.
 
-结合[源码](https://github.com/sunwei/hugo-playground)，我们进一步将上述事件转换成代码流程图：
+Combined with [source code](https://github.com/sunwei/hugo-playground), 
+we further convert the above events into a code flow chart:
 
 ![Publish Work Flow](images/7.1-publish-work-flow.svg)
 
-不出所料，为PageState提供内容和其它信息服务的对象确实存在，那就是`pageOutputs`。
-但心中不禁升起一丝疑问，为什么是个复数？
+As expected, the object that provides content and other information services for PageState does exist, 
+and that is `pageOutputs`.
+But a doubt arises in my heart, why is it plural?
 
 ```go
 // We create a pageOutput for every output format combination, even if this
@@ -1035,41 +1044,47 @@ type pagePerOutputProviders interface {
 	...
 }
 ```
-通过查阅上述源码定义，我们更加确定了我们分析的正确性。
-`PageOutput`确实如我们所料，提供了`ContentProvider`服务和`targetPather`服务，这样我们前面的两个问题就有了着落。
-再加上注解：
+
+By consulting the above source code definition, we are more sure of the correctness of our analysis.
+`PageOutput` does provide `ContentProvider` service and `targetPather` service as we expected, 
+so that our previous two problems will be resolved.
+
+Plus the annotation:
 > We create a pageOutput for every output format combination, even if this
 > particular page isn't configured to be rendered to that format.
 
-我们发现pageOutput是和output format一一对应的，也就是说有多少种输出格式，就有多少个pageOutput，这也解释了上面关于复数的疑问。
+We found that pageOutput corresponds to output format one by one, that is to say, 
+there are as many pageOutputs as there are output formats, which also explains the above question about complex numbers.
 
-那究竟是个什么样的对应关系，为什么要这样设计呢？
-让我们还是结合上面的流程图来进行分析。
+What kind of corresponding relationship is it, and why is it designed in this way?
+Let us still combine the above flow chart for analysis.
 
-**站点创建时做的准备工作**
+**Preparation work done when the site is created**
 
 ![Publish Site Creating](images/7.2-publish-start.svg)
 
-我们先看在创建Site的时候，都准备了哪些和发布相关的信息。
-上图右边是流程图站点的部分，从对象引用关系来看，可以了解到OutputFormats依赖于OutputFormat，但不是聚合关系。
-而OutputFormat又依赖于MediaType。
+Let's first look at what release-related information is prepared when creating a Site.
+The right side of the above figure is the part of the flow chart site. 
+From the perspective of object reference relationship, we can understand that OutputFormats depends on OutputFormat, 
+but not the aggregation relationship.
+And OutputFormat depends on MediaType.
 
 **MediaType**
 
-从上图左侧的结构图可以看出，OutputFormat是拥有MediaType字段的。 
-在MediaType包含的主要字段是main和sub。
+As can be seen from the structure diagram on the left side of the above figure, OutputFormat has a MediaType field.
+The main fields contained in MediaType are main and sub.
 
-那这些字段是干什么用的呢？
-我们可以通过上图中间的部分来进一步了解。
-在Hugo的DefaultTypes中，经过简化，我们保留了HTML, MD, TOML, TEXT四种类型。
-拿HTML MediaType举例，实际上长这样`text/html`。
-没错main字段就是text，而sub字段才是html。
-因为首先HTML媒体类型的文件是以文本形式存储在磁盘上的，然后才是内容是以HTML格式进行组织的。
-关于Media Type的详细介绍，可以参考[Wikipedia](https://en.wikipedia.org/wiki/Media_type)。
+What are these fields for?
+We can take a closer look at the middle part of the picture above.
+In Hugo's DefaultTypes, after simplification, we retain four types: HTML, MD, TOML, and TEXT.
+Take HTML MediaType as an example, it actually looks like `text/html`.
+That's right, the main field is text, and the sub field is html.
+Because first the files of the HTML media type are stored on disk as text, and then the content is organized in HTML format.
+For a detailed introduction of Media Type, please refer to [Wikipedia](https://en.wikipedia.org/wiki/Media_type).
 
 **OutputFormat**
 
-再来看看OutputFormat：
+Let's look at OutputFormat again:
 
 ```go
 // Format represents an output representation, usually to a file on disk.
@@ -1087,13 +1102,15 @@ type Format struct {
 }
 ```
 
-通过注解可以看到，实际的作用就是记载了要将一个文件输出到磁盘上的相关说明信息。
-比如BaseName的默认值就是index，首页就会用到，默认文件名是index.html。
+As you can see from the annotation, 
+the actual function is to record the relevant description information to output a file to the disk.
+For example, the default value of BaseName is index, which will be used on the home page, 
+and the default file name is index.html.
 
-Hugo提供的`DefaultFormats`根据我们的示例简化后，保留了HTML, JSON, MD三种。
-其中HTML是指我们将以HTML的输出格式将文件写入到磁盘。
+The `DefaultFormats` provided by Hugo has been simplified according to our example and retains three types: HTML, JSON, and MD.
+Where HTML means that we will write the file to disk in HTML output format.
 
-实例如下：
+Examples are as follows:
 ```go
 HTMLFormat = Format{
      Name:          "HTML",
@@ -1111,41 +1128,47 @@ HTMLFormat = Format{
 
 **OutputFormats**
 
-如果OutputFormats和OutputFormat不是聚合关系，那又是什么关系呢？
+If OutputFormats and OutputFormat are not an aggregation relationship, then what is the relationship?
 
-我们直接来看看OutputFormats的结构，就清楚答案了。
+Let's take a look at the structure of OutputFormats directly, and the answer will be clear.
 
 ![Publish Start Output Formats](images/7.2.1-publish-start-output-formats.svg)
 
-这里的OutputFormats实际上就是按照Hugo页面的五种类型，分别提供的OutputFormat映射关系。
-如果是home类型的页面，那这种类型的页面只提供按HTML格式渲染的结果，而不是其它的格式，如JSON。
-也就是说**在一个站点下，会为每个类型的页面都定义清楚合法的输出格式**。
-这将会有效保障页面在渲染的过程中，输出格式的有效性。
+The OutputFormats here are actually the OutputFormat mappings provided by the five types of Hugo pages.
+If it is a home type page, then this type of page only provides results rendered in HTML format, not other formats, 
+such as JSON.
+That is to say **Under a site, the legal output format will be clearly defined for each type of page**.
+This will effectively guarantee the validity of the output format during the page rendering process.
 
 **renderFormats**
 
-有了全面的站点页面输出规范后，为什么还要这个renderFormats呢？
+With a comprehensive site page output specification, why do we need this renderFormats?
 
 ![Publish Output](images/7.3-publish-output.svg)
 
-从上图右下角可以看到，实际上renderFormats来自于outputFormats。
-是将所有页面的outputFormats合并，去重后产生的。
-可以理解为renderFormats代表着这个站点所有输出的类型。
-在我们的实例中，因为所有页面只支持HTML一种类型，所以合并去重后，自然我们这个站点的renderFormats只有一个，就是HTML了。
+As you can see from the lower right corner of the figure above, renderFormats actually comes from outputFormats.
+It is generated by merging the outputFormats of all pages and deduplicating them.
+It can be understood that renderFormats represents all output types of this site.
+In our example, because all pages only support one type of HTML, after merging and deduplication, 
+naturally our site has only one renderFormats, which is HTML.
 
-从值的角度我们已经知道了两者之间的关联了，那为何Hugo要设置一个renderFormats呢？
-从名字上看是以站点Site为单位，可以理解为站点在渲染时所有的渲染格式。
+From the perspective of value, we already know the relationship between the two, so why does Hugo set a renderFormats?
+From the name, it takes the site as the unit, which can be understood as all the rendering formats of the site when rendering.
 
-那为什么HugoSites也有一个一模一样的renderFormats呢？
-从上图左上方可以看出，Site的renderFormats组成了HugoSites的renderFormats。
-这个好理解，因为HugoSites是由多个不同语言的Site所组成的，那就是说HugoSites的renderFormats代表了全站点的渲染格式。
+So why does HugoSites have the same renderFormats?
+As can be seen from the upper left of the above figure, the renderFormats of the Site form the renderFormats of HugoSites.
+This is easy to understand, because HugoSites is composed of multiple sites in different languages, that is to say, 
+the renderFormats of HugoSites represent the rendering format of the entire site.
 
-继续通过上图往右看，可以发现更多的线索。
-原来pageOutputs和HugoSites的renderFormats是一一对应关系，也就是说全站点有多少种渲染格式，就有多少个pageOutputs。
+Continue to look to the right through the picture above to find more clues.
+It turns out that there is a one-to-one correspondence between pageOutputs and renderFormats of HugoSites, 
+that is to say, there are as many pageOutputs as there are rendering formats in the whole site.
 
-这里不禁又冒出另一个大大的问号 - 每个站点都拥有自己的页面，也都有自己的输出格式，**为什么要为单个站点页面提供全站点输出格式的pageOutputs呢？**
+Here comes another big question mark - each site has its own page and its own output format, 
+**why provide pageOutputs in the site-wide output format for a single site page? **
 
-同样，我们还是可以从源码中找到答案：
+Similarly, we can still find the answer from the source code:
+
 ```go
 // hugo-playground/hugolib/page__new.go
 // line 97
@@ -1157,9 +1180,11 @@ HTMLFormat = Format{
 ps.pageOutputs = make([]*pageOutput, len(ps.s.h.renderFormats))
 ```
 
-从上面的代码中可以看到，这样设计的原因是页面可能会被其它的页面引用，甚至被不同语言的页面所调用。
+As can be seen from the above code, the reason for this design is that the page may be referenced by other pages, 
+or even called by pages in different languages.
 
-对应的`.Site.GetPage`功能函数在多语言使用场景下的[具体说明](https://gohugo.io/functions/getpage/#getpage-and-multilingual-sites)如下：
+The [specific description](https://gohugo.io/functions/getpage/#getpage-and-multilingual-sites) of the corresponding 
+`.Site.GetPage` function in a multilingual usage scenario is as follows:
 > The previous examples have used the full content filename to lookup the post. 
 > Depending on how you have organized your content (whether you have the language 
 > code in the file name or not, e.g. my-post.en.md), you may want to do the lookup 
@@ -1169,26 +1194,31 @@ ps.pageOutputs = make([]*pageOutput, len(ps.s.h.renderFormats))
 {{ with .Site.GetPage "/blog/my-post" }}{{ .Title }}{{ end }}
 ```
 
-既然存在跨站点调用的情况，那就得为调用方准备好调用方所需要的输出格式。
-这样回过头来看，为每个页面pageState准备全站点渲染格式的pageOutputs是必需的。
+Since there is a cross-site call, the output format required by the caller must be prepared for the caller.
+Looking back, it is necessary to prepare pageOutputs in the full site rendering format for each page pageState.
 
 **pageOutputs**
 
-在发布流程中，除了内容，还有一些基础信息也很重用，如发布到哪，以什么名字写入等等。
-pageOutput做为输出信息的总载体，这些信息自然了也包在其中，通过上图右上方可以看到负责提供这些信息的对象是PagePaths。
-其中提供目标文件名的则是其中的targetPaths。
+In the publishing process, in addition to the content, some basic information is also reused, 
+such as where to publish, under what name, and so on.
+pageOutput is the general carrier of the output information, and this information is naturally included in it. 
+From the upper right of the figure above, you can see that the object responsible for providing this information is PagePaths.
+Which provides the target file name is the targetPaths.
 
 **PagePaths**
 
-细心的小伙伴会发现Site的OutputFormats和PagePaths之间有一条虚线连接。
-之所以是虚线，是因为PagePaths实际上是从pageMeta中获取的信息，但根源，实际上还是来源于Site的OutputFormats。
+Careful friends will find that there is a dotted line connection between OutputFormats and PagePaths of the Site.
+The reason for the dotted line is that PagePaths is actually the information obtained from pageMeta, 
+but the source is actually from the OutputFormats of the Site.
 
-结合中下方有进一步实样例解释。
-可以看到PagePaths会根据当前页面pageState的类型`pageKind`来获取当前类型的OutputFormats。
-会根据每一种OutputFormat生成相应的targetPathsHolder。
+There are further example explanations in the middle and bottom.
+You can see that PagePaths will obtain the current type of OutputFormats according to the type `pageKind` of the current page pageState.
+The corresponding targetPathsHolder will be generated according to each OutputFormat.
 
-根据每一个PageOutput的OutputFormat类型，选中相应的targetPathsHolder，设置在`pagePerOutputProviders`之中。
-这样在渲染页面时：
+According to the OutputFormat type of each PageOutput, 
+select the corresponding targetPathsHolder and set it in `pagePerOutputProviders`.
+So when rendering the page:
+
 ```go
 func pageRenderer(
 	ctx *siteRenderContext,
@@ -1213,11 +1243,12 @@ func pageRenderer(
 	}
 }
 ```
-就可以通过`p.targetPaths().TargetFilename`获取到目标文件名了。
+You can get the target file name through `p.targetPaths().TargetFilename`.
 
-#### 独立页面的发布流程
+### Publishing process for independent pages
 
-Hugo将页面分成了两大类，一类就是上面介绍的常规页面，另一类就是接下来要看的独立Standalone页面，如404页面。
+Hugo divides the pages into two categories, one is the regular pages described above, 
+and the other is the independent Standalone pages to be seen next, such as 404 pages.
 
 ```go
 func (s *Site) render404() error {
@@ -1259,10 +1290,13 @@ func (s *Site) render404() error {
 }
 ```
 
-代码流程很清晰，先通过`newPageStandalone`创建页面，紧接着查找模板，获取目标文件名，最后渲染并写入页面。
-整体流程基本一致。
+The code flow is very clear. First create a page through `newPageStandalone`, then find the template, 
+get the target file name, and finally render and write the page.
+The overall process is basically the same.
 
-既然PageOutput是发布流程上的关系所在，那我们还是用PageOutput的视角来看看独立页面会有哪些不同，同时也可以检测一下我们之前的理解是否正确。
+Since PageOutput is the relationship in the publishing process, 
+let's use the perspective of PageOutput to see how the independent pages will be different, 
+and at the same time, we can also check whether our previous understanding is correct.
 
 ```go
 // hugo-playground/hugolib/page__new.go
@@ -1282,10 +1316,11 @@ metaProvider *pageMeta) (*pageState, error) {
 }
 ```
 
-通过`newPageFromMeta`源码我们发现，对`standalone`的页面是有特殊处理的，而且用的就是`render404`中传入的`output.HTMLFormat`生成了pageOutput。
+Through the `newPageFromMeta` source code, we found that the `standalone` page is specially processed, 
+and the `output.HTMLFormat` passed in `render404` is used to generate the pageOutput.
 
-这样一来，我们可以确定的说，无论是普通页面，还是独立页面，基本上都是以pageOutput为核心进行展开的，符合同一套发布流程。
-让我们再来回顾一下发布流程全景图：
+In this way, we can say with certainty that whether it is a normal page or an independent page, 
+it is basically developed with pageOutput as the core, which conforms to the same publishing process.
+Let's review the release process panorama again:
 
 ![Publish Process Full Process](images/7.4-publish-full.svg)
-
