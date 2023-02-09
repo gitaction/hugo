@@ -2,14 +2,14 @@
 At the same time, Hugo is an open source project based on the Apache 2.0 protocol, which means that you can boldly use your creativity.
 For example, for sites in the source code field, such as Understanding Hugo in Depth, the source code and notes are separated and can be executed on GolangPlay."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Hugo Architecture # We can learn how to use Hugo to create our own sites and theme. Here are examples: Personal Site and Custom Theme. It is easy to learn and use.
 At the same time, Hugo is an open source project based on the Apache 2.0 protocol, which means that you can boldly use your creativity.
-For example, for sites in the source code field, such as Understanding Hugo in Depth, the source code and notes are separated and can be executed on GolangPlay."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/en/docs/how/arch/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-02-09T20:07:40+08:00"><title>Index | Deep Understanding of Hugo</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.153a9c0c3d1bf59ef83ebc84af55e057f9a7da05b9374506249129e2f634e39f.js integrity="sha256-FTqcDD0b9Z74PryEr1XgV/mn2gW5N0UGJJEp4vY0458=" crossorigin=anonymous></script>
+For example, for sites in the source code field, such as Understanding Hugo in Depth, the source code and notes are separated and can be executed on GolangPlay."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/en/docs/how/arch/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-02-09T20:30:54+08:00"><title>Index | Deep Understanding of Hugo</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.64afecd49230cb68b26dd9a095f945a184a3887ca2b28419d5aaf1610c644656.js integrity="sha256-ZK/s1JIwy2iybdmglflFoYSjiHyisoQZ1arxYQxkRlY=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/en/><span>Deep Understanding of Hugo</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
 <label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
 English</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/>Chinese</a></li></ul></li></ul><ul><li><p><strong>Hugo usage examples</strong></p></li><li><p><a href=/en/docs/what/site/>Create Site</a></p></li><li><p><a href=/en/docs/what/theme/>Custom Theme</a><br></p></li><li><p><strong>Hugo Architecture</strong></p></li><li><p><a href=/en/docs/how/playground/>Playground</a></p></li><li><p><a href=/en/docs/how/event-storming/>Event Storming</a></p></li><li><p><a href=/en/docs/how/arch/ class=active>Architecture</a><br></p></li><li><p><a href=/en/docs/code/><strong>Source Code</strong></a></p></li><li><p><a href=/en/docs/code/config/>Configuration</a></p></li><li><p><a href=/en/docs/code/deps/>Deps Management</a></p><ul><li><a href=/en/docs/code/deps/pathspec/>PathSpec</a></li><li><a href=/en/docs/code/deps/contentspec/>ContentSpec</a></li></ul></li><li><p><a href=/en/docs/code/site/>Site Creating</a></p><ul><li><a href=/en/docs/code/site/create/>Create Site</a></li><li><a href=/en/docs/code/site/resources/>Load Resources</a></li><li><a href=/en/docs/code/site/markdown/>Markdown</a></li></ul></li><li><p><a href=/en/docs/code/build/>Site Building</a></p><ul><li><a href=/en/docs/code/build/template/>Template Exec</a><br></li></ul></li></ul><ul><li><a href=/en/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
 <strong>Index</strong>
-<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#hugo-architecture>Hugo Architecture</a><ul><li><a href=#architecture-design-of-hugo>Architecture Design of Hugo</a></li><li><a href=#hugos-component-design>Hugo&rsquo;s component design</a><ul><li><a href=#the-relationship-between-configuration-and-language>The relationship between configuration and language</a></li><li><a href=#hugo-modules>Hugo modules</a></li><li><a href=#organization-of-the-file-system>Organization of the file system</a></li><li><a href=#site-content-collection-solutions>Site content collection solutions</a></li><li><a href=#template-lifecycle>Template Lifecycle</a></li><li><a href=#publish-process>Publish process</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=hugo-architecture>Hugo Architecture
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#hugo-architecture>Hugo Architecture</a><ul><li><a href=#architecture-design-of-hugo>Architecture Design of Hugo</a><ul><li><a href=#configuration-module>Configuration Module</a></li><li><a href=#hugosites-module>HugoSites Module</a></li><li><a href=#deps-module>Deps Module</a></li></ul></li><li><a href=#hugos-component-design>Hugo&rsquo;s component design</a><ul><li><a href=#the-relationship-between-configuration-and-language>The relationship between configuration and language</a></li><li><a href=#configprovider>config.Provider</a></li><li><a href=#depscfg>DepsCfg</a></li><li><a href=#hugo-modules>Hugo modules</a></li></ul></li><li><a href=#organization-of-the-file-system>Organization of the file system</a><ul><li><a href=#afero>Afero</a></li><li><a href=#fs-in-hugo-architecture>Fs in Hugo architecture</a></li><li><a href=#hugofs>HugoFs</a></li><li><a href=#pathspec>PathSpec</a></li><li><a href=#basefs>BaseFs</a></li><li><a href=#sourcefilesystems>SourceFilesystems</a></li><li><a href=#thebigfs>theBigFs</a></li><li><a href=#file-system-scenario-1---contentspec>File system scenario 1 - ContentSpec</a></li><li><a href=#file-system-scenario-2---loadtemplates>File system scenario 2 - loadTemplates</a></li></ul></li><li><a href=#site-content-collection-solutions>Site content collection solutions</a><ul><li><a href=#sharpening-a-knife-does-not-delay-woodcutters>Sharpening a knife does not delay woodcutters</a></li><li><a href=#clear-division-of-labor-and-efficient-collaboration>Clear division of labor and efficient collaboration</a></li></ul></li><li><a href=#template-lifecycle>Template Lifecycle</a><ul><li><a href=#hugo-template-lifecycle-domain-events>Hugo Template Lifecycle Domain Events</a></li><li><a href=#summary>summary</a></li></ul></li><li><a href=#publish-process>Publish process</a><ul><li><a href=#publishing-process-for-independent-pages>Publishing process for independent pages</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=hugo-architecture>Hugo Architecture
 <a class=anchor href=#hugo-architecture>#</a></h1><p>We can learn how to use Hugo to create our own sites and theme.
 Here are examples:
 <a href=https://hugo.notes.sunwei.xyz/s/what/site/>Personal Site</a> and
@@ -32,7 +32,8 @@ After all, we are software engineers in pursuit!</p><p>Whether it is from a prac
 <a href=https://hugo.notes.sunwei.xyz//en/docs/how/event-storming/>event</a>,
 and
 <a href=https://github.com/sun.com/hugo-playground>Hugo playground</a> source code, the architecture design of Hugo will become very clear:</p><p><img src=images/3.0-hugo-arch.svg alt="Hugo Arch"></p><p>Hugo&rsquo;s architecture idea is easy to understand.
-It is mainly divided into three major blocks: configuration module, site module and dependency module.</p><p><strong>Configuration Module</strong></p><p>The first thing Hugo parses is the configuration file <code>config.toml</code> of the user project.
+It is mainly divided into three major blocks: configuration module, site module and dependency module.</p><h3 id=configuration-module>Configuration Module
+<a class=anchor href=#configuration-module>#</a></h3><p>The first thing Hugo parses is the configuration file <code>config.toml</code> of the user project.
 Initiated by <code>configLoader</code>, the configuration file is read from the hard disk and stored as a key-value pair object after parsing.</p><p><code>configLoader</code> mainly needs to complete three things:</p><ol><li>Load the user project configuration file to understand the user&rsquo;s custom requirements.</li><li>Complete the default configuration <code>Defaults Config</code>, to ensure the normal operation of other modules.</li><li>Generate module configuration information, starting from the user project, using the user project as the first module - <code>project module</code>, and in our example there is a second module, that is the theme module <code>mytheme</code>.</li></ol><p>There are dependencies between modules and there is only one Owner <code>Owner</code>.
 The project module <code>project module</code> is special, because it is the initial module, so it does not belong to any other modules.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Module</span> <span style=color:#66d9ef>interface</span> {
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
@@ -41,7 +42,8 @@ The project module <code>project module</code> is special, because it is the ini
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Owner</span>() <span style=color:#a6e22e>Module</span>
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>After all the information is collected, the <code>config.Provider</code> service will be provided externally: it can be queried and configuration items can be updated.</p><p><strong>HugoSites Module</strong></p><p>This is the core module of building a site, which is equivalent to the aggregate root in DDD.
+</span></span></code></pre></div><p>After all the information is collected, the <code>config.Provider</code> service will be provided externally: it can be queried and configuration items can be updated.</p><h3 id=hugosites-module>HugoSites Module
+<a class=anchor href=#hugosites-module>#</a></h3><p>This is the core module of building a site, which is equivalent to the aggregate root in DDD.
 It organizes all the information needed to build a site internally and provides site building services externally.</p><p>The initialization of <code>HugoSites</code> depends on <code>DepsCfg</code> and <code>Site</code>, yes, there are two sites.
 The relationship between HugoSites and Site is one-to-many, and the relationship between Site and Language is one-to-one,
 so a multilingual site will create a site for each language, which together form HugoSites.</p><p>Language items are created by DepsCfg, but will be stored in <code>config.Provider</code>, so they are marked in light yellow.
@@ -50,7 +52,8 @@ The initialization of DepsCfg depends on <code>Fs</code> and <code>config.Provid
 The source files come from the user project, which is the actual hard disk file system.
 The publishing address is obtained from config.Provider, and the default is the public folder.
 It will check whether it already exists here, and create it actively if not.
-Finally, synchronize the newly created information such as <code>workingDir</code> back to config.Provider.</p><p>As can be seen, their dependencies are <code>HugoSites &lt;- Site &lt;- Language &lt;- DepsCfg &lt;- Fs</code>.</p><p><strong>Deps Module</strong></p><p>Hugo refers to all the services and objects needed to build a site as dependencies, and puts them all in <code>Deps</code>.</p><p>In the process of building dependencies, <code>TemplateProvider</code> that provides templates will be generated;
+Finally, synchronize the newly created information such as <code>workingDir</code> back to config.Provider.</p><p>As can be seen, their dependencies are <code>HugoSites &lt;- Site &lt;- Language &lt;- DepsCfg &lt;- Fs</code>.</p><h3 id=deps-module>Deps Module
+<a class=anchor href=#deps-module>#</a></h3><p>Hugo refers to all the services and objects needed to build a site as dependencies, and puts them all in <code>Deps</code>.</p><p>In the process of building dependencies, <code>TemplateProvider</code> that provides templates will be generated;
 Clear input and output media type <code>MediaType</code>; and output format <code>OutputFormats</code>;
 will be updated to <code>config.Provider</code>.</p><p>It will also be prepared for collecting site content, and there will be a <code>Page Collection</code> to help collect.
 The publishing service that needs to be used when finally publishing the site is <code>Publisher</code>.
@@ -90,7 +93,8 @@ And is this the case?
 Let&rsquo;s start from the source code of
 <a href=https://github.com/sunwei/hugo-playground>Hugo Playground</a> to find out.</p><p>Before that, let&rsquo;s look for clues from the architecture diagram:
 <img src=images/3.1-hugo-arch-config-language.svg alt="Language and Config"></p><p>It can be seen that the place where Language is finally created is in DepsCfg, not Config.
-This is counter to our intuition, let&rsquo;s take a look at the key config.Provider, DepsCfg and Language related code snippets.</p><p><strong>config.Provider</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Provider provides the configuration settings for Hugo.
+This is counter to our intuition, let&rsquo;s take a look at the key config.Provider, DepsCfg and Language related code snippets.</p><h3 id=configprovider>config.Provider
+<a class=anchor href=#configprovider>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Provider provides the configuration settings for Hugo.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Provider</span> <span style=color:#66d9ef>interface</span> {
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>	<span style=color:#a6e22e>Get</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>) <span style=color:#a6e22e>any</span>
@@ -98,7 +102,8 @@ This is counter to our intuition, let&rsquo;s take a look at the key config.Prov
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>It can be seen that the Provider interface provides <code>Get</code> and <code>Set</code> methods, just like a key/value warehouse.
-The language-related configuration is also stored in the Provider.</p><p><strong>DepsCfg</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// DepsCfg contains configuration options that can be used to configure Hugo
+The language-related configuration is also stored in the Provider.</p><h3 id=depscfg>DepsCfg
+<a class=anchor href=#depscfg>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// DepsCfg contains configuration options that can be used to configure Hugo
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// on a global level, i.e. logging etc.
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// Nil values will be given default values.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>DepsCfg</span> <span style=color:#66d9ef>struct</span> {
@@ -291,12 +296,12 @@ let&rsquo;s take a look at the final configuration information of the module we 
 </span></span></code></pre></div><p>From the output results, there are two modules in total, one is <code>project</code> and the other is <code>mytheme</code>.
 Because in our example, <code>mytheme</code> has only one txt file, none of the seven components,
 so the mounts are empty, and the project module has Mounts for each component.</p><p>Hugo implements Hugo Module through a clever standardized directory structure design.
-Strong scalability and convenience allow users to focus on content creation, and personalization is also greatly satisfied.</p><h3 id=organization-of-the-file-system>Organization of the file system
-<a class=anchor href=#organization-of-the-file-system>#</a></h3><p>Currently, the main operations of Hugo are performed on local files.
+Strong scalability and convenience allow users to focus on content creation, and personalization is also greatly satisfied.</p><h2 id=organization-of-the-file-system>Organization of the file system
+<a class=anchor href=#organization-of-the-file-system>#</a></h2><p>Currently, the main operations of Hugo are performed on local files.
 For example, read configuration information, template information, blog content, write site information, and so on.
 Because these operations are inseparable from the file system,
-Hugo has done a lot of work on the organization of file information to ensure a good user experience for the caller.</p><h4 id=afero>Afero
-<a class=anchor href=#afero>#</a></h4><p>The first is to select the basic file system
+Hugo has done a lot of work on the organization of file information to ensure a good user experience for the caller.</p><h3 id=afero>Afero
+<a class=anchor href=#afero>#</a></h3><p>The first is to select the basic file system
 <a href=https://github.com/spf13/afero>afero.Fs</a>:</p><blockquote><p>Afero is a filesystem framework providing a simple,
 uniform and universal API interacting with any filesystem,
 as an abstraction layer providing interfaces, types and methods.
@@ -305,35 +310,35 @@ constructors or initialization methods.</p></blockquote><p>The services provided
 and secondly, it is compatible with multiple operating systems, so that it is compatible with both languages and systems,
 and the user experience is also consistent with the original.
 does provide a good file system foundation for Hugo.</p><p>In order to visually view the association of various Fs in Hugo,
-we mark afero.Fs as the following structure, including basic operation examples of the file system:</p><p><img src=images/4.1-hfs-afero.Fs.svg alt="Hugo FS afero.Fs"></p><h4 id=fs-in-hugo-architecture>Fs in Hugo architecture
-<a class=anchor href=#fs-in-hugo-architecture>#</a></h4><p>Let&rsquo;s review the scenario of Fs application in the Hugo architecture:</p><p><img src=images/4.0-hugo-arch-fs.svg alt="Hugo Arch Fs"></p><p>The first thing to appear is Fs, which is used to record the file system closest to the real directory.
+we mark afero.Fs as the following structure, including basic operation examples of the file system:</p><p><img src=images/4.1-hfs-afero.Fs.svg alt="Hugo FS afero.Fs"></p><h3 id=fs-in-hugo-architecture>Fs in Hugo architecture
+<a class=anchor href=#fs-in-hugo-architecture>#</a></h3><p>Let&rsquo;s review the scenario of Fs application in the Hugo architecture:</p><p><img src=images/4.0-hugo-arch-fs.svg alt="Hugo Arch Fs"></p><p>The first thing to appear is Fs, which is used to record the file system closest to the real directory.
 As a parameter of DpesCfg, when HugoSites creates Deps, it is transparently passed to Deps.
 Deps is the module that really organizes and builds the entire file system,
 and finally uses PathSpec to organize the previous original file system into the file system required by Hugo.
-Finally, it is used for Template and Page related operations.</p><h4 id=hugofs>HugoFs
-<a class=anchor href=#hugofs>#</a></h4><p>Let&rsquo;s first look at the basic Fs, which is HugoFs:</p><p><img src=images/4.2-hgf-hugoFs.svg alt="Hugo Fs hugoFs"></p><p>It can be seen that the basic hugoFs includes the input Source,
+Finally, it is used for Template and Page related operations.</p><h3 id=hugofs>HugoFs
+<a class=anchor href=#hugofs>#</a></h3><p>Let&rsquo;s first look at the basic Fs, which is HugoFs:</p><p><img src=images/4.2-hgf-hugoFs.svg alt="Hugo Fs hugoFs"></p><p>It can be seen that the basic hugoFs includes the input Source,
 the output target address PublishDir, and the WorkingDir for read-only.
 And the first item is of type afero.Fs, so the color is the same as that of afero.Fs.
-Colors will also be used later to associate different types of file systems.</p><h4 id=pathspec>PathSpec
-<a class=anchor href=#pathspec>#</a></h4><p>From the above Hugo architecture diagram, we know that HugoFs is finally passed into Dpes,
+Colors will also be used later to associate different types of file systems.</p><h3 id=pathspec>PathSpec
+<a class=anchor href=#pathspec>#</a></h3><p>From the above Hugo architecture diagram, we know that HugoFs is finally passed into Dpes,
 and PathSpec is used to organize and manage all path-related information in a unified way:</p><p><img src=images/4.3-hfs-PathSpec.svg alt="Hugo Fs PathSpec"></p><p>It can be seen from the above figure that PathSpec contains hugoFs and Paths, and there is another important BaseFs.</p><p>Let’s look at Paths first, which includes the basic file system,
 theme and working directory information, and Modules-related information.
-Based on Fs and Path, PathSpec needs to digest these basic information and provide complete file system services.</p><h4 id=basefs>BaseFs
-<a class=anchor href=#basefs>#</a></h4><p>Through the prepared basic information hugoFs and Paths, BaseFs not only provides some basic services,
+Based on Fs and Path, PathSpec needs to digest these basic information and provide complete file system services.</p><h3 id=basefs>BaseFs
+<a class=anchor href=#basefs>#</a></h3><p>Through the prepared basic information hugoFs and Paths, BaseFs not only provides some basic services,
 such as source file system and release target file system, and related information such as working directory.
 It is also necessary to organize the files according to the basic directories required by Hugo,
 such as Content, Data, i18n, Layouts, Archetypes, Assets.
 And it is required to strictly follow the module loading order to provide the final file service.
 For example, when the user adds some templates in the project directory and needs to overwrite the templates that come with the theme.</p><p><img src=images/4.4-hfs-BaseFs.svg alt="Hugo Fs BaseFs"></p><p>As shown in the figure above, BaseFs uses SourceFilesystems to organize the basic directory,
-and uses theBigFs to provide the final merged file system service.</p><h4 id=sourcefilesystems>SourceFilesystems
-<a class=anchor href=#sourcefilesystems>#</a></h4><p><img src=images/4.5-hfs-SourceFilesystems.svg alt="Hugo Fs SourceFilesystems"></p><p>In order to map out the basic file structure of Hugo,
+and uses theBigFs to provide the final merged file system service.</p><h3 id=sourcefilesystems>SourceFilesystems
+<a class=anchor href=#sourcefilesystems>#</a></h3><p><img src=images/4.5-hfs-SourceFilesystems.svg alt="Hugo Fs SourceFilesystems"></p><p>In order to map out the basic file structure of Hugo,
 Hugo designed the corresponding structure SourceFilesystems to represent, and use fields to correspond one by one.
 Each item has a common feature, namely SourceFilesystem.</p><p>大家可以回忆下，在上一节
 <a href=/en/#hugo%e7%9a%84%e6%a8%a1%e5%9d%97>Hugo的模块</a>中有提到，每一个模块是如何在Mount中存储这些信息的。
 You can recall that in the previous section
 <a href=https://hugo.notes.sunwei.xyz/en/docs/how/arch/#hugo-modules>Hugo&rsquo;s module</a>,
-it was mentioned how each module stores this information in Mount.</p><h4 id=thebigfs>theBigFs
-<a class=anchor href=#thebigfs>#</a></h4><p><img src=images/4.6-hgs-theBigFs.svg alt="Hugo Fs theBigFs"></p><p>Multiple modules will generate multiple file systems with the same structure,
+it was mentioned how each module stores this information in Mount.</p><h3 id=thebigfs>theBigFs
+<a class=anchor href=#thebigfs>#</a></h3><p><img src=images/4.6-hgs-theBigFs.svg alt="Hugo Fs theBigFs"></p><p>Multiple modules will generate multiple file systems with the same structure,
 who is in the front and who is in the back is determined by the module configuration information.
 So how do you end up merging these filesystems?
 As can be seen from the figure above, the answer given by Hugo is Overlay.
@@ -343,14 +348,14 @@ and the file metadata FileMetaInfo is used to describe it, which is convenient f
 such as query and sorting.
 Before generating the Overlay view of the final state,
 RootMappingFs is needed to help organize the file system classified by Content, Static, etc.
-Finally, the Collector will put the corresponding files into the corresponding collection.</p><p>With the above organized file systems, think about the possible use scenarios?</p><h4 id=file-system-scenario-1---contentspec>File system scenario 1 - ContentSpec
-<a class=anchor href=#file-system-scenario-1---contentspec>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/deps/deps.go
+Finally, the Collector will put the corresponding files into the corresponding collection.</p><p>With the above organized file systems, think about the possible use scenarios?</p><h3 id=file-system-scenario-1---contentspec>File system scenario 1 - ContentSpec
+<a class=anchor href=#file-system-scenario-1---contentspec>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/deps/deps.go
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// line 145
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Process</span>(<span style=color:#e6db74>&#34;New content Spec&#34;</span>, <span style=color:#e6db74>&#34;content converter provider inside&#34;</span>)
 </span></span><span style=display:flex><span><span style=color:#a6e22e>contentSpec</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>helpers</span>.<span style=color:#a6e22e>NewContentSpec</span>(<span style=color:#a6e22e>cfg</span>.<span style=color:#a6e22e>Language</span>, <span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>BaseFs</span>.<span style=color:#a6e22e>Content</span>.<span style=color:#a6e22e>Fs</span>)
 </span></span></code></pre></div><p>After the PathSpec is prepared, the creation of ContentSpec immediately uses Content.Fs,
-which is SourceFilesystem.Fs, which depends on theBigFs.overlayMountsContent.</p><h4 id=file-system-scenario-2---loadtemplates>File system scenario 2 - loadTemplates
-<a class=anchor href=#file-system-scenario-2---loadtemplates>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/tpl/tplimpl/template.go
+which is SourceFilesystem.Fs, which depends on theBigFs.overlayMountsContent.</p><h3 id=file-system-scenario-2---loadtemplates>File system scenario 2 - loadTemplates
+<a class=anchor href=#file-system-scenario-2---loadtemplates>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/tpl/tplimpl/template.go
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// line 340
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>helpers</span>.<span style=color:#a6e22e>SymbolicWalk</span>(<span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Layouts</span>.<span style=color:#a6e22e>Fs</span>, <span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#a6e22e>walker</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>IsNotExist</span>(<span style=color:#a6e22e>err</span>) {
@@ -369,8 +374,8 @@ Use SourceFilesystems to organize intuitive services that conform to the charact
 and use the underlying technology of OverlayFs to realize the requirements for merging multiple file systems,
 and finally support the real actual usage scenarios.
 Including the Content file system that provides article content services,
-and the Layouts file system when loading custom templates, etc.</p><h3 id=site-content-collection-solutions>Site content collection solutions
-<a class=anchor href=#site-content-collection-solutions>#</a></h3><p><a href=https://hugo.notes.sunwei.xyz/en/docs/how/arch/#organization-of-the-file-system>Organization of the file system</a>
+and the Layouts file system when loading custom templates, etc.</p><h2 id=site-content-collection-solutions>Site content collection solutions
+<a class=anchor href=#site-content-collection-solutions>#</a></h2><p><a href=https://hugo.notes.sunwei.xyz/en/docs/how/arch/#organization-of-the-file-system>Organization of the file system</a>
 has helped us organize user site projects according to the Hugo basic components The structure is organized.
 We can directly obtain the file system index of the site content from <code>BaseFs.Content.Fs</code>,
 and can directly read the file information to generate the site content.</p><p>But Hugo doesn&rsquo;t think so. We can use the following two scenarios to understand Hugo&rsquo;s lofty ambitions.</p><p><strong>Scene 1: Headless Bundle</strong></p><p>There is a page that we don&rsquo;t want her to publish as a separate page.
@@ -404,12 +409,12 @@ The more complicated the relationship, the higher the probability of repeated in
 When new requirements emerge, complex logic processing is not conducive to software expansion.</p><p>From the above two scenarios, it can be observed.
 Simply traversing the file system can indeed obtain basic file information.
 However, if we need to flexibly organize various information, such as dependencies, resource summarization,
-and other cross-page processing scenarios, we need to further explore the content of the site and organize and manage it in units of pages.</p><h4 id=sharpening-a-knife-does-not-delay-woodcutters>Sharpening a knife does not delay woodcutters
-<a class=anchor href=#sharpening-a-knife-does-not-delay-woodcutters>#</a></h4><p>From
+and other cross-page processing scenarios, we need to further explore the content of the site and organize and manage it in units of pages.</p><h3 id=sharpening-a-knife-does-not-delay-woodcutters>Sharpening a knife does not delay woodcutters
+<a class=anchor href=#sharpening-a-knife-does-not-delay-woodcutters>#</a></h3><p>From
 <a href=https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/>Hugo Event Storm</a>,
 it can be clearly seen that Hugo’s official collection of site content is in the <code>Hugo Build</code> stage,
-and it was all in preparation before:</p><p><img src=images/5.1-hugo-ddd-content-collection.svg alt="Hugo DDD - Content Collection"></p><h4 id=clear-division-of-labor-and-efficient-collaboration>Clear division of labor and efficient collaboration
-<a class=anchor href=#clear-division-of-labor-and-efficient-collaboration>#</a></h4><p>The current state of e-commerce is no longer integrating into our lives, but has become a part of our lives.
+and it was all in preparation before:</p><p><img src=images/5.1-hugo-ddd-content-collection.svg alt="Hugo DDD - Content Collection"></p><h3 id=clear-division-of-labor-and-efficient-collaboration>Clear division of labor and efficient collaboration
+<a class=anchor href=#clear-division-of-labor-and-efficient-collaboration>#</a></h3><p>The current state of e-commerce is no longer integrating into our lives, but has become a part of our lives.
 And after the period of competing product categories, basically what your family has, I also have.
 Now the fight is more about features and services.
 Since it is a feature, each one is more or less different.
@@ -429,15 +434,15 @@ After PagesController delivers all the documents, the automatic sorting robot Pa
 In order to improve processing efficiency, Hugo provides a robot for each site,
 and PagesProcessor is responsible for distributing tasks,
 and sitePagesProcessor focuses on the language categories it is good at.</p><p>Through a clear division of labor and efficient collaboration,
-all documents are finally classified and neatly placed on the center shelf.</p><p><img src=images/5.0-content-process-flow.svg alt="Content Process Flow"></p><h3 id=template-lifecycle>Template Lifecycle
-<a class=anchor href=#template-lifecycle>#</a></h3><p>In
+all documents are finally classified and neatly placed on the center shelf.</p><p><img src=images/5.0-content-process-flow.svg alt="Content Process Flow"></p><h2 id=template-lifecycle>Template Lifecycle
+<a class=anchor href=#template-lifecycle>#</a></h2><p>In
 <a href=https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/>Hugo event storm</a>,
 we learned about Hugo&rsquo;s design philosophy - to provide users with a consistent and easy writing expression.
 The realization of this concept is to develop more practical functions based on the Golang Template,
 so that content creators can focus on content creation while having a good experience.</p><p>Let&rsquo;s review the implementation steps of Golang Template:</p><p><img src=images/1-golang-template.svg alt="Golang Template"></p><p>Let&rsquo;s see how Hugo revolves around it:</p><p><img src=images/2.1-hugo-whole-process-map-go-template.svg alt="hugo whole process with golang template"></p><p>Hugo has done a lot of design around the Golang Template.
 Now let&rsquo;s take a look at the life cycle of the template through the domain events related to the template,
-to have a more comprehensive understanding.</p><h4 id=hugo-template-lifecycle-domain-events>Hugo Template Lifecycle Domain Events
-<a class=anchor href=#hugo-template-lifecycle-domain-events>#</a></h4><p>Let’s start with domain events to see which key events are strongly related to templates:</p><p><img src=images/6.0-template-ddd-events.svg alt="Template DDD Events"></p><p>In addition to the above events that are mapped one by one with the Golang Template, there are more detailed events.
+to have a more comprehensive understanding.</p><h3 id=hugo-template-lifecycle-domain-events>Hugo Template Lifecycle Domain Events
+<a class=anchor href=#hugo-template-lifecycle-domain-events>#</a></h3><p>Let’s start with domain events to see which key events are strongly related to templates:</p><p><img src=images/6.0-template-ddd-events.svg alt="Template DDD Events"></p><p>In addition to the above events that are mapped one by one with the Golang Template, there are more detailed events.
 In order to be intuitive and beautiful, we collect these events together for analysis:</p><p><img src=images/6.0.1-template-ddd-events-simple.svg alt="Template DDD Events simple version"></p><p>You can see events that are strongly related to templates, mainly focusing on creating HugoSites and Build phases.
 It can be found that the template life cycle can be divided into three stages:</p><ol><li>The initial phase includes registering a callback, selecting a template service provider, and starting the template update.<ul><li>Register layouts callback to HugoSites initialization field</li><li>Set the default template provider to the configuration item</li><li>Notify the template provider to start updating</li></ul></li><li>Preparation stage, including preparing the template executor, collecting template-related functions, parsing Hugo built-in and user-defined templates, storing all templates in the template namespace, and connecting layout and templates with the layout processor.<ul><li>New template executor</li><li>Collect template functions to function mappings</li><li>Collect text function-to-function mappings</li><li>New template namespace</li><li>New layout processor</li></ul></li><li>In the rendering stage, after the page content is prepared, call back the layouts items registered in the initial stage, find the corresponding template through the layout processor, and finally render with the template to generate the site page<ul><li>Create pages for content nodes</li><li>Call back the layout registration item to initialize</li><li>Find templates for pages</li><li>Render the page with a template</li></ul></li></ol><p>Events can help us clearly understand the template life cycle designed by Hugo.
 Next, let&rsquo;s sort out the specific implementation process through the source code of
@@ -482,8 +487,8 @@ the actual execution is in the <code>ExecuteWithContext</code> method of <code>t
 Here is the Golang Template source code used directly, instead of calling the default package of Golang.
 Because the functions that come with Golang’s default package cannot fully meet Hugo’s demands.
 It will be described in detail in the subsequent code implementation chapters,
-and here we still focus on the initial understanding of the infrastructure.</p></li></ol><h4 id=summary>summary
-<a class=anchor href=#summary>#</a></h4><p><img src=images/6.1-template-cycle.svg alt="Template Cycle"></p><p>Starting from the Golang Template application example, we learned the basic process of template work in Golang.
+and here we still focus on the initial understanding of the infrastructure.</p></li></ol><h3 id=summary>summary
+<a class=anchor href=#summary>#</a></h3><p><img src=images/6.1-template-cycle.svg alt="Template Cycle"></p><p>Starting from the Golang Template application example, we learned the basic process of template work in Golang.
 This helps us further understand the design and implementation of Hugo.</p><p>By analyzing the core events that are strongly related to templates in Hugo domain events,
 we roughly divide the life cycle of Hugo templates into three stages: init, preparation, and rendering.</p><p>In order to understand the template life cycle three-dimensionally, we not only sort out the domain events,
 but also analyze the code structure.
@@ -496,16 +501,17 @@ And all of these are encapsulated in the service <code>templateExec</code> provi
 which not only encapsulates internally, but also provides convenience externally.</p><p>There are more interesting things, such as why can&rsquo;t Hugo directly use Golang&rsquo;s built-in Template package,
 but maintain it independently?
 We will also further expand the explanation in the subsequent code implementation chapter.
-Together with everyone, find out.</p><h3 id=publish-process>Publish process
-<a class=anchor href=#publish-process>#</a></h3><p>通过
-<a href=/en/#%e6%a8%a1%e6%9d%bf%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f>模板的生命周期</a>我们可以看到在最后的渲染阶段，先找到页面的Template，然后对页面进行渲染。
-这样我们就有了根据模板生成的待发布内容。
-Through
-<a href=https://hugo.notes.sunwei.xyz/en/docs/how/arch/#%E6%A8%A1%E6%9D%BF%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F>template life cycle</a>, we can see that in the final rendering stage, the Template of the page is first found, and then the page is rendered.
-In this way, we have the content to be published based on the template.</p><p>站点发布主要的任务就是将作者所创作的内容，通过模板转换生成待发布的内容，按照站点的输出格式，写入到我们指定的文件目录。</p><p>那这里就会有两个问题：</p><ol><li>作者所创作的内容是怎么存储在页面中的，又要怎么使用呢？</li><li>发布过程中的信息，如输出格式、文件名、写入地址又是谁提供的呢？</li></ol><p>我们还是从Golang Template基本原理出发:</p><p><img src=images/1-golang-template.svg alt="Golang Template"></p><p>在index.html模板中，我们计划用<code>{{.Content}}</code>属性来获取内容。
-如果要成功获取，就需要在我们的内容提供商<code>Post</code>实例中，在Content字段设置上正确的值。
-如果都按约定准备好后，在最终Golang Template执行结果中，我们就能发现右上角的内容。</p><p>在我们的
-<a href=%e6%b8%b8%e4%b9%90%e5%9c%ba.md>游乐场示例</a>中，我们也有一个用到了<code>.Content</code>的layout - <code>layouts/_default/single.html</code>：</p><pre tabindex=0><code>-- mycontent/blog/post.md --
+Together with everyone, find out.</p><h2 id=publish-process>Publish process
+<a class=anchor href=#publish-process>#</a></h2><p>Through
+<a href=https://hugo.notes.sunwei.xyz/en/docs/how/arch/#template-lifecycle>template life cycle</a>,
+we can see that in the final rendering stage, the Template of the page is first found, and then the page is rendered.
+In this way, we have the content to be published based on the template.</p><p>The main task of site publishing is to convert the content created by the author into the content to be published through template conversion,
+and write it into the file directory we specify according to the output format of the site.</p><p>Then there will be two problems here:</p><ol><li>How is the content created by the author stored on the page and how to use it?</li><li>Who provided the information during the publishing process, such as output format, file name, and writing address?</li></ol><p>We still start from the basic principles of Golang Template:</p><p><img src=images/1-golang-template.svg alt="Golang Template"></p><p>In the index.html template, we plan to use the <code>{{.Content}}</code> attribute to get the content.
+To get it successfully, we need to set the correct value in the Content field in our content provider <code>Post</code> instance.
+If everything is prepared according to the agreement,
+we can find the content in the upper right corner in the final Golang Template execution result.</p><p>In our
+<a href=https://hugo.notes.sunwei.xyz/en/docs/how/playground/>playground example</a>,
+we also have a layout that uses <code>.Content</code> - <code>layouts/_default/single.html</code>:</p><pre tabindex=0><code>-- mycontent/blog/post.md --
 ---
 title: &#34;Post Title&#34;
 ---
@@ -517,10 +523,11 @@ Hello Blog
 ===
 Static Content
 ===
-</code></pre><p>single.html会用做独立页面的模板，如上面的<code>mycontent/blog/post.md</code>。
-通过模板渲染过后，<code>post.md</code>中的内容就会替换掉<code>single.html</code>中的<code>{{ .Content }}</code>。</p><p>那Hugo的页面对象PageState又是怎么提供内容服务的呢，也和上面一样，放在属性里吗？
-我们在
-<a href=https://github.com/sunwei/hugo-playground>Hugo Playground</a>源码中，很快找到了答案：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Page is the core interface in Hugo.
+</code></pre><p>single.html will be used as a template for individual pages, such as <code>mycontent/blog/post.md</code> above.
+After rendering through the template, the content in <code>post.md</code> will replace <code>{{ .Content }}</code> in <code>single.html</code>.</p><p>How does Hugo&rsquo;s page object PageState provide content services?
+Is it the same as above, is it placed in the attribute?
+We quickly found the answer in the source code of
+<a href=https://github.com/sunwei/hugo-playground>Hugo Playground</a>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Page is the core interface in Hugo.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Page</span> <span style=color:#66d9ef>interface</span> {
 </span></span><span style=display:flex><span>	<span style=color:#a6e22e>ContentProvider</span>
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
@@ -531,14 +538,17 @@ Static Content
 </span></span><span style=display:flex><span>    <span style=color:#a6e22e>Content</span>() (<span style=color:#a6e22e>any</span>, <span style=color:#66d9ef>error</span>)
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>没错，就是ContentProvider。
-可以看出Golang Template不仅支持属性，同时还支持方法。
-共同的特点就是要对外可见 - 都是大写字母开头。</p><p>那上面的两个问题就变得更具体了：</p><ol><li>PageState中的ContentProvider是谁？</li><li>发布流程中所需的详细信息是怎么来的？</li></ol><p><strong>发布相关的领域事件</strong></p><p>同样，我们还是可以通过
-<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>领域事件风暴</a>中，发布相关的领域事件入手：</p><p><img src=images/7.0-publish-events.svg alt="Publish Events"></p><p>可以看到，关键时机有两个。
-一个是在站点Site创建的时期，另一个则是在构建时期。</p><p>让我们专注在和发布相关的事件上：</p><p><img src=images/7.0.1-publish-events-simple.svg alt="Publish Events Simple"></p><p>这些事件的解读在
-<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>领域事件风暴</a>中有具体描述，这里就不再赘叙。</p><p>结合
-<a href=https://github.com/sunwei/hugo-playground>源码</a>，我们进一步将上述事件转换成代码流程图：</p><p><img src=images/7.1-publish-work-flow.svg alt="Publish Work Flow"></p><p>不出所料，为PageState提供内容和其它信息服务的对象确实存在，那就是<code>pageOutputs</code>。
-但心中不禁升起一丝疑问，为什么是个复数？</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// We create a pageOutput for every output format combination, even if this
+</span></span></code></pre></div><p>That&rsquo;s right, it&rsquo;s ContentProvider.
+It can be seen that Golang Template not only supports attributes, but also supports methods.
+The common feature is to be visible to the outside world - all start with a capital letter.</p><p>Then the above two questions become more specific:</p><ol><li>Who is the ContentProvider in PageState?</li><li>Where do the details needed in the release process come from?</li></ol><p><strong>Publish related domain events</strong></p><p>Similarly, we can start by publishing related domain events in
+<a href=https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/>Domain Event Storm</a>:</p><p><img src=images/7.0-publish-events.svg alt="Publish Events"></p><p>It can be seen that there are two key moments.
+One is during the site creation period, and the other is during the construction period.</p><p>Let&rsquo;s focus on publishing related events:</p><p><img src=images/7.0.1-publish-events-simple.svg alt="Publish Events Simple"></p><p>The interpretation of these events is described in detail in
+<a href=https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/>Domain Event Storm</a>,
+so I won’t go into details here.</p><p>Combined with
+<a href=https://github.com/sunwei/hugo-playground>source code</a>,
+we further convert the above events into a code flow chart:</p><p><img src=images/7.1-publish-work-flow.svg alt="Publish Work Flow"></p><p>As expected, the object that provides content and other information services for PageState does exist,
+and that is <code>pageOutputs</code>.
+But a doubt arises in my heart, why is it plural?</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// We create a pageOutput for every output format combination, even if this
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// particular page isn&#39;t configured to be rendered to that format.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>pageOutput</span> <span style=color:#66d9ef>struct</span> {
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
@@ -557,21 +567,24 @@ Static Content
 </span></span><span style=display:flex><span>	
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>通过查阅上述源码定义，我们更加确定了我们分析的正确性。
-<code>PageOutput</code>确实如我们所料，提供了<code>ContentProvider</code>服务和<code>targetPather</code>服务，这样我们前面的两个问题就有了着落。
-再加上注解：</p><blockquote><p>We create a pageOutput for every output format combination, even if this
-particular page isn&rsquo;t configured to be rendered to that format.</p></blockquote><p>我们发现pageOutput是和output format一一对应的，也就是说有多少种输出格式，就有多少个pageOutput，这也解释了上面关于复数的疑问。</p><p>那究竟是个什么样的对应关系，为什么要这样设计呢？
-让我们还是结合上面的流程图来进行分析。</p><p><strong>站点创建时做的准备工作</strong></p><p><img src=images/7.2-publish-start.svg alt="Publish Site Creating"></p><p>我们先看在创建Site的时候，都准备了哪些和发布相关的信息。
-上图右边是流程图站点的部分，从对象引用关系来看，可以了解到OutputFormats依赖于OutputFormat，但不是聚合关系。
-而OutputFormat又依赖于MediaType。</p><p><strong>MediaType</strong></p><p>从上图左侧的结构图可以看出，OutputFormat是拥有MediaType字段的。
-在MediaType包含的主要字段是main和sub。</p><p>那这些字段是干什么用的呢？
-我们可以通过上图中间的部分来进一步了解。
-在Hugo的DefaultTypes中，经过简化，我们保留了HTML, MD, TOML, TEXT四种类型。
-拿HTML MediaType举例，实际上长这样<code>text/html</code>。
-没错main字段就是text，而sub字段才是html。
-因为首先HTML媒体类型的文件是以文本形式存储在磁盘上的，然后才是内容是以HTML格式进行组织的。
-关于Media Type的详细介绍，可以参考
-<a href=https://en.wikipedia.org/wiki/Media_type>Wikipedia</a>。</p><p><strong>OutputFormat</strong></p><p>再来看看OutputFormat：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Format represents an output representation, usually to a file on disk.
+</span></span></code></pre></div><p>By consulting the above source code definition, we are more sure of the correctness of our analysis.
+<code>PageOutput</code> does provide <code>ContentProvider</code> service and <code>targetPather</code> service as we expected,
+so that our previous two problems will be resolved.</p><p>Plus the annotation:</p><blockquote><p>We create a pageOutput for every output format combination, even if this
+particular page isn&rsquo;t configured to be rendered to that format.</p></blockquote><p>We found that pageOutput corresponds to output format one by one, that is to say,
+there are as many pageOutputs as there are output formats, which also explains the above question about complex numbers.</p><p>What kind of corresponding relationship is it, and why is it designed in this way?
+Let us still combine the above flow chart for analysis.</p><p><strong>Preparation work done when the site is created</strong></p><p><img src=images/7.2-publish-start.svg alt="Publish Site Creating"></p><p>Let&rsquo;s first look at what release-related information is prepared when creating a Site.
+The right side of the above figure is the part of the flow chart site.
+From the perspective of object reference relationship, we can understand that OutputFormats depends on OutputFormat,
+but not the aggregation relationship.
+And OutputFormat depends on MediaType.</p><p><strong>MediaType</strong></p><p>As can be seen from the structure diagram on the left side of the above figure, OutputFormat has a MediaType field.
+The main fields contained in MediaType are main and sub.</p><p>What are these fields for?
+We can take a closer look at the middle part of the picture above.
+In Hugo&rsquo;s DefaultTypes, after simplification, we retain four types: HTML, MD, TOML, and TEXT.
+Take HTML MediaType as an example, it actually looks like <code>text/html</code>.
+That&rsquo;s right, the main field is text, and the sub field is html.
+Because first the files of the HTML media type are stored on disk as text, and then the content is organized in HTML format.
+For a detailed introduction of Media Type, please refer to
+<a href=https://en.wikipedia.org/wiki/Media_type>Wikipedia</a>.</p><p><strong>OutputFormat</strong></p><p>Let&rsquo;s look at OutputFormat again:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Format represents an output representation, usually to a file on disk.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Format</span> <span style=color:#66d9ef>struct</span> {
 </span></span><span style=display:flex><span>   <span style=color:#75715e>// The Name is used as an identifier. Internal output formats (i.e. HTML and RSS)
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>   <span style=color:#75715e>// can be overridden by providing a new definition for those types.
@@ -584,9 +597,11 @@ particular page isn&rsquo;t configured to be rendered to that format.</p></block
 </span></span><span style=display:flex><span>   
 </span></span><span style=display:flex><span>   <span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>通过注解可以看到，实际的作用就是记载了要将一个文件输出到磁盘上的相关说明信息。
-比如BaseName的默认值就是index，首页就会用到，默认文件名是index.html。</p><p>Hugo提供的<code>DefaultFormats</code>根据我们的示例简化后，保留了HTML, JSON, MD三种。
-其中HTML是指我们将以HTML的输出格式将文件写入到磁盘。</p><p>实例如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>HTMLFormat</span> = <span style=color:#a6e22e>Format</span>{
+</span></span></code></pre></div><p>As you can see from the annotation,
+the actual function is to record the relevant description information to output a file to the disk.
+For example, the default value of BaseName is index, which will be used on the home page,
+and the default file name is index.html.</p><p>The <code>DefaultFormats</code> provided by Hugo has been simplified according to our example and retains three types: HTML, JSON, and MD.
+Where HTML means that we will write the file to disk in HTML output format.</p><p>Examples are as follows:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>HTMLFormat</span> = <span style=color:#a6e22e>Format</span>{
 </span></span><span style=display:flex><span>     <span style=color:#a6e22e>Name</span>:          <span style=color:#e6db74>&#34;HTML&#34;</span>,
 </span></span><span style=display:flex><span>     <span style=color:#a6e22e>MediaType</span>:     <span style=color:#a6e22e>media</span>.<span style=color:#a6e22e>HTMLType</span>,
 </span></span><span style=display:flex><span>     <span style=color:#a6e22e>BaseName</span>:      <span style=color:#e6db74>&#34;index&#34;</span>,
@@ -598,17 +613,22 @@ particular page isn&rsquo;t configured to be rendered to that format.</p></block
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>     <span style=color:#75715e>// be rendered first, but set it to 10 so it&#39;s easy to put one above it.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>     <span style=color:#a6e22e>Weight</span>: <span style=color:#ae81ff>10</span>,
 </span></span><span style=display:flex><span> }
-</span></span></code></pre></div><p><strong>OutputFormats</strong></p><p>如果OutputFormats和OutputFormat不是聚合关系，那又是什么关系呢？</p><p>我们直接来看看OutputFormats的结构，就清楚答案了。</p><p><img src=images/7.2.1-publish-start-output-formats.svg alt="Publish Start Output Formats"></p><p>这里的OutputFormats实际上就是按照Hugo页面的五种类型，分别提供的OutputFormat映射关系。
-如果是home类型的页面，那这种类型的页面只提供按HTML格式渲染的结果，而不是其它的格式，如JSON。
-也就是说<strong>在一个站点下，会为每个类型的页面都定义清楚合法的输出格式</strong>。
-这将会有效保障页面在渲染的过程中，输出格式的有效性。</p><p><strong>renderFormats</strong></p><p>有了全面的站点页面输出规范后，为什么还要这个renderFormats呢？</p><p><img src=images/7.3-publish-output.svg alt="Publish Output"></p><p>从上图右下角可以看到，实际上renderFormats来自于outputFormats。
-是将所有页面的outputFormats合并，去重后产生的。
-可以理解为renderFormats代表着这个站点所有输出的类型。
-在我们的实例中，因为所有页面只支持HTML一种类型，所以合并去重后，自然我们这个站点的renderFormats只有一个，就是HTML了。</p><p>从值的角度我们已经知道了两者之间的关联了，那为何Hugo要设置一个renderFormats呢？
-从名字上看是以站点Site为单位，可以理解为站点在渲染时所有的渲染格式。</p><p>那为什么HugoSites也有一个一模一样的renderFormats呢？
-从上图左上方可以看出，Site的renderFormats组成了HugoSites的renderFormats。
-这个好理解，因为HugoSites是由多个不同语言的Site所组成的，那就是说HugoSites的renderFormats代表了全站点的渲染格式。</p><p>继续通过上图往右看，可以发现更多的线索。
-原来pageOutputs和HugoSites的renderFormats是一一对应关系，也就是说全站点有多少种渲染格式，就有多少个pageOutputs。</p><p>这里不禁又冒出另一个大大的问号 - 每个站点都拥有自己的页面，也都有自己的输出格式，<strong>为什么要为单个站点页面提供全站点输出格式的pageOutputs呢？</strong></p><p>同样，我们还是可以从源码中找到答案：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugolib/page__new.go
+</span></span></code></pre></div><p><strong>OutputFormats</strong></p><p>If OutputFormats and OutputFormat are not an aggregation relationship, then what is the relationship?</p><p>Let&rsquo;s take a look at the structure of OutputFormats directly, and the answer will be clear.</p><p><img src=images/7.2.1-publish-start-output-formats.svg alt="Publish Start Output Formats"></p><p>The OutputFormats here are actually the OutputFormat mappings provided by the five types of Hugo pages.
+If it is a home type page, then this type of page only provides results rendered in HTML format, not other formats,
+such as JSON.
+That is to say <strong>Under a site, the legal output format will be clearly defined for each type of page</strong>.
+This will effectively guarantee the validity of the output format during the page rendering process.</p><p><strong>renderFormats</strong></p><p>With a comprehensive site page output specification, why do we need this renderFormats?</p><p><img src=images/7.3-publish-output.svg alt="Publish Output"></p><p>As you can see from the lower right corner of the figure above, renderFormats actually comes from outputFormats.
+It is generated by merging the outputFormats of all pages and deduplicating them.
+It can be understood that renderFormats represents all output types of this site.
+In our example, because all pages only support one type of HTML, after merging and deduplication,
+naturally our site has only one renderFormats, which is HTML.</p><p>From the perspective of value, we already know the relationship between the two, so why does Hugo set a renderFormats?
+From the name, it takes the site as the unit, which can be understood as all the rendering formats of the site when rendering.</p><p>So why does HugoSites have the same renderFormats?
+As can be seen from the upper left of the above figure, the renderFormats of the Site form the renderFormats of HugoSites.
+This is easy to understand, because HugoSites is composed of multiple sites in different languages, that is to say,
+the renderFormats of HugoSites represent the rendering format of the entire site.</p><p>Continue to look to the right through the picture above to find more clues.
+It turns out that there is a one-to-one correspondence between pageOutputs and renderFormats of HugoSites,
+that is to say, there are as many pageOutputs as there are rendering formats in the whole site.</p><p>Here comes another big question mark - each site has its own page and its own output format,
+**why provide pageOutputs in the site-wide output format for a single site page? **</p><p>Similarly, we can still find the answer from the source code:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugolib/page__new.go
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// line 97
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// Prepare output formats for all sites.
@@ -616,19 +636,25 @@ particular page isn&rsquo;t configured to be rendered to that format.</p></block
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// its own. It may be referenced via .Site.GetPage and
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// it will then need an output format.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>pageOutputs</span> = make([]<span style=color:#f92672>*</span><span style=color:#a6e22e>pageOutput</span>, len(<span style=color:#a6e22e>ps</span>.<span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>h</span>.<span style=color:#a6e22e>renderFormats</span>))
-</span></span></code></pre></div><p>从上面的代码中可以看到，这样设计的原因是页面可能会被其它的页面引用，甚至被不同语言的页面所调用。</p><p>对应的<code>.Site.GetPage</code>功能函数在多语言使用场景下的
-<a href=https://gohugo.io/functions/getpage/#getpage-and-multilingual-sites>具体说明</a>如下：</p><blockquote><p>The previous examples have used the full content filename to lookup the post.
+</span></span></code></pre></div><p>As can be seen from the above code, the reason for this design is that the page may be referenced by other pages,
+or even called by pages in different languages.</p><p>The
+<a href=https://gohugo.io/functions/getpage/#getpage-and-multilingual-sites>specific description</a> of the corresponding
+<code>.Site.GetPage</code> function in a multilingual usage scenario is as follows:</p><blockquote><p>The previous examples have used the full content filename to lookup the post.
 Depending on how you have organized your content (whether you have the language
 code in the file name or not, e.g. my-post.en.md), you may want to do the lookup
 without extension. This will get you the current language’s version of the page:</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>{{ <span style=color:#a6e22e>with</span> .<span style=color:#a6e22e>Site</span>.<span style=color:#a6e22e>GetPage</span> <span style=color:#e6db74>&#34;/blog/my-post&#34;</span> }}{{ .<span style=color:#a6e22e>Title</span> }}{{ <span style=color:#a6e22e>end</span> }}
-</span></span></code></pre></div><p>既然存在跨站点调用的情况，那就得为调用方准备好调用方所需要的输出格式。
-这样回过头来看，为每个页面pageState准备全站点渲染格式的pageOutputs是必需的。</p><p><strong>pageOutputs</strong></p><p>在发布流程中，除了内容，还有一些基础信息也很重用，如发布到哪，以什么名字写入等等。
-pageOutput做为输出信息的总载体，这些信息自然了也包在其中，通过上图右上方可以看到负责提供这些信息的对象是PagePaths。
-其中提供目标文件名的则是其中的targetPaths。</p><p><strong>PagePaths</strong></p><p>细心的小伙伴会发现Site的OutputFormats和PagePaths之间有一条虚线连接。
-之所以是虚线，是因为PagePaths实际上是从pageMeta中获取的信息，但根源，实际上还是来源于Site的OutputFormats。</p><p>结合中下方有进一步实样例解释。
-可以看到PagePaths会根据当前页面pageState的类型<code>pageKind</code>来获取当前类型的OutputFormats。
-会根据每一种OutputFormat生成相应的targetPathsHolder。</p><p>根据每一个PageOutput的OutputFormat类型，选中相应的targetPathsHolder，设置在<code>pagePerOutputProviders</code>之中。
-这样在渲染页面时：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>pageRenderer</span>(
+</span></span></code></pre></div><p>Since there is a cross-site call, the output format required by the caller must be prepared for the caller.
+Looking back, it is necessary to prepare pageOutputs in the full site rendering format for each page pageState.</p><p><strong>pageOutputs</strong></p><p>In the publishing process, in addition to the content, some basic information is also reused,
+such as where to publish, under what name, and so on.
+pageOutput is the general carrier of the output information, and this information is naturally included in it.
+From the upper right of the figure above, you can see that the object responsible for providing this information is PagePaths.
+Which provides the target file name is the targetPaths.</p><p><strong>PagePaths</strong></p><p>Careful friends will find that there is a dotted line connection between OutputFormats and PagePaths of the Site.
+The reason for the dotted line is that PagePaths is actually the information obtained from pageMeta,
+but the source is actually from the OutputFormats of the Site.</p><p>There are further example explanations in the middle and bottom.
+You can see that PagePaths will obtain the current type of OutputFormats according to the type <code>pageKind</code> of the current page pageState.
+The corresponding targetPathsHolder will be generated according to each OutputFormat.</p><p>According to the OutputFormat type of each PageOutput,
+select the corresponding targetPathsHolder and set it in <code>pagePerOutputProviders</code>.
+So when rendering the page:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>pageRenderer</span>(
 </span></span><span style=display:flex><span>	<span style=color:#a6e22e>ctx</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>siteRenderContext</span>,
 </span></span><span style=display:flex><span>	<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Site</span>,
 </span></span><span style=display:flex><span>	<span style=color:#a6e22e>pages</span> <span style=color:#f92672>&lt;-</span><span style=color:#66d9ef>chan</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>pageState</span>,
@@ -650,8 +676,9 @@ pageOutput做为输出信息的总载体，这些信息自然了也包在其中�
 </span></span><span style=display:flex><span>		<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>	}
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>就可以通过<code>p.targetPaths().TargetFilename</code>获取到目标文件名了。</p><h4 id=独立页面的发布流程>独立页面的发布流程
-<a class=anchor href=#%e7%8b%ac%e7%ab%8b%e9%a1%b5%e9%9d%a2%e7%9a%84%e5%8f%91%e5%b8%83%e6%b5%81%e7%a8%8b>#</a></h4><p>Hugo将页面分成了两大类，一类就是上面介绍的常规页面，另一类就是接下来要看的独立Standalone页面，如404页面。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Site</span>) <span style=color:#a6e22e>render404</span>() <span style=color:#66d9ef>error</span> {
+</span></span></code></pre></div><p>You can get the target file name through <code>p.targetPaths().TargetFilename</code>.</p><h3 id=publishing-process-for-independent-pages>Publishing process for independent pages
+<a class=anchor href=#publishing-process-for-independent-pages>#</a></h3><p>Hugo divides the pages into two categories, one is the regular pages described above,
+and the other is the independent Standalone pages to be seen next, such as 404 pages.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Site</span>) <span style=color:#a6e22e>render404</span>() <span style=color:#66d9ef>error</span> {
 </span></span><span style=display:flex><span>	<span style=color:#a6e22e>p</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>newPageStandalone</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>pageMeta</span>{
 </span></span><span style=display:flex><span>		<span style=color:#a6e22e>s</span>:    <span style=color:#a6e22e>s</span>,
 </span></span><span style=display:flex><span>		<span style=color:#a6e22e>kind</span>: <span style=color:#a6e22e>kind404</span>,
@@ -688,8 +715,11 @@ pageOutput做为输出信息的总载体，这些信息自然了也包在其中�
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>renderAndWritePage</span>(<span style=color:#e6db74>&#34;404 page&#34;</span>, <span style=color:#a6e22e>targetPath</span>, <span style=color:#a6e22e>p</span>, <span style=color:#a6e22e>templ</span>)
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>代码流程很清晰，先通过<code>newPageStandalone</code>创建页面，紧接着查找模板，获取目标文件名，最后渲染并写入页面。
-整体流程基本一致。</p><p>既然PageOutput是发布流程上的关系所在，那我们还是用PageOutput的视角来看看独立页面会有哪些不同，同时也可以检测一下我们之前的理解是否正确。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugolib/page__new.go
+</span></span></code></pre></div><p>The code flow is very clear. First create a page through <code>newPageStandalone</code>, then find the template,
+get the target file name, and finally render and write the page.
+The overall process is basically the same.</p><p>Since PageOutput is the relationship in the publishing process,
+let&rsquo;s use the perspective of PageOutput to see how the independent pages will be different,
+and at the same time, we can also check whether our previous understanding is correct.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// hugo-playground/hugolib/page__new.go
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// line 92
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>newPageFromMeta</span>(
 </span></span><span style=display:flex><span><span style=color:#a6e22e>n</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>contentNode</span>,
@@ -704,7 +734,9 @@ pageOutput做为输出信息的总载体，这些信息自然了也包在其中�
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>通过<code>newPageFromMeta</code>源码我们发现，对<code>standalone</code>的页面是有特殊处理的，而且用的就是<code>render404</code>中传入的<code>output.HTMLFormat</code>生成了pageOutput。</p><p>这样一来，我们可以确定的说，无论是普通页面，还是独立页面，基本上都是以pageOutput为核心进行展开的，符合同一套发布流程。
-让我们再来回顾一下发布流程全景图：</p><p><img src=images/7.4-publish-full.svg alt="Publish Process Full Process"></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/commit/73e666e34f6a22a378572b7e7d1625a0e907c898 title='Last modified by sunwei | February 9, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+</span></span></code></pre></div><p>Through the <code>newPageFromMeta</code> source code, we found that the <code>standalone</code> page is specially processed,
+and the <code>output.HTMLFormat</code> passed in <code>render404</code> is used to generate the pageOutput.</p><p>In this way, we can say with certainty that whether it is a normal page or an independent page,
+it is basically developed with pageOutput as the core, which conforms to the same publishing process.
+Let&rsquo;s review the release process panorama again:</p><p><img src=images/7.4-publish-full.svg alt="Publish Process Full Process"></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/commit/1bd46c1ec795c2fe1775ec44af675a588e94b48e title='Last modified by sunwei | February 9, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
 <span>February 9, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content/docs/how/arch/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
-<span>Edit this page</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#hugo-architecture>Hugo Architecture</a><ul><li><a href=#architecture-design-of-hugo>Architecture Design of Hugo</a></li><li><a href=#hugos-component-design>Hugo&rsquo;s component design</a><ul><li><a href=#the-relationship-between-configuration-and-language>The relationship between configuration and language</a></li><li><a href=#hugo-modules>Hugo modules</a></li><li><a href=#organization-of-the-file-system>Organization of the file system</a></li><li><a href=#site-content-collection-solutions>Site content collection solutions</a></li><li><a href=#template-lifecycle>Template Lifecycle</a></li><li><a href=#publish-process>Publish process</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
+<span>Edit this page</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#hugo-architecture>Hugo Architecture</a><ul><li><a href=#architecture-design-of-hugo>Architecture Design of Hugo</a><ul><li><a href=#configuration-module>Configuration Module</a></li><li><a href=#hugosites-module>HugoSites Module</a></li><li><a href=#deps-module>Deps Module</a></li></ul></li><li><a href=#hugos-component-design>Hugo&rsquo;s component design</a><ul><li><a href=#the-relationship-between-configuration-and-language>The relationship between configuration and language</a></li><li><a href=#configprovider>config.Provider</a></li><li><a href=#depscfg>DepsCfg</a></li><li><a href=#hugo-modules>Hugo modules</a></li></ul></li><li><a href=#organization-of-the-file-system>Organization of the file system</a><ul><li><a href=#afero>Afero</a></li><li><a href=#fs-in-hugo-architecture>Fs in Hugo architecture</a></li><li><a href=#hugofs>HugoFs</a></li><li><a href=#pathspec>PathSpec</a></li><li><a href=#basefs>BaseFs</a></li><li><a href=#sourcefilesystems>SourceFilesystems</a></li><li><a href=#thebigfs>theBigFs</a></li><li><a href=#file-system-scenario-1---contentspec>File system scenario 1 - ContentSpec</a></li><li><a href=#file-system-scenario-2---loadtemplates>File system scenario 2 - loadTemplates</a></li></ul></li><li><a href=#site-content-collection-solutions>Site content collection solutions</a><ul><li><a href=#sharpening-a-knife-does-not-delay-woodcutters>Sharpening a knife does not delay woodcutters</a></li><li><a href=#clear-division-of-labor-and-efficient-collaboration>Clear division of labor and efficient collaboration</a></li></ul></li><li><a href=#template-lifecycle>Template Lifecycle</a><ul><li><a href=#hugo-template-lifecycle-domain-events>Hugo Template Lifecycle Domain Events</a></li><li><a href=#summary>summary</a></li></ul></li><li><a href=#publish-process>Publish process</a><ul><li><a href=#publishing-process-for-independent-pages>Publishing process for independent pages</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
