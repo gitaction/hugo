@@ -638,240 +638,301 @@ and the Layouts file system when loading custom templates, etc.
 
 ### Site content collection solutions
 
-[文件系统的组织](#文件系统的组织)已经帮我们将用户站点项目按Hugo基础组件的结构进行了组织。
-我们从`BaseFs.Content.Fs`可以直接获取站点内容的文件系统索引，可以直接读取文件信息，生成站点面面了。
+[Organization of the file system](https://hugo.notes.sunwei.xyz/en/docs/how/arch/#organization-of-the-file-system) 
+has helped us organize user site projects according to the Hugo basic components The structure is organized.
+We can directly obtain the file system index of the site content from `BaseFs.Content.Fs`, 
+and can directly read the file information to generate the site content.
 
-但Hugo不这么认为，我们可以用下面两个场景来了解一下Hugo的鸿鹄之志。
+But Hugo doesn't think so. We can use the following two scenarios to understand Hugo's lofty ambitions.
 
-**场景一：Headless Bundle**
+**Scene 1: Headless Bundle**
 
-有一种页面，我们不希望她单独作为一个页面来发布。
-但可以在需要她的时候，以变量的形式获取到她。
-这就是Hugo对这种需求提供的解决方案：[Headless Bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle)。
+There is a page that we don't want her to publish as a separate page.
+But you can get her in the form of a variable when you need her.
+This is Hugo's solution to this need: [Headless Bundle](https://gohugo.io/content-management/page-bundles/#headless-bundle).
 
-如果直接遍历文件系统，我们在处理该文件的时候，需要知道她的类型，如果是Headless类型的，就不按常规类型处理。
-那文件类型就需要在解析文件的时候，从文件信息中获取到。
-页面类型的信息可以放在文件配置中，也可以通过特殊的命名规则来表明，此类方案还有许多。
+If we directly traverse the file system, we need to know its type when processing the file. 
+If it is headless type, it will not be processed according to the conventional type.
+The file type needs to be obtained from the file information when parsing the file.
+The page type information can be placed in the file configuration, or can be indicated through special naming rules, 
+and there are many such schemes.
 
-如果其它的页面依赖于Headless页面，就要考虑页面解析顺序所带来的问题。
-如果Headless在前面被解析，就要存储好相关索引信息，以方便后续依赖于她的文件进行查询。
-如果在其它页面之后解析，可能的方案是将之前处理的页面标记为未完成状态，并指明所依赖的Headless页面，并挂起等待条件成熟时被唤醒。
-等相应的Headless页面解析完成后，时机成熟时，恢复之前页面的解析流程。
-这种方案在依赖的Headless页面较多的情况下，会出现不断挂起的状况。
-加上这些配置都依赖于手工维护，解析效率和正确性都很难保障。
+If other pages depend on the Headless page, the problems caused by the order of page parsing must be considered.
+If Headless is parsed earlier, relevant index information must be stored to facilitate subsequent queries that depend on her files.
+If it is parsed after other pages, a possible solution is to mark the previously processed page as incomplete, 
+specify the dependent Headless page, and suspend it to wait for the condition to be awakened.
+After the parsing of the corresponding headless page is completed, when the time is right, 
+resume the parsing process of the previous page.
+This solution will hang continuously when there are many dependent Headless pages.
+In addition, these configurations all rely on manual maintenance, 
+and it is difficult to guarantee parsing efficiency and correctness.
 
+**Scene 2: Page Resources**
 
-**场景二：Page Resources**
+Hugo Page can contain different resources, common ones are pictures, as well as audio, video, data, 
+compressed packages and other types of resources.
 
-Hugo Page可以包含不同的资源，常见的有图片类型的，还有音频、视频、数据、压缩包等等多种类型的资源。
+The download page will provide download links for resources, such as software installation packages, 
+and different versions will be provided for different operating systems.
+Hugo can intelligently identify which files are page files and which pages are resource files, 
+and put the resource file information in the `Resources` property of the page.
+In this way, it is convenient for users to organize these resources flexibly according to the page, 
+and can generate a download summary information of a certain type of software, 
+and can also generate download software information of a certain chapter.
 
-下载页面会提供资源的下载链接，比如软件的安装包，针对不同的操作系统，会提供不同的版本。
-Hugo可以很聪明的识别，哪个文件是页面文件，哪些页面是资源文件，并将资源文件信息放在页面的`Resources`属性里。
-这样就方便用户根据页面，来灵活组织这些资源，可以生成一个某一类型软件的下载汇总信息，还可以生成某一章节的下载软件信息。
+If you traverse the file system directly, each file is relatively independent, 
+and you need to indicate the affiliation relationship of the same level through configuration information or other means, 
+and also indicate the reference relationship between different levels.
+These all need to be stored in the global build info.
+Because they are independent of each other, there will be a sequence in the traversal process. 
+The more complicated the relationship, the higher the probability of repeated information.
+When new requirements emerge, complex logic processing is not conducive to software expansion.
 
-如果直接遍历文件系统，每个文件都是相对独立的，需要通过配置信息或者其它的方式标明同一层级的从属关系，还要标明不同层级之间的引用关系。
-这些都需要在全局构建信息中存储。
-因为互相独立，遍历过程中又会有先后顺序，关系越复杂，重复信息出现的概率就会越高。
-当有新的需求出现时，复杂的逻辑处理也不利于软件的拓展。
+From the above two scenarios, it can be observed.
+Simply traversing the file system can indeed obtain basic file information.
+However, if we need to flexibly organize various information, such as dependencies, resource summarization, 
+and other cross-page processing scenarios, we need to further explore the content of the site and organize and manage it in units of pages.
 
-从以上两个场景中，可以观察到。
-简单的遍历文件系统，确实可以获取基本的文件信息。
-但如果需要灵活地组织各种不同的信息，如依赖关系，资源汇总等等跨页面处理场景，我们还需要进一步对站点内容进行发掘，以页面为单位进行组织和管理。
+#### Sharpening a knife does not delay woodcutters
 
-#### 磨刀不误砍柴工
-
-从[Hugo事件风暴](./事件风暴.md)中可以清楚的看到Hugo正式收集站点内容是在`Hugo Build`阶段，之前都是在做准备：
+From [Hugo Event Storm](https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/), 
+it can be clearly seen that Hugo’s official collection of site content is in the `Hugo Build` stage, 
+and it was all in preparation before:
 
 ![Hugo DDD - Content Collection](images/5.1-hugo-ddd-content-collection.svg)
 
-#### 分工明确，高效协作
+#### Clear division of labor and efficient collaboration
 
-电商现在的状态已然不是正在融入我们的生活，而是成为了我们生活的一部分。
-并且过了拼产品类目的时期，基本上你家有的，我这也有。
-现在拼的更多的是特色，和服务。
-既然是特色，那每家多多少少都有些不一样。
-而服务，基本上都是相同的，其中最重要的要属快递服务。
-谁能以最短的时间将包裹送达消费者手中，谁将最容易获得消费者的认可，从而占有更高的市场份额，获得投资者的青睐，进入良性的循环发展。
+The current state of e-commerce is no longer integrating into our lives, but has become a part of our lives.
+And after the period of competing product categories, basically what your family has, I also have.
+Now the fight is more about features and services.
+Since it is a feature, each one is more or less different.
+The services are basically the same, the most important of which is the courier service.
+Whoever can deliver packages to consumers in the shortest time will be most likely to be recognized by consumers, 
+thereby occupying a higher market share, gaining the favor of investors, and entering a virtuous circle of development.
 
-Hugo也认同最短时间送达这样的服务理念。
-拿到待处理的内容后，立马出库装车送到离消费者最近的分拣中心，再由高效的分类机器人对货品进行分类。
+Hugo also agrees with the service concept of delivery in the shortest time.
+After getting the content to be processed, 
+it is immediately loaded out of the warehouse and sent to the sorting center closest to the consumer, 
+and then the goods are sorted by an efficient sorting robot.
 
-**Hugo对内容处理的目标**
+**Hugo's goal for content processing**
 
 ![Content Process Flow Goal](images/5.2-cpf-goal.svg)
 
-在我们的样例中，我们的Content就是`mycontent`目录所代表的文件系统，经过`PathSpec`处理后，文件系统可通过`site.BaseFs.Content.Fs`得到。
-最终，Hugo需要对内容文件系统中的所有内容进行分类，并存放在PageMap货架上，这样方便快递小哥快速取货，装车并将包裹送达用户手中。
+In our example, our Content is the file system represented by the `mycontent` directory. 
+After processing by `PathSpec`, the file system can be obtained through `site.BaseFs.Content.Fs`.
+In the end, Hugo needs to classify all the content in the content file system and store it on the PageMap shelf, 
+so that the courier brother can quickly pick up the goods, load them into the car and deliver the package to the user.
 
-那Hugo到底是怎么做到的呢？
+How did Hugo do it?
 
-**陆地集装箱 -- 大卡车**
+**Land Container -- Big Truck**
 
 ![Content Process Flow PagesCollector](images/5.3-cpf-pagescollector.svg)
 
-在实际生活中，包裹会从全球各地通过分拣中心网络，靠大卡车运输到离消费者最近的分拣点。
-而Hugo的"大卡车"就是PagesCollector，不像现实世界那么复杂，货物都在`site.BaseFs.Content.Fs`中。
+In real life, packages will be transported by large trucks from all over the world through a network of sorting centers to the sorting point closest to consumers.
+And Hugo's "big truck" is PagesCollector, which is not as complicated as the real world, 
+and the goods are all in `site.BaseFs.Content.Fs`.
 
-**分拣机器人**
+**Sorting robot**
 
 ![Content Process Flow PagesProcessor](images/5.4-cpf-pagesprocessor.svg)
 
-等货物运到分拣中心后，经过不断对分拣效率进行优化，现在已经做到可以完全自动化。
-PagesController将所有文件送达后，自动分拣机器人PagesProcessor便开始工作，无缝衔接。
-为了提高处理效率，Hugo为每一个站点都提供了一个机器人，由PagesProcessor负责分发任务，sitePagesProcessor专注处理自己所擅长的语言类别。
+After the goods are transported to the sorting center, after continuous optimization of the sorting efficiency, 
+it can now be fully automated.
+After PagesController delivers all the documents, the automatic sorting robot PagesProcessor starts to work seamlessly.
+In order to improve processing efficiency, Hugo provides a robot for each site, 
+and PagesProcessor is responsible for distributing tasks, 
+and sitePagesProcessor focuses on the language categories it is good at.
 
-通过明确的分工，高效的协作，最终将所有文件分门别类，规整的放在中心货架上。
+Through a clear division of labor and efficient collaboration, 
+all documents are finally classified and neatly placed on the center shelf.
 
 ![Content Process Flow](images/5.0-content-process-flow.svg)
 
-### 模板的生命周期
+### Template Lifecycle
 
-在[Hugo事件风暴](事件风暴.md)中，我们了解到Hugo的设计理念 - 给用户提供始终如一的轻松写作体现。
-而实现这一理念则是以Golang Template为基础，开发出更多实用功能，让内容创造者专于内容创作的同时，还拥有良好的体验。
+In [Hugo event storm](https://hugo.notes.sunwei.xyz/en/docs/how/event-storming/), 
+we learned about Hugo's design philosophy - to provide users with a consistent and easy writing expression.
+The realization of this concept is to develop more practical functions based on the Golang Template, 
+so that content creators can focus on content creation while having a good experience.
 
-让我们回顾一下Golang Template的实现步骤：
+Let's review the implementation steps of Golang Template:
+
 ![Golang Template](images/1-golang-template.svg)
 
-再看看Hugo是如何围绕其展开的：
+Let's see how Hugo revolves around it:
+
 ![hugo whole process with golang template](images/2.1-hugo-whole-process-map-go-template.svg)
 
-Hugo围绕着Golang Template做了很多设计，现在我们通过和模板相关的领域事件，一起来看看模板的生命周期，从而能够有更全面的理解。
+Hugo has done a lot of design around the Golang Template. 
+Now let's take a look at the life cycle of the template through the domain events related to the template, 
+to have a more comprehensive understanding.
 
-#### Hugo模板生命周期领域事件
+#### Hugo Template Lifecycle Domain Events
 
-还是从领域事件入手，来看看有哪些关键事件和模板强相关：
+Let’s start with domain events to see which key events are strongly related to templates:
 
 ![Template DDD Events](images/6.0-template-ddd-events.svg)
 
-除了上面和Golang Template一一映射的事件外，还有更细节的事件，为了直观好看，我们把这些事件收集到一起来进行分析：
+In addition to the above events that are mapped one by one with the Golang Template, there are more detailed events. 
+In order to be intuitive and beautiful, we collect these events together for analysis:
 
 ![Template DDD Events simple version](images/6.0.1-template-ddd-events-simple.svg)
 
-可以看到和模板强相关的事件，主要集中在创建HugoSites和Build阶段。
-进一步细分，可发现模板生命周期可分为三个阶段：
+You can see events that are strongly related to templates, mainly focusing on creating HugoSites and Build phases.
+It can be found that the template life cycle can be divided into three stages:
 
-1. 开始阶段，包括注册回调，并选定模板服务提供方，并出发模板更新。
-    * 注册layouts回调到HugoSites初始化字段
-    * 设置默认模板提供方到配置项
-    * 通知模板提供者开始更新
-2. 准备阶段，包括准备好模板执行器，收集模板相关的功能函数，解析Hugo内置和用户自定义模板，将所有模板存储到模板命名空间，以及用layout处理器连接layout和模板。
-    * 新建模板执行器
-    * 收集模板函数到函数映射
-    * 收集文本函数到函数映射
-    * 新建模板命名空间
-    * 新建layout处理器
-3. 渲染阶段，准备好页面内容后，回调在开始阶段注册的layouts事项，通过layout处理器查找相应的模板，最终用模板进行渲染，生成站点页面
-    * 为内容结点创建页面
-    * 回调layout注册项进行初始化
-    * 为页面查找模板
-    * 用模板渲染页面
+1. The initial phase includes registering a callback, selecting a template service provider, and starting the template update.
+   * Register layouts callback to HugoSites initialization field
+   * Set the default template provider to the configuration item
+   * Notify the template provider to start updating
+2. Preparation stage, including preparing the template executor, collecting template-related functions, parsing Hugo built-in and user-defined templates, storing all templates in the template namespace, and connecting layout and templates with the layout processor.
+   * New template executor
+   * Collect template functions to function mappings
+   * Collect text function-to-function mappings
+   * New template namespace
+   * New layout processor
+3. In the rendering stage, after the page content is prepared, call back the layouts items registered in the initial stage, find the corresponding template through the layout processor, and finally render with the template to generate the site page
+   * Create pages for content nodes
+   * Call back the layout registration item to initialize
+   * Find templates for pages
+   * Render the page with a template
 
-事件可以帮助我们清晰地了解到Hugo设计的模板生命周期。
-下面我们再通过[Hugo游乐场](游乐场.md)源码梳理一遍具体实现流程，好让我们能更立体地了解到模板生命周期，同时也可以为后面的代码实现讲解章节做好准备。
+Events can help us clearly understand the template life cycle designed by Hugo.
+Next, let's sort out the specific implementation process through the source code of [Hugo playground](https://hugo.notes.sunwei.xyz/en/docs/how/playground/), 
+so that we can understand the template life cycle in a more three-dimensional way, 
+and at the same time prepare for the following code implementation explanation chapters.
 
 **Template vs Layouts**
 
-我们先来看看Hugo中两个容易混淆的概念，Template和Layouts。
+Let's first look at two confusing concepts in Hugo, Template and Layouts.
 
-在创建[自定义Hugo主题](../what/自定义主题.md)的时候，我们接触最多的就是Layouts。
-官方文档解释Layouts就是用来当模板的，这样解释并没有问题，但这会让我们很容易产生一种Layouts既模板的错觉，并将Layouts和模板直接划上等号。
+When creating a [custom Hugo theme](https://hugo.notes.sunwei.xyz/en/docs/what/theme/), the most we touch is Layouts.
+The official document explains that Layouts are used as templates. 
+There is no problem with this explanation, but it will make it easy for us to have the illusion that Layouts are both templates, 
+and directly equate Layouts and templates.
 
-但真的是这样的吗，让我们从代码层面看看他们的关联：
+But is this really the case, let us look at their association from the code level:
 
 ![Template vs Layouts](images/6.2-layouts-vs-template.svg)
 
-通过查看新建主题的目录结构，我们会发现自动生成的的文件主要在layouts目录下，里面有首页模板，还有页头和页尾模板，等等。
-在代码中，Layouts的出现通过都是以`[]string`字符串数组的形式出现的。
-也就是说在**代码中Layouts就是用来记录layout相关的文件路径信息**的。
+By looking at the directory structure of the newly created theme, 
+we will find that the automatically generated files are mainly in the layouts directory, 
+including the home page template, header and footer templates, and so on.
+In the code, Layouts appear in the form of `[]string`string array.
+That is to say, in **code, Layouts is used to record layout-related file path information**.
 
-如果想将Layouts转换成Golang Template，首先需要将其转换成`templateInfo`。
-并记录文件名，分析是否是文本类型，将layout文件内容以字符串存储在tempalte字段中。
+If you want to convert Layouts into Golang Template, you need to convert it into `templateInfo` first.
+And record the file name, analyze whether it is a text type, 
+and store the content of the layout file in the template field as a string.
 
-其中是否是文本类型，涉及到Golang Template的设计知识。
-> Golang将Template按类型进行了划分。如HTML和Text，通过对HTML标签进行转换，最终也会被转换成Text。
-> 说到底，通过对不同模板类型的转换，都会变成文本类型。
+Whether it is a text type involves the design knowledge of Golang Template.
+> Golang divides Template by type. Such as HTML and Text, by converting HTML tags, they will eventually be converted into Text.
+> In the final analysis, through the conversion of different template types, they will all become text types.
 
-通过templateInfo，最终Hugo会生成真正的Hugo模板结构体`templateState`。
-可以看出该结构体实现了`Template`接口。
+Through templateInfo, Hugo will eventually generate the real Hugo template structure `templateState`.
+It can be seen that the structure implements the `Template` interface.
 
-所以我们可以得出结论：Layouts不等于Template，是制作Template的原材料。
+So we can draw a conclusion: Layouts is not equal to Template, it is the raw material for making Template.
 
-弄清了Template和Layouts之间的关系，我们分别来看看Template生命周期中的开始、准备和渲染阶段。
+After clarifying the relationship between Template and Layouts, let's take a look at the start, 
+preparation and rendering phases of the Template life cycle.
 
-**开始阶段**
+**Initial stage**
 
 ![Template Cycle Start](images/6.1.1-template-cycle-start.svg)
 
-`HugoSites`中的init字段是`hugoSitesInit`类型的，其中就包含了lazy.init类型的layouts。
-这样就可以在layouts字段注册一些回调方法，方便在时机成熟的时候回调。
+The init field in `HugoSites` is of type `hugoSitesInit`, which contains layouts of type lazy.init.
+In this way, some callback methods can be registered in the layouts field, 
+which is convenient for callback when the time is right.
 
-同时，对于HugoSites而言，直接面对的是模板服务的提供商，所以需要在这个阶段将`TemplateProvider`作为提供商，设置在配置信息中。
-等信息都准备妥当后，就可以通知模板服务提供商开始工作更新了。
+At the same time, for HugoSites, it is directly facing the provider of the template service, 
+so `TemplateProvider` needs to be set as the provider in the configuration information at this stage.
+After the information is ready, the template service provider can be notified to start the work update.
 
-**准备阶段**
+**Preparation Phase**
 
 ![Template Cycle Prepare](images/6.1.2-template-cycle-prepare.svg)
 
-对外提供整体服务，并和Deps关联的是`templateExec`。
-包含了`texttemplate.executer`和`templateHandler`，以及所有的模板功能函数。
-颜色表明各结构之间的关联关系。
+It provides overall services externally and is associated with Deps is `templateExec`.
+Contains `texttemplate.executer` and `templateHandler`, and all template functions.
+Colors indicate the associations between structures.
 
-可以看出，`texttemplate.executer`包含了`templateExecHelper`，因为在执行的过程中，通过对模板的分析，可能会用上功能函数。
+It can be seen that `texttemplate.executer` contains `templateExecHelper`, because during the execution process, 
+through the analysis of the template, the function may be used.
 
-而`templateHander`则需要处理和template相关的一些操作。
-`main`字段是`templateNamespace`类型，里面存储了HTML和Text原型信息，并存储了由原型创建的所有`templateState`在`templateStateMap`中。
-`layoutHandler`则是连接layout和template的关键，比如通过layout查询template时，就由layoutHandler全权负责。
+And `templateHander` needs to handle some operations related to template.
+The `main` field is of type `templateNamespace`, which stores HTML and Text prototype information, 
+and stores all `templateState` created by the prototype in `templateStateMap`.
+`layoutHandler` is the key to connect layout and template. For example, when querying template through layout, 
+layoutHandler is fully responsible.
 
+**rendering phase**
 
-**渲染阶段**
-
-结合开始阶段和准备阶段一览：
+Combining the overview of the init phase and the preparation phase:
 
 ![Template Cycle Start and Prepare](images/6.1.3-template-cycle-start-and-prepare.svg)
 
-通过前期的准备和组织，我们来看看渲染阶段是怎么发生的：
+With pre-preparation and organization, let's take a look at how the rendering phase happens:
 
 ![Template Cycle Render](images/6.3-template-cycle-execute.svg)
 
-页面渲染发生在`site_render.go`中，从`pageRender`正式开始。
+Page rendering happens in `site_render.go`, officially started with `pageRender`.
 
-总共分为两大步，一是`page.resolveTemplate`解析模板，拿到模板后再开始`site.renderAndWritePage`渲染和写入页面。
+It is divided into two steps in total. 
+One is `page.resolveTemplate` to parse the template, 
+and then start `site.renderAndWritePage` to render and write the page after getting the template.
 
-1. 解析模板
-因为Site组合了Deps，所以也和Deps一样，同样持有`templateExec`信息，通过调用`templateExec`的`LookupLayout`方法，查询模板信息。
-因为这些模板信息都已经存储在了`templateNamespace`里的`templateStateMap`中。
+1. Parse the template
+Because Site combines Deps, it also holds `templateExec` information like Deps, 
+and queries template information by calling `LookupLayout` method of `templateExec`.
+Because these template information have been stored in `templateStateMap` in `templateNamespace`.
 
-2. 渲染页面
-在`pageRender`中已经拥有了页面信息`pageState`，通过上一步又获取了模板信息，所以是时候开始真正地`site.renderForTemplate`渲染了。
-还是通过`templateExec`调用`Execute`方法。 
-因为当前的执行器是`texttemplate.executer`类型，所以真正地执行是在`texttemplate.executer`的`ExecuteWithContext`方法中。
-这里是直接用的Golang Template源码，而不是调用Golang的默认包。
-因为Golang默认包中自带的功能函数，并不能完全满足Hugo的诉求。
-在后续代码实现章节将会详细讲述，这里还是专注在基础架构的初步理解上。
+2. Render the page
+We already have the page information `pageState` in `pageRender`, 
+and the template information has been obtained through the previous step, 
+so it is time to start the actual `site.renderForTemplate` rendering.
+Or call the `Execute` method through `templateExec`.
+Because the current executor is of `texttemplate.executer` type, 
+the actual execution is in the `ExecuteWithContext` method of `texttemplate.executer`.
+Here is the Golang Template source code used directly, instead of calling the default package of Golang.
+Because the functions that come with Golang’s default package cannot fully meet Hugo’s demands.
+It will be described in detail in the subsequent code implementation chapters, 
+and here we still focus on the initial understanding of the infrastructure.
 
-#### 小结
+#### summary
 
 ![Template Cycle](images/6.1-template-cycle.svg)
 
-从Golang Template应用示例开始，我们了解到了Golang中模板工作的基本流程。
-这有助于我们进一步理解Hugo的设计和实现。
+Starting from the Golang Template application example, we learned the basic process of template work in Golang.
+This helps us further understand the design and implementation of Hugo.
 
-通过对Hugo领域事件中模板强相关的核心事件进行分析，我们将Hugo模板的生命周期大致分为三个阶段：开始、准备、渲染。
+By analyzing the core events that are strongly related to templates in Hugo domain events, 
+we roughly divide the life cycle of Hugo templates into three stages: init, preparation, and rendering.
 
-为了立体的理解模板生命周期，我们不仅从领域事件进行梳理，还从代码结构进行分析。
-看到了Hugo是基于HTML和Text模板原型，帮助将所有的Layouts转换成Template，并存储在了Template命名空间中。
-还看到为了拓展Golang Template的功能，Hugo将强大的自定义函数保存在了执行器中。
-这让模板在渲染过程中，有了更多的帮手。
-而这一切，都封装在了对外统一提供的服务`templateExec`中，不仅对内进行封装，还对外提供了便捷。
+In order to understand the template life cycle three-dimensionally, we not only sort out the domain events, 
+but also analyze the code structure.
+Seeing that Hugo is based on HTML and Text template prototypes, 
+it helps convert all Layouts into Templates and stores them in the Template namespace.
+We also saw that in order to extend the functionality of the Golang Template, 
+Hugo saves powerful custom functions in the executor.
+This allows the template to have more helpers during the rendering process.
+And all of these are encapsulated in the service `templateExec` provided externally, 
+which not only encapsulates internally, but also provides convenience externally.
 
-还有更多有意思的事情，比如Hugo为什么不能直接用Golang内置的Template包，而要独立维护？
-我们也会在后续代码实现章节，进一步展开讲解。
-和大家一起，一探究竟。
+There are more interesting things, such as why can't Hugo directly use Golang's built-in Template package, 
+but maintain it independently?
+We will also further expand the explanation in the subsequent code implementation chapter.
+Together with everyone, find out.
 
-### 发布的流程
+### Publish process
 
 通过[模板的生命周期](#模板的生命周期)我们可以看到在最后的渲染阶段，先找到页面的Template，然后对页面进行渲染。
 这样我们就有了根据模板生成的待发布内容。
+Through [template life cycle](https://hugo.notes.sunwei.xyz/en/docs/how/arch/#%E6%A8%A1%E6%9D%BF%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F), we can see that in the final rendering stage, the Template of the page is first found, and then the page is rendered.
+In this way, we have the content to be published based on the template.
 
 站点发布主要的任务就是将作者所创作的内容，通过模板转换生成待发布的内容，按照站点的输出格式，写入到我们指定的文件目录。
 
