@@ -1,18 +1,21 @@
-# Hugo 游乐场
+# Hugo Playground
 
-使用Hugo构建站点的体验很棒。
-首先是构建速度快，其次是使用起来简单，一个`hugo`命令，我们的站点就已经就绪。
+The experience of building a site with Hugo is great.
+The first is that it is fast to build, and the second is that it is easy to use, 
+a `hugo` command, and our site is ready.
 
-在构建过程中，Hugo提供了丰富的内置功能函数，可以在构建过程中向你提供所需要的几乎任何站点相关的信息。
-通过可重用模板，让主题来帮助处理所有展示和布局相关的问题。
-让作者更专注在内容的创作上。
+During the construction process, 
+Hugo provides a wealth of built-in functions that can provide you with almost any site-related information you need during the construction process.
+Let the theme help with all presentation and layout related issues through reusable templates.
+Allow authors to focus more on content creation.
 
-## 游乐场
+## Playground
 
-站点构建的就将写好的内容，转化成Web服务器能理解的网站资源。
-比如我们写作的时候用的是Markdown格式，生成的网站资源通常是HTML格式。
+The construction of the site will transform the written content into website resources that the web server can understand.
+For example, when we write, we use Markdown format, and the generated website resources are usually in HTML format.
 
-下面是一个简单的初始化博客内容：
+
+Here is a simple initialization blog content:
 ```
 -- config.toml --
 theme = "mytheme"
@@ -37,16 +40,23 @@ Static Content
 ===
 
 ```
-可以看到我们自定义了一个主题**mytheme**，只有一个mytheme.txt文件，并没有实际的模板文件。
-这将会在下面的构建流程讲解中，帮助我们理解到主题是如何嵌套和加载的。
 
-我们的内容文件夹是**mycontent**，在blog目录下有一篇简单博文/blog/post.md。
-如果想要独立访问这篇博文，就需要为她生成一个HTML文件，这样我们就可以在浏览器中访问了。
+You can see that we have customized a theme **mytheme**, 
+there is only one mytheme.txt file, and there is no actual template file.
+This will help us understand how themes are nested and loaded in the construction process below.
 
-在样例中，为了生成首页和博客，我们还在layouts下创建了两个模板。
-一个是首页模板index.html，另一个则是单篇文章会用到的模板_default/single.html。
+Our content folder is **mycontent**, 
+and there is a simple blog post /blog/post.md under the blog directory.
+If you want to visit this blog post independently, 
+you need to generate an HTML file for her so that we can visit it in the browser.
 
-通过golang tools txtar解析上述文本，方便我们转换成如下结构的磁盘文件：
+In the sample, in order to generate the homepage and blog, 
+we also created two templates under layouts.
+One is the homepage template index.html, 
+and the other is the template _default/single.html that will be used in a single article.
+
+By parsing the above text through golang tools txtar, 
+it is convenient for us to convert it into a disk file with the following structure:
 ```
 .
 ├── config.toml
@@ -62,7 +72,9 @@ Static Content
     └── mytheme
         └── mytheme.txt
 ```
-通过Hugo命令进行构建，就能生成如下站点资源：
+
+Building through the Hugo command can generate the following site resources:
+
 ```
 ➜  public tree
 .
@@ -71,16 +83,19 @@ Static Content
 ├── index.html
 └── robots.txt
 ```
-并包含了我们想要的信息：
 
-### 站点首页
+and contains the information we want:
+
+### Site Home
+
 ```
 ➜  public cat index.html
 
 START:|config.toml|myproject.txt|:END:%
 ```
 
-### 博客页面
+### Blog Page
+
 ```
 ➜  public cat blog/index.html
 <h3 id="first-blog">first blog</h3>
@@ -93,23 +108,30 @@ Static Content
   %
 ```
 
-那Hugo的这个魔术到底是怎么变出来的呢？
+So how did Hugo's magic come about?
 
-为了了解Hugo构建的核心原理，通过对Hugo最新源码进行裁剪，移除当前阶段不必要的"噪音"。
-结合我们上面的实例，手动生成了一个最小可工作源码库 - [hugo游乐场](https://github.com/gitaction/hugo-palyground)。
-以保证我们在这个游乐场可以尽情地玩耍，专注于核心原理，享受整个源码的学习过程。
+In order to understand the core principles of Hugo construction, 
+the latest source code of Hugo is trimmed to remove unnecessary "noise" at the current stage.
+Combined with our above example, 
+a minimal working source library - [hugo playground](https://github.com/gitaction/hugo-palyground) was manually generated.
+To ensure that we can play to our heart's content in this playground, 
+focus on the core principles, and enjoy the entire source code learning process.
 
-通过命令:
+By command:
+
 ```
 git ls-files | grep '\.go' | xargs wc -l
 ```
-分别统计[gohugoio/hugo](https://github.com/gohugoio/hugo)和[hugo playground](https://github.com/gitaction/hugo-palyground)的代码行数。
-我们得到的数据分别是 **163075** 和 **33990** 行。
 
-**整整缩减了近四倍！**
+Count the code lines of [gohugoio/hugo](https://github.com/gohugoio/hugo) 
+and [hugo playground](https://github.com/gitaction/hugo-palyground) respectively.
+The data we get are **163075** and **33990** rows respectively.
 
-相信各位看官也会虎躯一震，信心倍增！看源码原来也可以这么开心。
-请准备好瓜子饮料小板凳，各位看官你细听分说。
+**It has been reduced by nearly four times! **
+
+I believe that all the judges will be shocked, 
+and their confidence will double! Looking at the source code can be so happy.
+Please prepare the melon seed drink bench, and listen carefully to the judges.
 
 ### Show Me The Code
 
