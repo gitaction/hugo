@@ -1,25 +1,21 @@
-<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Hugo 游乐场 # 使用Hugo构建站点的体验很棒。 首先是构建速度快，其次是使用起来简单，一个hugo命令，我们的站点就已经就绪。
-在构建过程中，Hugo提供了丰富的内置功能函数，可以在构建过程中向你提供所需要的几乎任何站点相关的信息。 通过可重用模板，让主题来帮助处理所有展示和布局相关的问题。 让作者更专注在内容的创作上。
-游乐场 # 站点构建的就将写好的内容，转化成Web服务器能理解的网站资源。 比如我们写作的时候用的是Markdown格式，生成的网站资源通常是HTML格式。
-下面是一个简单的初始化博客内容：
--- config.toml -- theme = &#34;mytheme&#34; contentDir = &#34;mycontent&#34; -- myproject.txt -- Hello project! -- themes/mytheme/mytheme.txt -- Hello theme! -- mycontent/blog/post.md -- --- title: &#34;Post Title&#34; --- ### first blog Hello Blog -- layouts/index.html -- {{ $entries := (readDir &#34;.&#34;) }} START:|{{ range $entry := $entries }}{{ if not $entry.IsDir }}{{ $entry.Name }}|{{ end }}{{ end }}:END: -- layouts/_default/single."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Hugo 游乐场 # 使用Hugo构建站点的体验很棒。 首先是构建速度快，其次是使用起来简单，一个hugo命令，我们的站点就已经就绪。
-在构建过程中，Hugo提供了丰富的内置功能函数，可以在构建过程中向你提供所需要的几乎任何站点相关的信息。 通过可重用模板，让主题来帮助处理所有展示和布局相关的问题。 让作者更专注在内容的创作上。
-游乐场 # 站点构建的就将写好的内容，转化成Web服务器能理解的网站资源。 比如我们写作的时候用的是Markdown格式，生成的网站资源通常是HTML格式。
-下面是一个简单的初始化博客内容：
--- config.toml -- theme = &#34;mytheme&#34; contentDir = &#34;mycontent&#34; -- myproject.txt -- Hello project! -- themes/mytheme/mytheme.txt -- Hello theme! -- mycontent/blog/post.md -- --- title: &#34;Post Title&#34; --- ### first blog Hello Blog -- layouts/index.html -- {{ $entries := (readDir &#34;.&#34;) }} START:|{{ range $entry := $entries }}{{ if not $entry.IsDir }}{{ $entry.Name }}|{{ end }}{{ end }}:END: -- layouts/_default/single."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/en/docs/how/playground/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-02-07T19:41:29+08:00"><title>Index | Deep Understanding of Hugo</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.64afecd49230cb68b26dd9a095f945a184a3887ca2b28419d5aaf1610c644656.js integrity="sha256-ZK/s1JIwy2iybdmglflFoYSjiHyisoQZ1arxYQxkRlY=" crossorigin=anonymous></script>
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Hugo Playground # The experience of building a site with Hugo is great. The first is that it is fast to build, and the second is that it is easy to use, a hugo command, and our site is ready.
+During the construction process, Hugo provides a wealth of built-in functions that can provide you with almost any site-related information you need during the construction process. Let the theme help with all presentation and layout related issues through reusable templates."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Hugo Playground # The experience of building a site with Hugo is great. The first is that it is fast to build, and the second is that it is easy to use, a hugo command, and our site is ready.
+During the construction process, Hugo provides a wealth of built-in functions that can provide you with almost any site-related information you need during the construction process. Let the theme help with all presentation and layout related issues through reusable templates."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/en/docs/how/playground/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-02-13T20:03:11+08:00"><title>Index | Deep Understanding of Hugo</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.8ffc7540214fa0ea1be60156a809a9db2d8cf47717975e521b4dac9ba78aecb6.js integrity="sha256-j/x1QCFPoOob5gFWqAmp2y2M9HcXl15SG02sm6eK7LY=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/en/><span>Deep Understanding of Hugo</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
 <label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
 English</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/>Chinese</a></li></ul></li></ul><ul><li><p><strong>Hugo usage examples</strong></p></li><li><p><a href=/en/docs/what/site/>Create Site</a></p></li><li><p><a href=/en/docs/what/theme/>Custom Theme</a><br></p></li><li><p><strong>Hugo Architecture</strong></p></li><li><p><a href=/en/docs/how/playground/ class=active>Playground</a></p></li><li><p><a href=/en/docs/how/event-storming/>Event Storming</a></p></li><li><p><a href=/en/docs/how/arch/>Architecture</a><br></p></li><li><p><a href=/en/docs/code/><strong>Source Code</strong></a></p></li><li><p><a href=/en/docs/code/config/>Configuration</a></p></li><li><p><a href=/en/docs/code/deps/>Deps Management</a></p><ul><li><a href=/en/docs/code/deps/pathspec/>PathSpec</a></li><li><a href=/en/docs/code/deps/contentspec/>ContentSpec</a></li></ul></li><li><p><a href=/en/docs/code/site/>Site Creating</a></p><ul><li><a href=/en/docs/code/site/create/>Create Site</a></li><li><a href=/en/docs/code/site/resources/>Load Resources</a></li><li><a href=/en/docs/code/site/markdown/>Markdown</a></li></ul></li><li><p><a href=/en/docs/code/build/>Site Building</a></p><ul><li><a href=/en/docs/code/build/template/>Template Exec</a><br></li></ul></li></ul><ul><li><a href=/en/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
 <strong>Index</strong>
-<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#hugo-游乐场>Hugo 游乐场</a><ul><li><a href=#游乐场>游乐场</a><ul><li><a href=#站点首页>站点首页</a></li><li><a href=#博客页面>博客页面</a></li><li><a href=#show-me-the-code>Show Me The Code</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=hugo-游乐场>Hugo 游乐场
-<a class=anchor href=#hugo-%e6%b8%b8%e4%b9%90%e5%9c%ba>#</a></h1><p>使用Hugo构建站点的体验很棒。
-首先是构建速度快，其次是使用起来简单，一个<code>hugo</code>命令，我们的站点就已经就绪。</p><p>在构建过程中，Hugo提供了丰富的内置功能函数，可以在构建过程中向你提供所需要的几乎任何站点相关的信息。
-通过可重用模板，让主题来帮助处理所有展示和布局相关的问题。
-让作者更专注在内容的创作上。</p><h2 id=游乐场>游乐场
-<a class=anchor href=#%e6%b8%b8%e4%b9%90%e5%9c%ba>#</a></h2><p>站点构建的就将写好的内容，转化成Web服务器能理解的网站资源。
-比如我们写作的时候用的是Markdown格式，生成的网站资源通常是HTML格式。</p><p>下面是一个简单的初始化博客内容：</p><pre tabindex=0><code>-- config.toml --
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#hugo-playground>Hugo Playground</a><ul><li><a href=#playground>Playground</a><ul><li><a href=#site-home>Site Home</a></li><li><a href=#blog-page>Blog Page</a></li><li><a href=#show-me-the-code>Show Me The Code</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=hugo-playground>Hugo Playground
+<a class=anchor href=#hugo-playground>#</a></h1><p>The experience of building a site with Hugo is great.
+The first is that it is fast to build, and the second is that it is easy to use,
+a <code>hugo</code> command, and our site is ready.</p><p>During the construction process,
+Hugo provides a wealth of built-in functions that can provide you with almost any site-related information you need during the construction process.
+Let the theme help with all presentation and layout related issues through reusable templates.
+Allow authors to focus more on content creation.</p><h2 id=playground>Playground
+<a class=anchor href=#playground>#</a></h2><p>The construction of the site will transform the written content into website resources that the web server can understand.
+For example, when we write, we use Markdown format, and the generated website resources are usually in HTML format.</p><p>Here is a simple initialization blog content:</p><pre tabindex=0><code>-- config.toml --
 theme = &#34;mytheme&#34;
 contentDir = &#34;mycontent&#34;
 -- myproject.txt --
@@ -40,10 +36,16 @@ START:|{{ range $entry := $entries }}{{ if not $entry.IsDir }}{{ $entry.Name }}|
 ===
 Static Content
 ===
-</code></pre><p>可以看到我们自定义了一个主题<strong>mytheme</strong>，只有一个mytheme.txt文件，并没有实际的模板文件。
-这将会在下面的构建流程讲解中，帮助我们理解到主题是如何嵌套和加载的。</p><p>我们的内容文件夹是<strong>mycontent</strong>，在blog目录下有一篇简单博文/blog/post.md。
-如果想要独立访问这篇博文，就需要为她生成一个HTML文件，这样我们就可以在浏览器中访问了。</p><p>在样例中，为了生成首页和博客，我们还在layouts下创建了两个模板。
-一个是首页模板index.html，另一个则是单篇文章会用到的模板_default/single.html。</p><p>通过golang tools txtar解析上述文本，方便我们转换成如下结构的磁盘文件：</p><pre tabindex=0><code>.
+</code></pre><p>You can see that we have customized a theme <strong>mytheme</strong>,
+there is only one mytheme.txt file, and there is no actual template file.
+This will help us understand how themes are nested and loaded in the construction process below.</p><p>Our content folder is <strong>mycontent</strong>,
+and there is a simple blog post /blog/post.md under the blog directory.
+If you want to visit this blog post independently,
+you need to generate an HTML file for her so that we can visit it in the browser.</p><p>In the sample, in order to generate the homepage and blog,
+we also created two templates under layouts.
+One is the homepage template index.html,
+and the other is the template _default/single.html that will be used in a single article.</p><p>By parsing the above text through golang tools txtar,
+it is convenient for us to convert it into a disk file with the following structure:</p><pre tabindex=0><code>.
 ├── config.toml
 ├── layouts
 │  ├── _default
@@ -56,18 +58,18 @@ Static Content
 └── themes
     └── mytheme
         └── mytheme.txt
-</code></pre><p>通过Hugo命令进行构建，就能生成如下站点资源：</p><pre tabindex=0><code>➜  public tree
+</code></pre><p>Building through the Hugo command can generate the following site resources:</p><pre tabindex=0><code>➜  public tree
 .
 ├── blog
 │   └── index.html
 ├── index.html
 └── robots.txt
-</code></pre><p>并包含了我们想要的信息：</p><h3 id=站点首页>站点首页
-<a class=anchor href=#%e7%ab%99%e7%82%b9%e9%a6%96%e9%a1%b5>#</a></h3><pre tabindex=0><code>➜  public cat index.html
+</code></pre><p>and contains the information we want:</p><h3 id=site-home>Site Home
+<a class=anchor href=#site-home>#</a></h3><pre tabindex=0><code>➜  public cat index.html
 
 START:|config.toml|myproject.txt|:END:%
-</code></pre><h3 id=博客页面>博客页面
-<a class=anchor href=#%e5%8d%9a%e5%ae%a2%e9%a1%b5%e9%9d%a2>#</a></h3><pre tabindex=0><code>➜  public cat blog/index.html
+</code></pre><h3 id=blog-page>Blog Page
+<a class=anchor href=#blog-page>#</a></h3><pre tabindex=0><code>➜  public cat blog/index.html
 &lt;h3 id=&#34;first-blog&#34;&gt;first blog&lt;/h3&gt;
 &lt;p&gt;Hello Blog&lt;/p&gt;
 
@@ -76,15 +78,20 @@ Static Content
 ===
 
   %
-</code></pre><p>那Hugo的这个魔术到底是怎么变出来的呢？</p><p>为了了解Hugo构建的核心原理，通过对Hugo最新源码进行裁剪，移除当前阶段不必要的"噪音"。
-结合我们上面的实例，手动生成了一个最小可工作源码库 -
-<a href=https://github.com/gitaction/hugo-palyground>hugo游乐场</a>。
-以保证我们在这个游乐场可以尽情地玩耍，专注于核心原理，享受整个源码的学习过程。</p><p>通过命令:</p><pre tabindex=0><code>git ls-files | grep &#39;\.go&#39; | xargs wc -l
-</code></pre><p>分别统计
-<a href=https://github.com/gohugoio/hugo>gohugoio/hugo</a>和
-<a href=https://github.com/gitaction/hugo-palyground>hugo playground</a>的代码行数。
-我们得到的数据分别是 <strong>163075</strong> 和 <strong>33990</strong> 行。</p><p><strong>整整缩减了近四倍！</strong></p><p>相信各位看官也会虎躯一震，信心倍增！看源码原来也可以这么开心。
-请准备好瓜子饮料小板凳，各位看官你细听分说。</p><h3 id=show-me-the-code>Show Me The Code
+</code></pre><p>So how did Hugo&rsquo;s magic come about?</p><p>In order to understand the core principles of Hugo construction,
+the latest source code of Hugo is trimmed to remove unnecessary &ldquo;noise&rdquo; at the current stage.
+Combined with our above example,
+a minimal working source library -
+<a href=https://github.com/gitaction/hugo-palyground>hugo playground</a> was manually generated.
+To ensure that we can play to our heart&rsquo;s content in this playground,
+focus on the core principles, and enjoy the entire source code learning process.</p><p>By command:</p><pre tabindex=0><code>git ls-files | grep &#39;\.go&#39; | xargs wc -l
+</code></pre><p>Count the code lines of
+<a href=https://github.com/gohugoio/hugo>gohugoio/hugo</a>
+and
+<a href=https://github.com/gitaction/hugo-palyground>hugo playground</a> respectively.
+The data we get are <strong>163075</strong> and <strong>33990</strong> rows respectively.</p><p>**It has been reduced by nearly four times! **</p><p>I believe that all the judges will be shocked,
+and their confidence will double! Looking at the source code can be so happy.
+Please prepare the melon seed drink bench, and listen carefully to the judges.</p><h3 id=show-me-the-code>Show Me The Code
 <a class=anchor href=#show-me-the-code>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
@@ -125,6 +132,6 @@ Static Content
 </span></span><span style=display:flex><span>workingDir/config.toml
 </span></span><span style=display:flex><span>theme = &#39;mytheme&#39;
 </span></span><span style=display:flex><span>File end.
-</span></span></code></pre></div><p><a href=https://c.sunwei.xyz/txtar.html>Try it yourself</a></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/commit/1ef7760866ad1f04b1423099007532b22f57a593 title='Last modified by sunwei | February 7, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
-<span>February 7, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content/docs/how/playground/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
-<span>Edit this page</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#hugo-游乐场>Hugo 游乐场</a><ul><li><a href=#游乐场>游乐场</a><ul><li><a href=#站点首页>站点首页</a></li><li><a href=#博客页面>博客页面</a></li><li><a href=#show-me-the-code>Show Me The Code</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
+</span></span></code></pre></div><p><a href=https://c.sunwei.xyz/txtar.html>Try it yourself</a></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/commit/df6c18498055ccad94565784c56c90639174a0b2 title='Last modified by sunwei | February 13, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>February 13, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content/docs/how/playground/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#hugo-playground>Hugo Playground</a><ul><li><a href=#playground>Playground</a><ul><li><a href=#site-home>Site Home</a></li><li><a href=#blog-page>Blog Page</a></li><li><a href=#show-me-the-code>Show Me The Code</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
