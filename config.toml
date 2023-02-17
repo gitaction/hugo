@@ -3,6 +3,7 @@ title = 'Deep Understanding of Hugo'
 theme = "github.com/sunwei/hugo-book"
 publishDir = "public"
 defaultContentLanguage = "zh"
+googleAnalytics = "G-STPKPBQR5Y"
 
 # Book configuration
 disablePathToLower = true
