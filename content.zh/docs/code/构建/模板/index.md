@@ -65,7 +65,7 @@ Parse为什么可以读懂这些字符信息呢，她依靠的是内部了词法
 
 我们拿一段模板举个例子：
 
-~[Template Parser example](images/12.3.1-Hugo-Sites-Template-parser.svg)
+![Template Parser example](images/12.3.1-Hugo-Sites-Template-parser.svg)
 
 从上例中，我们可以看到，左上方是输入的信息。
 包含一篇博客 - post.md，和一个模板 - single.html。
