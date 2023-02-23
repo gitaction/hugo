@@ -13,5 +13,4 @@ templ, err := prototype.New(info.name).Parse(info.template) 源码里用的是pr
 我们先来看第一步： 模板解析。
 词法解析 - parse # 创建Deps的最后一步是loadResources，其中主要指的是Template资源。 在创建templateExec实例的过程中，就需要加载hugo默认和用户创建的模板。 加载模板后，获取了模板的字节信息，要想为我们所有，首先要读懂这些字节，这时，我们就用到了解析Parse，而且是由text模板提供的。 Parse为什么可以读懂这些字符信息呢，她依靠的是内部了词法分析器lex - lexer，分析器需要对action block的语义有充分的理解。 读懂后转换为方便后续操作的数据结构tree，在hugo中实际载体是listNode类型。
 我们拿一段模板举个例子：
-~ Template Parser example
-从上例中，我们可以看到，左上方是输入的信息。 包含一篇博客 - post.md，和一个模板 - single.</description></item></channel></rss>
+从上例中，我们可以看到，左上方是输入的信息。 包含一篇博客 - post.md，和一个模板 - single.html。 通过转换会得到最右边的输出网页内容。 其中，包含在模板中第一行的信息，剩下的是由博客提供的信息，其中的特殊字符，还被进行了转义。</description></item></channel></rss>

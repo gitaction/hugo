@@ -62,8 +62,7 @@ templ, err := prototype.New(info.name).Parse(info.template) 源码里用的是pr
 我们先来看第一步： 模板解析。
 词法解析 - parse # 创建Deps的最后一步是loadResources，其中主要指的是Template资源。 在创建templateExec实例的过程中，就需要加载hugo默认和用户创建的模板。 加载模板后，获取了模板的字节信息，要想为我们所有，首先要读懂这些字节，这时，我们就用到了解析Parse，而且是由text模板提供的。 Parse为什么可以读懂这些字符信息呢，她依靠的是内部了词法分析器lex - lexer，分析器需要对action block的语义有充分的理解。 读懂后转换为方便后续操作的数据结构tree，在hugo中实际载体是listNode类型。
 我们拿一段模板举个例子：
-~ Template Parser example
-从上例中，我们可以看到，左上方是输入的信息。 包含一篇博客 - post.md，和一个模板 - single.</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/docs/code/%E7%AB%99%E7%82%B9/markdown/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/code/%E7%AB%99%E7%82%B9/markdown/</guid><description>Markdown文件是如何被翻译成HTML的 # Markdown是一种文件格式，也是一种约定的语言。 之所以大受欢迎，是因为Markdown其简洁的语法。 不仅让作者在写作的过程中专注在内容创作上，让读者流畅的进行阅读。 还可以将内容直接发布到互联网上，方便传阅，让作品可以轻松的接触到更多的读者。
+从上例中，我们可以看到，左上方是输入的信息。 包含一篇博客 - post.md，和一个模板 - single.html。 通过转换会得到最右边的输出网页内容。 其中，包含在模板中第一行的信息，剩下的是由博客提供的信息，其中的特殊字符，还被进行了转义。</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/docs/code/%E7%AB%99%E7%82%B9/markdown/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/code/%E7%AB%99%E7%82%B9/markdown/</guid><description>Markdown文件是如何被翻译成HTML的 # Markdown是一种文件格式，也是一种约定的语言。 之所以大受欢迎，是因为Markdown其简洁的语法。 不仅让作者在写作的过程中专注在内容创作上，让读者流畅的进行阅读。 还可以将内容直接发布到互联网上，方便传阅，让作品可以轻松的接触到更多的读者。
 如果只是为了写作，传统的文本编辑器提供了更强大的样式支持，哪怕是高要求的印刷出版物，一样可以百分百支持。 随着互联网的发展，将文章放到网上已然成了一项基本需求。
 而传统的文本编辑器上网的能力似乎不能满足现在的普遍需求。 一是这些强大的编辑器通常出自某一家大公司，并不是行业标准。 种类繁多不说，各家标准也不同，还没有全部公开，这些都让浏览器团队有心无力。
 如果说只是要将内容放到网上，那传统的HTML不行吗？ 这就是浏览器钦定的格式啊。 确实如此，HTML是方便了浏览器解析、渲染和展示，但对于写作者来说，并不友好，光标签种类就几十种，更不要提各种不同标签的属性了。
