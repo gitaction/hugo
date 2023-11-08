@@ -2,6 +2,8 @@
 headless: true
 ---
 
+- [**引言**]({{< relref "/docs/introduction" >}})
+- 
 - **Hugo使用实例**
 - [创建站点]({{< relref "/docs/what/个人站点" >}})
 - [自定义主题]({{< relref "/docs/what/自定义主题" >}})

@@ -1,5 +1,5 @@
 baseURL = 'https://hugo.notes.sunwei.xyz/'
-title = 'Deep Understanding of Hugo'
+title = 'Deep Understanding of Hugo: Become an domain expert in SSG'
 theme = "github.com/sunwei/hugo-book"
 publishDir = "public"
 defaultContentLanguage = "zh"
