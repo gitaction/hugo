@@ -19,9 +19,13 @@ headless: true
 <br />
 
 
-- **Hugo使用实例**
-- [创建站点]({{< relref "/docs/what/个人站点" >}})
-- [自定义主题]({{< relref "/docs/what/自定义主题" >}})
+- **第二章 DDD简介**
+  - [2.1 DDD简介]({{< relref "/docs/chapter/02/ddd" >}})
+  - [2.2 DDD在本书中的应用]({{< relref "/docs/chapter/02/dddplayer" >}})
+<br />
+
+- [**第三章 Hugo源码精读**]({{< relref "/docs/chapter/03" >}})
+  - [3.1 源码阅读步骤介绍]({{< relref "/docs/chapter/03/read" >}})
 <br />
 
 - **Hugo架构**

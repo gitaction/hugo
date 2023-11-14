@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1769pt" height="836pt" viewBox="0.00 0.00 1769.00 835.80">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 831.8)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-831.8 1765,-831.8 1765,4 -4,4"/>
+<text text-anchor="middle" x="880.5" y="-82" font-family="Times,serif" font-size="20.00" fill="#000000">github.com/dddplayer/markdown</text>
+<text text-anchor="middle" x="880.5" y="-58" font-family="Times,serif" font-size="20.00" fill="#000000">Domain Model</text>
+<text text-anchor="middle" x="880.5" y="-10" font-family="Times,serif" font-size="20.00" fill="#000000">Powered by DDD Player</text>
+<g id="clust7" class="cluster">
+<title>cluster_dbWrsun</title>
+<polygon fill="none" stroke="#000000" points="1312,-241 1312,-645 1753,-645 1753,-241 1312,-241"/>
+<text text-anchor="middle" x="1532.5" y="-628.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/markdown/internal/domain/document</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster_ddd_concept</title>
+<polygon fill="none" stroke="#000000" points="8,-679.8 8,-819.8 500,-819.8 500,-679.8 8,-679.8"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_dcXRFqY</title>
+<polygon fill="none" stroke="#000000" points="508,-160 508,-800.6 1304,-800.6 1304,-160 508,-160"/>
+<text text-anchor="middle" x="906" y="-784" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/markdown</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_deDS3Ut</title>
+<polygon fill="none" stroke="#000000" points="516,-168 516,-533.4 954,-533.4 954,-168 516,-168"/>
+<text text-anchor="middle" x="735" y="-516.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/markdown/internal/domain/parser</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_dbPoIoJ</title>
+<polygon fill="none" stroke="#000000" points="962,-168 962,-533.4 1296,-533.4 1296,-168 962,-168"/>
+<text text-anchor="middle" x="1129" y="-516.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/markdown/internal/domain/reader</text>
+</g>
+<!-- ddd_concept -->
+<g id="node1" class="node">
+<title>ddd_concept</title>
+<polygon fill="none" stroke="#ffffff" stroke-dasharray="1,5" points="492,-811.8 16,-811.8 16,-687.8 492,-687.8 492,-811.8"/>
+<polygon fill="transparent" stroke="transparent" points="26,-769.8 26,-805.8 140,-805.8 140,-769.8 26,-769.8"/>
+<text text-anchor="start" x="35.5582" y="-783.2" font-family="Times,serif" font-size="14.00" fill="#000000">BoundedContext</text>
+<polygon fill="#ffd966" stroke="transparent" points="142,-769.8 142,-805.8 247,-805.8 247,-769.8 142,-769.8"/>
+<text text-anchor="start" x="151.7356" y="-783.2" font-family="Times,serif" font-size="14.00" fill="#000000">AggregateRoot</text>
+<polygon fill="#ffe599" stroke="transparent" points="249,-769.8 249,-805.8 318,-805.8 318,-769.8 249,-769.8"/>
+<text text-anchor="start" x="266.3878" y="-783.2" font-family="Times,serif" font-size="14.00" fill="#000000">Entity</text>
+<polygon fill="#a2c4c9" stroke="transparent" points="320,-769.8 320,-805.8 410,-805.8 410,-769.8 320,-769.8"/>
+<text text-anchor="start" x="329.6283" y="-783.2" font-family="Times,serif" font-size="14.00" fill="#000000">ValueObject</text>
+<polygon fill="#e69138" stroke="transparent" points="412,-769.8 412,-805.8 482,-805.8 482,-769.8 412,-769.8"/>
+<text text-anchor="start" x="426.0112" y="-783.2" font-family="Times,serif" font-size="14.00" fill="#000000">Service</text>
+<polygon fill="#ffffff" stroke="transparent" points="26,-731.8 26,-767.8 140,-767.8 140,-731.8 26,-731.8"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="142,-731.8 142,-767.8 247,-767.8 247,-731.8 142,-731.8"/>
+<text text-anchor="start" x="165.3338" y="-745.2" font-family="Times,serif" font-size="14.00" fill="#000000">Command</text>
+<polygon fill="#f6b26b" stroke="transparent" points="249,-731.8 249,-767.8 318,-767.8 318,-731.8 249,-731.8"/>
+<text text-anchor="start" x="267.1711" y="-745.2" font-family="Times,serif" font-size="14.00" fill="#000000">Event</text>
+<polygon fill="#cfe2f3" stroke="transparent" points="320,-731.8 320,-767.8 410,-767.8 410,-731.8 320,-731.8"/>
+<text text-anchor="start" x="343.6185" y="-745.2" font-family="Times,serif" font-size="14.00" fill="#000000">Factory</text>
+<polygon fill="#b4a7d6" stroke="transparent" points="412,-731.8 412,-767.8 482,-767.8 482,-731.8 412,-731.8"/>
+<text text-anchor="start" x="431.8345" y="-745.2" font-family="Times,serif" font-size="14.00" fill="#000000">Class</text>
+<polygon fill="#ffffff" stroke="transparent" points="26,-693.8 26,-729.8 140,-729.8 140,-693.8 26,-693.8"/>
+<polygon fill="#f4cccc" stroke="transparent" points="142,-693.8 142,-729.8 247,-729.8 247,-693.8 142,-693.8"/>
+<text text-anchor="start" x="172.3492" y="-707.2" font-family="Times,serif" font-size="14.00" fill="#000000">General</text>
+<polygon fill="#ead1dc" stroke="transparent" points="249,-693.8 249,-729.8 318,-729.8 318,-693.8 249,-693.8"/>
+<text text-anchor="start" x="258.6108" y="-707.2" font-family="Times,serif" font-size="14.00" fill="#000000">Function</text>
+<polygon fill="#9fc5e8" stroke="transparent" points="320,-693.8 320,-729.8 410,-729.8 410,-693.8 320,-693.8"/>
+<text text-anchor="start" x="340.1346" y="-707.2" font-family="Times,serif" font-size="14.00" fill="#000000">Interface</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="412,-693.8 412,-729.8 482,-729.8 482,-693.8 412,-693.8"/>
+<text text-anchor="start" x="421.7279" y="-707.2" font-family="Times,serif" font-size="14.00" fill="#000000">Attribute</text>
+</g>
+<!-- dcXRFqY -->
+<g id="node2" class="node">
+<title>dcXRFqY</title>
+<polygon fill="#ffffff" stroke="#000000" points="1256.8725,-767.8 1181.1275,-767.8 1181.1275,-731.8 1256.8725,-731.8 1256.8725,-767.8"/>
+<text text-anchor="middle" x="1219" y="-745.6" font-family="Times,serif" font-size="14.00" fill="#000000">markdown</text>
+</g>
+<!-- dels9Bm -->
+<g id="node3" class="node">
+<title>dels9Bm</title>
+<polygon fill="#ffd966" stroke="#000000" points="856,-500.6 802,-500.6 802,-464.6 856,-464.6 856,-500.6"/>
+<text text-anchor="middle" x="829" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">Parser</text>
+</g>
+<!-- dcXRFqY&#45;&gt;dels9Bm -->
+<g id="edge13" class="edge">
+<title>dcXRFqY-&gt;dels9Bm</title>
+<g id="a_edge13"><a xlink:title="markdown -&gt; Parser: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1192.5003,-731.6443C1124.4659,-685.032 943.5283,-561.0666 865.5732,-507.6573"/>
+<polygon fill="#000000" stroke="#000000" points="865.1788,-507.3872 857.9683,-507.2958 855.2793,-500.6047 862.4899,-500.6961 865.1788,-507.3872"/>
+</a>
+</g>
+<text text-anchor="middle" x="1065.5" y="-590" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddmmAHi -->
+<g id="node9" class="node">
+<title>ddmmAHi</title>
+<polygon fill="#ffd966" stroke="#000000" points="1461.3177,-612.2 1386.6823,-612.2 1386.6823,-576.2 1461.3177,-576.2 1461.3177,-612.2"/>
+<text text-anchor="middle" x="1424" y="-590" font-family="Times,serif" font-size="14.00" fill="#000000">Document</text>
+</g>
+<!-- dcXRFqY&#45;&gt;ddmmAHi -->
+<g id="edge2" class="edge">
+<title>dcXRFqY-&gt;ddmmAHi</title>
+<g id="a_edge2"><a xlink:title="markdown -&gt; Document: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1242.9173,-731.6462C1279.4098,-703.9475 1349.1137,-651.0406 1390.5866,-619.5616"/>
+<polygon fill="#000000" stroke="#000000" points="1390.6766,-619.4933 1393.0374,-612.6796 1400.235,-612.2382 1397.8742,-619.0519 1390.6766,-619.4933"/>
+</a>
+</g>
+<text text-anchor="middle" x="1348.5" y="-657.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dF3VHy -->
+<g id="node16" class="node">
+<title>dF3VHy</title>
+<polygon fill="#ffd966" stroke="#000000" points="1246.6422,-500.6 1191.3578,-500.6 1191.3578,-464.6 1246.6422,-464.6 1246.6422,-500.6"/>
+<text text-anchor="middle" x="1219" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">Reader</text>
+</g>
+<!-- dcXRFqY&#45;&gt;dF3VHy -->
+<g id="edge6" class="edge">
+<title>dcXRFqY-&gt;dF3VHy</title>
+<g id="a_edge6"><a xlink:title="markdown -&gt; Reader: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1219,-731.4343C1219,-686.1347 1219,-568.7052 1219,-512.9042"/>
+<polygon fill="#000000" stroke="#000000" points="1219.0001,-512.7409 1215,-506.741 1219,-500.7409 1223,-506.7409 1219.0001,-512.7409"/>
+</a>
+</g>
+<text text-anchor="middle" x="1222.5" y="-590" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddhuHCw -->
+<g id="node4" class="node">
+<title>ddhuHCw</title>
+<polygon fill="#ffe599" stroke="#000000" points="578,-212 524,-212 524,-176 578,-176 578,-212"/>
+<text text-anchor="middle" x="551" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">block</text>
+</g>
+<!-- dels9Bm&#45;&gt;ddhuHCw -->
+<g id="edge11" class="edge">
+<title>dels9Bm-&gt;ddhuHCw</title>
+<g id="a_edge11"><a xlink:title="Parser -&gt; block: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M801.8786,-480.4321C737.3433,-474.5291 580,-455.437 580,-409.6 580,-409.6 580,-409.6 580,-267 580,-251.7063 574.4345,-235.8026 568.1798,-222.7584"/>
+<polygon fill="#000000" stroke="#000000" points="568.1794,-222.7576 561.8575,-219.2885 562.6283,-212.1187 568.9502,-215.5878 568.1794,-222.7576"/>
+</a>
+</g>
+<text text-anchor="middle" x="583.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dPM8K9 -->
+<g id="node5" class="node">
+<title>dPM8K9</title>
+<polygon fill="#ffe599" stroke="#000000" points="656.3207,-212 595.6793,-212 595.6793,-176 656.3207,-176 656.3207,-212"/>
+<text text-anchor="middle" x="626" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">heading</text>
+</g>
+<!-- dels9Bm&#45;&gt;dPM8K9 -->
+<g id="edge21" class="edge">
+<title>dels9Bm-&gt;dPM8K9</title>
+<g id="a_edge21"><a xlink:title="Parser -&gt; heading: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M801.8857,-477.2307C752.5163,-466.6718 653,-441.4392 653,-409.6 653,-409.6 653,-409.6 653,-267 653,-251.9988 647.9225,-236.2802 642.1712,-223.2874"/>
+<polygon fill="#000000" stroke="#000000" points="642.0451,-223.0262 635.8338,-219.3629 636.8264,-212.2204 643.0377,-215.8837 642.0451,-223.0262"/>
+</a>
+</g>
+<text text-anchor="middle" x="656.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddO1Ey6 -->
+<g id="node6" class="node">
+<title>ddO1Ey6</title>
+<polygon fill="#ffe599" stroke="#000000" points="783.8062,-212 674.1938,-212 674.1938,-176 783.8062,-176 783.8062,-212"/>
+<text text-anchor="middle" x="729" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">ParserCollection</text>
+</g>
+<!-- dels9Bm&#45;&gt;ddO1Ey6 -->
+<g id="edge15" class="edge">
+<title>dels9Bm-&gt;ddO1Ey6</title>
+<g id="a_edge15"><a xlink:title="Parser -&gt; ParserCollection: &#10;&#10;From: parser.go (Line: 8, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M801.747,-474.7639C773.3652,-464.7329 733,-444.357 733,-409.6 733,-409.6 733,-409.6 733,-267 733,-252.2775 732.1788,-235.9099 731.2806,-222.4104"/>
+<polygon fill="#000000" stroke="#000000" points="734.7611,-222.0106 730.558,-212.2851 727.7788,-222.509 734.7611,-222.0106"/>
+</a>
+</g>
+<text text-anchor="middle" x="736.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dels9Bm&#45;&gt;ddO1Ey6 -->
+<g id="edge22" class="edge">
+<title>dels9Bm-&gt;ddO1Ey6</title>
+<g id="a_edge22"><a xlink:title="Parser -&gt; ParserCollection: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M809.4919,-464.4283C796.9546,-450.7218 783,-430.7217 783,-409.6 783,-409.6 783,-409.6 783,-267 783,-249.3675 772.6914,-233.2073 761.0824,-220.5989"/>
+<polygon fill="#000000" stroke="#000000" points="761.0287,-220.5455 753.9551,-219.1441 752.5281,-212.0756 759.6017,-213.477 761.0287,-220.5455"/>
+</a>
+</g>
+<text text-anchor="middle" x="786.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dcvYPN -->
+<g id="node7" class="node">
+<title>dcvYPN</title>
+<polygon fill="#ffe599" stroke="#000000" points="856,-212 802,-212 802,-176 856,-176 856,-212"/>
+<text text-anchor="middle" x="829" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">root</text>
+</g>
+<!-- dels9Bm&#45;&gt;dcvYPN -->
+<g id="edge14" class="edge">
+<title>dels9Bm-&gt;dcvYPN</title>
+<g id="a_edge14"><a xlink:title="Parser -&gt; root: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M829,-464.2997C829,-449.5349 829,-428.2302 829,-409.6 829,-409.6 829,-409.6 829,-267 829,-253.0273 829,-237.5503 829,-224.4562"/>
+<polygon fill="#000000" stroke="#000000" points="829.0001,-224.3003 825,-218.3004 829,-212.3003 833,-218.3003 829.0001,-224.3003"/>
+</a>
+</g>
+<text text-anchor="middle" x="832.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbpcJiT -->
+<g id="node8" class="node">
+<title>dbpcJiT</title>
+<polygon fill="#ffe599" stroke="#000000" points="945.965,-212 874.035,-212 874.035,-176 945.965,-176 945.965,-212"/>
+<text text-anchor="middle" x="910" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">paragraph</text>
+</g>
+<!-- dels9Bm&#45;&gt;dbpcJiT -->
+<g id="edge7" class="edge">
+<title>dels9Bm-&gt;dbpcJiT</title>
+<g id="a_edge7"><a xlink:title="Parser -&gt; paragraph: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M856.0137,-465.2766C872.7215,-452.2478 891,-432.7126 891,-409.6 891,-409.6 891,-409.6 891,-267 891,-252.5107 894.549,-236.9101 898.5793,-223.8652"/>
+<polygon fill="#000000" stroke="#000000" points="898.6576,-223.6325 896.7837,-216.6691 902.4907,-212.2611 904.3646,-219.2245 898.6576,-223.6325"/>
+</a>
+</g>
+<text text-anchor="middle" x="894.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddmmAHi&#45;&gt;dels9Bm -->
+<g id="edge3" class="edge">
+<title>ddmmAHi-&gt;dels9Bm</title>
+<g id="a_edge3"><a xlink:title="Document -&gt; Parser: &#10;&#10;From: document.go (Line: 17, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1386.7981,-589.3194C1353.1282,-584.1287 1302.5902,-574.3896 1261,-558.2 1247.1191,-552.7967 1246.3271,-545.4753 1232,-541.4 1173.4094,-524.734 1017.6742,-545.6314 958,-533.4 925.5919,-526.7573 890.7993,-512.6047 865.5239,-500.9207"/>
+<polygon fill="#000000" stroke="#000000" points="866.8653,-497.6836 856.3277,-496.5843 863.8798,-504.0151 866.8653,-497.6836"/>
+</a>
+</g>
+<text text-anchor="middle" x="1264.5" y="-545.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddmmAHi&#45;&gt;dels9Bm -->
+<g id="edge23" class="edge">
+<title>ddmmAHi-&gt;dels9Bm</title>
+<g id="a_edge23"><a xlink:title="Document -&gt; Parser: &#10;&#10;From: document.go (Line: 85, Column: 25) To: parser.go (Line: 31, Column: 18)&#10;">
+<path fill="none" stroke="#000000" d="M1386.7452,-587.3246C1359.8999,-581.5749 1323.2299,-572.0618 1293,-558.2 1280.8315,-552.6202 1280.7539,-545.4678 1268,-541.4 1235.1733,-530.9302 991.7658,-540.2614 958,-533.4 925.5807,-526.8123 890.7889,-512.6555 865.5167,-500.956"/>
+<polygon fill="#000000" stroke="#000000" points="866.8587,-497.7191 856.3218,-496.6132 863.8693,-504.0487 866.8587,-497.7191"/>
+</a>
+</g>
+<text text-anchor="middle" x="1296.5" y="-545.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddrV9X1 -->
+<g id="node10" class="node">
+<title>ddrV9X1</title>
+<polygon fill="#a2c4c9" stroke="#000000" points="1395.5842,-427.6 1320.4158,-427.6 1320.4158,-391.6 1395.5842,-391.6 1395.5842,-427.6"/>
+<text text-anchor="middle" x="1358" y="-405.4" font-family="Times,serif" font-size="14.00" fill="#000000">BlockTree</text>
+</g>
+<!-- ddmmAHi&#45;&gt;ddrV9X1 -->
+<g id="edge4" class="edge">
+<title>ddmmAHi-&gt;ddrV9X1</title>
+<g id="a_edge4"><a xlink:title="Document -&gt; BlockTree: &#10;&#10;From: document.go (Line: 14, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1422.0781,-575.8431C1418.4424,-546.7691 1408.776,-488.9815 1386,-445.6 1384.2793,-442.3226 1382.2533,-439.0417 1380.0909,-435.8678"/>
+<polygon fill="#000000" stroke="#000000" points="1382.9026,-433.7833 1374.1642,-427.7923 1377.2593,-437.925 1382.9026,-433.7833"/>
+</a>
+</g>
+<text text-anchor="middle" x="1417.5" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddmmAHi&#45;&gt;ddrV9X1 -->
+<g id="edge16" class="edge">
+<title>ddmmAHi-&gt;ddrV9X1</title>
+<g id="a_edge16"><a xlink:title="Document -&gt; BlockTree: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1390.4838,-576.1051C1375.3741,-565.8542 1359.3028,-551.4476 1352,-533.4 1339.7783,-503.1965 1344.1134,-465.4116 1349.695,-439.5802"/>
+<polygon fill="#000000" stroke="#000000" points="1349.7675,-439.2767 1347.2718,-432.5113 1352.557,-427.6054 1355.0527,-434.3709 1349.7675,-439.2767"/>
+</a>
+</g>
+<text text-anchor="middle" x="1355.5" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddmmAHi&#45;&gt;ddrV9X1 -->
+<g id="edge24" class="edge">
+<title>ddmmAHi-&gt;ddrV9X1</title>
+<g id="a_edge24"><a xlink:title="Document -&gt; BlockTree: &#10;&#10;From: document.go (Line: 43, Column: 23) To: tree.go (Line: 15, Column: 21)&#10;">
+<path fill="none" stroke="#000000" d="M1409.4486,-576.0622C1400.844,-564.4812 1390.4096,-548.7975 1384,-533.4 1371.0022,-502.1759 1364.2336,-463.7179 1360.9033,-438.0285"/>
+<polygon fill="#000000" stroke="#000000" points="1364.3491,-437.3686 1359.6783,-427.8589 1357.3994,-438.2057 1364.3491,-437.3686"/>
+</a>
+</g>
+<text text-anchor="middle" x="1387.5" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- deOh6a0 -->
+<g id="node11" class="node">
+<title>deOh6a0</title>
+<polygon fill="#a2c4c9" stroke="#000000" points="1616.153,-285 1539.847,-285 1539.847,-249 1616.153,-249 1616.153,-285"/>
+<text text-anchor="middle" x="1578" y="-262.8" font-family="Times,serif" font-size="14.00" fill="#000000">BaseBlock</text>
+</g>
+<!-- ddmmAHi&#45;&gt;deOh6a0 -->
+<g id="edge26" class="edge">
+<title>ddmmAHi-&gt;deOh6a0</title>
+<g id="a_edge26"><a xlink:title="Document -&gt; BaseBlock: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1461.3072,-587.0359C1511.3495,-575.0142 1594,-545.6199 1594,-482.6 1594,-482.6 1594,-482.6 1594,-346.2 1594,-329.7086 1590.6257,-311.6613 1586.9763,-296.965"/>
+<polygon fill="#000000" stroke="#000000" points="1586.8856,-296.6263 1581.4675,-291.8675 1583.7764,-285.036 1589.1944,-289.7947 1586.8856,-296.6263"/>
+</a>
+</g>
+<text text-anchor="middle" x="1597.5" y="-405.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dblQgXB -->
+<g id="node12" class="node">
+<title>dblQgXB</title>
+<polygon fill="#ffe599" stroke="#000000" points="1673,-427.6 1619,-427.6 1619,-391.6 1673,-391.6 1673,-427.6"/>
+<text text-anchor="middle" x="1646" y="-405.4" font-family="Times,serif" font-size="14.00" fill="#000000">Head</text>
+</g>
+<!-- ddmmAHi&#45;&gt;dblQgXB -->
+<g id="edge17" class="edge">
+<title>ddmmAHi-&gt;dblQgXB</title>
+<g id="a_edge17"><a xlink:title="Document -&gt; Head: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1461.3667,-590.9261C1506.5801,-586.2317 1579.1299,-576.114 1599,-558.2 1632.5316,-527.9693 1642.3193,-474.0204 1645.0698,-440.1126"/>
+<polygon fill="#000000" stroke="#000000" points="1645.0922,-439.7484 1641.4698,-433.5132 1645.8322,-427.7712 1649.4545,-434.0065 1645.0922,-439.7484"/>
+</a>
+</g>
+<text text-anchor="middle" x="1644.5" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dcbWkbb -->
+<g id="node13" class="node">
+<title>dcbWkbb</title>
+<polygon fill="#ffe599" stroke="#000000" points="1486.248,-427.6 1413.752,-427.6 1413.752,-391.6 1486.248,-391.6 1486.248,-427.6"/>
+<text text-anchor="middle" x="1450" y="-405.4" font-family="Times,serif" font-size="14.00" fill="#000000">Paragraph</text>
+</g>
+<!-- ddmmAHi&#45;&gt;dcbWkbb -->
+<g id="edge19" class="edge">
+<title>ddmmAHi-&gt;dcbWkbb</title>
+<g id="a_edge19"><a xlink:title="Document -&gt; Paragraph: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1427.5501,-576.1551C1429.8546,-564.0831 1432.8231,-547.8253 1435,-533.4 1439.8145,-501.4973 1444.1067,-464.7854 1446.8533,-439.6742"/>
+<polygon fill="#000000" stroke="#000000" points="1446.8592,-439.6182 1443.5242,-433.2246 1448.1432,-427.6871 1451.4783,-434.0806 1446.8592,-439.6182"/>
+</a>
+</g>
+<text text-anchor="middle" x="1446.5" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dd0u5EF -->
+<g id="node14" class="node">
+<title>dd0u5EF</title>
+<polygon fill="#ffe599" stroke="#000000" points="1558,-427.6 1504,-427.6 1504,-391.6 1558,-391.6 1558,-427.6"/>
+<text text-anchor="middle" x="1531" y="-405.4" font-family="Times,serif" font-size="14.00" fill="#000000">Root</text>
+</g>
+<!-- ddmmAHi&#45;&gt;dd0u5EF -->
+<g id="edge8" class="edge">
+<title>ddmmAHi-&gt;dd0u5EF</title>
+<g id="a_edge8"><a xlink:title="Document -&gt; Root: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1434.4544,-576.1637C1453.0725,-544.0431 1492.1077,-476.6983 1514.4202,-438.2041"/>
+<polygon fill="#000000" stroke="#000000" points="1514.4853,-438.0916 1514.0335,-430.8946 1520.5031,-427.7095 1520.9549,-434.9065 1514.4853,-438.0916"/>
+</a>
+</g>
+<text text-anchor="middle" x="1501.5" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddVPBsX -->
+<g id="node15" class="node">
+<title>ddVPBsX</title>
+<polygon fill="#ffe599" stroke="#000000" points="1745,-427.6 1691,-427.6 1691,-391.6 1745,-391.6 1745,-427.6"/>
+<text text-anchor="middle" x="1718" y="-405.4" font-family="Times,serif" font-size="14.00" fill="#000000">line</text>
+</g>
+<!-- ddmmAHi&#45;&gt;ddVPBsX -->
+<g id="edge1" class="edge">
+<title>ddmmAHi-&gt;ddVPBsX</title>
+<g id="a_edge1"><a xlink:title="Document -&gt; line: &#10;&#10;From: document.go (Line: 85, Column: 40) To: line.go (Line: 11, Column: 16)&#10;">
+<path fill="none" stroke="#000000" d="M1461.259,-590.9389C1499.7835,-586.6753 1561.1632,-577.3633 1611,-558.2 1630.8776,-550.5566 1637.4145,-548.9178 1652,-533.4 1675.6358,-508.2534 1671.7366,-495.0385 1688,-464.6 1692.8694,-455.4864 1698.2561,-445.5628 1703.1056,-436.6853"/>
+<polygon fill="#000000" stroke="#000000" points="1706.1884,-438.3428 1707.9207,-427.8905 1700.0483,-434.9812 1706.1884,-438.3428"/>
+</a>
+</g>
+<text text-anchor="middle" x="1691.5" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddmmAHi&#45;&gt;ddVPBsX -->
+<g id="edge27" class="edge">
+<title>ddmmAHi-&gt;ddVPBsX</title>
+<g id="a_edge27"><a xlink:title="Document -&gt; line: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1461.3458,-591.3487C1528.5513,-585.369 1665.6213,-569.0154 1695,-533.4 1716.5181,-507.3138 1720.4294,-467.5514 1720.1549,-440.1648"/>
+<polygon fill="#000000" stroke="#000000" points="1720.1436,-439.8222 1715.9454,-433.9591 1719.7428,-427.8288 1723.941,-433.6919 1720.1436,-439.8222"/>
+</a>
+</g>
+<text text-anchor="middle" x="1722.5" y="-478.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddmmAHi&#45;&gt;dF3VHy -->
+<g id="edge10" class="edge">
+<title>ddmmAHi-&gt;dF3VHy</title>
+<g id="a_edge10"><a xlink:title="Document -&gt; Reader: &#10;&#10;From: document.go (Line: 46, Column: 8) To: reader.go (Line: 10, Column: 18)&#10;">
+<path fill="none" stroke="#000000" d="M1386.7165,-583.0771C1367.9934,-576.8551 1345.2567,-568.3129 1326,-558.2 1322.048,-556.1246 1282.6983,-528.1599 1252.8553,-506.8418"/>
+<polygon fill="#000000" stroke="#000000" points="1254.5095,-503.722 1244.3388,-500.7543 1250.4389,-509.4168 1254.5095,-503.722"/>
+</a>
+</g>
+<text text-anchor="middle" x="1329.5" y="-545.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dblQgXB&#45;&gt;deOh6a0 -->
+<g id="edge12" class="edge">
+<title>dblQgXB-&gt;deOh6a0</title>
+<g id="a_edge12"><a xlink:title="Head -&gt; BaseBlock: &#10;&#10;From: head.go (Line: 10, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1638.7862,-391.5834C1630.0393,-370.1531 1614.5313,-333.4496 1599,-303 1597.4877,-300.035 1595.8408,-296.9732 1594.1565,-293.9452"/>
+<polygon fill="#000000" stroke="#000000" points="1597.0945,-292.0324 1589.0889,-285.0926 1591.0195,-295.51 1597.0945,-292.0324"/>
+</a>
+</g>
+<text text-anchor="middle" x="1626.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dcbWkbb&#45;&gt;deOh6a0 -->
+<g id="edge18" class="edge">
+<title>dcbWkbb-&gt;deOh6a0</title>
+<g id="a_edge18"><a xlink:title="Paragraph -&gt; BaseBlock: &#10;&#10;From: paragraph.go (Line: 11, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1466.2113,-391.5396C1488.5938,-366.6041 1529.0938,-321.4846 1554.7123,-292.9439"/>
+<polygon fill="#000000" stroke="#000000" points="1557.4408,-295.1439 1561.516,-285.3642 1552.2315,-290.468 1557.4408,-295.1439"/>
+</a>
+</g>
+<text text-anchor="middle" x="1517.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dd0u5EF&#45;&gt;deOh6a0 -->
+<g id="edge28" class="edge">
+<title>dd0u5EF-&gt;deOh6a0</title>
+<g id="a_edge28"><a xlink:title="Root -&gt; BaseBlock: &#10;&#10;From: root.go (Line: 11, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1536.9526,-391.5396C1544.9604,-367.2435 1559.284,-323.7851 1568.7149,-295.1714"/>
+<polygon fill="#000000" stroke="#000000" points="1572.141,-295.9572 1571.9473,-285.3642 1565.4928,-293.766 1572.141,-295.9572"/>
+</a>
+</g>
+<text text-anchor="middle" x="1557.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dceJsQV -->
+<g id="node18" class="node">
+<title>dceJsQV</title>
+<polygon fill="#ffe599" stroke="#000000" points="1288,-212 1234,-212 1234,-176 1288,-176 1288,-212"/>
+<text text-anchor="middle" x="1261" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">Line</text>
+</g>
+<!-- ddVPBsX&#45;&gt;dceJsQV -->
+<g id="edge9" class="edge">
+<title>ddVPBsX-&gt;dceJsQV</title>
+<g id="a_edge9"><a xlink:title="line -&gt; Line: &#10;&#10;From: line.go (Line: 8, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1713.7834,-391.4178C1704.5095,-355.8996 1678.7513,-277.5816 1625,-241 1572.3809,-205.1889 1380.2087,-196.6477 1298.3412,-194.6233"/>
+<polygon fill="#000000" stroke="#000000" points="1298.0809,-191.1165 1288.0039,-194.3881 1297.9217,-198.1147 1298.0809,-191.1165"/>
+</a>
+</g>
+<text text-anchor="middle" x="1690.5" y="-307.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbxmmye -->
+<g id="node17" class="node">
+<title>dbxmmye</title>
+<polygon fill="#ffe599" stroke="#000000" points="1215.7994,-212 1134.2006,-212 1134.2006,-176 1215.7994,-176 1215.7994,-212"/>
+<text text-anchor="middle" x="1175" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">LineReader</text>
+</g>
+<!-- dF3VHy&#45;&gt;dbxmmye -->
+<g id="edge5" class="edge">
+<title>dF3VHy-&gt;dbxmmye</title>
+<g id="a_edge5"><a xlink:title="Reader -&gt; LineReader: &#10;&#10;From: reader.go (Line: 12, Column: 9) To: linereader.go (Line: 15, Column: 22)&#10;">
+<path fill="none" stroke="#000000" d="M1200.595,-464.5651C1188.5378,-450.775 1175,-430.6128 1175,-409.6 1175,-409.6 1175,-409.6 1175,-267 1175,-252.2996 1175,-235.934 1175,-222.4302"/>
+<polygon fill="#000000" stroke="#000000" points="1178.5001,-222.3003 1175,-212.3003 1171.5001,-222.3004 1178.5001,-222.3003"/>
+</a>
+</g>
+<text text-anchor="middle" x="1178.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dF3VHy&#45;&gt;dbxmmye -->
+<g id="edge25" class="edge">
+<title>dF3VHy-&gt;dbxmmye</title>
+<g id="a_edge25"><a xlink:title="Reader -&gt; LineReader: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1218.6105,-464.3006C1218.3297,-449.5364 1218,-428.232 1218,-409.6 1218,-409.6 1218,-409.6 1218,-267 1218,-250.5192 1209.7626,-234.4808 1200.4986,-221.6546"/>
+<polygon fill="#000000" stroke="#000000" points="1200.4083,-221.5398 1193.5542,-219.2987 1192.9867,-212.11 1199.8408,-214.351 1200.4083,-221.5398"/>
+</a>
+</g>
+<text text-anchor="middle" x="1221.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dF3VHy&#45;&gt;dceJsQV -->
+<g id="edge20" class="edge">
+<title>dF3VHy-&gt;dceJsQV</title>
+<g id="a_edge20"><a xlink:title="Reader -&gt; Line: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1236.5684,-464.4162C1248.0775,-450.5522 1261,-430.3626 1261,-409.6 1261,-409.6 1261,-409.6 1261,-267 1261,-253.0273 1261,-237.5503 1261,-224.4562"/>
+<polygon fill="#000000" stroke="#000000" points="1261.0001,-224.3003 1257,-218.3004 1261,-212.3003 1265,-218.3003 1261.0001,-224.3003"/>
+</a>
+</g>
+<text text-anchor="middle" x="1264.5" y="-342" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+</g>
+</svg>
