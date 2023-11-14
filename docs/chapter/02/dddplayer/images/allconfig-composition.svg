@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2233pt" height="3538pt" viewBox="0.00 0.00 2233.00 3538.40">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 3534.4)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-3534.4 2229,-3534.4 2229,4 -4,4"/>
+<text text-anchor="middle" x="1112.5" y="-82" font-family="Times,serif" font-size="20.00" fill="#000000">github.com/gohugoio/hugo/config/allconfig</text>
+<text text-anchor="middle" x="1112.5" y="-58" font-family="Times,serif" font-size="20.00" fill="#000000">Domain Model</text>
+<text text-anchor="middle" x="1112.5" y="-10" font-family="Times,serif" font-size="20.00" fill="#000000">Powered by DDD Player</text>
+<g id="clust1" class="cluster">
+<title>cluster_ddd_concept</title>
+<polygon fill="none" stroke="#000000" points="8,-1903.6 8,-2043.6 500,-2043.6 500,-1903.6 8,-1903.6"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_dbplwOx</title>
+<polygon fill="none" stroke="#000000" points="508,-160 508,-3522.4 2217,-3522.4 2217,-160 508,-160"/>
+<text text-anchor="middle" x="1362.5" y="-3505.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/gohugoio/hugo/config/allconfig</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ddrK512</title>
+<polygon fill="none" stroke="#000000" points="925,-168 925,-376.8 1575,-376.8 1575,-168 925,-168"/>
+<text text-anchor="middle" x="1250" y="-360.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/gohugoio/hugo/config/allconfig/function</text>
+</g>
+<!-- ddd_concept -->
+<g id="node1" class="node">
+<title>ddd_concept</title>
+<polygon fill="none" stroke="#ffffff" stroke-dasharray="1,5" points="492,-2035.6 16,-2035.6 16,-1911.6 492,-1911.6 492,-2035.6"/>
+<polygon fill="transparent" stroke="transparent" points="26,-1993.6 26,-2029.6 140,-2029.6 140,-1993.6 26,-1993.6"/>
+<text text-anchor="start" x="35.5582" y="-2007" font-family="Times,serif" font-size="14.00" fill="#000000">BoundedContext</text>
+<polygon fill="#ffd966" stroke="transparent" points="142,-1993.6 142,-2029.6 247,-2029.6 247,-1993.6 142,-1993.6"/>
+<text text-anchor="start" x="151.7356" y="-2007" font-family="Times,serif" font-size="14.00" fill="#000000">AggregateRoot</text>
+<polygon fill="#ffe599" stroke="transparent" points="249,-1993.6 249,-2029.6 318,-2029.6 318,-1993.6 249,-1993.6"/>
+<text text-anchor="start" x="266.3878" y="-2007" font-family="Times,serif" font-size="14.00" fill="#000000">Entity</text>
+<polygon fill="#a2c4c9" stroke="transparent" points="320,-1993.6 320,-2029.6 410,-2029.6 410,-1993.6 320,-1993.6"/>
+<text text-anchor="start" x="329.6283" y="-2007" font-family="Times,serif" font-size="14.00" fill="#000000">ValueObject</text>
+<polygon fill="#e69138" stroke="transparent" points="412,-1993.6 412,-2029.6 482,-2029.6 482,-1993.6 412,-1993.6"/>
+<text text-anchor="start" x="426.0112" y="-2007" font-family="Times,serif" font-size="14.00" fill="#000000">Service</text>
+<polygon fill="#ffffff" stroke="transparent" points="26,-1955.6 26,-1991.6 140,-1991.6 140,-1955.6 26,-1955.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="142,-1955.6 142,-1991.6 247,-1991.6 247,-1955.6 142,-1955.6"/>
+<text text-anchor="start" x="165.3338" y="-1969" font-family="Times,serif" font-size="14.00" fill="#000000">Command</text>
+<polygon fill="#f6b26b" stroke="transparent" points="249,-1955.6 249,-1991.6 318,-1991.6 318,-1955.6 249,-1955.6"/>
+<text text-anchor="start" x="267.1711" y="-1969" font-family="Times,serif" font-size="14.00" fill="#000000">Event</text>
+<polygon fill="#cfe2f3" stroke="transparent" points="320,-1955.6 320,-1991.6 410,-1991.6 410,-1955.6 320,-1955.6"/>
+<text text-anchor="start" x="343.6185" y="-1969" font-family="Times,serif" font-size="14.00" fill="#000000">Factory</text>
+<polygon fill="#b4a7d6" stroke="transparent" points="412,-1955.6 412,-1991.6 482,-1991.6 482,-1955.6 412,-1955.6"/>
+<text text-anchor="start" x="431.8345" y="-1969" font-family="Times,serif" font-size="14.00" fill="#000000">Class</text>
+<polygon fill="#ffffff" stroke="transparent" points="26,-1917.6 26,-1953.6 140,-1953.6 140,-1917.6 26,-1917.6"/>
+<polygon fill="#f4cccc" stroke="transparent" points="142,-1917.6 142,-1953.6 247,-1953.6 247,-1917.6 142,-1917.6"/>
+<text text-anchor="start" x="172.3492" y="-1931" font-family="Times,serif" font-size="14.00" fill="#000000">General</text>
+<polygon fill="#ead1dc" stroke="transparent" points="249,-1917.6 249,-1953.6 318,-1953.6 318,-1917.6 249,-1917.6"/>
+<text text-anchor="start" x="258.6108" y="-1931" font-family="Times,serif" font-size="14.00" fill="#000000">Function</text>
+<polygon fill="#9fc5e8" stroke="transparent" points="320,-1917.6 320,-1953.6 410,-1953.6 410,-1917.6 320,-1917.6"/>
+<text text-anchor="start" x="340.1346" y="-1931" font-family="Times,serif" font-size="14.00" fill="#000000">Interface</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="412,-1917.6 412,-1953.6 482,-1953.6 482,-1917.6 412,-1917.6"/>
+<text text-anchor="start" x="421.7279" y="-1931" font-family="Times,serif" font-size="14.00" fill="#000000">Attribute</text>
+</g>
+<!-- dbplwOx -->
+<g id="node2" class="node">
+<title>dbplwOx</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1984.5,-3489.6 515.5,-3489.6 515.5,-457.6 1984.5,-457.6 1984.5,-3489.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3463.6 526,-3483.6 546,-3483.6 546,-3463.6 526,-3463.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3441.6 526,-3461.6 546,-3461.6 546,-3441.6 526,-3441.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3403.6 526,-3439.6 546,-3439.6 546,-3403.6 526,-3403.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-3403.6 548,-3439.6 758,-3439.6 758,-3403.6 548,-3403.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-3403.6 760,-3439.6 921,-3439.6 921,-3403.6 760,-3403.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-3403.6 923,-3439.6 1162,-3439.6 1162,-3403.6 923,-3403.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3403.6 1164,-3439.6 1184,-3439.6 1184,-3403.6 1164,-3403.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-3365.6 1186,-3439.6 1342,-3439.6 1342,-3365.6 1186,-3365.6"/>
+<text text-anchor="start" x="1223.5729" y="-3398.4" font-family="Times,serif" font-size="14.00" fill="#000000">decodeWeight</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3403.6 1344,-3439.6 1554,-3439.6 1554,-3403.6 1344,-3403.6"/>
+<text text-anchor="start" x="1438.8927" y="-3417" font-family="Times,serif" font-size="14.00" fill="#000000">key</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-3403.6 1556,-3439.6 1712,-3439.6 1712,-3403.6 1556,-3403.6"/>
+<text text-anchor="start" x="1614.1781" y="-3417" font-family="Times,serif" font-size="14.00" fill="#000000">decode</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-3403.6 1714,-3439.6 1953,-3439.6 1953,-3403.6 1714,-3403.6"/>
+<text text-anchor="start" x="1798.5056" y="-3417" font-family="Times,serif" font-size="14.00" fill="#000000">getCompiler</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3403.6 1955,-3439.6 1975,-3439.6 1975,-3403.6 1955,-3403.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3365.6 526,-3401.6 546,-3401.6 546,-3365.6 526,-3365.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-3365.6 548,-3401.6 758,-3401.6 758,-3365.6 548,-3365.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-3365.6 760,-3401.6 921,-3401.6 921,-3365.6 760,-3365.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-3365.6 923,-3401.6 1162,-3401.6 1162,-3365.6 923,-3365.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3365.6 1164,-3401.6 1184,-3401.6 1184,-3365.6 1164,-3365.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3365.6 1344,-3401.6 1554,-3401.6 1554,-3365.6 1344,-3365.6"/>
+<text text-anchor="start" x="1429.9488" y="-3379" font-family="Times,serif" font-size="14.00" fill="#000000">weight</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-3365.6 1556,-3401.6 1712,-3401.6 1712,-3365.6 1556,-3365.6"/>
+<text text-anchor="start" x="1573.3702" y="-3379" font-family="Times,serif" font-size="14.00" fill="#000000">internalOrDeprecated</text>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-3365.6 1714,-3401.6 1953,-3401.6 1953,-3365.6 1714,-3365.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3365.6 1955,-3401.6 1975,-3401.6 1975,-3365.6 1955,-3365.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3343.6 526,-3363.6 546,-3363.6 546,-3343.6 526,-3343.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3305.6 526,-3341.6 546,-3341.6 546,-3305.6 526,-3305.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-3305.6 548,-3341.6 758,-3341.6 758,-3305.6 548,-3305.6"/>
+<text text-anchor="start" x="614.5133" y="-3319" font-family="Times,serif" font-size="14.00" fill="#000000">normalizeCfg</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-3305.6 760,-3341.6 921,-3341.6 921,-3305.6 760,-3305.6"/>
+<text text-anchor="start" x="784.5147" y="-3319" font-family="Times,serif" font-size="14.00" fill="#000000">applyDefaultConfig</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-3305.6 923,-3341.6 1162,-3341.6 1162,-3305.6 923,-3305.6"/>
+<text text-anchor="start" x="986.9004" y="-3319" font-family="Times,serif" font-size="14.00" fill="#000000">applyConfigAliases</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3305.6 1164,-3341.6 1184,-3341.6 1184,-3305.6 1164,-3305.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-3153.6 1186,-3341.6 1342,-3341.6 1342,-3153.6 1186,-3153.6"/>
+<text text-anchor="start" x="1226.2959" y="-3243.4" font-family="Times,serif" font-size="14.00" fill="#000000">configLoader</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3305.6 1344,-3341.6 1554,-3341.6 1554,-3305.6 1344,-3305.6"/>
+<text text-anchor="start" x="1440.0624" y="-3319" font-family="Times,serif" font-size="14.00" fill="#000000">cfg</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-3305.6 1556,-3341.6 1712,-3341.6 1712,-3305.6 1556,-3305.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-3305.6 1714,-3341.6 1953,-3341.6 1953,-3305.6 1714,-3305.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3305.6 1955,-3341.6 1975,-3341.6 1975,-3305.6 1955,-3305.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3267.6 526,-3303.6 546,-3303.6 546,-3267.6 526,-3267.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-3267.6 548,-3303.6 758,-3303.6 758,-3267.6 548,-3267.6"/>
+<text text-anchor="start" x="590.7994" y="-3281" font-family="Times,serif" font-size="14.00" fill="#000000">applyOsEnvOverrides</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-3267.6 760,-3303.6 921,-3303.6 921,-3267.6 760,-3267.6"/>
+<text text-anchor="start" x="782.1851" y="-3281" font-family="Times,serif" font-size="14.00" fill="#000000">applyFlagsOverrides</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-3267.6 923,-3303.6 1162,-3303.6 1162,-3267.6 923,-3267.6"/>
+<text text-anchor="start" x="984.5771" y="-3281" font-family="Times,serif" font-size="14.00" fill="#000000">cleanExternalConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3267.6 1164,-3303.6 1184,-3303.6 1184,-3267.6 1164,-3267.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3267.6 1344,-3303.6 1554,-3303.6 1554,-3267.6 1344,-3267.6"/>
+<text text-anchor="start" x="1415.9509" y="-3281" font-family="Times,serif" font-size="14.00" fill="#000000">BaseConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-3267.6 1556,-3303.6 1712,-3303.6 1712,-3267.6 1556,-3267.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-3267.6 1714,-3303.6 1953,-3303.6 1953,-3267.6 1714,-3267.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3267.6 1955,-3303.6 1975,-3303.6 1975,-3267.6 1955,-3267.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3229.6 526,-3265.6 546,-3265.6 546,-3229.6 526,-3229.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-3229.6 548,-3265.6 758,-3265.6 758,-3229.6 548,-3229.6"/>
+<text text-anchor="start" x="616.4502" y="-3243" font-family="Times,serif" font-size="14.00" fill="#000000">loadModules</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-3229.6 760,-3265.6 921,-3265.6 921,-3229.6 760,-3229.6"/>
+<text text-anchor="start" x="794.2286" y="-3243" font-family="Times,serif" font-size="14.00" fill="#000000">loadConfigMain</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-3229.6 923,-3265.6 1162,-3265.6 1162,-3229.6 923,-3229.6"/>
+<text text-anchor="start" x="997.3983" y="-3243" font-family="Times,serif" font-size="14.00" fill="#000000">envStringToVal</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3229.6 1164,-3265.6 1184,-3265.6 1184,-3229.6 1164,-3229.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3229.6 1344,-3265.6 1554,-3265.6 1554,-3229.6 1344,-3229.6"/>
+<text text-anchor="start" x="1380.5785" y="-3243" font-family="Times,serif" font-size="14.00" fill="#000000">ConfigSourceDescriptor</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-3229.6 1556,-3265.6 1712,-3265.6 1712,-3229.6 1556,-3229.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-3229.6 1714,-3265.6 1953,-3265.6 1953,-3229.6 1714,-3229.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3229.6 1955,-3265.6 1975,-3265.6 1975,-3229.6 1955,-3229.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3191.6 526,-3227.6 546,-3227.6 546,-3191.6 526,-3191.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-3191.6 548,-3227.6 758,-3227.6 758,-3191.6 548,-3191.6"/>
+<text text-anchor="start" x="597.0063" y="-3205" font-family="Times,serif" font-size="14.00" fill="#000000">loadModulesConfig</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-3191.6 760,-3227.6 921,-3227.6 921,-3191.6 760,-3191.6"/>
+<text text-anchor="start" x="777.9186" y="-3205" font-family="Times,serif" font-size="14.00" fill="#000000">deleteMergeStrategies</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-3191.6 923,-3227.6 1162,-3227.6 1162,-3191.6 923,-3191.6"/>
+<text text-anchor="start" x="1011.0035" y="-3205" font-family="Times,serif" font-size="14.00" fill="#000000">loadConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3191.6 1164,-3227.6 1184,-3227.6 1184,-3191.6 1164,-3191.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3191.6 1344,-3227.6 1554,-3227.6 1554,-3191.6 1344,-3191.6"/>
+<text text-anchor="start" x="1405.0589" y="-3205" font-family="Times,serif" font-size="14.00" fill="#000000">ModulesConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-3191.6 1556,-3227.6 1712,-3227.6 1712,-3191.6 1556,-3191.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-3191.6 1714,-3227.6 1953,-3227.6 1953,-3191.6 1714,-3191.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3191.6 1955,-3227.6 1975,-3227.6 1975,-3191.6 1955,-3191.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3153.6 526,-3189.6 546,-3189.6 546,-3153.6 526,-3153.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-3153.6 548,-3189.6 758,-3189.6 758,-3153.6 548,-3153.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-3153.6 760,-3189.6 921,-3189.6 921,-3153.6 760,-3153.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-3153.6 923,-3189.6 1162,-3189.6 1162,-3153.6 923,-3153.6"/>
+<text text-anchor="start" x="1002.8527" y="-3167" font-family="Times,serif" font-size="14.00" fill="#000000">wrapFileError</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3153.6 1164,-3189.6 1184,-3189.6 1184,-3153.6 1164,-3153.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3153.6 1344,-3189.6 1554,-3189.6 1554,-3153.6 1344,-3153.6"/>
+<text text-anchor="start" x="1391.4474" y="-3167" font-family="Times,serif" font-size="14.00" fill="#000000">ModulesConfigFiles</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-3153.6 1556,-3189.6 1712,-3189.6 1712,-3153.6 1556,-3153.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-3153.6 1714,-3189.6 1953,-3189.6 1953,-3153.6 1714,-3153.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3153.6 1955,-3189.6 1975,-3189.6 1975,-3153.6 1955,-3153.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3131.6 526,-3151.6 546,-3151.6 546,-3131.6 526,-3131.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3093.6 526,-3129.6 546,-3129.6 546,-3093.6 526,-3093.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-3093.6 548,-3129.6 758,-3129.6 758,-3093.6 548,-3093.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-3093.6 760,-3129.6 921,-3129.6 921,-3093.6 760,-3093.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-3093.6 923,-3129.6 1162,-3129.6 1162,-3093.6 923,-3093.6"/>
+<text text-anchor="start" x="1015.676" y="-3107" font-family="Times,serif" font-size="14.00" fill="#000000">staticDirs</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3093.6 1164,-3129.6 1184,-3129.6 1184,-3093.6 1164,-3093.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-2295.6 1186,-3129.6 1342,-3129.6 1342,-2295.6 1186,-2295.6"/>
+<text text-anchor="start" x="1230.9425" y="-2708.4" font-family="Times,serif" font-size="14.00" fill="#000000">RootConfig</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3093.6 1344,-3129.6 1554,-3129.6 1554,-3093.6 1344,-3093.6"/>
+<text text-anchor="start" x="1421.3969" y="-3107" font-family="Times,serif" font-size="14.00" fill="#000000">BaseURL</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-3093.6 1556,-3129.6 1712,-3129.6 1712,-3093.6 1556,-3093.6"/>
+<text text-anchor="start" x="1600.9523" y="-3107" font-family="Times,serif" font-size="14.00" fill="#000000">BuildDrafts</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-3093.6 1714,-3129.6 1953,-3129.6 1953,-3093.6 1714,-3093.6"/>
+<text text-anchor="start" x="1795.7819" y="-3107" font-family="Times,serif" font-size="14.00" fill="#000000">BuildExpired</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3093.6 1955,-3129.6 1975,-3129.6 1975,-3093.6 1955,-3093.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3055.6 526,-3091.6 546,-3091.6 546,-3055.6 526,-3055.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-3055.6 548,-3091.6 758,-3091.6 758,-3055.6 548,-3055.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-3055.6 760,-3091.6 921,-3091.6 921,-3055.6 760,-3055.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-3055.6 923,-3091.6 1162,-3091.6 1162,-3055.6 923,-3055.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3055.6 1164,-3091.6 1184,-3091.6 1184,-3055.6 1164,-3055.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3055.6 1344,-3091.6 1554,-3091.6 1554,-3055.6 1344,-3055.6"/>
+<text text-anchor="start" x="1415.1669" y="-3069" font-family="Times,serif" font-size="14.00" fill="#000000">BuildFuture</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-3055.6 1556,-3091.6 1712,-3091.6 1712,-3055.6 1556,-3055.6"/>
+<text text-anchor="start" x="1605.6108" y="-3069" font-family="Times,serif" font-size="14.00" fill="#000000">Copyright</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-3055.6 1714,-3091.6 1953,-3091.6 1953,-3055.6 1714,-3055.6"/>
+<text text-anchor="start" x="1762.7468" y="-3069" font-family="Times,serif" font-size="14.00" fill="#000000">DefaultContentLanguage</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3055.6 1955,-3091.6 1975,-3091.6 1975,-3055.6 1955,-3055.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-3017.6 526,-3053.6 546,-3053.6 546,-3017.6 526,-3017.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-3017.6 548,-3053.6 758,-3053.6 758,-3017.6 548,-3017.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-3017.6 760,-3053.6 921,-3053.6 921,-3017.6 760,-3017.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-3017.6 923,-3053.6 1162,-3053.6 1162,-3017.6 923,-3017.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-3017.6 1164,-3053.6 1184,-3053.6 1184,-3017.6 1164,-3017.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-3017.6 1344,-3053.6 1554,-3053.6 1554,-3017.6 1344,-3017.6"/>
+<text text-anchor="start" x="1353.7496" y="-3031" font-family="Times,serif" font-size="14.00" fill="#000000">DefaultContentLanguageInSubdir</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-3017.6 1556,-3053.6 1712,-3053.6 1712,-3017.6 1556,-3017.6"/>
+<text text-anchor="start" x="1592.0161" y="-3031" font-family="Times,serif" font-size="14.00" fill="#000000">DisableAliases</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-3017.6 1714,-3053.6 1953,-3053.6 1953,-3017.6 1714,-3017.6"/>
+<text text-anchor="start" x="1773.6318" y="-3031" font-family="Times,serif" font-size="14.00" fill="#000000">DisablePathToLower</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-3017.6 1955,-3053.6 1975,-3053.6 1975,-3017.6 1955,-3017.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2979.6 526,-3015.6 546,-3015.6 546,-2979.6 526,-2979.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2979.6 548,-3015.6 758,-3015.6 758,-2979.6 548,-2979.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2979.6 760,-3015.6 921,-3015.6 921,-2979.6 760,-2979.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2979.6 923,-3015.6 1162,-3015.6 1162,-2979.6 923,-2979.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2979.6 1164,-3015.6 1184,-3015.6 1184,-2979.6 1164,-2979.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2979.6 1344,-3015.6 1554,-3015.6 1554,-2979.6 1344,-2979.6"/>
+<text text-anchor="start" x="1410.8983" y="-2993" font-family="Times,serif" font-size="14.00" fill="#000000">DisableKinds</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2979.6 1556,-3015.6 1712,-3015.6 1712,-2979.6 1556,-2979.6"/>
+<text text-anchor="start" x="1582.2987" y="-2993" font-family="Times,serif" font-size="14.00" fill="#000000">DisableLanguages</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2979.6 1714,-3015.6 1953,-3015.6 1953,-2979.6 1714,-2979.6"/>
+<text text-anchor="start" x="1752.6493" y="-2993" font-family="Times,serif" font-size="14.00" fill="#000000">DisableHugoGeneratorInject</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2979.6 1955,-3015.6 1975,-3015.6 1975,-2979.6 1955,-2979.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2941.6 526,-2977.6 546,-2977.6 546,-2941.6 526,-2941.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2941.6 548,-2977.6 758,-2977.6 758,-2941.6 548,-2941.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2941.6 760,-2977.6 921,-2977.6 921,-2941.6 760,-2941.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2941.6 923,-2977.6 1162,-2977.6 1162,-2941.6 923,-2941.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2941.6 1164,-2977.6 1184,-2977.6 1184,-2941.6 1164,-2941.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2941.6 1344,-2977.6 1554,-2977.6 1554,-2941.6 1344,-2941.6"/>
+<text text-anchor="start" x="1394.9621" y="-2955" font-family="Times,serif" font-size="14.00" fill="#000000">DisableLiveReload</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2941.6 1556,-2977.6 1712,-2977.6 1712,-2941.6 1556,-2941.6"/>
+<text text-anchor="start" x="1597.4516" y="-2955" font-family="Times,serif" font-size="14.00" fill="#000000">EnableEmoji</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2941.6 1714,-2977.6 1953,-2977.6 1953,-2941.6 1714,-2941.6"/>
+<text text-anchor="start" x="1795.0063" y="-2955" font-family="Times,serif" font-size="14.00" fill="#000000">MainSections</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2941.6 1955,-2977.6 1975,-2977.6 1975,-2941.6 1955,-2941.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2903.6 526,-2939.6 546,-2939.6 546,-2903.6 526,-2903.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2903.6 548,-2939.6 758,-2939.6 758,-2903.6 548,-2903.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2903.6 760,-2939.6 921,-2939.6 921,-2903.6 760,-2903.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2903.6 923,-2939.6 1162,-2939.6 1162,-2903.6 923,-2903.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2903.6 1164,-2939.6 1184,-2939.6 1184,-2903.6 1164,-2903.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2903.6 1344,-2939.6 1554,-2939.6 1554,-2903.6 1344,-2903.6"/>
+<text text-anchor="start" x="1396.122" y="-2917" font-family="Times,serif" font-size="14.00" fill="#000000">EnableRobotsTXT</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2903.6 1556,-2939.6 1712,-2939.6 1712,-2903.6 1556,-2903.6"/>
+<text text-anchor="start" x="1593.9593" y="-2917" font-family="Times,serif" font-size="14.00" fill="#000000">EnableGitInfo</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2903.6 1714,-2939.6 1953,-2939.6 1953,-2903.6 1714,-2903.6"/>
+<text text-anchor="start" x="1785.6858" y="-2917" font-family="Times,serif" font-size="14.00" fill="#000000">TemplateMetrics</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2903.6 1955,-2939.6 1975,-2939.6 1975,-2903.6 1955,-2903.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2865.6 526,-2901.6 546,-2901.6 546,-2865.6 526,-2865.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2865.6 548,-2901.6 758,-2901.6 758,-2865.6 548,-2865.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2865.6 760,-2901.6 921,-2901.6 921,-2865.6 760,-2865.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2865.6 923,-2901.6 1162,-2901.6 1162,-2865.6 923,-2865.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2865.6 1164,-2901.6 1184,-2901.6 1184,-2865.6 1164,-2865.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2865.6 1344,-2901.6 1554,-2901.6 1554,-2865.6 1344,-2865.6"/>
+<text text-anchor="start" x="1386.0196" y="-2879" font-family="Times,serif" font-size="14.00" fill="#000000">TemplateMetricsHints</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2865.6 1556,-2901.6 1712,-2901.6 1712,-2865.6 1556,-2865.6"/>
+<text text-anchor="start" x="1595.5042" y="-2879" font-family="Times,serif" font-size="14.00" fill="#000000">NoBuildLock</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2865.6 1714,-2901.6 1953,-2901.6 1953,-2865.6 1714,-2865.6"/>
+<text text-anchor="start" x="1797.7426" y="-2879" font-family="Times,serif" font-size="14.00" fill="#000000">IgnoreErrors</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2865.6 1955,-2901.6 1975,-2901.6 1975,-2865.6 1955,-2865.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2827.6 526,-2863.6 546,-2863.6 546,-2827.6 526,-2827.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2827.6 548,-2863.6 758,-2863.6 758,-2827.6 548,-2827.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2827.6 760,-2863.6 921,-2863.6 921,-2827.6 760,-2827.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2827.6 923,-2863.6 1162,-2863.6 1162,-2827.6 923,-2827.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2827.6 1164,-2863.6 1184,-2863.6 1184,-2827.6 1164,-2827.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2827.6 1344,-2863.6 1554,-2863.6 1554,-2827.6 1344,-2827.6"/>
+<text text-anchor="start" x="1417.1206" y="-2841" font-family="Times,serif" font-size="14.00" fill="#000000">IgnoreFiles</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2827.6 1556,-2863.6 1712,-2863.6 1712,-2827.6 1556,-2827.6"/>
+<text text-anchor="start" x="1598.2419" y="-2841" font-family="Times,serif" font-size="14.00" fill="#000000">IgnoreCache</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2827.6 1714,-2863.6 1953,-2863.6 1953,-2827.6 1714,-2827.6"/>
+<text text-anchor="start" x="1723.8632" y="-2841" font-family="Times,serif" font-size="14.00" fill="#000000">EnableMissingTranslationPlaceholders</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2827.6 1955,-2863.6 1975,-2863.6 1975,-2827.6 1955,-2827.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2789.6 526,-2825.6 546,-2825.6 546,-2789.6 526,-2789.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2789.6 548,-2825.6 758,-2825.6 758,-2789.6 548,-2789.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2789.6 760,-2825.6 921,-2825.6 921,-2789.6 760,-2789.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2789.6 923,-2825.6 1162,-2825.6 1162,-2789.6 923,-2789.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2789.6 1164,-2825.6 1184,-2825.6 1184,-2789.6 1164,-2789.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2789.6 1344,-2825.6 1554,-2825.6 1554,-2789.6 1344,-2789.6"/>
+<text text-anchor="start" x="1400.4053" y="-2803" font-family="Times,serif" font-size="14.00" fill="#000000">PanicOnWarning</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2789.6 1556,-2825.6 1712,-2825.6 1712,-2789.6 1556,-2789.6"/>
+<text text-anchor="start" x="1597.4502" y="-2803" font-family="Times,serif" font-size="14.00" fill="#000000">Environment</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2789.6 1714,-2825.6 1953,-2825.6 1953,-2789.6 1714,-2789.6"/>
+<text text-anchor="start" x="1791.1262" y="-2803" font-family="Times,serif" font-size="14.00" fill="#000000">LanguageCode</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2789.6 1955,-2825.6 1975,-2825.6 1975,-2789.6 1955,-2789.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2751.6 526,-2787.6 546,-2787.6 546,-2751.6 526,-2751.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2751.6 548,-2787.6 758,-2787.6 758,-2751.6 548,-2751.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2751.6 760,-2787.6 921,-2787.6 921,-2751.6 760,-2751.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2751.6 923,-2787.6 1162,-2787.6 1162,-2751.6 923,-2751.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2751.6 1164,-2787.6 1184,-2787.6 1184,-2751.6 1164,-2751.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2751.6 1344,-2787.6 1554,-2787.6 1554,-2751.6 1344,-2751.6"/>
+<text text-anchor="start" x="1398.075" y="-2765" font-family="Times,serif" font-size="14.00" fill="#000000">HasCJKLanguage</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2751.6 1556,-2787.6 1712,-2787.6 1712,-2751.6 1556,-2751.6"/>
+<text text-anchor="start" x="1609.8962" y="-2765" font-family="Times,serif" font-size="14.00" fill="#000000">Paginate</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2751.6 1714,-2787.6 1953,-2787.6 1953,-2751.6 1714,-2751.6"/>
+<text text-anchor="start" x="1796.9523" y="-2765" font-family="Times,serif" font-size="14.00" fill="#000000">PaginatePath</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2751.6 1955,-2787.6 1975,-2787.6 1975,-2751.6 1955,-2751.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2713.6 526,-2749.6 546,-2749.6 546,-2713.6 526,-2713.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2713.6 548,-2749.6 758,-2749.6 758,-2713.6 548,-2713.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2713.6 760,-2749.6 921,-2749.6 921,-2713.6 760,-2713.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2713.6 923,-2749.6 1162,-2749.6 1162,-2713.6 923,-2713.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2713.6 1164,-2749.6 1184,-2749.6 1184,-2713.6 1164,-2713.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2713.6 1344,-2749.6 1554,-2749.6 1554,-2713.6 1344,-2713.6"/>
+<text text-anchor="start" x="1397.2896" y="-2727" font-family="Times,serif" font-size="14.00" fill="#000000">PluralizeListTitles</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2713.6 1556,-2749.6 1712,-2749.6 1712,-2713.6 1556,-2713.6"/>
+<text text-anchor="start" x="1591.2286" y="-2727" font-family="Times,serif" font-size="14.00" fill="#000000">CanonifyURLs</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2713.6 1714,-2749.6 1953,-2749.6 1953,-2713.6 1714,-2713.6"/>
+<text text-anchor="start" x="1793.4537" y="-2727" font-family="Times,serif" font-size="14.00" fill="#000000">RelativeURLs</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2713.6 1955,-2749.6 1975,-2749.6 1975,-2713.6 1955,-2713.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2675.6 526,-2711.6 546,-2711.6 546,-2675.6 526,-2675.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2675.6 548,-2711.6 758,-2711.6 758,-2675.6 548,-2675.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2675.6 760,-2711.6 921,-2711.6 921,-2675.6 760,-2675.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2675.6 923,-2711.6 1162,-2711.6 1162,-2675.6 923,-2675.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2675.6 1164,-2711.6 1184,-2711.6 1184,-2675.6 1164,-2675.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2675.6 1344,-2711.6 1554,-2711.6 1554,-2675.6 1344,-2675.6"/>
+<text text-anchor="start" x="1390.6851" y="-2689" font-family="Times,serif" font-size="14.00" fill="#000000">RemovePathAccents</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2675.6 1556,-2711.6 1712,-2711.6 1712,-2675.6 1556,-2675.6"/>
+<text text-anchor="start" x="1569.8485" y="-2689" font-family="Times,serif" font-size="14.00" fill="#000000">PrintUnusedTemplates</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2675.6 1714,-2711.6 1953,-2711.6 1953,-2675.6 1714,-2675.6"/>
+<text text-anchor="start" x="1779.845" y="-2689" font-family="Times,serif" font-size="14.00" fill="#000000">PrintI18nWarnings</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2675.6 1955,-2711.6 1975,-2711.6 1975,-2675.6 1955,-2675.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2637.6 526,-2673.6 546,-2673.6 546,-2637.6 526,-2637.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2637.6 548,-2673.6 758,-2673.6 758,-2637.6 548,-2637.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2637.6 760,-2673.6 921,-2673.6 921,-2637.6 760,-2637.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2637.6 923,-2673.6 1162,-2673.6 1162,-2637.6 923,-2637.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2637.6 1164,-2673.6 1184,-2673.6 1184,-2637.6 1164,-2637.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2637.6 1344,-2673.6 1554,-2673.6 1554,-2637.6 1344,-2637.6"/>
+<text text-anchor="start" x="1395.7314" y="-2651" font-family="Times,serif" font-size="14.00" fill="#000000">PrintPathWarnings</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2637.6 1556,-2673.6 1712,-2673.6 1712,-2637.6 1556,-2637.6"/>
+<text text-anchor="start" x="1565.5624" y="-2651" font-family="Times,serif" font-size="14.00" fill="#000000">RefLinksNotFoundURL</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2637.6 1714,-2673.6 1953,-2673.6 1953,-2637.6 1714,-2637.6"/>
+<text text-anchor="start" x="1776.7468" y="-2651" font-family="Times,serif" font-size="14.00" fill="#000000">RefLinksErrorLevel</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2637.6 1955,-2673.6 1975,-2673.6 1975,-2637.6 1955,-2637.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2599.6 526,-2635.6 546,-2635.6 546,-2599.6 526,-2599.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2599.6 548,-2635.6 758,-2635.6 758,-2599.6 548,-2599.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2599.6 760,-2635.6 921,-2635.6 921,-2599.6 760,-2599.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2599.6 923,-2635.6 1162,-2635.6 1162,-2599.6 923,-2599.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2599.6 1164,-2635.6 1184,-2635.6 1184,-2599.6 1164,-2599.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2599.6 1344,-2635.6 1554,-2635.6 1554,-2599.6 1344,-2599.6"/>
+<text text-anchor="start" x="1395.3457" y="-2613" font-family="Times,serif" font-size="14.00" fill="#000000">SectionPagesMenu</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2599.6 1556,-2635.6 1712,-2635.6 1712,-2599.6 1556,-2599.6"/>
+<text text-anchor="start" x="1586.9516" y="-2613" font-family="Times,serif" font-size="14.00" fill="#000000">SummaryLength</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2599.6 1714,-2635.6 1953,-2635.6 1953,-2599.6 1714,-2599.6"/>
+<text text-anchor="start" x="1820.2805" y="-2613" font-family="Times,serif" font-size="14.00" fill="#000000">Title</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2599.6 1955,-2635.6 1975,-2635.6 1975,-2599.6 1955,-2599.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2561.6 526,-2597.6 546,-2597.6 546,-2561.6 526,-2561.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2561.6 548,-2597.6 758,-2597.6 758,-2561.6 548,-2561.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2561.6 760,-2597.6 921,-2597.6 921,-2561.6 760,-2561.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2561.6 923,-2597.6 1162,-2597.6 1162,-2561.6 923,-2561.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2561.6 1164,-2597.6 1184,-2597.6 1184,-2561.6 1164,-2561.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2561.6 1344,-2597.6 1554,-2597.6 1554,-2561.6 1344,-2561.6"/>
+<text text-anchor="start" x="1429.5638" y="-2575" font-family="Times,serif" font-size="14.00" fill="#000000">Theme</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2561.6 1556,-2597.6 1712,-2597.6 1712,-2561.6 1556,-2561.6"/>
+<text text-anchor="start" x="1610.2805" y="-2575" font-family="Times,serif" font-size="14.00" fill="#000000">Timeout</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2561.6 1714,-2597.6 1953,-2597.6 1953,-2561.6 1714,-2561.6"/>
+<text text-anchor="start" x="1804.3422" y="-2575" font-family="Times,serif" font-size="14.00" fill="#000000">TimeZone</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2561.6 1955,-2597.6 1975,-2597.6 1975,-2561.6 1955,-2561.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2523.6 526,-2559.6 546,-2559.6 546,-2523.6 526,-2523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2523.6 548,-2559.6 758,-2559.6 758,-2523.6 548,-2523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2523.6 760,-2559.6 921,-2559.6 921,-2523.6 760,-2523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2523.6 923,-2559.6 1162,-2559.6 1162,-2523.6 923,-2523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2523.6 1164,-2559.6 1184,-2559.6 1184,-2523.6 1164,-2523.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2523.6 1344,-2559.6 1554,-2559.6 1554,-2523.6 1344,-2523.6"/>
+<text text-anchor="start" x="1407.7861" y="-2537" font-family="Times,serif" font-size="14.00" fill="#000000">TitleCaseStyle</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2523.6 1556,-2559.6 1712,-2559.6 1712,-2523.6 1556,-2523.6"/>
+<text text-anchor="start" x="1581.1227" y="-2537" font-family="Times,serif" font-size="14.00" fill="#000000">NewContentEditor</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2523.6 1714,-2559.6 1953,-2559.6 1953,-2523.6 1714,-2523.6"/>
+<text text-anchor="start" x="1807.4502" y="-2537" font-family="Times,serif" font-size="14.00" fill="#000000">NoTimes</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2523.6 1955,-2559.6 1975,-2559.6 1975,-2523.6 1955,-2523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2485.6 526,-2521.6 546,-2521.6 546,-2485.6 526,-2485.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2485.6 548,-2521.6 758,-2521.6 758,-2485.6 548,-2485.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2485.6 760,-2521.6 921,-2521.6 921,-2485.6 760,-2485.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2485.6 923,-2521.6 1162,-2521.6 1162,-2485.6 923,-2485.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2485.6 1164,-2521.6 1184,-2521.6 1184,-2485.6 1164,-2485.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2485.6 1344,-2521.6 1554,-2521.6 1554,-2485.6 1344,-2485.6"/>
+<text text-anchor="start" x="1419.8331" y="-2499" font-family="Times,serif" font-size="14.00" fill="#000000">NoChmod</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2485.6 1556,-2521.6 1712,-2521.6 1712,-2485.6 1556,-2485.6"/>
+<text text-anchor="start" x="1576.0715" y="-2499" font-family="Times,serif" font-size="14.00" fill="#000000">CleanDestinationDir</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2485.6 1714,-2521.6 1953,-2521.6 1953,-2485.6 1714,-2485.6"/>
+<text text-anchor="start" x="1779.075" y="-2499" font-family="Times,serif" font-size="14.00" fill="#000000">IgnoreVendorPaths</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2485.6 1955,-2521.6 1975,-2521.6 1975,-2485.6 1955,-2485.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2447.6 526,-2483.6 546,-2483.6 546,-2447.6 526,-2447.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2447.6 548,-2483.6 758,-2483.6 758,-2447.6 548,-2447.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2447.6 760,-2483.6 921,-2483.6 921,-2447.6 760,-2447.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2447.6 923,-2483.6 1162,-2483.6 1162,-2447.6 923,-2447.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2447.6 1164,-2483.6 1184,-2483.6 1184,-2447.6 1164,-2447.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2447.6 1344,-2483.6 1554,-2483.6 1554,-2447.6 1344,-2447.6"/>
+<text text-anchor="start" x="1410.8899" y="-2461" font-family="Times,serif" font-size="14.00" fill="#000000">CommonDirs</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2447.6 1556,-2483.6 1712,-2483.6 1712,-2447.6 1556,-2447.6"/>
+<text text-anchor="start" x="1608.7293" y="-2461" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2447.6 1714,-2483.6 1953,-2483.6 1953,-2447.6 1714,-2447.6"/>
+<text text-anchor="start" x="1804.7293" y="-2461" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir0</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2447.6 1955,-2483.6 1975,-2483.6 1975,-2447.6 1955,-2447.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2409.6 526,-2445.6 546,-2445.6 546,-2409.6 526,-2409.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2409.6 548,-2445.6 758,-2445.6 758,-2409.6 548,-2409.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2409.6 760,-2445.6 921,-2445.6 921,-2409.6 760,-2409.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2409.6 923,-2445.6 1162,-2445.6 1162,-2409.6 923,-2409.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2409.6 1164,-2445.6 1184,-2445.6 1184,-2409.6 1164,-2409.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2409.6 1344,-2445.6 1554,-2445.6 1554,-2409.6 1344,-2409.6"/>
+<text text-anchor="start" x="1420.2293" y="-2423" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir1</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2409.6 1556,-2445.6 1712,-2445.6 1712,-2409.6 1556,-2409.6"/>
+<text text-anchor="start" x="1605.2293" y="-2423" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir2</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2409.6 1714,-2445.6 1953,-2445.6 1953,-2409.6 1714,-2409.6"/>
+<text text-anchor="start" x="1804.7293" y="-2423" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir3</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2409.6 1955,-2445.6 1975,-2445.6 1975,-2409.6 1955,-2409.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2371.6 526,-2407.6 546,-2407.6 546,-2371.6 526,-2371.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2371.6 548,-2407.6 758,-2407.6 758,-2371.6 548,-2371.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2371.6 760,-2407.6 921,-2407.6 921,-2371.6 760,-2371.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2371.6 923,-2407.6 1162,-2407.6 1162,-2371.6 923,-2371.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2371.6 1164,-2407.6 1184,-2407.6 1184,-2371.6 1164,-2371.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2371.6 1344,-2407.6 1554,-2407.6 1554,-2371.6 1344,-2371.6"/>
+<text text-anchor="start" x="1420.2293" y="-2385" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir4</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2371.6 1556,-2407.6 1712,-2407.6 1712,-2371.6 1556,-2371.6"/>
+<text text-anchor="start" x="1605.2293" y="-2385" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir5</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2371.6 1714,-2407.6 1953,-2407.6 1953,-2371.6 1714,-2371.6"/>
+<text text-anchor="start" x="1804.7293" y="-2385" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir6</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2371.6 1955,-2407.6 1975,-2407.6 1975,-2371.6 1955,-2371.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2333.6 526,-2369.6 546,-2369.6 546,-2333.6 526,-2333.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2333.6 548,-2369.6 758,-2369.6 758,-2333.6 548,-2333.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2333.6 760,-2369.6 921,-2369.6 921,-2333.6 760,-2333.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2333.6 923,-2369.6 1162,-2369.6 1162,-2333.6 923,-2333.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2333.6 1164,-2369.6 1184,-2369.6 1184,-2333.6 1164,-2333.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2333.6 1344,-2369.6 1554,-2369.6 1554,-2333.6 1344,-2333.6"/>
+<text text-anchor="start" x="1420.2293" y="-2347" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir7</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-2333.6 1556,-2369.6 1712,-2369.6 1712,-2333.6 1556,-2333.6"/>
+<text text-anchor="start" x="1605.2293" y="-2347" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir8</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-2333.6 1714,-2369.6 1953,-2369.6 1953,-2333.6 1714,-2333.6"/>
+<text text-anchor="start" x="1804.7293" y="-2347" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir9</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2333.6 1955,-2369.6 1975,-2369.6 1975,-2333.6 1955,-2333.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2295.6 526,-2331.6 546,-2331.6 546,-2295.6 526,-2295.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-2295.6 548,-2331.6 758,-2331.6 758,-2295.6 548,-2295.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-2295.6 760,-2331.6 921,-2331.6 921,-2295.6 760,-2295.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-2295.6 923,-2331.6 1162,-2331.6 1162,-2295.6 923,-2295.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2295.6 1164,-2331.6 1184,-2331.6 1184,-2295.6 1164,-2295.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2295.6 1344,-2331.6 1554,-2331.6 1554,-2295.6 1344,-2295.6"/>
+<text text-anchor="start" x="1416.7293" y="-2309" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDir10</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-2295.6 1556,-2331.6 1712,-2331.6 1712,-2295.6 1556,-2295.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-2295.6 1714,-2331.6 1953,-2331.6 1953,-2295.6 1714,-2295.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2295.6 1955,-2331.6 1975,-2331.6 1975,-2295.6 1955,-2295.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2273.6 526,-2293.6 546,-2293.6 546,-2273.6 526,-2273.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2235.6 526,-2271.6 546,-2271.6 546,-2235.6 526,-2235.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-2235.6 548,-2271.6 758,-2271.6 758,-2235.6 548,-2235.6"/>
+<text text-anchor="start" x="588.8562" y="-2249" font-family="Times,serif" font-size="14.00" fill="#000000">LanguagesDefaultFirst</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-2235.6 760,-2271.6 921,-2271.6 921,-2235.6 760,-2235.6"/>
+<text text-anchor="start" x="810.1795" y="-2249" font-family="Times,serif" font-size="14.00" fill="#000000">Languages</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-2235.6 923,-2271.6 1162,-2271.6 1162,-2235.6 923,-2235.6"/>
+<text text-anchor="start" x="1014.9018" y="-2249" font-family="Times,serif" font-size="14.00" fill="#000000">Language</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2235.6 1164,-2271.6 1184,-2271.6 1184,-2235.6 1164,-2235.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-1703.6 1186,-2271.6 1342,-2271.6 1342,-1703.6 1186,-1703.6"/>
+<text text-anchor="start" x="1216.9579" y="-1983.4" font-family="Times,serif" font-size="14.00" fill="#000000">ConfigLanguage</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2235.6 1344,-2271.6 1554,-2271.6 1554,-2235.6 1344,-2235.6"/>
+<text text-anchor="start" x="1431.1171" y="-2249" font-family="Times,serif" font-size="14.00" fill="#000000">config</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-2235.6 1556,-2271.6 1712,-2271.6 1712,-2235.6 1556,-2235.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-2235.6 1714,-2271.6 1953,-2271.6 1953,-2235.6 1714,-2235.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2235.6 1955,-2271.6 1975,-2271.6 1975,-2235.6 1955,-2235.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2197.6 526,-2233.6 546,-2233.6 546,-2197.6 526,-2197.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-2197.6 548,-2233.6 758,-2233.6 758,-2197.6 548,-2197.6"/>
+<text text-anchor="start" x="592.7398" y="-2211" font-family="Times,serif" font-size="14.00" fill="#000000">BaseURLLiveReload</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-2197.6 760,-2233.6 921,-2233.6 921,-2197.6 760,-2197.6"/>
+<text text-anchor="start" x="812.8969" y="-2211" font-family="Times,serif" font-size="14.00" fill="#000000">BaseURL</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-2197.6 923,-2233.6 1162,-2233.6 1162,-2197.6 923,-2197.6"/>
+<text text-anchor="start" x="997.7973" y="-2211" font-family="Times,serif" font-size="14.00" fill="#000000">LanguagePrefix</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2197.6 1164,-2233.6 1184,-2233.6 1184,-2197.6 1164,-2197.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2197.6 1344,-2233.6 1554,-2233.6 1554,-2197.6 1344,-2197.6"/>
+<text text-anchor="start" x="1417.1192" y="-2211" font-family="Times,serif" font-size="14.00" fill="#000000">baseConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-2197.6 1556,-2233.6 1712,-2233.6 1712,-2197.6 1556,-2197.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-2197.6 1714,-2233.6 1953,-2233.6 1953,-2197.6 1714,-2197.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2197.6 1955,-2233.6 1975,-2233.6 1975,-2197.6 1955,-2197.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2159.6 526,-2195.6 546,-2195.6 546,-2159.6 526,-2159.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-2159.6 548,-2195.6 758,-2195.6 758,-2159.6 548,-2159.6"/>
+<text text-anchor="start" x="610.615" y="-2173" font-family="Times,serif" font-size="14.00" fill="#000000">IsMultiLingual</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-2159.6 760,-2195.6 921,-2195.6 921,-2159.6 760,-2159.6"/>
+<text text-anchor="start" x="808.2216" y="-2173" font-family="Times,serif" font-size="14.00" fill="#000000">IsMultihost</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-2159.6 923,-2195.6 1162,-2195.6 1162,-2159.6 923,-2159.6"/>
+<text text-anchor="start" x="1005.9502" y="-2173" font-family="Times,serif" font-size="14.00" fill="#000000">Environment</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2159.6 1164,-2195.6 1184,-2195.6 1184,-2159.6 1164,-2159.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2159.6 1344,-2195.6 1554,-2195.6 1554,-2159.6 1344,-2159.6"/>
+<text text-anchor="start" x="1443.5547" y="-2173" font-family="Times,serif" font-size="14.00" fill="#000000">m</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-2159.6 1556,-2195.6 1712,-2195.6 1712,-2159.6 1556,-2159.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-2159.6 1714,-2195.6 1953,-2195.6 1953,-2159.6 1714,-2159.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2159.6 1955,-2195.6 1975,-2195.6 1975,-2159.6 1955,-2159.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2121.6 526,-2157.6 546,-2157.6 546,-2121.6 526,-2121.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-2121.6 548,-2157.6 758,-2157.6 758,-2121.6 548,-2121.6"/>
+<text text-anchor="start" x="608.683" y="-2135" font-family="Times,serif" font-size="14.00" fill="#000000">IsLangDisabled</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-2121.6 760,-2157.6 921,-2157.6 921,-2121.6 760,-2121.6"/>
+<text text-anchor="start" x="777.5196" y="-2135" font-family="Times,serif" font-size="14.00" fill="#000000">TemplateMetricsHints</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-2121.6 923,-2157.6 1162,-2157.6 1162,-2121.6 923,-2121.6"/>
+<text text-anchor="start" x="994.6858" y="-2135" font-family="Times,serif" font-size="14.00" fill="#000000">TemplateMetrics</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2121.6 1164,-2157.6 1184,-2157.6 1184,-2121.6 1164,-2121.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-2121.6 1344,-2157.6 1554,-2157.6 1554,-2121.6 1344,-2121.6"/>
+<text text-anchor="start" x="1423.7328" y="-2135" font-family="Times,serif" font-size="14.00" fill="#000000">language</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-2121.6 1556,-2157.6 1712,-2157.6 1712,-2121.6 1556,-2121.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-2121.6 1714,-2157.6 1953,-2157.6 1953,-2121.6 1714,-2121.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2121.6 1955,-2157.6 1975,-2157.6 1975,-2121.6 1955,-2121.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2083.6 526,-2119.6 546,-2119.6 546,-2083.6 526,-2083.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-2083.6 548,-2119.6 758,-2119.6 758,-2083.6 548,-2083.6"/>
+<text text-anchor="start" x="600.1227" y="-2097" font-family="Times,serif" font-size="14.00" fill="#000000">NewContentEditor</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-2083.6 760,-2119.6 921,-2119.6 921,-2083.6 760,-2083.6"/>
+<text text-anchor="start" x="802.0042" y="-2097" font-family="Times,serif" font-size="14.00" fill="#000000">NoBuildLock</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-2083.6 923,-2119.6 1162,-2119.6 1162,-2083.6 923,-2083.6"/>
+<text text-anchor="start" x="1003.2426" y="-2097" font-family="Times,serif" font-size="14.00" fill="#000000">IgnoredErrors</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2083.6 1164,-2119.6 1184,-2119.6 1184,-2083.6 1164,-2083.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-2083.6 1344,-2119.6 1554,-2119.6 1554,-2083.6 1344,-2083.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-2083.6 1556,-2119.6 1712,-2119.6 1712,-2083.6 1556,-2083.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-2083.6 1714,-2119.6 1953,-2119.6 1953,-2083.6 1714,-2083.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2083.6 1955,-2119.6 1975,-2119.6 1975,-2083.6 1955,-2083.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2045.6 526,-2081.6 546,-2081.6 546,-2045.6 526,-2045.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-2045.6 548,-2081.6 758,-2081.6 758,-2045.6 548,-2045.6"/>
+<text text-anchor="start" x="640.9488" y="-2059" font-family="Times,serif" font-size="14.00" fill="#000000">Dirs</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-2045.6 760,-2081.6 921,-2081.6 921,-2045.6 760,-2045.6"/>
+<text text-anchor="start" x="807.4509" y="-2059" font-family="Times,serif" font-size="14.00" fill="#000000">BaseConfig</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-2045.6 923,-2081.6 1162,-2081.6 1162,-2045.6 923,-2045.6"/>
+<text text-anchor="start" x="1018.7805" y="-2059" font-family="Times,serif" font-size="14.00" fill="#000000">Timeout</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2045.6 1164,-2081.6 1184,-2081.6 1184,-2045.6 1164,-2045.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-2045.6 1344,-2081.6 1554,-2081.6 1554,-2045.6 1344,-2045.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-2045.6 1556,-2081.6 1712,-2081.6 1712,-2045.6 1556,-2045.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-2045.6 1714,-2081.6 1953,-2081.6 1953,-2045.6 1714,-2045.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2045.6 1955,-2081.6 1975,-2081.6 1975,-2045.6 1955,-2045.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-2007.6 526,-2043.6 546,-2043.6 546,-2007.6 526,-2007.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-2007.6 548,-2043.6 758,-2043.6 758,-2007.6 548,-2007.6"/>
+<text text-anchor="start" x="637.4488" y="-2021" font-family="Times,serif" font-size="14.00" fill="#000000">Quiet</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-2007.6 760,-2043.6 921,-2043.6 921,-2007.6 760,-2007.6"/>
+<text text-anchor="start" x="806.2882" y="-2021" font-family="Times,serif" font-size="14.00" fill="#000000">WorkingDir</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-2007.6 923,-2043.6 1162,-2043.6 1162,-2007.6 923,-2007.6"/>
+<text text-anchor="start" x="1016.8436" y="-2021" font-family="Times,serif" font-size="14.00" fill="#000000">DirsBase</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-2007.6 1164,-2043.6 1184,-2043.6 1184,-2007.6 1164,-2007.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-2007.6 1344,-2043.6 1554,-2043.6 1554,-2007.6 1344,-2007.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-2007.6 1556,-2043.6 1712,-2043.6 1712,-2007.6 1556,-2007.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-2007.6 1714,-2043.6 1953,-2043.6 1953,-2007.6 1714,-2007.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-2007.6 1955,-2043.6 1975,-2043.6 1975,-2007.6 1955,-2007.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1969.6 526,-2005.6 546,-2005.6 546,-1969.6 526,-1969.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-1969.6 548,-2005.6 758,-2005.6 758,-1969.6 548,-1969.6"/>
+<text text-anchor="start" x="610.2286" y="-1983" font-family="Times,serif" font-size="14.00" fill="#000000">CanonifyURLs</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1969.6 760,-2005.6 921,-2005.6 921,-1969.6 760,-1969.6"/>
+<text text-anchor="start" x="810.9502" y="-1983" font-family="Times,serif" font-size="14.00" fill="#000000">GetConfig</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1969.6 923,-2005.6 1162,-2005.6 1162,-1969.6 923,-1969.6"/>
+<text text-anchor="start" x="991.9537" y="-1983" font-family="Times,serif" font-size="14.00" fill="#000000">GetConfigSection</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1969.6 1164,-2005.6 1184,-2005.6 1184,-1969.6 1164,-1969.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-1969.6 1344,-2005.6 1554,-2005.6 1554,-1969.6 1344,-1969.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1969.6 1556,-2005.6 1712,-2005.6 1712,-1969.6 1556,-1969.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1969.6 1714,-2005.6 1953,-2005.6 1953,-1969.6 1714,-1969.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1969.6 1955,-2005.6 1975,-2005.6 1975,-1969.6 1955,-1969.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1931.6 526,-1967.6 546,-1967.6 546,-1931.6 526,-1931.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-1931.6 548,-1967.6 758,-1967.6 758,-1931.6 548,-1931.6"/>
+<text text-anchor="start" x="593.1318" y="-1945" font-family="Times,serif" font-size="14.00" fill="#000000">DisablePathToLower</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1931.6 760,-1967.6 921,-1967.6 921,-1931.6 760,-1931.6"/>
+<text text-anchor="start" x="811.3429" y="-1945" font-family="Times,serif" font-size="14.00" fill="#000000">IgnoreFile</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1931.6 923,-1967.6 1162,-1967.6 1162,-1931.6 923,-1931.6"/>
+<text text-anchor="start" x="1006.7286" y="-1945" font-family="Times,serif" font-size="14.00" fill="#000000">IsUglyURLs</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1931.6 1164,-1967.6 1184,-1967.6 1184,-1931.6 1164,-1931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-1931.6 1344,-1967.6 1554,-1967.6 1554,-1931.6 1344,-1931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1931.6 1556,-1967.6 1712,-1967.6 1712,-1931.6 1556,-1931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1931.6 1714,-1967.6 1953,-1967.6 1953,-1931.6 1714,-1931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1931.6 1955,-1967.6 1975,-1967.6 1975,-1931.6 1955,-1931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1893.6 526,-1929.6 546,-1929.6 546,-1893.6 526,-1893.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-1893.6 548,-1929.6 758,-1929.6 758,-1893.6 548,-1893.6"/>
+<text text-anchor="start" x="557.7496" y="-1907" font-family="Times,serif" font-size="14.00" fill="#000000">DefaultContentLanguageInSubdir</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1893.6 760,-1929.6 921,-1929.6 921,-1893.6 760,-1893.6"/>
+<text text-anchor="start" x="769.7468" y="-1907" font-family="Times,serif" font-size="14.00" fill="#000000">DefaultContentLanguage</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1893.6 923,-1929.6 1162,-1929.6 1162,-1893.6 923,-1893.6"/>
+<text text-anchor="start" x="984.1851" y="-1907" font-family="Times,serif" font-size="14.00" fill="#000000">RemovePathAccents</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1893.6 1164,-1929.6 1184,-1929.6 1184,-1893.6 1164,-1893.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-1893.6 1344,-1929.6 1554,-1929.6 1554,-1893.6 1344,-1893.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1893.6 1556,-1929.6 1712,-1929.6 1712,-1893.6 1556,-1893.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1893.6 1714,-1929.6 1953,-1929.6 1953,-1893.6 1714,-1893.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1893.6 1955,-1929.6 1975,-1929.6 1975,-1893.6 1955,-1893.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1855.6 526,-1891.6 546,-1891.6 546,-1855.6 526,-1855.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-1855.6 548,-1891.6 758,-1891.6 758,-1855.6 548,-1855.6"/>
+<text text-anchor="start" x="619.1669" y="-1869" font-family="Times,serif" font-size="14.00" fill="#000000">BuildFuture</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1855.6 760,-1891.6 921,-1891.6 921,-1855.6 760,-1855.6"/>
+<text text-anchor="start" x="802.7819" y="-1869" font-family="Times,serif" font-size="14.00" fill="#000000">BuildExpired</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1855.6 923,-1891.6 1162,-1891.6 1162,-1855.6 923,-1855.6"/>
+<text text-anchor="start" x="995.4516" y="-1869" font-family="Times,serif" font-size="14.00" fill="#000000">SummaryLength</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1855.6 1164,-1891.6 1184,-1891.6 1184,-1855.6 1164,-1855.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-1855.6 1344,-1891.6 1554,-1891.6 1554,-1855.6 1344,-1855.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1855.6 1556,-1891.6 1712,-1891.6 1712,-1855.6 1556,-1855.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1855.6 1714,-1891.6 1953,-1891.6 1953,-1855.6 1714,-1855.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1855.6 1955,-1891.6 1975,-1891.6 1975,-1855.6 1955,-1855.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1817.6 526,-1853.6 546,-1853.6 546,-1817.6 526,-1817.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-1817.6 548,-1853.6 758,-1853.6 758,-1817.6 548,-1817.6"/>
+<text text-anchor="start" x="588.8485" y="-1831" font-family="Times,serif" font-size="14.00" fill="#000000">PrintUnusedTemplates</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1817.6 760,-1853.6 921,-1853.6 921,-1817.6 760,-1817.6"/>
+<text text-anchor="start" x="816.3864" y="-1831" font-family="Times,serif" font-size="14.00" fill="#000000">Running</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1817.6 923,-1853.6 1162,-1853.6 1162,-1817.6 923,-1817.6"/>
+<text text-anchor="start" x="1009.4523" y="-1831" font-family="Times,serif" font-size="14.00" fill="#000000">BuildDrafts</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1817.6 1164,-1853.6 1184,-1853.6 1184,-1817.6 1164,-1817.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-1817.6 1344,-1853.6 1554,-1853.6 1554,-1817.6 1344,-1817.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1817.6 1556,-1853.6 1712,-1853.6 1712,-1817.6 1556,-1817.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1817.6 1714,-1853.6 1953,-1853.6 1953,-1817.6 1714,-1817.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1817.6 1955,-1853.6 1975,-1853.6 1975,-1817.6 1955,-1817.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1779.6 526,-1815.6 546,-1815.6 546,-1779.6 526,-1779.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-1779.6 548,-1815.6 758,-1815.6 758,-1779.6 548,-1779.6"/>
+<text text-anchor="start" x="621.5147" y="-1793" font-family="Times,serif" font-size="14.00" fill="#000000">CreateTitle</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1779.6 760,-1815.6 921,-1815.6 921,-1779.6 760,-1779.6"/>
+<text text-anchor="start" x="786.845" y="-1793" font-family="Times,serif" font-size="14.00" fill="#000000">PrintI18nWarnings</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1779.6 923,-1815.6 1162,-1815.6 1162,-1779.6 923,-1779.6"/>
+<text text-anchor="start" x="932.8632" y="-1793" font-family="Times,serif" font-size="14.00" fill="#000000">EnableMissingTranslationPlaceholders</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1779.6 1164,-1815.6 1184,-1815.6 1184,-1779.6 1164,-1779.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-1779.6 1344,-1815.6 1554,-1815.6 1554,-1779.6 1344,-1779.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1779.6 1556,-1815.6 1712,-1815.6 1712,-1779.6 1556,-1779.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1779.6 1714,-1815.6 1953,-1815.6 1953,-1779.6 1714,-1779.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1779.6 1955,-1815.6 1975,-1815.6 1975,-1779.6 1955,-1779.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1741.6 526,-1777.6 546,-1777.6 546,-1741.6 526,-1741.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-1741.6 548,-1777.6 758,-1777.6 758,-1741.6 548,-1741.6"/>
+<text text-anchor="start" x="625.007" y="-1755" font-family="Times,serif" font-size="14.00" fill="#000000">StaticDirs</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1741.6 760,-1777.6 921,-1777.6 921,-1741.6 760,-1741.6"/>
+<text text-anchor="start" x="803.9523" y="-1755" font-family="Times,serif" font-size="14.00" fill="#000000">PaginatePath</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1741.6 923,-1777.6 1162,-1777.6 1162,-1741.6 923,-1741.6"/>
+<text text-anchor="start" x="1018.3962" y="-1755" font-family="Times,serif" font-size="14.00" fill="#000000">Paginate</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1741.6 1164,-1777.6 1184,-1777.6 1184,-1741.6 1164,-1741.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-1741.6 1344,-1777.6 1554,-1777.6 1554,-1741.6 1344,-1741.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1741.6 1556,-1777.6 1712,-1777.6 1712,-1741.6 1556,-1741.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1741.6 1714,-1777.6 1953,-1777.6 1953,-1741.6 1714,-1741.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1741.6 1955,-1777.6 1975,-1777.6 1975,-1741.6 1955,-1741.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1703.6 526,-1739.6 546,-1739.6 546,-1703.6 526,-1703.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1703.6 548,-1739.6 758,-1739.6 758,-1703.6 548,-1703.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1703.6 760,-1739.6 921,-1739.6 921,-1703.6 760,-1703.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1703.6 923,-1739.6 1162,-1739.6 1162,-1703.6 923,-1703.6"/>
+<text text-anchor="start" x="1005.9516" y="-1717" font-family="Times,serif" font-size="14.00" fill="#000000">EnableEmoji</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1703.6 1164,-1739.6 1184,-1739.6 1184,-1703.6 1164,-1703.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-1703.6 1344,-1739.6 1554,-1739.6 1554,-1703.6 1344,-1703.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1703.6 1556,-1739.6 1712,-1739.6 1712,-1703.6 1556,-1703.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1703.6 1714,-1739.6 1953,-1739.6 1953,-1703.6 1714,-1703.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1703.6 1955,-1739.6 1975,-1739.6 1975,-1703.6 1955,-1703.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1681.6 526,-1701.6 546,-1701.6 546,-1681.6 526,-1681.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1643.6 526,-1679.6 546,-1679.6 546,-1643.6 526,-1643.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1643.6 548,-1679.6 758,-1679.6 758,-1643.6 548,-1643.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1643.6 760,-1679.6 921,-1679.6 921,-1643.6 760,-1643.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1643.6 923,-1679.6 1162,-1679.6 1162,-1643.6 923,-1643.6"/>
+<text text-anchor="start" x="1003.2349" y="-1657" font-family="Times,serif" font-size="14.00" fill="#000000">cloneForLang</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1643.6 1164,-1679.6 1184,-1679.6 1184,-1643.6 1164,-1643.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-1301.6 1186,-1679.6 1342,-1679.6 1342,-1301.6 1186,-1301.6"/>
+<text text-anchor="start" x="1244.5561" y="-1486.4" font-family="Times,serif" font-size="14.00" fill="#000000">Config</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1643.6 1344,-1679.6 1554,-1679.6 1554,-1643.6 1344,-1643.6"/>
+<text text-anchor="start" x="1427.2342" y="-1657" font-family="Times,serif" font-size="14.00" fill="#000000">Internal</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1643.6 1556,-1679.6 1712,-1679.6 1712,-1643.6 1556,-1643.6"/>
+<text text-anchor="start" x="1629.3317" y="-1657" font-family="Times,serif" font-size="14.00" fill="#000000">C</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1643.6 1714,-1679.6 1953,-1679.6 1953,-1643.6 1714,-1643.6"/>
+<text text-anchor="start" x="1800.4425" y="-1657" font-family="Times,serif" font-size="14.00" fill="#000000">RootConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1643.6 1955,-1679.6 1975,-1679.6 1975,-1643.6 1955,-1643.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1605.6 526,-1641.6 546,-1641.6 546,-1605.6 526,-1605.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1605.6 548,-1641.6 758,-1641.6 758,-1605.6 548,-1605.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1605.6 760,-1641.6 921,-1641.6 921,-1605.6 760,-1605.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1605.6 923,-1641.6 1162,-1641.6 1162,-1605.6 923,-1605.6"/>
+<text text-anchor="start" x="998.9446" y="-1619" font-family="Times,serif" font-size="14.00" fill="#000000">CompileConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1605.6 1164,-1641.6 1184,-1641.6 1184,-1605.6 1164,-1605.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1605.6 1344,-1641.6 1554,-1641.6 1554,-1605.6 1344,-1605.6"/>
+<text text-anchor="start" x="1429.1711" y="-1619" font-family="Times,serif" font-size="14.00" fill="#000000">Author</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1605.6 1556,-1641.6 1712,-1641.6 1712,-1605.6 1556,-1605.6"/>
+<text text-anchor="start" x="1616.5035" y="-1619" font-family="Times,serif" font-size="14.00" fill="#000000">Social</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1605.6 1714,-1641.6 1953,-1641.6 1953,-1605.6 1714,-1605.6"/>
+<text text-anchor="start" x="1817.9411" y="-1619" font-family="Times,serif" font-size="14.00" fill="#000000">Build</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1605.6 1955,-1641.6 1975,-1641.6 1975,-1605.6 1955,-1605.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1567.6 526,-1603.6 546,-1603.6 546,-1567.6 526,-1567.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1567.6 548,-1603.6 758,-1603.6 758,-1567.6 548,-1567.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1567.6 760,-1603.6 921,-1603.6 921,-1567.6 760,-1567.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1567.6 923,-1603.6 1162,-1603.6 1162,-1567.6 923,-1567.6"/>
+<text text-anchor="start" x="1000.5126" y="-1581" font-family="Times,serif" font-size="14.00" fill="#000000">IsKindEnabled</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1567.6 1164,-1603.6 1184,-1603.6 1184,-1567.6 1164,-1567.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1567.6 1344,-1603.6 1554,-1603.6 1554,-1567.6 1344,-1567.6"/>
+<text text-anchor="start" x="1428.7875" y="-1581" font-family="Times,serif" font-size="14.00" fill="#000000">Caches</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1567.6 1556,-1603.6 1712,-1603.6 1712,-1567.6 1556,-1567.6"/>
+<text text-anchor="start" x="1611.8401" y="-1581" font-family="Times,serif" font-size="14.00" fill="#000000">Markup</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1567.6 1714,-1603.6 1953,-1603.6 1953,-1567.6 1714,-1567.6"/>
+<text text-anchor="start" x="1798.5119" y="-1581" font-family="Times,serif" font-size="14.00" fill="#000000">MediaTypes</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1567.6 1955,-1603.6 1975,-1603.6 1975,-1567.6 1955,-1567.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1529.6 526,-1565.6 546,-1565.6 546,-1529.6 526,-1529.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1529.6 548,-1565.6 758,-1565.6 758,-1529.6 548,-1529.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1529.6 760,-1565.6 921,-1565.6 921,-1529.6 760,-1529.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1529.6 923,-1565.6 1162,-1565.6 1162,-1529.6 923,-1529.6"/>
+<text text-anchor="start" x="998.183" y="-1543" font-family="Times,serif" font-size="14.00" fill="#000000">IsLangDisabled</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1529.6 1164,-1565.6 1184,-1565.6 1184,-1529.6 1164,-1529.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1529.6 1344,-1565.6 1554,-1565.6 1554,-1529.6 1344,-1529.6"/>
+<text text-anchor="start" x="1425.6718" y="-1543" font-family="Times,serif" font-size="14.00" fill="#000000">Imaging</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1529.6 1556,-1565.6 1712,-1565.6 1712,-1529.6 1556,-1529.6"/>
+<text text-anchor="start" x="1591.6143" y="-1543" font-family="Times,serif" font-size="14.00" fill="#000000">OutputFormats</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1529.6 1714,-1565.6 1953,-1565.6 1953,-1529.6 1714,-1529.6"/>
+<text text-anchor="start" x="1811.3338" y="-1543" font-family="Times,serif" font-size="14.00" fill="#000000">Outputs</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1529.6 1955,-1565.6 1975,-1565.6 1975,-1529.6 1955,-1529.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1491.6 526,-1527.6 546,-1527.6 546,-1491.6 526,-1491.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1491.6 548,-1527.6 758,-1527.6 758,-1491.6 548,-1491.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1491.6 760,-1527.6 921,-1527.6 921,-1491.6 760,-1491.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1491.6 923,-1527.6 1162,-1527.6 1162,-1491.6 923,-1491.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1491.6 1164,-1527.6 1184,-1527.6 1184,-1491.6 1164,-1491.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1491.6 1344,-1527.6 1554,-1527.6 1554,-1491.6 1344,-1491.6"/>
+<text text-anchor="start" x="1425.6802" y="-1505" font-family="Times,serif" font-size="14.00" fill="#000000">Cascade</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1491.6 1556,-1527.6 1712,-1527.6 1712,-1491.6 1556,-1491.6"/>
+<text text-anchor="start" x="1614.9481" y="-1505" font-family="Times,serif" font-size="14.00" fill="#000000">Menus</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1491.6 1714,-1527.6 1953,-1527.6 1953,-1491.6 1714,-1491.6"/>
+<text text-anchor="start" x="1798.8962" y="-1505" font-family="Times,serif" font-size="14.00" fill="#000000">Deployment</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1491.6 1955,-1527.6 1975,-1527.6 1975,-1491.6 1955,-1491.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1453.6 526,-1489.6 546,-1489.6 546,-1453.6 526,-1453.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1453.6 548,-1489.6 758,-1489.6 758,-1453.6 548,-1453.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1453.6 760,-1489.6 921,-1489.6 921,-1453.6 760,-1453.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1453.6 923,-1489.6 1162,-1489.6 1162,-1453.6 923,-1453.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1453.6 1164,-1489.6 1184,-1489.6 1184,-1453.6 1164,-1453.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1453.6 1344,-1489.6 1554,-1489.6 1554,-1453.6 1344,-1453.6"/>
+<text text-anchor="start" x="1427.2251" y="-1467" font-family="Times,serif" font-size="14.00" fill="#000000">Module</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1453.6 1556,-1489.6 1712,-1489.6 1712,-1453.6 1556,-1453.6"/>
+<text text-anchor="start" x="1600.9523" y="-1467" font-family="Times,serif" font-size="14.00" fill="#000000">Frontmatter</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1453.6 1714,-1489.6 1953,-1489.6 1953,-1453.6 1714,-1453.6"/>
+<text text-anchor="start" x="1814.0568" y="-1467" font-family="Times,serif" font-size="14.00" fill="#000000">Minify</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1453.6 1955,-1489.6 1975,-1489.6 1975,-1453.6 1955,-1453.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1415.6 526,-1451.6 546,-1451.6 546,-1415.6 526,-1415.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1415.6 548,-1451.6 758,-1451.6 758,-1415.6 548,-1415.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1415.6 760,-1451.6 921,-1451.6 921,-1415.6 760,-1415.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1415.6 923,-1451.6 1162,-1451.6 1162,-1415.6 923,-1415.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1415.6 1164,-1451.6 1184,-1451.6 1184,-1415.6 1164,-1415.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1415.6 1344,-1451.6 1554,-1451.6 1554,-1415.6 1344,-1415.6"/>
+<text text-anchor="start" x="1417.5056" y="-1429" font-family="Times,serif" font-size="14.00" fill="#000000">Permalinks</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1415.6 1556,-1451.6 1712,-1451.6 1712,-1415.6 1556,-1415.6"/>
+<text text-anchor="start" x="1599.3962" y="-1429" font-family="Times,serif" font-size="14.00" fill="#000000">Taxonomies</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1415.6 1714,-1451.6 1953,-1451.6 1953,-1415.6 1714,-1415.6"/>
+<text text-anchor="start" x="1810.5582" y="-1429" font-family="Times,serif" font-size="14.00" fill="#000000">Sitemap</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1415.6 1955,-1451.6 1975,-1451.6 1975,-1415.6 1955,-1415.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1377.6 526,-1413.6 546,-1413.6 546,-1377.6 526,-1377.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1377.6 548,-1413.6 758,-1413.6 758,-1377.6 548,-1377.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1377.6 760,-1413.6 921,-1413.6 921,-1377.6 760,-1377.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1377.6 923,-1413.6 1162,-1413.6 1162,-1377.6 923,-1377.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1377.6 1164,-1413.6 1184,-1413.6 1184,-1377.6 1164,-1377.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1377.6 1344,-1413.6 1554,-1413.6 1554,-1377.6 1344,-1377.6"/>
+<text text-anchor="start" x="1427.6192" y="-1391" font-family="Times,serif" font-size="14.00" fill="#000000">Related</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1377.6 1556,-1413.6 1712,-1413.6 1712,-1377.6 1556,-1377.6"/>
+<text text-anchor="start" x="1615.7335" y="-1391" font-family="Times,serif" font-size="14.00" fill="#000000">Server</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1377.6 1714,-1413.6 1953,-1413.6 1953,-1377.6 1714,-1377.6"/>
+<text text-anchor="start" x="1812.1185" y="-1391" font-family="Times,serif" font-size="14.00" fill="#000000">Privacy</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1377.6 1955,-1413.6 1975,-1413.6 1975,-1377.6 1955,-1377.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1339.6 526,-1375.6 546,-1375.6 546,-1339.6 526,-1339.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1339.6 548,-1375.6 758,-1375.6 758,-1339.6 548,-1339.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1339.6 760,-1375.6 921,-1375.6 921,-1339.6 760,-1339.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1339.6 923,-1375.6 1162,-1375.6 1162,-1339.6 923,-1339.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1339.6 1164,-1375.6 1184,-1375.6 1184,-1339.6 1164,-1339.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1339.6 1344,-1375.6 1554,-1375.6 1554,-1339.6 1344,-1339.6"/>
+<text text-anchor="start" x="1425.6732" y="-1353" font-family="Times,serif" font-size="14.00" fill="#000000">Security</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1339.6 1556,-1375.6 1712,-1375.6 1712,-1339.6 1556,-1339.6"/>
+<text text-anchor="start" x="1610.2889" y="-1353" font-family="Times,serif" font-size="14.00" fill="#000000">Services</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1339.6 1714,-1375.6 1953,-1375.6 1953,-1339.6 1714,-1339.6"/>
+<text text-anchor="start" x="1812.8962" y="-1353" font-family="Times,serif" font-size="14.00" fill="#000000">Params</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1339.6 1955,-1375.6 1975,-1375.6 1975,-1339.6 1955,-1339.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1301.6 526,-1337.6 546,-1337.6 546,-1301.6 526,-1301.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1301.6 548,-1337.6 758,-1337.6 758,-1301.6 548,-1301.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1301.6 760,-1337.6 921,-1337.6 921,-1301.6 760,-1301.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1301.6 923,-1337.6 1162,-1337.6 1162,-1301.6 923,-1301.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1301.6 1164,-1337.6 1184,-1337.6 1184,-1301.6 1164,-1301.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1301.6 1344,-1337.6 1554,-1337.6 1554,-1301.6 1344,-1301.6"/>
+<text text-anchor="start" x="1418.6795" y="-1315" font-family="Times,serif" font-size="14.00" fill="#000000">Languages</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1301.6 1556,-1337.6 1712,-1337.6 1712,-1301.6 1556,-1301.6"/>
+<text text-anchor="start" x="1603.2812" y="-1315" font-family="Times,serif" font-size="14.00" fill="#000000">UglyURLs</text>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1301.6 1714,-1337.6 1953,-1337.6 1953,-1301.6 1714,-1301.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1301.6 1955,-1337.6 1975,-1337.6 1975,-1301.6 1955,-1301.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1279.6 526,-1299.6 546,-1299.6 546,-1279.6 526,-1279.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1241.6 526,-1277.6 546,-1277.6 546,-1241.6 526,-1241.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1241.6 548,-1277.6 758,-1277.6 758,-1241.6 548,-1241.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1241.6 760,-1277.6 921,-1277.6 921,-1241.6 760,-1241.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1241.6 923,-1277.6 1162,-1277.6 1162,-1241.6 923,-1241.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1241.6 1164,-1277.6 1184,-1277.6 1184,-1241.6 1164,-1241.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-1203.6 1186,-1277.6 1342,-1277.6 1342,-1203.6 1186,-1203.6"/>
+<text text-anchor="start" x="1222.7903" y="-1236.4" font-family="Times,serif" font-size="14.00" fill="#000000">InternalConfig</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1241.6 1344,-1277.6 1554,-1277.6 1554,-1241.6 1344,-1241.6"/>
+<text text-anchor="start" x="1424.8864" y="-1255" font-family="Times,serif" font-size="14.00" fill="#000000">Running</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1241.6 1556,-1277.6 1712,-1277.6 1712,-1241.6 1556,-1241.6"/>
+<text text-anchor="start" x="1618.4488" y="-1255" font-family="Times,serif" font-size="14.00" fill="#000000">Quiet</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1241.6 1714,-1277.6 1953,-1277.6 1953,-1241.6 1714,-1241.6"/>
+<text text-anchor="start" x="1810.1795" y="-1255" font-family="Times,serif" font-size="14.00" fill="#000000">Verbose</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1241.6 1955,-1277.6 1975,-1277.6 1975,-1241.6 1955,-1241.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1203.6 526,-1239.6 546,-1239.6 546,-1203.6 526,-1203.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1203.6 548,-1239.6 758,-1239.6 758,-1203.6 548,-1203.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1203.6 760,-1239.6 921,-1239.6 921,-1203.6 760,-1203.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1203.6 923,-1239.6 1162,-1239.6 1162,-1203.6 923,-1203.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1203.6 1164,-1239.6 1184,-1239.6 1184,-1203.6 1164,-1203.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1203.6 1344,-1239.6 1554,-1239.6 1554,-1203.6 1344,-1203.6"/>
+<text text-anchor="start" x="1432.2791" y="-1217" font-family="Times,serif" font-size="14.00" fill="#000000">Clock</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1203.6 1556,-1239.6 1712,-1239.6 1712,-1203.6 1556,-1203.6"/>
+<text text-anchor="start" x="1615.7328" y="-1217" font-family="Times,serif" font-size="14.00" fill="#000000">Watch</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1203.6 1714,-1239.6 1953,-1239.6 1953,-1203.6 1714,-1203.6"/>
+<text text-anchor="start" x="1789.176" y="-1217" font-family="Times,serif" font-size="14.00" fill="#000000">LiveReloadPort</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1203.6 1955,-1239.6 1975,-1239.6 1975,-1203.6 1955,-1203.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1181.6 526,-1201.6 546,-1201.6 546,-1181.6 526,-1181.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1143.6 526,-1179.6 546,-1179.6 546,-1143.6 526,-1143.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1143.6 548,-1179.6 758,-1179.6 758,-1143.6 548,-1143.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1143.6 760,-1179.6 921,-1179.6 921,-1143.6 760,-1143.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1143.6 923,-1179.6 1162,-1179.6 1162,-1143.6 923,-1143.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1143.6 1164,-1179.6 1184,-1179.6 1184,-1143.6 1164,-1143.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-1105.6 1186,-1179.6 1342,-1179.6 1342,-1105.6 1186,-1105.6"/>
+<text text-anchor="start" x="1224.7342" y="-1138.4" font-family="Times,serif" font-size="14.00" fill="#000000">decodeConfig</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1143.6 1344,-1179.6 1554,-1179.6 1554,-1143.6 1344,-1143.6"/>
+<text text-anchor="start" x="1445.5" y="-1157" font-family="Times,serif" font-size="14.00" fill="#000000">p</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1143.6 1556,-1179.6 1712,-1179.6 1712,-1143.6 1556,-1143.6"/>
+<text text-anchor="start" x="1630.8927" y="-1157" font-family="Times,serif" font-size="14.00" fill="#000000">c</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1143.6 1714,-1179.6 1953,-1179.6 1953,-1143.6 1714,-1143.6"/>
+<text text-anchor="start" x="1828.4474" y="-1157" font-family="Times,serif" font-size="14.00" fill="#000000">fs</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1143.6 1955,-1179.6 1975,-1179.6 1975,-1143.6 1955,-1143.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1105.6 526,-1141.6 546,-1141.6 546,-1105.6 526,-1105.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1105.6 548,-1141.6 758,-1141.6 758,-1105.6 548,-1105.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-1105.6 760,-1141.6 921,-1141.6 921,-1105.6 760,-1105.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-1105.6 923,-1141.6 1162,-1141.6 1162,-1105.6 923,-1105.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1105.6 1164,-1141.6 1184,-1141.6 1184,-1105.6 1164,-1105.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1105.6 1344,-1141.6 1554,-1141.6 1554,-1105.6 1344,-1105.6"/>
+<text text-anchor="start" x="1436.5624" y="-1119" font-family="Times,serif" font-size="14.00" fill="#000000">bcfg</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-1105.6 1556,-1141.6 1712,-1141.6 1712,-1105.6 1556,-1105.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-1105.6 1714,-1141.6 1953,-1141.6 1953,-1105.6 1714,-1105.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1105.6 1955,-1141.6 1975,-1141.6 1975,-1105.6 1955,-1105.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1083.6 526,-1103.6 546,-1103.6 546,-1083.6 526,-1083.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1045.6 526,-1081.6 546,-1081.6 546,-1045.6 526,-1045.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1045.6 548,-1081.6 758,-1081.6 758,-1045.6 548,-1045.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1045.6 760,-1081.6 921,-1081.6 921,-1045.6 760,-1045.6"/>
+<text text-anchor="start" x="822.2335" y="-1059" font-family="Times,serif" font-size="14.00" fill="#000000">IsZero</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1045.6 923,-1081.6 1162,-1081.6 1162,-1045.6 923,-1045.6"/>
+<text text-anchor="start" x="1009.46" y="-1059" font-family="Times,serif" font-size="14.00" fill="#000000">transientErr</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1045.6 1164,-1081.6 1184,-1081.6 1184,-1045.6 1164,-1045.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-931.6 1186,-1081.6 1342,-1081.6 1342,-931.6 1186,-931.6"/>
+<text text-anchor="start" x="1241.8338" y="-1002.4" font-family="Times,serif" font-size="14.00" fill="#000000">Configs</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1045.6 1344,-1081.6 1554,-1081.6 1554,-1045.6 1344,-1045.6"/>
+<text text-anchor="start" x="1435.3948" y="-1059" font-family="Times,serif" font-size="14.00" fill="#000000">Base</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1045.6 1556,-1081.6 1712,-1081.6 1712,-1045.6 1556,-1045.6"/>
+<text text-anchor="start" x="1599.0105" y="-1059" font-family="Times,serif" font-size="14.00" fill="#000000">LoadingInfo</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1045.6 1714,-1081.6 1953,-1081.6 1953,-1045.6 1714,-1045.6"/>
+<text text-anchor="start" x="1773.6283" y="-1059" font-family="Times,serif" font-size="14.00" fill="#000000">LanguageConfigMap</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1045.6 1955,-1081.6 1975,-1081.6 1975,-1045.6 1955,-1045.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-1007.6 526,-1043.6 546,-1043.6 546,-1007.6 526,-1007.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-1007.6 548,-1043.6 758,-1043.6 758,-1007.6 548,-1007.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-1007.6 760,-1043.6 921,-1043.6 921,-1007.6 760,-1007.6"/>
+<text text-anchor="start" x="803.9502" y="-1021" font-family="Times,serif" font-size="14.00" fill="#000000">ConfigLangs</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-1007.6 923,-1043.6 1162,-1043.6 1162,-1007.6 923,-1007.6"/>
+<text text-anchor="start" x="1032.7791" y="-1021" font-family="Times,serif" font-size="14.00" fill="#000000">Init</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-1007.6 1164,-1043.6 1184,-1043.6 1184,-1007.6 1164,-1007.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-1007.6 1344,-1043.6 1554,-1043.6 1554,-1007.6 1344,-1007.6"/>
+<text text-anchor="start" x="1387.9614" y="-1021" font-family="Times,serif" font-size="14.00" fill="#000000">LanguageConfigSlice</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-1007.6 1556,-1043.6 1712,-1043.6 1712,-1007.6 1556,-1007.6"/>
+<text text-anchor="start" x="1601.7216" y="-1021" font-family="Times,serif" font-size="14.00" fill="#000000">IsMultihost</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-1007.6 1714,-1043.6 1953,-1043.6 1953,-1007.6 1714,-1007.6"/>
+<text text-anchor="start" x="1803.1795" y="-1021" font-family="Times,serif" font-size="14.00" fill="#000000">Languages</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-1007.6 1955,-1043.6 1975,-1043.6 1975,-1007.6 1955,-1007.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-969.6 526,-1005.6 546,-1005.6 546,-969.6 526,-969.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-969.6 548,-1005.6 758,-1005.6 758,-969.6 548,-969.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="760,-969.6 760,-1005.6 921,-1005.6 921,-969.6 760,-969.6"/>
+<text text-anchor="start" x="807.8422" y="-983" font-family="Times,serif" font-size="14.00" fill="#000000">GetByLang</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-969.6 923,-1005.6 1162,-1005.6 1162,-969.6 923,-969.6"/>
+<text text-anchor="start" x="972.5175" y="-983" font-family="Times,serif" font-size="14.00" fill="#000000">GetFirstLanguageConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-969.6 1164,-1005.6 1184,-1005.6 1184,-969.6 1164,-969.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-969.6 1344,-1005.6 1554,-1005.6 1554,-969.6 1344,-969.6"/>
+<text text-anchor="start" x="1384.8562" y="-983" font-family="Times,serif" font-size="14.00" fill="#000000">LanguagesDefaultFirst</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-969.6 1556,-1005.6 1712,-1005.6 1712,-969.6 1556,-969.6"/>
+<text text-anchor="start" x="1609.5028" y="-983" font-family="Times,serif" font-size="14.00" fill="#000000">Modules</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-969.6 1714,-1005.6 1953,-1005.6 1953,-969.6 1714,-969.6"/>
+<text text-anchor="start" x="1791.8913" y="-983" font-family="Times,serif" font-size="14.00" fill="#000000">ModulesClient</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-969.6 1955,-1005.6 1975,-1005.6 1975,-969.6 1955,-969.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-931.6 526,-967.6 546,-967.6 546,-931.6 526,-931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-931.6 548,-967.6 758,-967.6 758,-931.6 548,-931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-931.6 760,-967.6 921,-967.6 921,-931.6 760,-931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-931.6 923,-967.6 1162,-967.6 1162,-931.6 923,-931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-931.6 1164,-967.6 1184,-967.6 1184,-931.6 1164,-931.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-931.6 1344,-967.6 1554,-967.6 1554,-931.6 1344,-931.6"/>
+<text text-anchor="start" x="1414.0112" y="-945" font-family="Times,serif" font-size="14.00" fill="#000000">configLangs</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-931.6 1556,-967.6 1712,-967.6 1712,-931.6 1556,-931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-931.6 1714,-967.6 1953,-967.6 1953,-931.6 1714,-931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-931.6 1955,-967.6 1975,-967.6 1975,-931.6 1955,-931.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-909.6 526,-929.6 546,-929.6 546,-909.6 526,-909.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-871.6 526,-907.6 546,-907.6 546,-871.6 526,-871.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-871.6 548,-907.6 758,-907.6 758,-871.6 548,-871.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-871.6 760,-907.6 921,-907.6 921,-871.6 760,-871.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-871.6 923,-907.6 1162,-907.6 1162,-871.6 923,-871.6"/>
+<text text-anchor="start" x="970.9593" y="-885" font-family="Times,serif" font-size="14.00" fill="#000000">SetMainSectionsIfNotSet</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-871.6 1164,-907.6 1184,-907.6 1184,-871.6 1164,-871.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-719.6 1186,-907.6 1342,-907.6 1342,-719.6 1186,-719.6"/>
+<text text-anchor="start" x="1216.9446" y="-809.4" font-family="Times,serif" font-size="14.00" fill="#000000">ConfigCompiled</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-871.6 1344,-907.6 1554,-907.6 1554,-871.6 1344,-871.6"/>
+<text text-anchor="start" x="1425.2805" y="-885" font-family="Times,serif" font-size="14.00" fill="#000000">Timeout</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-871.6 1556,-907.6 1712,-907.6 1712,-871.6 1556,-871.6"/>
+<text text-anchor="start" x="1606.3969" y="-885" font-family="Times,serif" font-size="14.00" fill="#000000">BaseURL</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-871.6 1714,-907.6 1953,-907.6 1953,-871.6 1714,-871.6"/>
+<text text-anchor="start" x="1773.2398" y="-885" font-family="Times,serif" font-size="14.00" fill="#000000">BaseURLLiveReload</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-871.6 1955,-907.6 1975,-907.6 1975,-871.6 1955,-871.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-833.6 526,-869.6 546,-869.6 546,-833.6 526,-833.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-833.6 548,-869.6 758,-869.6 758,-833.6 548,-833.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-833.6 760,-869.6 921,-869.6 921,-833.6 760,-833.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-833.6 923,-869.6 1162,-869.6 1162,-833.6 923,-833.6"/>
+<text text-anchor="start" x="1005.953" y="-847" font-family="Times,serif" font-size="14.00" fill="#000000">SetBaseURL</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-833.6 1164,-869.6 1184,-869.6 1184,-833.6 1164,-833.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-833.6 1344,-869.6 1554,-869.6 1554,-833.6 1344,-833.6"/>
+<text text-anchor="start" x="1392.6157" y="-847" font-family="Times,serif" font-size="14.00" fill="#000000">KindOutputFormats</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-833.6 1556,-869.6 1712,-869.6 1712,-833.6 1556,-833.6"/>
+<text text-anchor="start" x="1592.3983" y="-847" font-family="Times,serif" font-size="14.00" fill="#000000">DisabledKinds</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-833.6 1714,-869.6 1953,-869.6 1953,-833.6 1714,-833.6"/>
+<text text-anchor="start" x="1778.2987" y="-847" font-family="Times,serif" font-size="14.00" fill="#000000">DisabledLanguages</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-833.6 1955,-869.6 1975,-869.6 1975,-833.6 1955,-833.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-795.6 526,-831.6 546,-831.6 546,-795.6 526,-795.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-795.6 548,-831.6 758,-831.6 758,-795.6 548,-795.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-795.6 760,-831.6 921,-831.6 921,-795.6 760,-795.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-795.6 923,-831.6 1162,-831.6 1162,-795.6 923,-795.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-795.6 1164,-831.6 1184,-831.6 1184,-795.6 1164,-795.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-795.6 1344,-831.6 1554,-831.6 1554,-795.6 1344,-795.6"/>
+<text text-anchor="start" x="1409.7426" y="-809" font-family="Times,serif" font-size="14.00" fill="#000000">IgnoredErrors</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-795.6 1556,-831.6 1712,-831.6 1712,-795.6 1556,-795.6"/>
+<text text-anchor="start" x="1602.5147" y="-809" font-family="Times,serif" font-size="14.00" fill="#000000">CreateTitle</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-795.6 1714,-831.6 1953,-831.6 1953,-795.6 1714,-795.6"/>
+<text text-anchor="start" x="1779.4544" y="-809" font-family="Times,serif" font-size="14.00" fill="#000000">IsUglyURLSection</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-795.6 1955,-831.6 1975,-831.6 1975,-795.6 1955,-795.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-757.6 526,-793.6 546,-793.6 546,-757.6 526,-757.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-757.6 548,-793.6 758,-793.6 758,-757.6 548,-757.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-757.6 760,-793.6 921,-793.6 921,-757.6 760,-757.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-757.6 923,-793.6 1162,-793.6 1162,-757.6 923,-757.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-757.6 1164,-793.6 1184,-793.6 1184,-757.6 1164,-757.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-757.6 1344,-793.6 1554,-793.6 1554,-757.6 1344,-757.6"/>
+<text text-anchor="start" x="1419.8429" y="-771" font-family="Times,serif" font-size="14.00" fill="#000000">IgnoreFile</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-757.6 1556,-793.6 1712,-793.6 1712,-757.6 1556,-757.6"/>
+<text text-anchor="start" x="1595.5063" y="-771" font-family="Times,serif" font-size="14.00" fill="#000000">MainSections</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-757.6 1714,-793.6 1953,-793.6 1953,-757.6 1714,-757.6"/>
+<text text-anchor="start" x="1816.7791" y="-771" font-family="Times,serif" font-size="14.00" fill="#000000">Clock</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-757.6 1955,-793.6 1975,-793.6 1975,-757.6 1955,-757.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-719.6 526,-755.6 546,-755.6 546,-719.6 526,-719.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-719.6 548,-755.6 758,-755.6 758,-719.6 548,-719.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-719.6 760,-755.6 921,-755.6 921,-719.6 760,-719.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-719.6 923,-755.6 1162,-755.6 1162,-719.6 923,-719.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-719.6 1164,-755.6 1184,-755.6 1184,-719.6 1164,-719.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-719.6 1344,-755.6 1554,-755.6 1554,-719.6 1344,-719.6"/>
+<text text-anchor="start" x="1415.96" y="-733" font-family="Times,serif" font-size="14.00" fill="#000000">transientErr</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-719.6 1556,-755.6 1712,-755.6 1712,-719.6 1556,-719.6"/>
+<text text-anchor="start" x="1625.0547" y="-733" font-family="Times,serif" font-size="14.00" fill="#000000">mu</text>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-719.6 1714,-755.6 1953,-755.6 1953,-719.6 1714,-719.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-719.6 1955,-755.6 1975,-755.6 1975,-719.6 1955,-719.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-697.6 526,-717.6 546,-717.6 546,-697.6 526,-697.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-659.6 526,-695.6 546,-695.6 546,-659.6 526,-659.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-659.6 548,-695.6 758,-695.6 758,-659.6 548,-659.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-659.6 760,-695.6 921,-695.6 921,-659.6 760,-659.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="923,-659.6 923,-695.6 1162,-695.6 1162,-659.6 923,-659.6"/>
+<text text-anchor="start" x="995.8457" y="-673" font-family="Times,serif" font-size="14.00" fill="#000000">configFilenames</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-659.6 1164,-695.6 1184,-695.6 1184,-659.6 1164,-659.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1186,-583.6 1186,-695.6 1342,-695.6 1342,-583.6 1186,-583.6"/>
+<text text-anchor="start" x="1195.5785" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">ConfigSourceDescriptor</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-659.6 1344,-695.6 1554,-695.6 1554,-659.6 1344,-659.6"/>
+<text text-anchor="start" x="1442.3864" y="-673" font-family="Times,serif" font-size="14.00" fill="#000000">Fs</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-659.6 1556,-695.6 1712,-695.6 1712,-659.6 1556,-659.6"/>
+<text text-anchor="start" x="1613.7861" y="-673" font-family="Times,serif" font-size="14.00" fill="#000000">Logger</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-659.6 1714,-695.6 1953,-695.6 1953,-659.6 1714,-659.6"/>
+<text text-anchor="start" x="1818.3338" y="-673" font-family="Times,serif" font-size="14.00" fill="#000000">Flags</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-659.6 1955,-695.6 1975,-695.6 1975,-659.6 1955,-659.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-621.6 526,-657.6 546,-657.6 546,-621.6 526,-621.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-621.6 548,-657.6 758,-657.6 758,-621.6 548,-621.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-621.6 760,-657.6 921,-657.6 921,-621.6 760,-621.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-621.6 923,-657.6 1162,-657.6 1162,-621.6 923,-621.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-621.6 1164,-657.6 1184,-657.6 1184,-621.6 1164,-621.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-621.6 1344,-657.6 1554,-657.6 1554,-621.6 1344,-621.6"/>
+<text text-anchor="start" x="1422.9509" y="-635" font-family="Times,serif" font-size="14.00" fill="#000000">Filename</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1556,-621.6 1556,-657.6 1712,-657.6 1712,-621.6 1556,-621.6"/>
+<text text-anchor="start" x="1605.2272" y="-635" font-family="Times,serif" font-size="14.00" fill="#000000">ConfigDir</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1714,-621.6 1714,-657.6 1953,-657.6 1953,-621.6 1714,-621.6"/>
+<text text-anchor="start" x="1796.9502" y="-635" font-family="Times,serif" font-size="14.00" fill="#000000">Environment</text>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-621.6 1955,-657.6 1975,-657.6 1975,-621.6 1955,-621.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-583.6 526,-619.6 546,-619.6 546,-583.6 526,-583.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-583.6 548,-619.6 758,-619.6 758,-583.6 548,-583.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-583.6 760,-619.6 921,-619.6 921,-583.6 760,-583.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="923,-583.6 923,-619.6 1162,-619.6 1162,-583.6 923,-583.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-583.6 1164,-619.6 1184,-619.6 1184,-583.6 1164,-583.6"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1344,-583.6 1344,-619.6 1554,-619.6 1554,-583.6 1344,-583.6"/>
+<text text-anchor="start" x="1426.4481" y="-597" font-family="Times,serif" font-size="14.00" fill="#000000">Environ</text>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-583.6 1556,-619.6 1712,-619.6 1712,-583.6 1556,-583.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-583.6 1714,-619.6 1953,-619.6 1953,-583.6 1714,-583.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-583.6 1955,-619.6 1975,-619.6 1975,-583.6 1955,-583.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-561.6 526,-581.6 546,-581.6 546,-561.6 526,-561.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-523.6 526,-559.6 546,-559.6 546,-523.6 526,-523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-523.6 548,-559.6 758,-559.6 758,-523.6 548,-523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="760,-523.6 760,-559.6 921,-559.6 921,-523.6 760,-523.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="923,-523.6 923,-559.6 1162,-559.6 1162,-523.6 923,-523.6"/>
+<text text-anchor="start" x="998.9446" y="-537" font-family="Times,serif" font-size="14.00" fill="#000000">CompileConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1164,-523.6 1164,-559.6 1184,-559.6 1184,-523.6 1164,-523.6"/>
+<polygon fill="#9fc5e8" stroke="transparent" points="1186,-523.6 1186,-559.6 1342,-559.6 1342,-523.6 1186,-523.6"/>
+<text text-anchor="start" x="1219.6753" y="-537" font-family="Times,serif" font-size="14.00" fill="#000000">configCompiler</text>
+<polygon fill="#ffffff" stroke="transparent" points="1344,-523.6 1344,-559.6 1554,-559.6 1554,-523.6 1344,-523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1556,-523.6 1556,-559.6 1712,-559.6 1712,-523.6 1556,-523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1714,-523.6 1714,-559.6 1953,-559.6 1953,-523.6 1714,-523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1955,-523.6 1955,-559.6 1975,-559.6 1975,-523.6 1955,-523.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-501.6 526,-521.6 546,-521.6 546,-501.6 526,-501.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-463.6 526,-499.6 1975,-499.6 1975,-463.6 526,-463.6"/>
+<text text-anchor="start" x="1225.6192" y="-477" font-family="Times,serif" font-size="14.00" fill="#000000">allconfig</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge1" class="edge">
+<title>dbplwOx:deFJYpO-&gt;dbplwOx:dd2c3g2</title>
+<g id="a_edge1"><a xlink:title="Configs.LanguageConfigMap -&gt; Config: &#10;&#10;From: allconfig.go (Line: 648, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1841.4532,-1045.3613C1990.8836,-680.255 2002.5,-689.7196 2002.5,-1277.1 2002.5,-1811.9314 1611.1114,-1867.6261 1349.2482,-1597.6901"/>
+<polygon fill="#000000" stroke="#000000" points="1351.7525,-1595.2447 1342.3133,-1590.4329 1346.6916,-1600.0807 1351.7525,-1595.2447"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge2" class="edge">
+<title>dbplwOx:ddegmoW-&gt;dbplwOx:dd5KNYx</title>
+<g id="a_edge2"><a xlink:title="ConfigLanguage.m -&gt; Configs: &#10;&#10;From: configlanguage.go (Line: 28, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1461.1641,-2195.8372C1709.5087,-2560.8484 2002.5,-2545.4862 2002.5,-1592.1 2002.5,-699.1506 1588.3771,-629.0687 1327.0851,-923.6744"/>
+<polygon fill="#000000" stroke="#000000" points="1324.1093,-921.7612 1320.1709,-931.5969 1329.3833,-926.364 1324.1093,-921.7612"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge3" class="edge">
+<title>dbplwOx:dbwowUQ-&gt;dbplwOx:dd2c3g2</title>
+<g id="a_edge3"><a xlink:title="decodeConfig.c -&gt; Config: &#10;&#10;From: alldecoders.go (Line: 46, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1646.0216,-1143.3611C1888.5948,-778.2423 2002.5,-786.9301 2002.5,-1326.1 2002.5,-1817.034 1611.1114,-1868.1574 1349.2482,-1597.7455"/>
+<polygon fill="#000000" stroke="#000000" points="1351.7486,-1595.2959 1342.3133,-1590.4765 1346.6838,-1600.1279 1351.7486,-1595.2959"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge4" class="edge">
+<title>dbplwOx:denRFPA-&gt;dbplwOx:dbUTA7q</title>
+<g id="a_edge4"><a xlink:title="configLoader.ConfigSourceDescriptor -&gt; ConfigSourceDescriptor: &#10;&#10;From: load.go (Line: 134, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1461.1641,-3265.8342C1709.5087,-3630.6619 2002.5,-3603.9088 2002.5,-1943.6 2002.5,-356.7239 1571.2575,-262.1001 1311.2435,-575.3641"/>
+<polygon fill="#000000" stroke="#000000" points="1308.3645,-573.356 1304.7506,-583.3155 1313.7865,-577.7835 1308.3645,-573.356"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge5" class="edge">
+<title>dbplwOx:dc6dTXa-&gt;dbplwOx:deqdoeZ</title>
+<g id="a_edge5"><a xlink:title="Config.Internal -&gt; InternalConfig: &#10;&#10;From: allconfig.go (Line: 96, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1461.1641,-1679.8387C1709.5087,-2044.9458 2002.5,-2035.5287 2002.5,-1451.1 2002.5,-881.4531 1554.0008,-858.0984 1295.9957,-1195.3796"/>
+<polygon fill="#000000" stroke="#000000" points="1293.1635,-1193.3223 1289.9368,-1203.4139 1298.7524,-1197.5371 1293.1635,-1193.3223"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge6" class="edge">
+<title>dbplwOx:dbiQL1l-&gt;dbplwOx:dc5vRjC</title>
+<g id="a_edge6"><a xlink:title="Config.RootConfig -&gt; RootConfig: &#10;&#10;From: allconfig.go (Line: 100, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1841.4532,-1643.3626C1990.8836,-1278.336 2002.5,-1292.747 2002.5,-2187.1 2002.5,-3001.0401 1611.4969,-3086.159 1349.6353,-2819.732"/>
+<polygon fill="#000000" stroke="#000000" points="1351.7793,-2816.914 1342.3133,-2812.1552 1346.7456,-2821.7783 1351.7793,-2816.914"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge7" class="edge">
+<title>dbplwOx:deEpyFB-&gt;dbplwOx:dd2c3g2</title>
+<g id="a_edge7"><a xlink:title="Configs.Base -&gt; Config: &#10;&#10;From: allconfig.go (Line: 646, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1461.1641,-1045.3613C1709.5087,-680.255 2002.5,-689.7196 2002.5,-1277.1 2002.5,-1811.9314 1611.1114,-1867.6261 1349.2482,-1597.6901"/>
+<polygon fill="#000000" stroke="#000000" points="1351.7525,-1595.2447 1342.3133,-1590.4329 1346.6916,-1600.0807 1351.7525,-1595.2447"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge9" class="edge">
+<title>dbplwOx:d2ACyi-&gt;dbplwOx:dc3cDbh</title>
+<g id="a_edge9"><a xlink:title="Config.C -&gt; ConfigCompiled: &#10;&#10;From: allconfig.go (Line: 98, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1646.0216,-1679.8378C1888.5948,-2044.8903 2002.5,-2032.0885 2002.5,-1237.6 2002.5,-509.4992 1606.0202,-437.9071 1344.1717,-712.001"/>
+<polygon fill="#000000" stroke="#000000" points="1341.5395,-709.6909 1337.2384,-719.3735 1346.6389,-714.4865 1341.5395,-709.6909"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbplwOx&#45;&gt;dbplwOx -->
+<g id="edge10" class="edge">
+<title>dbplwOx:dcrAH03-&gt;dbplwOx:dd2c3g2</title>
+<g id="a_edge10"><a xlink:title="ConfigLanguage.config -&gt; Config: &#10;&#10;From: configlanguage.go (Line: 25, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1461.1641,-2271.838C1709.5087,-2636.9014 2002.5,-2624.7733 2002.5,-1872.1 2002.5,-1186.7633 1611.1114,-1115.3957 1349.2482,-1383.6996"/>
+<polygon fill="#000000" stroke="#000000" points="1346.7183,-1381.281 1342.3133,-1390.9167 1351.7658,-1386.1311 1346.7183,-1381.281"/>
+</a>
+</g>
+<text text-anchor="middle" x="2006" y="-1969.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddrK512 -->
+<g id="node3" class="node">
+<title>ddrK512</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1567,-344 933,-344 933,-176 1567,-176 1567,-344"/>
+<polygon fill="#ffffff" stroke="transparent" points="943,-318 943,-338 963,-338 963,-318 943,-318"/>
+<polygon fill="#ffffff" stroke="transparent" points="943,-280 943,-316 963,-316 963,-280 943,-280"/>
+<polygon fill="#ead1dc" stroke="transparent" points="965,-280 965,-316 1115,-316 1115,-280 965,-280"/>
+<text text-anchor="start" x="974.6781" y="-293.4" font-family="Times,serif" font-size="14.00" fill="#000000">fromLoadConfigResult</text>
+<polygon fill="#ffffff" stroke="transparent" points="1117,-280 1117,-316 1137,-316 1137,-280 1117,-280"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1139,-280 1139,-316 1309,-316 1309,-280 1139,-280"/>
+<text text-anchor="start" x="1148.9635" y="-293.4" font-family="Times,serif" font-size="14.00" fill="#000000">decodeConfigFromParams</text>
+<polygon fill="#ffffff" stroke="transparent" points="1311,-280 1311,-316 1331,-316 1331,-280 1311,-280"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1333,-280 1333,-316 1513,-316 1513,-280 1333,-280"/>
+<text text-anchor="start" x="1342.9207" y="-293.4" font-family="Times,serif" font-size="14.00" fill="#000000">createDefaultOutputFormats</text>
+<polygon fill="#ffffff" stroke="transparent" points="1515,-280 1515,-316 1535,-316 1535,-280 1515,-280"/>
+<polygon fill="#ffffff" stroke="transparent" points="943,-242 943,-278 963,-278 963,-242 943,-242"/>
+<polygon fill="#ead1dc" stroke="transparent" points="965,-242 965,-278 1535,-278 1535,-242 965,-242"/>
+<text text-anchor="start" x="1216.1725" y="-255.4" font-family="Times,serif" font-size="14.00" fill="#000000">LoadConfig</text>
+<polygon fill="#ffffff" stroke="transparent" points="1537,-242 1537,-278 1557,-278 1557,-242 1537,-242"/>
+<polygon fill="#ffffff" stroke="transparent" points="943,-220 943,-240 963,-240 963,-220 943,-220"/>
+<polygon fill="#ffffff" stroke="transparent" points="943,-182 943,-218 1557,-218 1557,-182 943,-182"/>
+<text text-anchor="start" x="1226.6718" y="-195.4" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- dbplwOx&#45;&gt;ddrK512 -->
+<g id="edge8" class="edge">
+<title>dbplwOx-&gt;ddrK512</title>
+<g id="a_edge8"><a xlink:title="allconfig -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1250,-457.408C1250,-418.1106 1250,-383.4909 1250,-354.664"/>
+<polygon fill="#000000" stroke="#000000" points="1253.5001,-354.3077 1250,-344.3077 1246.5001,-354.3078 1253.5001,-354.3077"/>
+</a>
+</g>
+<text text-anchor="middle" x="1253.5" y="-408" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+</g>
+</svg>

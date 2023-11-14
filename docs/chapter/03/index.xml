@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>第三章 on Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/</link><description>Recent content in 第三章 on Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://hugo.notes.sunwei.xyz/docs/chapter/03/index.xml" rel="self" type="application/rss+xml"/><item><title>3.1 源码阅读步骤</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/read/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/read/</guid><description>源码阅读步骤介绍 # 工欲善其事，必先利其器。
+为了更好地享受源码阅读的过程，我们需要做一些准备工作：
+搭建好Hugo项目本地开发环境 安装辅助工具DDDPlayer（如果想要亲自己试一试，强烈推荐） 理解Hugo基础架构，方便后继深入理解主流程上的每一个关键组件 对关键组件的逐个击破，并动手实践每个模块后的小练习（有附样例源码） 应用DDD，我们自己动手，应用上面练习过程中的知识，从头开始实现一个精简版的Hugo，我们把这个项目先取名为Hugoverse。 Hugo项目本地开发环境搭建 # 搭建 Hugo 源码的阅读环境步骤：
+1. 安装 Git # 首先，确保你的机器上安装了 Git。 你可以从 Git 官方网站下载并安装。
+2. 安装 Go # Hugo 是使用 Go 语言编写的，因此你需要安装 Go。 你可以从 Go 官方网站下载并安装。
+示例：
+➜ go version go version go1.21.1 darwin/amd64 3. 获取 Hugo 源码 # 在终端中运行以下命令，获取 Hugo 的源代码：
+git clone git@github.com:gohugoio/hugo.git 4. 进入 Hugo 源码目录 # cd path/to/gohugoio/hugo 5. 构建 Hugo # 在源码目录中运行以下命令，构建 Hugo：
+go install 6.</description></item></channel></rss>

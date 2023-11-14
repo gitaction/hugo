@@ -97,20 +97,7 @@ newPageCollection # ... pm := &amp;amp;pageMap{ contentMap: newContentMap(), s: 
 Hugo是如何一步步将博客变成站点的？ 下面我们还是通过 游乐场实例，来一探究竟。
 邀你一起来动手。 用我们最喜欢的IDE，打开我们的 游乐场项目源码。 通过直接输出日志的方式，来看一看hugo的完整构建流程。
 $ cd /go/to/hugo-playground $ go run . 先来看一看主流程。 通过搜索以字符串&amp;quot;==&amp;gt; Process main:&amp;ldquo;开头的日志条目，我们可以了清楚的看到主函数的处理流程如下所示：
-==&amp;gt; Process main: prepare example project file systems ==&amp;gt; Process main: load configurations from config.toml and themes ==&amp;gt; Process main: setup hugo file systems based on machine file system and configurations ==&amp;gt; Process main: create hugo sites based on deps ==&amp;gt; Process main: hugo building.</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/</guid><description>Hugo基础架构 # 通过 个人站点和 自定义主题实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。 使用起来很简单，很快就能上手。
-同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。
-比如针对源码领域的站点，像 深入理解Hugo，将源码和注解分离，并可以在 Golang Play上执行。 让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。
-目前Hugo还无法支持构建这样的站点，主要有两个原因。 一是 内容格式，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。 其次是 功能函数，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。 虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。
-不过，源码都给我们了，还能要求更多吗？ 毕竟我们可是有追求的软件工程师啊！
-无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。
-本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
-对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。
-出发吧，伟大的工程师啊！
-Hugo的架构设计 # 结合Hugo站点构建领域 事件，和 Hugo游乐场源码，Hugo的架构设计会变得很清晰：
-Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
-配置模块
-Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
-type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency.</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/</guid><description>Hugo 游乐场 # 使用Hugo构建站点的体验很棒。 首先是构建速度快，其次是使用起来简单，一个hugo命令，我们的站点就已经就绪。
+==&amp;gt; Process main: prepare example project file systems ==&amp;gt; Process main: load configurations from config.toml and themes ==&amp;gt; Process main: setup hugo file systems based on machine file system and configurations ==&amp;gt; Process main: create hugo sites based on deps ==&amp;gt; Process main: hugo building.</description></item><item><title/><link>https://hugo.notes.sunwei.xyz/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/</guid><description>Hugo 游乐场 # 使用Hugo构建站点的体验很棒。 首先是构建速度快，其次是使用起来简单，一个hugo命令，我们的站点就已经就绪。
 在构建过程中，Hugo提供了丰富的内置功能函数，可以在构建过程中向你提供所需要的几乎任何站点相关的信息。 通过可重用模板，让主题来帮助处理所有展示和布局相关的问题。 让作者更专注在内容的创作上。
 游乐场 # 站点构建的就将写好的内容，转化成Web服务器能理解的网站资源。 比如我们写作的时候用的是Markdown格式，生成的网站资源通常是HTML格式。
 下面是一个简单的初始化博客内容：
@@ -201,7 +188,46 @@ hugo server -D 访问 http://localhost:1313/ 查看站点预览。
 自定义配置： 大多数主题提供了配置文件，你可以根据自己的需求调整主题配置。这包括修改颜色、更改字体、启用/禁用特定功能等。
 添加内容： 继续使用 Hugo 的命令添加内容，如文章、页面等。主题将根据其结构和样式来呈现这些内容。
 通过以上步骤，你就成功地使用了一个现有的 Hugo 主题，并为站点应用了新的外观。根据你的需求，你可以随时更换主题或调整主题的配置，以满足不同的设计和功能要求。
-实例展示 # 好的，让我们以之前创建的名为 myfirstsite 的站点为例，演示如何自定义使用一个主题。</description></item><item><title>1.7 常见问题和资源</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/01/qa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/01/qa/</guid><description>1.7 常见问题和资源 # 1. 初学者常见问题及解决方案： # 问题 1：如何创建新的 Hugo 站点？ # 解决方案： 使用命令 hugo new site &amp;lt;site-name&amp;gt; 在终端中创建新站点。详细文档： Create a new site 问题 2：如何添加新的文章？ # 解决方案： 运行 hugo new posts/my-post.md 命令创建新文章。编辑 content/posts/my-post.md 文件添加内容。详细文档： Content Management 问题 3：如何更改站点主题？ # 解决方案： 下载喜欢的主题，将其放入站点的 themes/ 目录，然后在配置文件中设置 theme 字段。详细文档： Themes 问题 4：如何自定义 Hugo 主题？ # 解决方案： 可以根据主题的文档自定义配置文件，修改样式表，添加自定义部件等。详细文档： Customizing a Theme 问题 5：如何在本地预览站点？ # 解决方案： 运行 hugo server -D 启动本地服务器，然后在浏览器中访问 http://localhost:1313/。详细文档： Localhost:1313 问题 6：如何部署 Hugo 站点到 GitHub Pages？ # 解决方案： 将生成的静态文件推送到 GitHub 仓库，然后在 GitHub 设置中启用 GitHub Pages。详细文档： Deploying Hugo on GitHub Pages 2.</description></item><item><title>GitHub Pages sunwei.xyz</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/01/sunweixyz/deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/01/sunweixyz/deploy/</guid><description>将站点部署到GitHub Pages # 将 Hugo 站点部署到 GitHub Pages 非常简单，以下是详细的步骤：
+实例展示 # 好的，让我们以之前创建的名为 myfirstsite 的站点为例，演示如何自定义使用一个主题。</description></item><item><title>1.7 常见问题和资源</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/01/qa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/01/qa/</guid><description>1.7 常见问题和资源 # 1. 初学者常见问题及解决方案： # 问题 1：如何创建新的 Hugo 站点？ # 解决方案： 使用命令 hugo new site &amp;lt;site-name&amp;gt; 在终端中创建新站点。详细文档： Create a new site 问题 2：如何添加新的文章？ # 解决方案： 运行 hugo new posts/my-post.md 命令创建新文章。编辑 content/posts/my-post.md 文件添加内容。详细文档： Content Management 问题 3：如何更改站点主题？ # 解决方案： 下载喜欢的主题，将其放入站点的 themes/ 目录，然后在配置文件中设置 theme 字段。详细文档： Themes 问题 4：如何自定义 Hugo 主题？ # 解决方案： 可以根据主题的文档自定义配置文件，修改样式表，添加自定义部件等。详细文档： Customizing a Theme 问题 5：如何在本地预览站点？ # 解决方案： 运行 hugo server -D 启动本地服务器，然后在浏览器中访问 http://localhost:1313/。详细文档： Localhost:1313 问题 6：如何部署 Hugo 站点到 GitHub Pages？ # 解决方案： 将生成的静态文件推送到 GitHub 仓库，然后在 GitHub 设置中启用 GitHub Pages。详细文档： Deploying Hugo on GitHub Pages 2.</description></item><item><title>2.1 DDD简介</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/02/ddd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/02/ddd/</guid><description>DDD简介 # 领域驱动设计（DDD）的历史可以追溯到上世纪90年代，主要由埃里克·埃文斯（Eric Evans）在他的著作《领域驱动设计》（Domain-Driven Design）中首次提出。 在这本书中，埃里克·埃文斯总结了他在开发复杂软件系统时的实践经验，提出了一系列关于建模、设计和实现的概念。
+主要历程 # 早期实践： 在软件开发的早期阶段，开发者主要关注技术实现而忽略了对业务领域的深入理解。这导致了一些项目在处理复杂业务问题时的混乱和失败。
+埃里克·埃文斯的贡献： 在《领域驱动设计》一书中，埃里克·埃文斯提出了一套方法，强调通过深入理解业务领域来指导软件设计。他引入了许多概念，如聚合、实体、值对象等，以及对领域模型的重要性。
+模型驱动设计： DDD 的理念逐渐被广泛接受，许多开发者开始意识到在软件开发中建立和使用良好的领域模型是至关重要的。
+领域驱动设计的演进： 随着时间的推移，DDD 不断演变和发展，逐渐形成了一整套完整的方法论，包括战术设计和战略设计等方面。
+为什么现在这么火 # 复杂业务需求： 当今的软件系统面临着越来越复杂的业务需求，传统的技术驱动方法在处理这些复杂性方面显得力不从心。DDD 提供了一种更贴近实际业务需求的设计方法。
+微服务架构的兴起： 随着微服务架构的兴起，领域驱动设计成为设计微服务的理想选择。微服务的核心是按照业务功能划分服务，而这正是 DDD 所强调的。
+开源社区的支持： 开源社区中涌现出许多与领域驱动设计相关的工具和框架，例如 Axon Framework、DDD Community 等，这进一步推动了 DDD 的普及。
+敏捷和迭代开发： DDD 支持敏捷和迭代开发的理念，使团队能够更加灵活地应对业务变化，以及更好地应对不断变化的市场需求。
+DDD之所以现在变得如此受欢迎，是因为它提供了一种更加有效和实用的方法，能够更好地应对当今复杂、敏捷和快速变化的软件开发环境。
+基本概念 # 领域驱动设计，简称DDD，是一种面向复杂软件系统开发的方法论。 它强调将软件系统建模与业务领域的实际问题相结合，以确保开发人员和业务团队之间的共同理解。 DDD 提倡通过深入理解业务领域来构建系统，将业务专业知识融入软件设计和实现的过程中。
+在领域驱动设计中，有几个核心概念：
+领域模型： 领域模型是对业务领域的抽象，是一种形式化的表示，用于描述系统中涉及的业务概念、规则和流程。领域模型不仅仅是一份文档，还可以在代码中直接体现。
+聚合和实体： DDD 强调聚合的概念，即一组相关的对象被看作一个单一的单元。实体是领域模型的核心，通常对应于业务领域中具有唯一标识的事物。
+值对象： 值对象是没有唯一标识的对象，它们的相等性基于它们的属性而不是标识。在领域模型中，值对象通常用于表示某些重要概念的属性。
+仓储： 仓储是用于访问领域模型的持久化机制，负责将领域对象存储到数据库中并从中检索。
+限界上下文： DDD 强调在不同的上下文中使用不同的模型来解决问题。每个上下文都有其自己的限界，即它关注的领域范围。
+领域事件： 领域事件是对领域内发生的重要事实的表示。它们可以被用于在不同的上下文之间传递信息。
+领域设计 # 在领域驱动设计（DDD）中，还有战略设计和战术设计两个关键的概念，用于指导不同层次的设计决策。
+战略设计（Strategic Design） # 定义： 战略设计关注的是在整个系统层面上的设计决策，包括组织领域模型、划分限界上下文（Bounded Context）等。 它涉及的是在宏观层面上的系统架构和整体设计。</description></item><item><title>2.2 DDD应用</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/02/dddplayer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/02/dddplayer/</guid><description>DDD在本书中的应用 # 我们会使用领域驱动设计（DDD）思想贯穿整个源码的解析。 从源码分析开始，借助辅助工具 dddplayer 对Hugo源码进行深入分析。 这会给我们提供代码结构和信息流的详细信息，以确保我们对源码结构有清晰地认识。
+再将源码拆解为一个个的功能点，每个功能点代表着系统中的一个特定任务或操作。 这样可以帮助我们了解各个功能点之间的关系和依赖，并动手练习，掌握每一个功能点。 通过动手实现这些功能点，将有助于我们更好地理解源码中的交互和业务逻辑。
+接下来，让我们把这些功能点关联起来，一起动手实现一个小巧的静态站点生成服务。 我们将运用领域驱动设计的思维方式，将这些功能点按DDD概念有机的融合在一起，形成一个完整的服务 - Hugoverse（书中例子的名字）。
+在这个过程中，我们会使用战略图和战术图来一步步可视化我们实现的系统。 战略图用于指导整个系统的组织结构和限界，而战术图则更关注限界内部的微观设计决策。
+我们会应用六边型项目结构，确保项目组织符合DDD的原则。 这包括清晰的限界上下文、领域模型的定义、实体和值对象的划分、以及聚合的设计等。 通过这一步步的构建，我们致力于打造一个能够更好地反映业务需求和更易于维护的系统。
+这个过程将源码解析、功能点拆解、DDD思维、战略图和战术图等结合在一起。 以确保我们在开发过程中更加注重业务需求，建立起一个有机、清晰且符合DDD原则的软件系统。 这种方法有助于我们对系统的整体理解，同时确保代码的可维护性和灵活性。
+辅助工具DDDPlayer简介 # DDDPlayer是一款战略和战术治理工具，通过源码分析实时生成战略图和战术图，帮助团队保持业务和代码的一致性。
+分析源码组成结构 # 可以用来分析Golang源码，帮助我们深入理解源码组成和结构。
+比如我们想了解github.com/gohugoio/hugo/config/allconfig模块下结构体之间的关联关系： DDDPlayer可以帮我们生成如结构图： 可 线上查看细节。
+分析源码组信息流 # 还可以分析模块间的调用关系。
+如果我们想了解allconfig模块是怎么被外部调用的，我们还可以用DDDPlayer帮助我们生成信息流图： 可 线上查看细节
+生成DDD战略图 # Clean Markdown是用DDD实现的一个样例项目。
+我们可以用DDDPlayer帮助我们生成战略图： 生成DDD战术图 # 还可以帮我们生成战术图： 有了DDDPlayer后，将大大方便我们理解源码，以及用DDD的方式实现我们的领域服务。</description></item><item><title>3.1 源码阅读步骤</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/read/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/read/</guid><description>源码阅读步骤介绍 # 工欲善其事，必先利其器。
+为了更好地享受源码阅读的过程，我们需要做一些准备工作：
+搭建好Hugo项目本地开发环境 安装辅助工具DDDPlayer（如果想要亲自己试一试，强烈推荐） 理解Hugo基础架构，方便后继深入理解主流程上的每一个关键组件 对关键组件的逐个击破，并动手实践每个模块后的小练习（有附样例源码） 应用DDD，我们自己动手，应用上面练习过程中的知识，从头开始实现一个精简版的Hugo，我们把这个项目先取名为Hugoverse。 Hugo项目本地开发环境搭建 # 搭建 Hugo 源码的阅读环境步骤：
+1. 安装 Git # 首先，确保你的机器上安装了 Git。 你可以从 Git 官方网站下载并安装。
+2. 安装 Go # Hugo 是使用 Go 语言编写的，因此你需要安装 Go。 你可以从 Go 官方网站下载并安装。
+示例：
+➜ go version go version go1.21.1 darwin/amd64 3. 获取 Hugo 源码 # 在终端中运行以下命令，获取 Hugo 的源代码：
+git clone git@github.com:gohugoio/hugo.git 4. 进入 Hugo 源码目录 # cd path/to/gohugoio/hugo 5. 构建 Hugo # 在源码目录中运行以下命令，构建 Hugo：
+go install 6.</description></item><item><title>GitHub Pages sunwei.xyz</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/01/sunweixyz/deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/01/sunweixyz/deploy/</guid><description>将站点部署到GitHub Pages # 将 Hugo 站点部署到 GitHub Pages 非常简单，以下是详细的步骤：
 步骤 1：创建 GitHub 仓库 # 在 GitHub 上创建一个新的仓库，仓库名为 &amp;lt;你的用户名&amp;gt;.github.io。请确保使用你的 GitHub 用户名替换 &amp;lt;你的用户名&amp;gt;。
 在终端中，进入你的 Hugo 站点目录。
 初始化 Git 仓库并将其关联到你的 GitHub 仓库：
@@ -221,7 +247,20 @@ hugo 这将在站点目录下生成一个 public/ 文件夹，其中包含静态
 创建主题仓库 # 因为站点定位个人品牌，需求并不复杂，以简洁为主。 我们给主题取名zero，寓意起点。
 首先创建好空的zero Github仓库，再用Hugo命令生成主题默认目录结构：
 ➜ zero git:(main) ✗ hugo new theme . Creating theme at /Users/sunwei/github/sunwei/zero/themes ➜ zero git:(main) ✗ ls LICENSE README.md public resources themes 可以看出，Hugo认为我们是在站点里，正在给站点创建主题。 实际上我们需要的是themes里面的内容。 在我们的实例中，其实就theme.toml这一个主题配置文件。 拷贝到我们的仓库根目录下后，更新其中说明内容如下：
-name = &amp;#34;Zero&amp;#34; license = &amp;#34;MIT&amp;#34; licenselink = &amp;#34;https://github.com/sunwei/zero/blob/master/LICENSE&amp;#34; description = &amp;#34;Hugo Theme for sunewi.xyz&amp;#34; homepage = &amp;#34;https://sunwei.xyz/&amp;#34; demosite = &amp;#34;https://sunwei.</description></item><item><title>引言</title><link>https://hugo.notes.sunwei.xyz/docs/introduction/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/introduction/</guid><description>引言 # 背景和目标 # 欢迎来到《深入Hugo：成为静态站点生成领域专家》。
+name = &amp;#34;Zero&amp;#34; license = &amp;#34;MIT&amp;#34; licenselink = &amp;#34;https://github.com/sunwei/zero/blob/master/LICENSE&amp;#34; description = &amp;#34;Hugo Theme for sunewi.xyz&amp;#34; homepage = &amp;#34;https://sunwei.xyz/&amp;#34; demosite = &amp;#34;https://sunwei.</description></item><item><title>第三章</title><link>https://hugo.notes.sunwei.xyz/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/</guid><description>Hugo源码精读 # 通过 个人站点和 自定义主题实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。 使用起来很简单，很快就能上手。
+同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。
+比如针对源码领域的站点，像 深入理解Hugo，将源码和注解分离，并可以在 Golang Play上执行。 让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。
+目前Hugo还无法支持构建这样的站点，主要有两个原因。 一是 内容格式，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。 其次是 功能函数，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。 虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。
+不过，源码都给我们了，还能要求更多吗？ 毕竟我们可是有追求的软件工程师啊！
+无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。
+本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
+对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。
+出发吧，伟大的工程师啊！
+Hugo的架构设计 # 结合Hugo站点构建领域 事件，和 Hugo游乐场源码，Hugo的架构设计会变得很清晰：
+Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
+配置模块
+Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
+type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency.</description></item><item><title>引言</title><link>https://hugo.notes.sunwei.xyz/docs/introduction/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/introduction/</guid><description>引言 # 背景和目标 # 欢迎来到《深入Hugo：成为静态站点生成领域专家》。
 这本书将带领你深入探索静态站点生成技术，应用领域驱动设计（DDD）原则，从0到1示例如何打造自己的静态站点生成服务。 让你不仅成为一个熟练的开发者，还能有能力创建该领域中的代表作，从而脱颖而出。
 本书的写作背景和目标是引导你进入静态站点生成领域，迈出成为领域专家坚实的一步。 阅读Hugo开源项目源码，应用DDD方法，深刻理解和掌握该领域的核心知识，从而能够动手创建该领域的工具或服务。 不仅要探索静态站点生成的内部工作原理，也要关注如何将这些技术应用于不同的业务场景，才能满足不同的市场需求。 融合技术和市场，为客户创造更大的价值。
 这本书适合谁 # 本书适用于那些对静态站点生成技术感兴趣的技术从业者和创业者，以及那些希望深入了解如何将技术应用于不同领域的业务场景的读者。 无论你是程序员、技术管理者，还是创业者，或是学生及自学者，本书都将为你提供有价值的知识和见解。
