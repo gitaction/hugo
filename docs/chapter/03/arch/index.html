@@ -1,55 +1,35 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Hugo源码精读 # 通过 个人站点和 自定义主题实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。 使用起来很简单，很快就能上手。
-同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。
-比如针对源码领域的站点，像 深入理解Hugo，将源码和注解分离，并可以在 Golang Play上执行。 让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。
-目前Hugo还无法支持构建这样的站点，主要有两个原因。 一是 内容格式，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。 其次是 功能函数，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。 虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。
-不过，源码都给我们了，还能要求更多吗？ 毕竟我们可是有追求的软件工程师啊！
-无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。
-本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
-对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Hugo的架构设计 # 本节的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
+对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰地认识，为接下来详细源码实现讲解章节打好基础。
 出发吧，伟大的工程师啊！
-Hugo的架构设计 # 结合Hugo站点构建领域 事件，和 Hugo游乐场源码，Hugo的架构设计会变得很清晰：
+Hugo的架构设计图如下所示：
 Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
-配置模块
-Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
-type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="第三章"><meta property="og:description" content="Hugo源码精读 # 通过 个人站点和 自定义主题实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。 使用起来很简单，很快就能上手。
-同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。
-比如针对源码领域的站点，像 深入理解Hugo，将源码和注解分离，并可以在 Golang Play上执行。 让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。
-目前Hugo还无法支持构建这样的站点，主要有两个原因。 一是 内容格式，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。 其次是 功能函数，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。 虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。
-不过，源码都给我们了，还能要求更多吗？ 毕竟我们可是有追求的软件工程师啊！
-无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。
-本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
-对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。
+配置模块 # Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
+type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency. Owner() Module ... } 所有信息收集齐全后，会对外提供config.Provider服务：可查询，可更新配置项。
+HugoSites模块 # 这是构建站点的核心模块，相当于DDD中的聚合根，内部组织构建站点所需要的全部信息，对外提供站点构建服务。
+HugoSites的初始化依赖于DepsCfg和Site，没错，有两个site。 HugoSites和Site的关系是一对多，Site和Language的关系是一一对应的，所以多语言站点会为每一个语言创建一个站点，共同组成了HugoSites。
+语言项是由DepsCfg创建的，但会存储在config.Provider中，所以都用浅黄色标明。 而DepsCfg的初始化则依赖于Fs和config.Provider。 Fs记载了源文件地址和发布地址。 源文件来自于用户项目，也就是实际的硬盘文件系统。 发布地址是获取自config.Provider，默认的是public文件夹，在这里会检测是否已经存在，如果没有则主动创建。 最后将新创建的信息如workingDir等信息同步回config.Provider。
+可以看出，他们的依赖关系是HugoSites <- Site <- Language <- DepsCfg <- Fs。"><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="3.4 Hugo的架构设计"><meta property="og:description" content="Hugo的架构设计 # 本节的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
+对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰地认识，为接下来详细源码实现讲解章节打好基础。
 出发吧，伟大的工程师啊！
-Hugo的架构设计 # 结合Hugo站点构建领域 事件，和 Hugo游乐场源码，Hugo的架构设计会变得很清晰：
+Hugo的架构设计图如下所示：
 Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
-配置模块
-Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
-type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/"><meta property="article:section" content="docs"><title>第三章 | Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+配置模块 # Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
+type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency. Owner() Module ... } 所有信息收集齐全后，会对外提供config.Provider服务：可查询，可更新配置项。
+HugoSites模块 # 这是构建站点的核心模块，相当于DDD中的聚合根，内部组织构建站点所需要的全部信息，对外提供站点构建服务。
+HugoSites的初始化依赖于DepsCfg和Site，没错，有两个site。 HugoSites和Site的关系是一对多，Site和Language的关系是一一对应的，所以多语言站点会为每一个语言创建一个站点，共同组成了HugoSites。
+语言项是由DepsCfg创建的，但会存储在config.Provider中，所以都用浅黄色标明。 而DepsCfg的初始化则依赖于Fs和config.Provider。 Fs记载了源文件地址和发布地址。 源文件来自于用户项目，也就是实际的硬盘文件系统。 发布地址是获取自config.Provider，默认的是public文件夹，在这里会检测是否已经存在，如果没有则主动创建。 最后将新创建的信息如workingDir等信息同步回config.Provider。
+可以看出，他们的依赖关系是HugoSites <- Site <- Language <- DepsCfg <- Fs。"><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/docs/chapter/03/arch/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-11-15T20:05:22+08:00"><title>3.4 Hugo的架构设计 | Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
 <script defer src=/zh.search.min.fbc406451185ea05b46924186b25bd6ae0fd5b6c3384cf60475cc74b57ec9bfc.js integrity="sha256-+8QGRRGF6gW0aSQYayW9auD9W2wzhM9gR1zHS1fsm/w=" crossorigin=anonymous></script>
 <script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-STPKPBQR5Y"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-STPKPBQR5Y",{anonymize_ip:!1})}</script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
 <label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
-Chinese</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/en/>English</a></li></ul></li></ul><ul><li><p><a href=/docs/introduction/><strong>引言</strong></a><br></p></li><li><p><a href=/docs/chapter/01/><strong>第一章 Hugo入门</strong></a></p><ul><li><a href=/docs/chapter/01/ssg/>1.1 静态站点的背景和重要性</a></li><li><a href=/docs/chapter/01/hugo/>1.2 Hugo简介</a></li><li><a href=/docs/chapter/01/install/>1.3 安装Hugo</a></li><li><a href=/docs/chapter/01/site/>1.4 创建第一个站点</a></li><li><a href=/docs/chapter/01/theme/>1.5 自定义主题</a></li><li><a href=/docs/chapter/01/sunweixyz/>1.6 个人站点实例</a><ul><li><a href=/docs/chapter/01/sunweixyz/site/>个人站点</a></li><li><a href=/docs/chapter/01/sunweixyz/theme/>创建新主题</a></li><li><a href=/docs/chapter/01/sunweixyz/deploy/>部署GitHub Pages</a></li></ul></li><li><a href=/docs/chapter/01/qa/>1.7 常见问题和资源</a><br></li></ul></li><li><p><strong>第二章 DDD简介</strong></p><ul><li><a href=/docs/chapter/02/ddd/>2.1 DDD简介</a></li><li><a href=/docs/chapter/02/dddplayer/>2.2 DDD在本书中的应用</a><br></li></ul></li><li><p><a href=/docs/chapter/03/><strong>第三章 Hugo源码精读</strong></a></p><ul><li><a href=/docs/chapter/03/read/>3.1 源码阅读步骤介绍</a></li><li><a href=/docs/chapter/03/prerequisite/>3.2 Hugo本地环境搭建</a></li><li><a href=/docs/chapter/03/dddplayer/>3.3 安装DDDPlayer</a></li><li><a href=/docs/chapter/03/arch/>3.4 Hugo架构设计</a><br></li></ul></li><li><p><strong>Hugo架构</strong></p></li><li><p><a href=/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/>游乐场</a></p></li><li><p><a href=/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>事件风暴</a></p></li><li><p><a href=/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/ class=active>基础架构</a><br></p></li><li><p><a href=/docs/code/><strong>源码解析</strong></a></p></li><li><p><a href=/docs/code/%E9%85%8D%E7%BD%AE/>配置</a></p></li><li><p><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/>依赖管理</a></p><ul><li><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/%E8%B7%AF%E5%BE%84%E8%A7%84%E8%8C%83/>PathSpec</a></li><li><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/%E5%86%85%E5%AE%B9%E8%A7%84%E8%8C%83/>ContentSpec</a></li></ul></li><li><p><a href=/docs/code/%E7%AB%99%E7%82%B9/>站点创建</a></p><ul><li><a href=/docs/code/%E7%AB%99%E7%82%B9/%E5%88%9B%E5%BB%BA/>创建站点</a></li><li><a href=/docs/code/%E7%AB%99%E7%82%B9/%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/>加载资源</a></li><li><a href=/docs/code/%E7%AB%99%E7%82%B9/markdown/>Markdown</a></li></ul></li><li><p><a href=/docs/code/%E6%9E%84%E5%BB%BA/>站点构建</a></p><ul><li><a href=/docs/code/%E6%9E%84%E5%BB%BA/%E6%A8%A1%E6%9D%BF/>模板执行</a><br></li></ul></li></ul><ul><li><a href=/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
-<strong>第三章</strong>
-<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#hugo源码精读>Hugo源码精读</a><ul><li><a href=#hugo的架构设计>Hugo的架构设计</a></li><li><a href=#hugo的组件设计>Hugo的组件设计</a><ul><li><a href=#配置和语言的关系>配置和语言的关系</a></li><li><a href=#hugo的模块>Hugo的模块</a></li><li><a href=#文件系统的组织>文件系统的组织</a></li><li><a href=#站点内容的收集方案>站点内容的收集方案</a></li><li><a href=#模板的生命周期>模板的生命周期</a></li><li><a href=#发布的流程>发布的流程</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=hugo源码精读>Hugo源码精读
-<a class=anchor href=#hugo%e6%ba%90%e7%a0%81%e7%b2%be%e8%af%bb>#</a></h1><p>通过
-<a href=../what/%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9.md>个人站点</a>和
-<a href=../what/%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%bb%e9%a2%98.md>自定义主题</a>实例，我们可以了解到如何使用Hugo创建自己的站点以及主题。
-使用起来很简单，很快就能上手。</p><p>同时Hugo还是基于Apache 2.0协议的开源项目，这意味着你完全可以大胆地发挥自己的创造力。</p><p>比如针对源码领域的站点，像
-<a href=https://c.sunwei.xyz/>深入理解Hugo</a>，将源码和注解分离，并可以在
-<a href=https://go.dev/play/>Golang Play</a>上执行。
-让源码的学习体验更加立体，不仅有解释，还能参与其中，修改样例，进一步帮助理解。</p><p>目前Hugo还无法支持构建这样的站点，主要有两个原因。
-一是
-<a href=https://gohugo.io/content-management/formats/>内容格式</a>，Hugo目前主要支持的内容格式是Markdown，而上面的内容格式是.go源码文件。
-其次是
-<a href=https://gohugo.io/functions/>功能函数</a>，Hugo并没有处理代码的函数可以直接使用，要想解析源码及注解。
-虽然可以组合字符串函数进行处理，但使用起来繁琐，拓展起来困难，维护起来更是让人连连摇头。</p><p>不过，源码都给我们了，还能要求更多吗？
-毕竟我们可是有追求的软件工程师啊！</p><p>无论是从实用的角度，还是通过学习优秀源码，来进行交流学习的角度，我们都有充分的理由来对这一宝藏进行发掘。</p><p>本章的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：</p><ul><li>对架构思路做一个概要说明，对基础架构有一个全貌的理解</li><li>从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。</li></ul><p>通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰的认识，为接下来详细源码实现讲解章节打好基础。</p><p>出发吧，伟大的工程师啊！</p><h2 id=hugo的架构设计>Hugo的架构设计
-<a class=anchor href=#hugo%e7%9a%84%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1>#</a></h2><p>结合Hugo站点构建领域
-<a href=/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>事件</a>，和
-<a href=https://github.com/sunwei/hugo-playground>Hugo游乐场</a>源码，Hugo的架构设计会变得很清晰：</p><p><img src=images/3.0-hugo-arch.svg alt="Hugo Arch"></p><p>Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。</p><p><strong>配置模块</strong></p><p>Hugo最先解析的，就是用户项目的配置文件<code>config.toml</code>。
+Chinese</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/en/>English</a></li></ul></li></ul><ul><li><p><a href=/docs/introduction/><strong>引言</strong></a><br></p></li><li><p><a href=/docs/chapter/01/><strong>第一章 Hugo入门</strong></a></p><ul><li><a href=/docs/chapter/01/ssg/>1.1 静态站点的背景和重要性</a></li><li><a href=/docs/chapter/01/hugo/>1.2 Hugo简介</a></li><li><a href=/docs/chapter/01/install/>1.3 安装Hugo</a></li><li><a href=/docs/chapter/01/site/>1.4 创建第一个站点</a></li><li><a href=/docs/chapter/01/theme/>1.5 自定义主题</a></li><li><a href=/docs/chapter/01/sunweixyz/>1.6 个人站点实例</a><ul><li><a href=/docs/chapter/01/sunweixyz/site/>个人站点</a></li><li><a href=/docs/chapter/01/sunweixyz/theme/>创建新主题</a></li><li><a href=/docs/chapter/01/sunweixyz/deploy/>部署GitHub Pages</a></li></ul></li><li><a href=/docs/chapter/01/qa/>1.7 常见问题和资源</a><br></li></ul></li><li><p><strong>第二章 DDD简介</strong></p><ul><li><a href=/docs/chapter/02/ddd/>2.1 DDD简介</a></li><li><a href=/docs/chapter/02/dddplayer/>2.2 DDD在本书中的应用</a><br></li></ul></li><li><p><a href=/docs/chapter/03/><strong>第三章 Hugo源码精读</strong></a></p><ul><li><a href=/docs/chapter/03/read/>3.1 源码阅读步骤介绍</a></li><li><a href=/docs/chapter/03/prerequisite/>3.2 Hugo本地环境搭建</a></li><li><a href=/docs/chapter/03/dddplayer/>3.3 安装DDDPlayer</a></li><li><a href=/docs/chapter/03/arch/ class=active>3.4 Hugo架构设计</a><br></li></ul></li><li><p><strong>Hugo架构</strong></p></li><li><p><a href=/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/>游乐场</a></p></li><li><p><a href=/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>事件风暴</a></p></li><li><p><a href=/docs/how/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/>基础架构</a><br></p></li><li><p><a href=/docs/code/><strong>源码解析</strong></a></p></li><li><p><a href=/docs/code/%E9%85%8D%E7%BD%AE/>配置</a></p></li><li><p><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/>依赖管理</a></p><ul><li><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/%E8%B7%AF%E5%BE%84%E8%A7%84%E8%8C%83/>PathSpec</a></li><li><a href=/docs/code/%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/%E5%86%85%E5%AE%B9%E8%A7%84%E8%8C%83/>ContentSpec</a></li></ul></li><li><p><a href=/docs/code/%E7%AB%99%E7%82%B9/>站点创建</a></p><ul><li><a href=/docs/code/%E7%AB%99%E7%82%B9/%E5%88%9B%E5%BB%BA/>创建站点</a></li><li><a href=/docs/code/%E7%AB%99%E7%82%B9/%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90/>加载资源</a></li><li><a href=/docs/code/%E7%AB%99%E7%82%B9/markdown/>Markdown</a></li></ul></li><li><p><a href=/docs/code/%E6%9E%84%E5%BB%BA/>站点构建</a></p><ul><li><a href=/docs/code/%E6%9E%84%E5%BB%BA/%E6%A8%A1%E6%9D%BF/>模板执行</a><br></li></ul></li></ul><ul><li><a href=/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>3.4 Hugo的架构设计</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#hugo的架构设计>Hugo的架构设计</a><ul><li><a href=#配置模块>配置模块</a></li><li><a href=#hugosites模块>HugoSites模块</a></li><li><a href=#deps模块>Deps模块</a></li><li><a href=#hugo的组件设计>Hugo的组件设计</a><ul><li><a href=#配置和语言的关系>配置和语言的关系</a></li><li><a href=#hugo的模块>Hugo的模块</a></li><li><a href=#文件系统的组织>文件系统的组织</a></li><li><a href=#站点内容的收集方案>站点内容的收集方案</a></li><li><a href=#模板的生命周期>模板的生命周期</a></li><li><a href=#发布的流程>发布的流程</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=hugo的架构设计>Hugo的架构设计
+<a class=anchor href=#hugo%e7%9a%84%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1>#</a></h1><p>本节的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：</p><ul><li>对架构思路做一个概要说明，对基础架构有一个全貌的理解</li><li>从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。</li></ul><p>通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰地认识，为接下来详细源码实现讲解章节打好基础。</p><p>出发吧，伟大的工程师啊！</p><p>Hugo的架构设计图如下所示：</p><p><img src=images/3.0-hugo-arch.svg alt="Hugo Arch"></p><p>Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。</p><h2 id=配置模块>配置模块
+<a class=anchor href=#%e9%85%8d%e7%bd%ae%e6%a8%a1%e5%9d%97>#</a></h2><p>Hugo最先解析的，就是用户项目的配置文件<code>config.toml</code>。
 由<code>configLoader</code>发起，从硬盘读取配置文件，解析后存储为键值对对象。
 <code>configLoader</code>主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。
 第二件是补全默认配置<code>Defaults Config</code>，这样才能保其它模块正常运作。
@@ -62,13 +42,15 @@ Chinese</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/en/>English</a>
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>Owner</span>() <span style=color:#a6e22e>Module</span>
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>所有信息收集齐全后，会对外提供<code>config.Provider</code>服务：可查询，可更新配置项。</p><p><strong>HugoSites模块</strong></p><p>这是构建站点的核心模块，相当于DDD中的聚合根，内部组织构建站点所需要的全部信息，对外提供站点构建服务。</p><p><code>HugoSites</code>的初始化依赖于<code>DepsCfg</code>和<code>Site</code>，没错，有两个site。
+</span></span></code></pre></div><p>所有信息收集齐全后，会对外提供<code>config.Provider</code>服务：可查询，可更新配置项。</p><h2 id=hugosites模块>HugoSites模块
+<a class=anchor href=#hugosites%e6%a8%a1%e5%9d%97>#</a></h2><p>这是构建站点的核心模块，相当于DDD中的聚合根，内部组织构建站点所需要的全部信息，对外提供站点构建服务。</p><p><code>HugoSites</code>的初始化依赖于<code>DepsCfg</code>和<code>Site</code>，没错，有两个site。
 HugoSites和Site的关系是一对多，Site和Language的关系是一一对应的，所以多语言站点会为每一个语言创建一个站点，共同组成了HugoSites。</p><p>语言项是由DepsCfg创建的，但会存储在<code>config.Provider</code>中，所以都用浅黄色标明。
 而DepsCfg的初始化则依赖于<code>Fs</code>和<code>config.Provider</code>。
 <code>Fs</code>记载了源文件地址和发布地址。
 源文件来自于用户项目，也就是实际的硬盘文件系统。
 发布地址是获取自config.Provider，默认的是public文件夹，在这里会检测是否已经存在，如果没有则主动创建。
-最后将新创建的信息如<code>workingDir</code>等信息同步回config.Provider。</p><p>可以看出，他们的依赖关系是<code>HugoSites &lt;- Site &lt;- Language &lt;- DepsCfg &lt;- Fs</code>。</p><p><strong>Deps模块</strong></p><p>Hugo将构建站点所需要的所有服务和对象都称作依赖，全部放在了<code>Deps</code>中。</p><p>在构建依赖的过程中，会生成提供模板的<code>TemplateProvider</code>；
+最后将新创建的信息如<code>workingDir</code>等信息同步回config.Provider。</p><p>可以看出，他们的依赖关系是<code>HugoSites &lt;- Site &lt;- Language &lt;- DepsCfg &lt;- Fs</code>。</p><h2 id=deps模块>Deps模块
+<a class=anchor href=#deps%e6%a8%a1%e5%9d%97>#</a></h2><p>Hugo将构建站点所需要的所有服务和对象都称作依赖，全部放在了<code>Deps</code>中。</p><p>在构建依赖的过程中，会生成提供模板的<code>TemplateProvider</code>；
 明确输入输出的媒体类型<code>MediaType</code>；和输出格式的<code>OutputFormats</code>；都会更新到<code>config.Provider</code>中。</p><p>也会为收集站点内容做好准备，会有<code>Page Collection</code>帮助收集。
 最终发布站点时需要用到的发布服务则是<code>Publisher</code>。
 这些都会更新到<code>Site</code>中。</p><p>同时，还需要将资源统一管理，明确规范，这样可以保障在使用时的便捷性，也符合面向对向设计原则中的单一职责原则。
@@ -82,7 +64,7 @@ HugoSites和Site的关系是一对多，Site和Language的关系是一一对应�
 构建站点过程中，只要是你能想到的定制化需求，基本都能通过配置实现。</p><p>为了满足不同的定制化需求，Hugo的思路是首先要处理好多配置文件之间的关系，所以需要合并一些配置项，这样就需要大小写不敏感。
 定制化只是一小部分，其它的通用信息，就用默认配置来进行说明。</p><p>支持多语言是常见需求，现在好多软件遵循的策略就是国际化优先。
 那Hugo是怎么理解语言和配置的关系呢？</p><p>在
-<a href=../what/%e4%b8%aa%e4%ba%ba%e7%ab%99%e7%82%b9.md>个人站点</a>实例中，我们在<code>config.toml</code>中和语言相关的配置如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#a6e22e>defaultContentLanguage</span> = <span style=color:#e6db74>&#39;zh&#39;</span>
+<a href=/docs/chapter/01/site/>个人站点</a>实例中，我们在<code>config.toml</code>中和语言相关的配置如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#a6e22e>defaultContentLanguage</span> = <span style=color:#e6db74>&#39;zh&#39;</span>
 </span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>]
 </span></span><span style=display:flex><span>[<span style=color:#a6e22e>languages</span>.<span style=color:#a6e22e>zh</span>]
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>languageName</span> = <span style=color:#e6db74>&#39;中文&#39;</span>
@@ -95,9 +77,7 @@ HugoSites和Site的关系是一对多，Site和Language的关系是一一对应�
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>weight</span> = <span style=color:#ae81ff>2</span>
 </span></span></code></pre></div><p>可以配置默认语言，支持的多语言有中文和英语。</p><p>那这样看来，配置应该包含语言。
 也就是说语言应该是配置结构体中的一个字段。
-而事实是这样的吗？
-让我们还是从
-<a href=https://github.com/sunwei/hugo-playground>Hugo游乐场</a>源码出发，来一探究竟。</p><p>在此之前，我们先从架构图中寻找线索：
+而事实是这样的吗？</p><p>我们先从架构图中寻找线索：
 <img src=images/3.1-hugo-arch-config-language.svg alt="Language and Config"></p><p>可以看到，最终创建Language的地方是在DepsCfg，并不是Config。
 这和我们的直觉是相反的，让我们来看看关键的config.Provider，DepsCfg和Language相关代码片断。</p><p><strong>config.Provider</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Provider provides the configuration settings for Hugo.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Provider</span> <span style=color:#66d9ef>interface</span> {
@@ -159,8 +139,7 @@ Config专注提供配置key/value仓库管理服务，而Language和Site是一�
 这也正是在软件领域，对"隔行如隔山"这句俗语最好的阐述。
 如今，不仅互联网行业，金融行业，就算传统的制造业，都已经使用上了信息化系统，来帮助企业的生产和管理。
 同样是请假系统，哪怕在同样的行业，不同的公司，都会有所差异。</p><p>而Hugo的模块和大家印象中的模块有点不一样，并不是以功能为单位，来满足差异化需求。
-而是以目录结构为主，来识别相同的结构。</p><p>先来看看在我们架构中，模块的位置：</p><p><img src=images/3.2-hugo-arch-module.svg alt="Hugo Arch Module"></p><p>在架构图中，<code>Modules</code>需要统一组织起来，依赖于<code>Modules Config</code>描述信息，而这个信息的加载是由configLoader负责的。</p><p>我们再从
-<a href=https://github.com/sunwei/hugo-playground>Hugo游乐场</a>源码来看一看实际的调用时序：</p><p><img src=images/3.2.1-hugo-arch-module.svg alt="Hugo Arch Module flow"></p><p>可以看出，在我们的游乐场中，由主函数，调用<code>LoadConfig</code>方法，并在该方法中为<code>Modules</code>做了两件事。
+而是以目录结构为主，来识别相同的结构。</p><p>先来看看在我们架构中，模块的位置：</p><p><img src=images/3.2-hugo-arch-module.svg alt="Hugo Arch Module"></p><p>在架构图中，<code>Modules</code>需要统一组织起来，依赖于<code>Modules Config</code>描述信息，而这个信息的加载是由configLoader负责的。</p><p>我们再从源码来看一看实际的调用时序：</p><p><img src=images/3.2.1-hugo-arch-module.svg alt="Hugo Arch Module flow"></p><p>可以看出，在我们的游乐场中，由主函数，调用<code>LoadConfig</code>方法，并在该方法中为<code>Modules</code>做了两件事。
 一件是<code>loadModulesConfig</code>，把和Modules相关的配置信息整理到Module Config中。
 另一件则是<code>collectModules</code>，根据收集到的配置信息，按模块的标准，将模块信息标准化。</p><p>先来看看<code>Module Config</code>的源码定义：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Config holds a module config.
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Config</span> <span style=color:#66d9ef>struct</span> {
@@ -357,8 +336,7 @@ Hugo可以很聪明的识别，哪个文件是页面文件，哪些页面是资�
 当有新的需求出现时，复杂的逻辑处理也不利于软件的拓展。</p><p>从以上两个场景中，可以观察到。
 简单的遍历文件系统，确实可以获取基本的文件信息。
 但如果需要灵活地组织各种不同的信息，如依赖关系，资源汇总等等跨页面处理场景，我们还需要进一步对站点内容进行发掘，以页面为单位进行组织和管理。</p><h4 id=磨刀不误砍柴工>磨刀不误砍柴工
-<a class=anchor href=#%e7%a3%a8%e5%88%80%e4%b8%8d%e8%af%af%e7%a0%8d%e6%9f%b4%e5%b7%a5>#</a></h4><p>从
-<a href=/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>Hugo事件风暴</a>中可以清楚的看到Hugo正式收集站点内容是在<code>Hugo Build</code>阶段，之前都是在做准备：</p><p><img src=images/5.1-hugo-ddd-content-collection.svg alt="Hugo DDD - Content Collection"></p><h4 id=分工明确高效协作>分工明确，高效协作
+<a class=anchor href=#%e7%a3%a8%e5%88%80%e4%b8%8d%e8%af%af%e7%a0%8d%e6%9f%b4%e5%b7%a5>#</a></h4><p>在源码中看们看到到Hugo正式收集站点内容是在<code>Hugo Build</code>阶段，之前其实都是在做准备。</p><p><img src=images/5.1-hugo-ddd-content-collection.svg alt="Hugo DDD - Content Collection"></p><h4 id=分工明确高效协作>分工明确，高效协作
 <a class=anchor href=#%e5%88%86%e5%b7%a5%e6%98%8e%e7%a1%ae%e9%ab%98%e6%95%88%e5%8d%8f%e4%bd%9c>#</a></h4><p>电商现在的状态已然不是正在融入我们的生活，而是成为了我们生活的一部分。
 并且过了拼产品类目的时期，基本上你家有的，我这也有。
 现在拼的更多的是特色，和服务。
@@ -371,14 +349,14 @@ Hugo可以很聪明的识别，哪个文件是页面文件，哪些页面是资�
 PagesController将所有文件送达后，自动分拣机器人PagesProcessor便开始工作，无缝衔接。
 为了提高处理效率，Hugo为每一个站点都提供了一个机器人，由PagesProcessor负责分发任务，sitePagesProcessor专注处理自己所擅长的语言类别。</p><p>通过明确的分工，高效的协作，最终将所有文件分门别类，规整的放在中心货架上。</p><p><img src=images/5.0-content-process-flow.svg alt="Content Process Flow"></p><h3 id=模板的生命周期>模板的生命周期
 <a class=anchor href=#%e6%a8%a1%e6%9d%bf%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f>#</a></h3><p>在
-<a href=/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>Hugo事件风暴</a>中，我们了解到Hugo的设计理念 - 给用户提供始终如一的轻松写作体现。
+<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>Hugo事件风暴</a>中，我们了解到Hugo的设计理念 - 给用户提供始终如一的轻松写作体现。
 而实现这一理念则是以Golang Template为基础，开发出更多实用功能，让内容创造者专于内容创作的同时，还拥有良好的体验。</p><p>让我们回顾一下Golang Template的实现步骤：
 <img src=images/1-golang-template.svg alt="Golang Template"></p><p>再看看Hugo是如何围绕其展开的：
 <img src=images/2.1-hugo-whole-process-map-go-template.svg alt="hugo whole process with golang template"></p><p>Hugo围绕着Golang Template做了很多设计，现在我们通过和模板相关的领域事件，一起来看看模板的生命周期，从而能够有更全面的理解。</p><h4 id=hugo模板生命周期领域事件>Hugo模板生命周期领域事件
 <a class=anchor href=#hugo%e6%a8%a1%e6%9d%bf%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e9%a2%86%e5%9f%9f%e4%ba%8b%e4%bb%b6>#</a></h4><p>还是从领域事件入手，来看看有哪些关键事件和模板强相关：</p><p><img src=images/6.0-template-ddd-events.svg alt="Template DDD Events"></p><p>除了上面和Golang Template一一映射的事件外，还有更细节的事件，为了直观好看，我们把这些事件收集到一起来进行分析：</p><p><img src=images/6.0.1-template-ddd-events-simple.svg alt="Template DDD Events simple version"></p><p>可以看到和模板强相关的事件，主要集中在创建HugoSites和Build阶段。
 进一步细分，可发现模板生命周期可分为三个阶段：</p><ol><li>开始阶段，包括注册回调，并选定模板服务提供方，并出发模板更新。<ul><li>注册layouts回调到HugoSites初始化字段</li><li>设置默认模板提供方到配置项</li><li>通知模板提供者开始更新</li></ul></li><li>准备阶段，包括准备好模板执行器，收集模板相关的功能函数，解析Hugo内置和用户自定义模板，将所有模板存储到模板命名空间，以及用layout处理器连接layout和模板。<ul><li>新建模板执行器</li><li>收集模板函数到函数映射</li><li>收集文本函数到函数映射</li><li>新建模板命名空间</li><li>新建layout处理器</li></ul></li><li>渲染阶段，准备好页面内容后，回调在开始阶段注册的layouts事项，通过layout处理器查找相应的模板，最终用模板进行渲染，生成站点页面<ul><li>为内容结点创建页面</li><li>回调layout注册项进行初始化</li><li>为页面查找模板</li><li>用模板渲染页面</li></ul></li></ol><p>事件可以帮助我们清晰地了解到Hugo设计的模板生命周期。
 下面我们再通过
-<a href=/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/>Hugo游乐场</a>源码梳理一遍具体实现流程，好让我们能更立体地了解到模板生命周期，同时也可以为后面的代码实现讲解章节做好准备。</p><p><strong>Template vs Layouts</strong></p><p>我们先来看看Hugo中两个容易混淆的概念，Template和Layouts。</p><p>在创建
+<a href=%e6%b8%b8%e4%b9%90%e5%9c%ba.md>Hugo游乐场</a>源码梳理一遍具体实现流程，好让我们能更立体地了解到模板生命周期，同时也可以为后面的代码实现讲解章节做好准备。</p><p><strong>Template vs Layouts</strong></p><p>我们先来看看Hugo中两个容易混淆的概念，Template和Layouts。</p><p>在创建
 <a href=../what/%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%bb%e9%a2%98.md>自定义Hugo主题</a>的时候，我们接触最多的就是Layouts。
 官方文档解释Layouts就是用来当模板的，这样解释并没有问题，但这会让我们很容易产生一种Layouts既模板的错觉，并将Layouts和模板直接划上等号。</p><p>但真的是这样的吗，让我们从代码层面看看他们的关联：</p><p><img src=images/6.2-layouts-vs-template.svg alt="Template vs Layouts"></p><p>通过查看新建主题的目录结构，我们会发现自动生成的的文件主要在layouts目录下，里面有首页模板，还有页头和页尾模板，等等。
 在代码中，Layouts的出现通过都是以<code>[]string</code>字符串数组的形式出现的。
@@ -413,7 +391,7 @@ PagesController将所有文件送达后，自动分拣机器人PagesProcessor便
 这样我们就有了根据模板生成的待发布内容。</p><p>站点发布主要的任务就是将作者所创作的内容，通过模板转换生成待发布的内容，按照站点的输出格式，写入到我们指定的文件目录。</p><p>那这里就会有两个问题：</p><ol><li>作者所创作的内容是怎么存储在页面中的，又要怎么使用呢？</li><li>发布过程中的信息，如输出格式、文件名、写入地址又是谁提供的呢？</li></ol><p>我们还是从Golang Template基本原理出发:</p><p><img src=images/1-golang-template.svg alt="Golang Template"></p><p>在index.html模板中，我们计划用<code>{{.Content}}</code>属性来获取内容。
 如果要成功获取，就需要在我们的内容提供商<code>Post</code>实例中，在Content字段设置上正确的值。
 如果都按约定准备好后，在最终Golang Template执行结果中，我们就能发现右上角的内容。</p><p>在我们的
-<a href=/docs/how/%E6%B8%B8%E4%B9%90%E5%9C%BA/>游乐场示例</a>中，我们也有一个用到了<code>.Content</code>的layout - <code>layouts/_default/single.html</code>：</p><pre tabindex=0><code>-- mycontent/blog/post.md --
+<a href=%e6%b8%b8%e4%b9%90%e5%9c%ba.md>游乐场示例</a>中，我们也有一个用到了<code>.Content</code>的layout - <code>layouts/_default/single.html</code>：</p><pre tabindex=0><code>-- mycontent/blog/post.md --
 ---
 title: &#34;Post Title&#34;
 ---
@@ -442,9 +420,9 @@ Static Content
 </span></span></code></pre></div><p>没错，就是ContentProvider。
 可以看出Golang Template不仅支持属性，同时还支持方法。
 共同的特点就是要对外可见 - 都是大写字母开头。</p><p>那上面的两个问题就变得更具体了：</p><ol><li>PageState中的ContentProvider是谁？</li><li>发布流程中所需的详细信息是怎么来的？</li></ol><p><strong>发布相关的领域事件</strong></p><p>同样，我们还是可以通过
-<a href=/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>领域事件风暴</a>中，发布相关的领域事件入手：</p><p><img src=images/7.0-publish-events.svg alt="Publish Events"></p><p>可以看到，关键时机有两个。
+<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>领域事件风暴</a>中，发布相关的领域事件入手：</p><p><img src=images/7.0-publish-events.svg alt="Publish Events"></p><p>可以看到，关键时机有两个。
 一个是在站点Site创建的时期，另一个则是在构建时期。</p><p>让我们专注在和发布相关的事件上：</p><p><img src=images/7.0.1-publish-events-simple.svg alt="Publish Events Simple"></p><p>这些事件的解读在
-<a href=/docs/how/%E4%BA%8B%E4%BB%B6%E9%A3%8E%E6%9A%B4/>领域事件风暴</a>中有具体描述，这里就不再赘叙。</p><p>结合
+<a href=%e4%ba%8b%e4%bb%b6%e9%a3%8e%e6%9a%b4.md>领域事件风暴</a>中有具体描述，这里就不再赘叙。</p><p>结合
 <a href=https://github.com/sunwei/hugo-playground>源码</a>，我们进一步将上述事件转换成代码流程图：</p><p><img src=images/7.1-publish-work-flow.svg alt="Publish Work Flow"></p><p>不出所料，为PageState提供内容和其它信息服务的对象确实存在，那就是<code>pageOutputs</code>。
 但心中不禁升起一丝疑问，为什么是个复数？</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// We create a pageOutput for every output format combination, even if this
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// particular page isn&#39;t configured to be rendered to that format.
@@ -613,5 +591,6 @@ pageOutput做为输出信息的总载体，这些信息自然了也包在其中�
 </span></span><span style=display:flex><span>	<span style=color:#f92672>...</span>
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>通过<code>newPageFromMeta</code>源码我们发现，对<code>standalone</code>的页面是有特殊处理的，而且用的就是<code>render404</code>中传入的<code>output.HTMLFormat</code>生成了pageOutput。</p><p>这样一来，我们可以确定的说，无论是普通页面，还是独立页面，基本上都是以pageOutput为核心进行展开的，符合同一套发布流程。
-让我们再来回顾一下发布流程全景图：</p><p><img src=images/7.4-publish-full.svg alt="Publish Process Full Process"></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content.zh/docs/how/%e5%9f%ba%e7%a1%80%e6%9e%b6%e6%9e%84/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
-<span>编辑本页</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#hugo源码精读>Hugo源码精读</a><ul><li><a href=#hugo的架构设计>Hugo的架构设计</a></li><li><a href=#hugo的组件设计>Hugo的组件设计</a><ul><li><a href=#配置和语言的关系>配置和语言的关系</a></li><li><a href=#hugo的模块>Hugo的模块</a></li><li><a href=#文件系统的组织>文件系统的组织</a></li><li><a href=#站点内容的收集方案>站点内容的收集方案</a></li><li><a href=#模板的生命周期>模板的生命周期</a></li><li><a href=#发布的流程>发布的流程</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
+让我们再来回顾一下发布流程全景图：</p><p><img src=images/7.4-publish-full.svg alt="Publish Process Full Process"></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/commit/7229f6ea21ec4e71e0798648bf6fc50f83c851b7 title='最后修改者 sunwei | November 15, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>November 15, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content.zh/docs/chapter/03/arch/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#hugo的架构设计>Hugo的架构设计</a><ul><li><a href=#配置模块>配置模块</a></li><li><a href=#hugosites模块>HugoSites模块</a></li><li><a href=#deps模块>Deps模块</a></li><li><a href=#hugo的组件设计>Hugo的组件设计</a><ul><li><a href=#配置和语言的关系>配置和语言的关系</a></li><li><a href=#hugo的模块>Hugo的模块</a></li><li><a href=#文件系统的组织>文件系统的组织</a></li><li><a href=#站点内容的收集方案>站点内容的收集方案</a></li><li><a href=#模板的生命周期>模板的生命周期</a></li><li><a href=#发布的流程>发布的流程</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>

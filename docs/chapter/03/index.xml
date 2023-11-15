@@ -1,9 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>第三章 on Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/</link><description>Recent content in 第三章 on Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://hugo.notes.sunwei.xyz/docs/chapter/03/index.xml" rel="self" type="application/rss+xml"/><item><title>3.1 源码阅读步骤</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/read/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/read/</guid><description>源码阅读步骤介绍 # 工欲善其事，必先利其器。
-为了更好地享受源码阅读的过程，我们需要做一些准备工作：
-搭建好Hugo项目本地开发环境 安装辅助工具DDDPlayer（如果想要亲自己试一试，强烈推荐） 理解Hugo基础架构，方便后继深入理解主流程上的每一个关键组件 对关键组件的逐个击破，并动手实践每个模块后的小练习（有附样例源码） 应用DDD，我们自己动手，应用上面练习过程中的知识，从头开始实现一个精简版的Hugo，我们把这个项目先取名为Hugoverse。 Hugo项目本地开发环境搭建 # 搭建 Hugo 源码的阅读环境步骤：
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>第三章 on Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/</link><description>Recent content in 第三章 on Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://hugo.notes.sunwei.xyz/docs/chapter/03/index.xml" rel="self" type="application/rss+xml"/><item><title>3.1 源码阅读步骤</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/read/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/read/</guid><description> 源码阅读步骤介绍 # 工欲善其事，必先利其器。
+为了更好地享受源码阅读的过程，我们需要做一些准备工作。
+在开始阅读源码前，先了解一下Hugo的架构设计，这样会提供给我们一个全局视野。 这会在我们的脑海里创建一个完整的模块拼图，为接下来的深入了解模块做好引导准备。
+了解完基础架构和针对每个模块细节练习后，我们就可以在DDD的帮助下，梳理出领域知识，为我们创造自己的领域服务做好准备了。
+下面是源码阅读具体步骤：
+搭建好Hugo项目本地开发环境 安装辅助工具DDDPlayer（如果想要亲自己试一试，强烈推荐） 理解Hugo架构设计，方便后继深入理解主流程上的每一个关键组件 对关键组件的逐个击破，并动手实践每个模块后的小练习（有附样例源码） 应用DDD，我们自己动手，应用上面练习过程中的知识，从头开始实现一个精简版的Hugo，我们把这个项目先取名为Hugoverse。</description></item><item><title>3.2 Hugo环境搭建</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/prerequisite/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/prerequisite/</guid><description>Hugo本地环境搭建 # 搭建 Hugo 源码的阅读环境步骤：
 1. 安装 Git # 首先，确保你的机器上安装了 Git。 你可以从 Git 官方网站下载并安装。
 2. 安装 Go # Hugo 是使用 Go 语言编写的，因此你需要安装 Go。 你可以从 Go 官方网站下载并安装。
 示例：
 ➜ go version go version go1.21.1 darwin/amd64 3. 获取 Hugo 源码 # 在终端中运行以下命令，获取 Hugo 的源代码：
 git clone git@github.com:gohugoio/hugo.git 4. 进入 Hugo 源码目录 # cd path/to/gohugoio/hugo 5. 构建 Hugo # 在源码目录中运行以下命令，构建 Hugo：
-go install 6.</description></item></channel></rss>
+go install 6. 验证环境 # go build -o hugo ./hugo version 如果一切正常，你应该看到 Hugo 的版本信息。</description></item><item><title>3.3 安装DDDPlayer</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/dddplayer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/dddplayer/</guid><description> 安装DDDPlayer # 从源码安装：
+go install github.com/dddplayer/dp@latest 示例：
+➜ ~/go/bin/dp version dddplayer v0.4.0 darwin/amd64 BuildDate=unknown</description></item><item><title>3.4 Hugo的架构设计</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/arch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/arch/</guid><description>Hugo的架构设计 # 本节的目标就是打开藏宝图来了解Hugo的基础架构，主要从以下两个方向展开：
+对架构思路做一个概要说明，对基础架构有一个全貌的理解 从模块代码入手，讨论配置和语言的关系、Hugo的模块、文件系统的组织、站点内容的收集方案、模板的生命周期，以及发布的流程。 通过阅读本章内容，我们将会对Hugo这个站点构建工具有一个全面的认识，并对各阶段之间的关系有一个清晰地认识，为接下来详细源码实现讲解章节打好基础。
+出发吧，伟大的工程师啊！
+Hugo的架构设计图如下所示：
+Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
+配置模块 # Hugo最先解析的，就是用户项目的配置文件config.toml。 由configLoader发起，从硬盘读取配置文件，解析后存储为键值对对象。 configLoader主要需完成三件事，加载用户项目配置文件是第一件，用来理解用户的自定义需求。 第二件是补全默认配置Defaults Config，这样才能保其它模块正常运作。 第三件是生成模块配置信息，从用户项目开始，将用户项目作为第一个模块 - project module，在我们的实例中还有第二个模块，那就是主题模块mytheme。 模块之间有依赖关系，并且只有一个所有者Owner。 项目模块project module比较特殊，因为是初始模块，所以不属于任何其它模块。
+type Module interface { ... // Owner In the dependency tree, this is the first // module that defines this module as a dependency. Owner() Module ... } 所有信息收集齐全后，会对外提供config.Provider服务：可查询，可更新配置项。
+HugoSites模块 # 这是构建站点的核心模块，相当于DDD中的聚合根，内部组织构建站点所需要的全部信息，对外提供站点构建服务。
+HugoSites的初始化依赖于DepsCfg和Site，没错，有两个site。 HugoSites和Site的关系是一对多，Site和Language的关系是一一对应的，所以多语言站点会为每一个语言创建一个站点，共同组成了HugoSites。
+语言项是由DepsCfg创建的，但会存储在config.Provider中，所以都用浅黄色标明。 而DepsCfg的初始化则依赖于Fs和config.Provider。 Fs记载了源文件地址和发布地址。 源文件来自于用户项目，也就是实际的硬盘文件系统。 发布地址是获取自config.Provider，默认的是public文件夹，在这里会检测是否已经存在，如果没有则主动创建。 最后将新创建的信息如workingDir等信息同步回config.Provider。
+可以看出，他们的依赖关系是HugoSites &amp;lt;- Site &amp;lt;- Language &amp;lt;- DepsCfg &amp;lt;- Fs。</description></item></channel></rss>
