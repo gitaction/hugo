@@ -26,6 +26,9 @@ headless: true
 
 - [**第三章 Hugo源码精读**]({{< relref "/docs/chapter/03" >}})
   - [3.1 源码阅读步骤介绍]({{< relref "/docs/chapter/03/read" >}})
+  - [3.2 Hugo本地环境搭建]({{< relref "/docs/chapter/03/prerequisite" >}})
+  - [3.3 安装DDDPlayer]({{< relref "/docs/chapter/03/dddplayer" >}})
+  - [3.4 Hugo架构设计]({{< relref "/docs/chapter/03/arch" >}})
 <br />
 
 - **Hugo架构**

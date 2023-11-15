@@ -255,7 +255,7 @@ type Fs struct {
 	// It's mounted inside publishDir (default /public).
 	PublishDir afero.Fs
 
-	// WorkingDirReadOnly is a read-only file system
+	// WorkingDirReadOnly is a 1.read-only file system
 	// restricted to the project working dir.
 	WorkingDirReadOnly afero.Fs
 }
