@@ -14,6 +14,114 @@ type: docs
 
 出发吧，伟大的工程师啊！
 
+## 架构设计图
+
+Hugo的主营业务就是构建静态站点。
+那从代码架构层面，是如何体现出来Hugo的构建思路的呢？
+
+站点构建就是将写好的内容，转化成Web服务器能理解的网站资源。
+比如我们写作的时候用的是Markdown格式，生成的网站资源通常是HTML格式。
+
+下面让我们一起来探索Hugo的架构。
+
+从[Hugo本地环境搭建](../prerequisite)的样例项目中，我们可以看到Hugo是根据配置文件信息进行构建的，那我们可以先了解一下Hugo源码里的配置模块。
+
+### 了解 config 模块信息
+
+```shell
+➜  hugo git:(master) ✗ tree -L 1 -d
+.
+├── bufferpool
+├── cache
+├── codegen
+├── commands
+├── common
+├── compare
+├── config
+├── create
+├── dddplayer
+├── deploy
+├── deps
+├── docs
+├── docshelper
+├── helpers
+├── htesting
+├── hugofs
+├── hugolib
+├── identity
+├── langs
+├── lazy
+├── livereload
+├── main
+├── markup
+├── media
+├── metrics
+├── minifiers
+├── modules
+├── navigation
+├── output
+├── parser
+├── public
+├── publisher
+├── related
+├── releaser
+├── resources
+├── scripts
+├── snap
+├── source
+├── testscripts
+├── tpl
+├── transform
+└── watcher
+
+43 directories
+```
+
+通过`tree`命令，很方便我们查找目录结构，很快就定位到了`config`目录。
+
+**先查看一下config目录里所有的对象信息：**
+
+```shell
+➜  hugo git:(master) ✗ ~/go/bin/dp normal -m ./ -p github.com/gohugoio/hugo/config -d
+```
+
+通过上面命令，我们可以看到[config模块组成信息](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugo/github.com.gohugoio.hugo.config.dot)，可得出以下结论：
+* 有两个主要接口，一个是AllProvider，另一个是Provider。前者提供站点所有配置信息，包括语言、目录等信息；后者可提供Hugo项目主要配置信息。
+* allconfig模块提供了站点主要的配置信息，看起来和AllProvider定位接近。
+
+**接着查看一下allconfig的信息流**
+
+```shell
+➜  hugo git:(master) ✗ ~/go/bin/dp normal -m ./ -p github.com/gohugoio/hugo/config/allconfig -mf
+```
+
+这样我们可以看到[allconfig信息流](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugo/github.com.gohugoio.hugo.config.allconfig.messageflow.dot):
+* 到allconfig的主流程主要有两条，一条是 main -> commands -> hugolib -> allconfig，另一条是 main -> commands -> allconfig
+* 两条主流程的入口都是调用allconfig模块的LoadConfig方法，
+
+查看Hugo源码，查看方法定义:
+```go
+func LoadConfig(d ConfigSourceDescriptor) (*Configs, error){...}
+```
+
+发现返回的是Configs指针，不禁又想了解一下allconfig模块中对象之间的关系。
+
+**allconfig模块组成**
+
+```shell
+➜  hugo git:(master) ✗ ~/go/bin/dp normal -m ./ -p github.com/gohugoio/hugo/config/allconfig -c
+```
+
+这样我们就可以查看[allconfig模块内对象的组成关系](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugo/github.com.gohugoio.hugo.config.allconfig.composition.dot)了:
+* Configs是对外提代的主要配置服务实例
+* Configs的Base，指向的就是Config，Config又包含了RootConfig
+* Configs还包含了模块信息和模块客户端信息
+* Configs也包含了语言的配置信息，并且是复数形式
+
+从DDD概念来看，Configs很像是配置这个领域的聚合根，是对外提供的主要服务，包含了所有相关的信息。
+
+
+
 Hugo的架构设计图如下所示：
 
 ![Hugo Arch](images/3.0-hugo-arch.svg)
