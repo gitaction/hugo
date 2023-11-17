@@ -237,7 +237,9 @@ go install github.com/dddplayer/dp@latest 示例：
 出发吧，伟大的工程师啊！
 架构设计图 # Hugo的主营业务就是构建静态站点。 那从代码架构层面，是如何体现出来Hugo的构建思路的呢？
 站点构建就是将写好的内容，转化成Web服务器能理解的网站资源。 比如我们写作的时候用的是Markdown格式，生成的网站资源通常是HTML格式。
-下面让我们一起来探索Hugo的架构。
+Golang Template 工作原理 # 从主流程可以看出，Hugo的渲染思路并不复杂，就是用模板(Layouts)，将不同的内容(Content)渲染成网站静态资源(Site)。
+而实现这一设计的核心技术就是Golang Template。
+通过Markdown解析器将post.md解析成结构体Post 通过GoLang Template包根据index.html创建模板实例 执行并生成渲染后的最终结果 记住这个根本原理，这将帮助我们探索Hugo架构的奥秘。
 从 Hugo本地环境搭建的样例项目中，我们可以看到Hugo是根据配置文件信息进行构建的，那我们可以先了解一下Hugo源码里的配置模块。
 了解 config 模块信息 # ➜ hugo git:(master) ✗ tree -L 1 -d . ├── bufferpool ├── cache ├── codegen ├── commands ├── common ├── compare ├── config ├── create ├── dddplayer ├── deploy ├── deps ├── docs ├── docshelper ├── helpers ├── htesting ├── hugofs ├── hugolib ├── identity ├── langs ├── lazy ├── livereload ├── main ├── markup ├── media ├── metrics ├── minifiers ├── modules ├── navigation ├── output ├── parser ├── public ├── publisher ├── related ├── releaser ├── resources ├── scripts ├── snap ├── source ├── testscripts ├── tpl ├── transform └── watcher 43 directories 通过tree命令，很方便我们查找目录结构，很快就定位到了config目录。</description></item><item><title>GitHub Pages sunwei.xyz</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/01/sunweixyz/deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/01/sunweixyz/deploy/</guid><description>将站点部署到GitHub Pages # 将 Hugo 站点部署到 GitHub Pages 非常简单，以下是详细的步骤：
 步骤 1：创建 GitHub 仓库 # 在 GitHub 上创建一个新的仓库，仓库名为 &amp;lt;你的用户名&amp;gt;.github.io。请确保使用你的 GitHub 用户名替换 &amp;lt;你的用户名&amp;gt;。
