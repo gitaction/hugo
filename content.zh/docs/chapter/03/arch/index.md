@@ -22,7 +22,19 @@ Hugo的主营业务就是构建静态站点。
 站点构建就是将写好的内容，转化成Web服务器能理解的网站资源。
 比如我们写作的时候用的是Markdown格式，生成的网站资源通常是HTML格式。
 
-下面让我们一起来探索Hugo的架构。
+### Golang Template 工作原理
+
+从主流程可以看出，Hugo的渲染思路并不复杂，就是用模板(Layouts)，将不同的内容(Content)渲染成网站静态资源(Site)。
+
+而实现这一设计的核心技术就是**Golang Template**。
+
+<img src="./images/1-golang-template.svg" alt="template" height="400"/>
+
+1. 通过Markdown解析器将post.md解析成结构体Post
+2. 通过GoLang Template包根据index.html创建模板实例
+3. 执行并生成渲染后的最终结果
+
+记住这个根本原理，这将帮助我们探索Hugo架构的奥秘。
 
 从[Hugo本地环境搭建](../prerequisite)的样例项目中，我们可以看到Hugo是根据配置文件信息进行构建的，那我们可以先了解一下Hugo源码里的配置模块。
 
@@ -97,7 +109,8 @@ Hugo的主营业务就是构建静态站点。
 
 这样我们可以看到[allconfig信息流](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugo/github.com.gohugoio.hugo.config.allconfig.messageflow.dot):
 * 到allconfig的主流程主要有两条，一条是 main -> commands -> hugolib -> allconfig，另一条是 main -> commands -> allconfig
-* 两条主流程的入口都是调用allconfig模块的LoadConfig方法，
+* 两条主流程的入口都是调用allconfig模块的LoadConfig方法
+* 根命令的Build方法会调用Hugo方法。根据这个线索，打开源码，我们可以看到HugoSite是在这里构建好的，且第一步就是读取配置信息，然后组建依赖，准备好后返回HugoSite实例，最终开始构建。
 
 查看Hugo源码，查看方法定义:
 ```go
@@ -120,13 +133,51 @@ func LoadConfig(d ConfigSourceDescriptor) (*Configs, error){...}
 
 从DDD概念来看，Configs很像是配置这个领域的聚合根，是对外提供的主要服务，包含了所有相关的信息。
 
+### 了解 deps 模块信息
+
+在allconfig信息流中，我们了解到Hugo的构建关键步骤，那就是：
+
+* 加载配置
+* 准备依赖
+* 开始构建
+
+接下来我们继续了解一下Deps模块。
+
+```shell
+➜  hugo git:(master) ✗ ~/go/bin/dp normal -m ./ -p github.com/gohugoio/hugo/deps
+```
+
+从[deps模块组成图](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugo/github.com.gohugoio.hugo.deps.dot)中，可以清楚的看到，Deps包含了很多的Spec：
+
+* PathSpec
+* ContentSpec
+* SourceSpec
+* ResourceSpec
+
+还有TemplateProvider等，可以看出这里包含了构建站点所需要的全部依赖信息。
+
+### 了解 hugolib 模块信息
+
+前面的config, deps都是准备工作，真正构建的地方是在hugolib模里：
+
+```shell
+➜  hugo git:(master) ✗ ~/go/bin/dp normal -m ./ -p github.com/gohugoio/hugo/hugolib -c
+```
+
+通过模块[对象组成图](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugo/github.com.gohugoio.hugo.hugolib.composition.dot)，可以看出：
+
+* HugoSites是对外服务的主要提供方
+* HugoSites里有多个Site，每个Site有自己的语言，而且HugoSites和Site都拥有Deps相关的信息，看来所有的站点都共享依赖信息。
 
 
-Hugo的架构设计图如下所示：
+通过上面的初步理解，加上从代码中获取的信息，从主流程来看，我们可以得到Hugo的架构设计图，如下所示：
 
 ![Hugo Arch](images/3.0-hugo-arch.svg)
 
-Hugo的架构思路很容易理解，主要分三大块，分别是配置模块，站点模块和依赖模块。
+从设计图中可以看出，Hugo的架构思路很清晰，也容易理解。
+主要分三大块，分别是配置模块，站点模块和依赖模块。
+
+前面是从主流程的视角，梳理出了Hugo整体架构，现在，再让我们从模块的视角，再一次加深对Hugo架构的理解。
 
 ## 配置模块
 
@@ -692,11 +743,6 @@ Hugo可以很聪明的识别，哪个文件是页面文件，哪些页面是资�
 简单的遍历文件系统，确实可以获取基本的文件信息。
 但如果需要灵活地组织各种不同的信息，如依赖关系，资源汇总等等跨页面处理场景，我们还需要进一步对站点内容进行发掘，以页面为单位进行组织和管理。
 
-#### 磨刀不误砍柴工
-
-在源码中看们看到到Hugo正式收集站点内容是在`Hugo Build`阶段，之前其实都是在做准备。
-
-![Hugo DDD - Content Collection](images/5.1-hugo-ddd-content-collection.svg)
 
 #### 分工明确，高效协作
 
@@ -746,22 +792,13 @@ PagesController将所有文件送达后，自动分拣机器人PagesProcessor便
 让我们回顾一下Golang Template的实现步骤：
 ![Golang Template](images/1-golang-template.svg)
 
-再看看Hugo是如何围绕其展开的：
-![hugo whole process with golang template](images/2.1-hugo-whole-process-map-go-template.svg)
+接下来一起看看，Hugo是如何玩车Golang Template的。
 
 Hugo围绕着Golang Template做了很多设计，现在我们通过和模板相关的领域事件，一起来看看模板的生命周期，从而能够有更全面的理解。
 
 #### Hugo模板生命周期领域事件
 
-还是从领域事件入手，来看看有哪些关键事件和模板强相关：
-
-![Template DDD Events](images/6.0-template-ddd-events.svg)
-
-除了上面和Golang Template一一映射的事件外，还有更细节的事件，为了直观好看，我们把这些事件收集到一起来进行分析：
-
-![Template DDD Events simple version](images/6.0.1-template-ddd-events-simple.svg)
-
-可以看到和模板强相关的事件，主要集中在创建HugoSites和Build阶段。
+从源码中我们了解到，和模板强相关的事件，主要集中在创建HugoSites和Build阶段。
 进一步细分，可发现模板生命周期可分为三个阶段：
 
 1. 开始阶段，包括注册回调，并选定模板服务提供方，并出发模板更新。
@@ -781,13 +818,13 @@ Hugo围绕着Golang Template做了很多设计，现在我们通过和模板相�
     * 用模板渲染页面
 
 事件可以帮助我们清晰地了解到Hugo设计的模板生命周期。
-下面我们再通过[Hugo游乐场](游乐场.md)源码梳理一遍具体实现流程，好让我们能更立体地了解到模板生命周期，同时也可以为后面的代码实现讲解章节做好准备。
+下面我们再通过源码梳理一遍具体实现流程，好让我们能更立体地了解到模板生命周期，同时也可以为后面的代码实现讲解章节做好准备。
 
 **Template vs Layouts**
 
 我们先来看看Hugo中两个容易混淆的概念，Template和Layouts。
 
-在创建[自定义Hugo主题](../what/自定义主题.md)的时候，我们接触最多的就是Layouts。
+在创建[新建主题](../../01/sunweixyz/theme)的时候，我们接触最多的就是Layouts。
 官方文档解释Layouts就是用来当模板的，这样解释并没有问题，但这会让我们很容易产生一种Layouts既模板的错觉，并将Layouts和模板直接划上等号。
 
 但真的是这样的吗，让我们从代码层面看看他们的关联：
@@ -901,7 +938,8 @@ Hugo围绕着Golang Template做了很多设计，现在我们通过和模板相�
 如果要成功获取，就需要在我们的内容提供商`Post`实例中，在Content字段设置上正确的值。
 如果都按约定准备好后，在最终Golang Template执行结果中，我们就能发现右上角的内容。
 
-在我们的[游乐场示例](游乐场.md)中，我们也有一个用到了`.Content`的layout - `layouts/_default/single.html`：
+在我们的[站点样例](../prerequisite)中，我们也有一个用到了`.Content`的layout - `layouts/_default/single.html`：
+
 ```
 -- mycontent/blog/post.md --
 ---
@@ -917,11 +955,12 @@ Static Content
 ===
 
 ```
+
 single.html会用做独立页面的模板，如上面的`mycontent/blog/post.md`。
 通过模板渲染过后，`post.md`中的内容就会替换掉`single.html`中的`{{ .Content }}`。
 
 那Hugo的页面对象PageState又是怎么提供内容服务的呢，也和上面一样，放在属性里吗？
-我们在[Hugo Playground](https://github.com/sunwei/hugo-playground)源码中，很快找到了答案：
+我们在源码中，很快找到了答案：
 
 ```go
 // Page is the core interface in Hugo.
@@ -947,20 +986,7 @@ type ContentProvider interface {
 
 **发布相关的领域事件**
 
-同样，我们还是可以通过[领域事件风暴](事件风暴.md)中，发布相关的领域事件入手：
-
-![Publish Events](images/7.0-publish-events.svg)
-
-可以看到，关键时机有两个。
-一个是在站点Site创建的时期，另一个则是在构建时期。
-
-让我们专注在和发布相关的事件上：
-
-![Publish Events Simple](images/7.0.1-publish-events-simple.svg)
-
-这些事件的解读在[领域事件风暴](事件风暴.md)中有具体描述，这里就不再赘叙。
-
-结合[源码](https://github.com/sunwei/hugo-playground)，我们进一步将上述事件转换成代码流程图：
+结合源码，我们可以得到代码流程图：
 
 ![Publish Work Flow](images/7.1-publish-work-flow.svg)
 
@@ -1242,3 +1268,16 @@ metaProvider *pageMeta) (*pageState, error) {
 
 ![Publish Process Full Process](images/7.4-publish-full.svg)
 
+## 小结
+
+这节内容有点多，有必要小结一下。
+
+在这一节中，我们从DDDPlayer辅助生成的源码结构和信息注图出发，了解到了主流程的关键步骤，从而梳理出了Hugo的架构设计图。
+在架构图的指引下，我们对主要模块挨个梳理了一通，帮助大家建立一个基本地认识。
+最后又通过组件的设计，让我们了解到这些模块中关键的设计思路和细节。
+
+这样，我们从架构的角度，初步认识了Hugo，了解了其架构的思想，以及设计的思路。
+
+为后继章节打下坚实的基础。
+
+也推荐后面也可以回来反复翻阅这一节。

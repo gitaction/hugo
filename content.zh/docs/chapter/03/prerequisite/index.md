@@ -67,6 +67,8 @@ hugo v0.121.0-DEV-ac7cffa7e2932fc3c6bd425f86b981dfdef94968 darwin/amd64 BuildDat
 让我们准备一个样例博客，足够简单，但也要结构完整。
 这样一方面可以减少我们的心智负担，另一方面，在理解构建的这个过程中，也能方便的将文件一一对应上，帮助我们理解源码结构。
 
+<img src="./images/goal.svg" alt="goal" height="400"/>
+
 下面是一个简单的初始化博客内容：
 ```
 -- config.toml --
