@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>3.5 Hugo源码精读 on Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/code/</link><description>Recent content in 3.5 Hugo源码精读 on Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://hugo.notes.sunwei.xyz/docs/chapter/03/code/index.xml" rel="self" type="application/rss+xml"/><item><title>Config源码分析</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/code/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/code/config/</guid><description>Config源码解析 # 在 基础架构中，从基础架构的视角出发。 有提到配置模块，以及 配置和语言的关系。
+下面我们从源码实现的角度，详细的来看看Hugo是如何设计和实现配置模块的。
+Config模块源码 # 从上一节的 allconfig信息流信息流中，我们了解到LoadConfig是配置模块入口:
+进一步查看LoadConfig函数，我们发现主要做了三件事：
+loadConfig，加载用户项目中的配置文件，如config.toml。 applyConfigDefaults，如果说上面是用户的自定义信息，那这里就是Hugo用到的默认信息。 collectModules，加载完自定义信息和默认信息后，根据得到的模块信息，准备模块，并将解析过后的模块信息，也放入配置信息中。 在本章我们重点看第1步loadConfig，在后续的章节里会有第2步applyConfigDefaults，和第3步collectModules的介绍。
+loadConfig时序图 # 从时序图中，我们可以清晰的看到loadConfig被调用的环境。 由主函数发起调用，在hugolib/config.go中先是构建好configLoader，调用loadConfig函数，将config.toml文件转换成Map类型数据。
+在loadConfig中，通过函数名可以观察到Hugo的实现思路。 这也说明好的命名是多么的重要。
+（温馨提示，在阅读下述流程函数时，可打开 配置源码对照查看。）
+FromFileToMap，将目标文件config.toml转换成Map类型的数据。 loadConfigFromFile，为了达到上面的目的，首先要从硬盘加载这个文件。 UnmarshalFileToMap，加载后，需要将字符弃，解组成Map类型的数据。 UnmarshalToMap，解组对应的输出格式要求，可能不一样，这里是要求解组成Map类型，还有可能是其它类型。 FormatFromString，从文件名获取文件格式toml。 UnmarshaTo，通过获取的文件格式信息，以及文件数据信息，和对应的输出格式Map信息，解组总函数，知道该让谁具体负责了。 toml.Unmarshal，所有信息被传送到具体操作员toml，可以外聘，也可以自己实现。Hugo选择了外聘github.com/pelletier/go-toml/v2。 输入配置文件，输出Map格式数据 # 首先了解用户的需求，是将config.toml文件作为输入，要求输出Map类型的数据。 Hugo先是收集信息，包括文件数据data，文件格式toml，和输出类型map[string]any，找到专业的人go-toml，进行处理。 最终得到符合要求的Map信息。
+loadConfig动手实践 # 在知道loadConfig的实现原理后，我们再来动动小手，用代码来总结代码，巩固一下知识。
+可以这里线上尝试， Show Me the Code, try it yourself
+代码里有注解说明，代码样例：
+package main import ( &amp;#34;bytes&amp;#34; &amp;#34;fmt&amp;#34; toml &amp;#34;github.com/pelletier/go-toml/v2&amp;#34; &amp;#34;golang.org/x/tools/txtar&amp;#34; &amp;#34;path/filepath&amp;#34; &amp;#34;strings&amp;#34; ) // 文件结构 // 文件名: config.toml // 文件内容：theme = &amp;#39;mytheme&amp;#39; var files = &amp;#34;-- config.</description></item></channel></rss>

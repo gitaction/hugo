@@ -1,0 +1,204 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Markdown文件是如何被翻译成HTML的 # Markdown是一种文件格式，也是一种约定的语言。 之所以大受欢迎，是因为Markdown其简洁的语法。 不仅让作者在写作的过程中专注在内容创作上，让读者流畅的进行阅读。 还可以将内容直接发布到互联网上，方便传阅，让作品可以轻松的接触到更多的读者。
+如果只是为了写作，传统的文本编辑器提供了更强大的样式支持，哪怕是高要求的印刷出版物，一样可以百分百支持。 随着互联网的发展，将文章放到网上已然成了一项基本需求。
+而传统的文本编辑器上网的能力似乎不能满足现在的普遍需求。 一是这些强大的编辑器通常出自某一家大公司，并不是行业标准。 种类繁多不说，各家标准也不同，还没有全部公开，这些都让浏览器团队有心无力。
+如果说只是要将内容放到网上，那传统的HTML不行吗？ 这就是浏览器钦定的格式啊。 确实如此，HTML是方便了浏览器解析、渲染和展示，但对于写作者来说，并不友好，光标签种类就几十种，更不要提各种不同标签的属性了。
+在这种左右两难的背景下，Markdown站了出来。 用简洁的语法替代了相对复杂的HTML，让创作者能更专注在内容创作上。 将标准开放，让大家参与其中，可遵循标准，也可以自定义标准，慢慢的也出现的统一的标准。
+Hugo支持的就是Markdown语法，那Hugo是如何将Markdown语法文章翻译成HTML文本的呢？
+通过查看最新的Hugo源码，我们发现Hugo将默认的Markdown解析器设置成了Goldmark。
+那我们的疑问就变成了：Goldmark是如何将Markdown转换成HTML的呢？
+Goldmark工作原理 # 根据 Goldmark的介绍。 Goldmark遵循了 CommonMark 0.30规范。 用AST(Abstract Syntax Tree)结构对内容进行了解析。
+要想知道Goldmark的工作原理，得先弄清楚CommonMark和AST这两个知识点。
+CommonMark 0.30 # 说到CommonMark规范，大家可能不了解。 但说到GitHub Flavored Markdown，相信大家都有过使用经验，其实GitHub Flavored Markdown就是基于CommonMark规范演化而来的。
+细节在 CommonMark Spec 0.30中都有很清楚的描述。 下面我们从领域知识的角度，来进行解读。
+让我们从一个例子开始：
+A paragraph with two lines. indented code > A block quote. 上面是一段用Markdown语法编写的文本信息，在解析阶段，会被解析成AST，如下图所示：
+Goldmark先将文本信息读取到内存，如上图左所示。 那Goldmark是怎么解读这段文本的呢？
+对于字符流的处理，有的是按字符一个个进行处理的，如JSON解析。 有的则是按行进行处理的，如配置文件。
+通过Commonmark Spec中的 解析策略可以看出，是按行处理的。
+那我们上面的文本就会按下面的顺序，以行为单位进行处理：
+结合我们的MD写作习惯，让我们回想一下，是不是很多格式需要用换行来辅助说明。 比如段落，我们可以以每个句号为一行，可以换行，只要没有空行，就认为这些句子都是一个段落。 如果想要另起一个段落，直接用空行分隔就行。"><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="3.5.3.3 Markdown"><meta property="og:description" content="Markdown文件是如何被翻译成HTML的 # Markdown是一种文件格式，也是一种约定的语言。 之所以大受欢迎，是因为Markdown其简洁的语法。 不仅让作者在写作的过程中专注在内容创作上，让读者流畅的进行阅读。 还可以将内容直接发布到互联网上，方便传阅，让作品可以轻松的接触到更多的读者。
+如果只是为了写作，传统的文本编辑器提供了更强大的样式支持，哪怕是高要求的印刷出版物，一样可以百分百支持。 随着互联网的发展，将文章放到网上已然成了一项基本需求。
+而传统的文本编辑器上网的能力似乎不能满足现在的普遍需求。 一是这些强大的编辑器通常出自某一家大公司，并不是行业标准。 种类繁多不说，各家标准也不同，还没有全部公开，这些都让浏览器团队有心无力。
+如果说只是要将内容放到网上，那传统的HTML不行吗？ 这就是浏览器钦定的格式啊。 确实如此，HTML是方便了浏览器解析、渲染和展示，但对于写作者来说，并不友好，光标签种类就几十种，更不要提各种不同标签的属性了。
+在这种左右两难的背景下，Markdown站了出来。 用简洁的语法替代了相对复杂的HTML，让创作者能更专注在内容创作上。 将标准开放，让大家参与其中，可遵循标准，也可以自定义标准，慢慢的也出现的统一的标准。
+Hugo支持的就是Markdown语法，那Hugo是如何将Markdown语法文章翻译成HTML文本的呢？
+通过查看最新的Hugo源码，我们发现Hugo将默认的Markdown解析器设置成了Goldmark。
+那我们的疑问就变成了：Goldmark是如何将Markdown转换成HTML的呢？
+Goldmark工作原理 # 根据 Goldmark的介绍。 Goldmark遵循了 CommonMark 0.30规范。 用AST(Abstract Syntax Tree)结构对内容进行了解析。
+要想知道Goldmark的工作原理，得先弄清楚CommonMark和AST这两个知识点。
+CommonMark 0.30 # 说到CommonMark规范，大家可能不了解。 但说到GitHub Flavored Markdown，相信大家都有过使用经验，其实GitHub Flavored Markdown就是基于CommonMark规范演化而来的。
+细节在 CommonMark Spec 0.30中都有很清楚的描述。 下面我们从领域知识的角度，来进行解读。
+让我们从一个例子开始：
+A paragraph with two lines. indented code > A block quote. 上面是一段用Markdown语法编写的文本信息，在解析阶段，会被解析成AST，如下图所示：
+Goldmark先将文本信息读取到内存，如上图左所示。 那Goldmark是怎么解读这段文本的呢？
+对于字符流的处理，有的是按字符一个个进行处理的，如JSON解析。 有的则是按行进行处理的，如配置文件。
+通过Commonmark Spec中的 解析策略可以看出，是按行处理的。
+那我们上面的文本就会按下面的顺序，以行为单位进行处理：
+结合我们的MD写作习惯，让我们回想一下，是不是很多格式需要用换行来辅助说明。 比如段落，我们可以以每个句号为一行，可以换行，只要没有空行，就认为这些句子都是一个段落。 如果想要另起一个段落，直接用空行分隔就行。"><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/docs/chapter/03/code/site/markdown/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-11-20T21:09:15+08:00"><title>3.5.3.3 Markdown | Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.96167ff0257c6dae504862950c43d7ee438f6e51199737ed1c88d638499f7f76.js integrity="sha256-lhZ/8CV8ba5QSGKVDEPX7kOPblEZlzftHIjWOEmff3Y=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STPKPBQR5Y"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-STPKPBQR5Y",{anonymize_ip:!1})}</script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+Chinese</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/en/>English</a></li></ul></li></ul><ul><li><p><a href=/docs/introduction/><strong>引言</strong></a><br></p></li><li><p><a href=/docs/chapter/01/><strong>第一章 Hugo入门</strong></a></p><ul><li><a href=/docs/chapter/01/ssg/>1.1 静态站点的背景和重要性</a></li><li><a href=/docs/chapter/01/hugo/>1.2 Hugo简介</a></li><li><a href=/docs/chapter/01/install/>1.3 安装Hugo</a></li><li><a href=/docs/chapter/01/site/>1.4 创建第一个站点</a></li><li><a href=/docs/chapter/01/theme/>1.5 自定义主题</a></li><li><a href=/docs/chapter/01/sunweixyz/>1.6 个人站点实例</a><ul><li><a href=/docs/chapter/01/sunweixyz/site/>个人站点</a></li><li><a href=/docs/chapter/01/sunweixyz/theme/>创建新主题</a></li><li><a href=/docs/chapter/01/sunweixyz/deploy/>部署GitHub Pages</a></li></ul></li><li><a href=/docs/chapter/01/qa/>1.7 常见问题和资源</a><br></li></ul></li><li><p><strong>第二章 DDD简介</strong></p><ul><li><a href=/docs/chapter/02/ddd/>2.1 DDD简介</a></li><li><a href=/docs/chapter/02/dddplayer/>2.2 DDD在本书中的应用</a><br></li></ul></li><li><p><a href=/docs/chapter/03/><strong>第三章 Hugo源码精读</strong></a></p><ul><li><a href=/docs/chapter/03/read/>3.1 源码阅读步骤介绍</a></li><li><a href=/docs/chapter/03/prerequisite/>3.2 Hugo本地环境搭建</a></li><li><a href=/docs/chapter/03/dddplayer/>3.3 安装DDDPlayer</a></li><li><a href=/docs/chapter/03/arch/>3.4 Hugo架构设计</a></li><li><a href=/docs/chapter/03/code/>3.5 Hugo源码精读</a><ul><li><a href=/docs/chapter/03/code/config/>3.5.1 配置</a></li><li><a href=/docs/chapter/03/code/deps/>3.5.2 依赖</a><ul><li><a href=/docs/chapter/03/code/deps/pathSpec/>3.5.2.1 PathSpec</a></li><li><a href=/docs/chapter/03/code/deps/contentSpec/>3.5.2.2 ContentSpec</a></li></ul></li><li><a href=/docs/chapter/03/code/site/>3.5.3 站点</a><ul><li><a href=/docs/chapter/03/code/site/create/>3.5.3.1 创建</a></li><li><a href=/docs/chapter/03/code/site/load/>3.5.3.2 加载</a></li><li><a href=/docs/chapter/03/code/site/markdown/ class=active>3.5.3.3 Markdown</a></li></ul></li><li><a href=/docs/chapter/03/code/build/>3.5.4 构建</a><ul><li><a href=/docs/chapter/03/code/build/template/>3.5.4.1 模板</a><br></li></ul></li></ul></li></ul></li></ul><ul><li><a href=/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>3.5.3.3 Markdown</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#markdown文件是如何被翻译成html的>Markdown文件是如何被翻译成HTML的</a><ul><li><a href=#goldmark工作原理>Goldmark工作原理</a><ul><li><a href=#commonmark-030>CommonMark 0.30</a></li><li><a href=#ast>AST</a></li><li><a href=#goldmark的魔法>goldmark的魔法</a></li></ul></li><li><a href=#markdown动手实践>Markdown动手实践</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=markdown文件是如何被翻译成html的>Markdown文件是如何被翻译成HTML的
+<a class=anchor href=#markdown%e6%96%87%e4%bb%b6%e6%98%af%e5%a6%82%e4%bd%95%e8%a2%ab%e7%bf%bb%e8%af%91%e6%88%90html%e7%9a%84>#</a></h1><p>Markdown是一种文件格式，也是一种约定的语言。
+之所以大受欢迎，是因为Markdown其简洁的语法。
+不仅让作者在写作的过程中专注在内容创作上，让读者流畅的进行阅读。
+还可以将内容直接发布到互联网上，方便传阅，让作品可以轻松的接触到更多的读者。</p><p>如果只是为了写作，传统的文本编辑器提供了更强大的样式支持，哪怕是高要求的印刷出版物，一样可以百分百支持。
+随着互联网的发展，将文章放到网上已然成了一项基本需求。</p><p>而传统的文本编辑器上网的能力似乎不能满足现在的普遍需求。
+一是这些强大的编辑器通常出自某一家大公司，并不是行业标准。
+种类繁多不说，各家标准也不同，还没有全部公开，这些都让浏览器团队有心无力。</p><p>如果说只是要将内容放到网上，那传统的HTML不行吗？
+这就是浏览器钦定的格式啊。
+确实如此，HTML是方便了浏览器解析、渲染和展示，但对于写作者来说，并不友好，光标签种类就几十种，更不要提各种不同标签的属性了。</p><p>在这种左右两难的背景下，Markdown站了出来。
+用简洁的语法替代了相对复杂的HTML，让创作者能更专注在内容创作上。
+将标准开放，让大家参与其中，可遵循标准，也可以自定义标准，慢慢的也出现的统一的标准。</p><p>Hugo支持的就是Markdown语法，那Hugo是如何将Markdown语法文章翻译成HTML文本的呢？</p><p>通过查看最新的Hugo源码，我们发现Hugo将默认的Markdown解析器设置成了Goldmark。</p><p>那我们的疑问就变成了：Goldmark是如何将Markdown转换成HTML的呢？</p><h2 id=goldmark工作原理>Goldmark工作原理
+<a class=anchor href=#goldmark%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86>#</a></h2><p>根据
+<a href=https://github.com/yuin/goldmark>Goldmark</a>的介绍。
+Goldmark遵循了
+<a href=https://spec.commonmark.org/0.30/>CommonMark 0.30</a>规范。
+用AST(Abstract Syntax Tree)结构对内容进行了解析。</p><p>要想知道Goldmark的工作原理，得先弄清楚CommonMark和AST这两个知识点。</p><h3 id=commonmark-030>CommonMark 0.30
+<a class=anchor href=#commonmark-030>#</a></h3><p>说到CommonMark规范，大家可能不了解。
+但说到GitHub Flavored Markdown，相信大家都有过使用经验，其实GitHub Flavored Markdown就是基于CommonMark规范演化而来的。</p><p>细节在
+<a href=https://spec.commonmark.org/0.30/>CommonMark Spec 0.30</a>中都有很清楚的描述。
+下面我们从领域知识的角度，来进行解读。</p><p>让我们从一个例子开始：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>A paragraph
+</span></span><span style=display:flex><span>with two lines.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   indented code
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; A block quote.
+</span></span></code></pre></div><p>上面是一段用Markdown语法编写的文本信息，在解析阶段，会被解析成AST，如下图所示：</p><p><img src=images/10.1-goldmark-parseBlocks-example.svg alt=Example></p><p>Goldmark先将文本信息读取到内存，如上图左所示。
+那Goldmark是怎么解读这段文本的呢？</p><p>对于字符流的处理，有的是按字符一个个进行处理的，如JSON解析。
+有的则是按行进行处理的，如配置文件。</p><p>通过Commonmark Spec中的
+<a href=https://spec.commonmark.org/0.30/#appendix-a-parsing-strategy>解析策略</a>可以看出，是按行处理的。</p><p>那我们上面的文本就会按下面的顺序，以行为单位进行处理：</p><p><img src=images/10.2-goldmark-parseBlocks-lines.svg alt=Lines></p><p>结合我们的MD写作习惯，让我们回想一下，是不是很多格式需要用换行来辅助说明。
+比如段落，我们可以以每个句号为一行，可以换行，只要没有空行，就认为这些句子都是一个段落。
+如果想要另起一个段落，直接用空行分隔就行。</p><p>在读取到了这一行行内容之后，要做怎样的处理呢？</p><p>同样是在CommonMark规范中的解析策略中可以了解到。
+解析分为两步，首先是按Block将所有的行进行分类，这些行分别能组成什么类型的block。
+按block将行处理完成后，就要对行内的信息进行处理了，在规范中将这些信息称之为inline信息。</p><p>上面出现了两个领域概念，一个是block，另一个则是inline，那规范里又是怎么定义这两个概念的呢？</p><p>在
+<a href=https://spec.commonmark.org/0.30/#blocks-and-inlines>Blocks and inlines</a>章节，我们可以看到具体的定义：</p><ul><li>Blocks: 一个文档是由一系列blocks组成的</li><li>Inline: 有一些block可以包含其它的block，而另一些block则包含inline内容，如text, links, 加粗text等等</li></ul><p>也就是说，在规范里，我们将一个MD文件称之为document，document是由block序列组成的。
+其中有的block可以包含其它block，有的block则包含inline相关的信息。
+在规范中也有给这两种block相应的名称。
+能包含其它block的block，我们管它们叫container block。
+只包含inline信息的block，我们管它们叫leaf block。</p><p>其中container block有Block quotes, List items和Lists，这些block都可以包含其它block。</p><p>再看Leaf blocks，有Setext headings, Indent code blocks, Paragraphs等等。
+这些leaf blocks可能包含inlines，如Links, Images, Textual content等等。</p><p>这样我们就可以将上面的文本信息转换成相应的block和inline了：</p><p><img src=images/10.3-goldmark-parseBlocks-document-structure.svg alt=Document></p><p>将文本信息解析成领域语言后，我们还需要用AST对解析后的信息进行存储。</p><h3 id=ast>AST
+<a class=anchor href=#ast>#</a></h3><p>AST也就是Abstract Syntax Tree - 抽象语法树。
+是一种数据结构，它可以用来存储有一逻辑关系的字符集。
+还可以利用树状结构来存储一些逻辑关系。</p><p>来举个例子：</p><p><img src=images/10.4-goldmark-Abstract%20syntax-tree-source-code.svg alt="Source Code AST"></p><p>我们将解析完的源码用AST来表示就如上图所示。
+在源码中，我们将解析完的序列叫Statement sequence，像while和return都是statement。</p><p>在while中，有判断条件也有body。
+在树状结构中，第一个子结点则是状态条件，另一个结点，就代表了body。</p><p>先看状态条件，这是一个比较操作。
+其中操作符是不等号，操作对象则是变量b和常量0。</p><p>再看body对象，第一个分支也是一个条件判断，操作符为大于号，操作对象是变量a和变量b。
+在这个判断条件中，body是if语句。
+因为if, else可以成对出现，所以if判断语句肯定有一个判断条件，可能有两个body，一个是if body，另一个是else body。
+上面的示例中就只有一个if body。
+在if body中是一个赋值操作，赋值对象是变量a，运算操作是减法操作，运算减数是变量b，被减数则是变量a。</p><p>可以看到，通过AST结构，我们将上面的示例代码段解析成了状态序列，其中包含了基本信息和结构信息，为源码编译时提供详细信息。</p><p>通过上面的Markdown规范和了解到的源码AST示例，我们再举一个Markdown AST实例:</p><p><img src=images/10.5-goldmark-Abstract-syntax-tree-markdown.svg alt="Markdown AST"></p><p>上面的示例是我们Hugo Playground中的真实文本。
+按照规范来进行解析，生成的AST如上图所示。</p><p>我们将得到一个完整的Document树，其中有两个block结点，分别是heading和paragraph。
+这两个block结点分别又包含了各自的inline结点text，并拥有相应的值。</p><p>对CommonMark规范和AST有了了解后，我们来看看goldmark究竟是如何实现的。</p><h3 id=goldmark的魔法>goldmark的魔法
+<a class=anchor href=#goldmark%e7%9a%84%e9%ad%94%e6%b3%95>#</a></h3><p>输入一段markdown文本，得到一颗AST树。
+这是输入和输出，那要怎么设计能满足这一要求呢？</p><p><img src=images/10.6-goldmark-parseBlocks-concept.svg alt=Concept></p><p>goldmark源码给出的答案是open block解析策略。
+这在CommonMark规范中的解析策略中也有提到。
+因为document是由block序列组成的，根据这一特点，我们可以通过深度优先算法，将block一个个按序解析完成。
+虽然可能出现嵌套block的情况，但每一层结点的block同一时间只有一个。
+这样我们只需要维护好这一处于开放状态的block就行。</p><p><img src=images/10.7-goldmark-parseBlocks-result.svg alt=Result></p><p>当我们解析到新block时，就将其一级级打开，同时关闭同一级刚打开的block。
+这样我们就可以建立好上面的AST block树了。
+可以看到根结点有三个子结点，分别是paragraph, ident code block和quote block，其中quote block是container block，还包含了一个paragraph。</p><p>为了帮助更进一步的理解，根据goldmark实现源码，我们来一步步的重现一下goldmark的实现细节：</p><p><img src=images/10.8-goldmark-parseBlocks-process.svg alt=Process></p><p>我们知道document是由block序列组成的。
+goldmark也是根据这一特点进行解析的 - 以block为中心，通过维护处于打开状态的block，一行行的进行解析。</p><p>在进入解析之前，处于打开状态的block为空，也就我们看到的<code>[]Block</code>, block结构中有两个指针，一个是AST结点，另一个是block解析器指针，初始化时都为空。</p><p>当读到第一行<code>A paragraph\n</code>时，根据这一行的起始特征 - 没有缩进，没有特殊符号。
+判断为Paragraph结点类型，随既打开一个Paragraph结点。
+并将新打开的结点添加父结点 - 根结点。
+同时更新<code>[]Block</code>，结点指针指向新打开的结点p，同时记录下相应的解析器<code>pser</code>。
+并将字符信息的起始地址和结束地址都以<code>segment</code>的形式，记录在结点的<code>Lines</code>中。</p><p>当读到第二行<code>with two lines.\n</code>时，因为当前打开的block是Paragraph，根据Paragraph特性，判断这一行仍属于当前打开block。
+接着调用<code>lastBlock.Parser.Continue</code>继续处理这一行的信息。
+打开<code>paragraphParser</code>的<code>Continue</code>方法，可以看到，只要不是空行，解析器就把这一行以<code>segment</code>的形式，添加到结点的<code>Lines</code>中。
+并返回状态<code>Continue | NoChildren</code>。</p><p>当解析到第三行<code>\n</code>时，流程还是和上面一行一样，不同的是这一次，<code>Continue</code>在识别到内容为空行时，直接返回的状态是<code>Close</code>。
+这时根据返回状态，总解析流程意识到<code>Paragraph</code>已完成解析，可以关闭block了。
+处于打开状态的<code>[]Block</code>队列又恢复到初始化状态，AST结点指针和当前block解析器指针都归为空。</p><p>继续扫描新行<code> indented code\n</code>，因为前面的4格缩进，这次识别出来的类型为<code>Indent Code Block</code>。
+随既创建新结点<code>c</code>并添加到父结点 - 根结点。
+同时更新处于打开状态的block序列<code>[]Block</code>。</p><p>继续扫描下一行<code>\n</code>，和<code>Paragraph</code>不同的是，<code>Indent Code Block</code>是允许以空行分隔的，如
+<a href=https://spec.commonmark.org/0.30/#example-112>样例112</a>所示。
+这也就意味着，并不能直接关闭当前开放状态的block，而是继续扫描。</p><p>这时就到了最后一行<code>> A block quote.\n</code>。
+通过识别到起始字符为<code>></code>，通过查询关键字符相关的解析器，识别出这是一个新的block - <code>Block quotes</code>。
+除了和上面将新结点添加到父结点外，还需要继续扫描后面的字符<code> A block quote.\n</code>。
+这时仍处于打开block流程中，继续打开新<code>Paragraph</code> block，发现这已经是最后一行后，打开block流程结束。
+进入到关闭前一个block的流程，没错，这里关闭的就是之前的indent block。
+这时流程发现再没有其它可以打开的block后，进入最后的收尾阶段，关闭当前所有处于开放状态的blocks。
+从后往前，先关闭leaf类型的Paragraph block，最后关闭它的父结点container类型的quote block。</p><p>这样整个block解析流程就结束了，我们得到了上图左下角的AST数据结构。
+根结点也就是Document结点下，第一层级有三个结点，分别是Paragraph, Indent, Quote block。
+其中只有Quote block是container类型，可以包含子block，也就是第二层的Paragraph block。</p><h2 id=markdown动手实践>Markdown动手实践
+<a class=anchor href=#markdown%e5%8a%a8%e6%89%8b%e5%ae%9e%e8%b7%b5>#</a></h2><p>通过CommonMD规范和goldmark的实现样例，我们掌握了Markdown的领域相关知识。
+通过上面的梳理，进一步了解到了详细的转换流程。
+下面我们自已动一动手，实现一个可以支持Heading和Paragraph block的解析器。
+从理论到实际，出发吧，伟大的工程师啊！</p><p>可以这里尝试线上版本：
+<a href=https://c.sunwei.xyz/markdown-parser.html>Show Me the Code, try it yourself</a></p><p>实例代码：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/sunwei/gobyexample/modules/markdown/parser&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>r</span> = <span style=color:#a6e22e>newReader</span>()
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>d</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>parser</span>.<span style=color:#a6e22e>Parse</span>(<span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>lines</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>Walk</span>(<span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>v</span> <span style=color:#a6e22e>any</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ws</span> <span style=color:#a6e22e>parser</span>.<span style=color:#a6e22e>WalkState</span>) <span style=color:#a6e22e>parser</span>.<span style=color:#a6e22e>WalkStatus</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>b</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>v</span>.(<span style=color:#a6e22e>parser</span>.<span style=color:#a6e22e>Block</span>)
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>ws</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>parser</span>.<span style=color:#a6e22e>WalkIn</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Walk in: &#34;</span>)
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%s\n&#34;</span>, <span style=color:#a6e22e>b</span>)
+</span></span><span style=display:flex><span>		} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Walk out.&#34;</span>)
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>parser</span>.<span style=color:#a6e22e>WalkContinue</span>
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>line</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>raw</span>       <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>startChar</span> <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>l</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>line</span>) <span style=color:#a6e22e>Raw</span>() <span style=color:#66d9ef>string</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>l</span>.<span style=color:#a6e22e>raw</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>l</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>line</span>) <span style=color:#a6e22e>StartChar</span>() <span style=color:#66d9ef>string</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>l</span>.<span style=color:#a6e22e>startChar</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>reader</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>lines</span> []<span style=color:#a6e22e>parser</span>.<span style=color:#a6e22e>Line</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>newReader</span>() <span style=color:#f92672>*</span><span style=color:#a6e22e>reader</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>reader</span>{<span style=color:#a6e22e>lines</span>: []<span style=color:#a6e22e>parser</span>.<span style=color:#a6e22e>Line</span>{
+</span></span><span style=display:flex><span>		<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>line</span>{<span style=color:#a6e22e>raw</span>: <span style=color:#e6db74>&#34;### first blog\n&#34;</span>, <span style=color:#a6e22e>startChar</span>: <span style=color:#e6db74>&#34;#&#34;</span>},
+</span></span><span style=display:flex><span>		<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>line</span>{<span style=color:#a6e22e>raw</span>: <span style=color:#e6db74>&#34;Hello Blog\n&#34;</span>, <span style=color:#a6e22e>startChar</span>: <span style=color:#e6db74>&#34;H&#34;</span>},
+</span></span><span style=display:flex><span>	}}
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>输出样例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e># Walk result</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Start from root</span>
+</span></span><span style=display:flex><span>Walk in:
+</span></span><span style=display:flex><span>&amp;<span style=color:#f92672>{</span>%!s<span style=color:#f92672>(</span>parser.BlockState<span style=color:#f92672>=</span>2<span style=color:#f92672>)</span> &lt;nil&gt; <span style=color:#f92672>[]}</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># In first child</span>
+</span></span><span style=display:flex><span>Walk in:
+</span></span><span style=display:flex><span>&amp;<span style=color:#f92672>{</span> -
+</span></span><span style=display:flex><span>  <span style=color:#f92672>{</span>%!s<span style=color:#f92672>(</span>parser.BlockState<span style=color:#f92672>=</span>2<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>  %!s<span style=color:#f92672>(</span>*parser.heading<span style=color:#f92672>=</span>&amp;<span style=color:#f92672>{})</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>[</span>%!s<span style=color:#f92672>(</span>*parser.headLine<span style=color:#f92672>=</span>&amp;<span style=color:#f92672>{</span>first blog<span style=color:#f92672>})]}</span>
+</span></span><span style=display:flex><span>%!s<span style=color:#f92672>(</span>int<span style=color:#f92672>=</span>3<span style=color:#f92672>)}</span>
+</span></span><span style=display:flex><span>Walk out.
+</span></span><span style=display:flex><span><span style=color:#75715e># In second child</span>
+</span></span><span style=display:flex><span>Walk in:
+</span></span><span style=display:flex><span>&amp;<span style=color:#f92672>{</span>%!s<span style=color:#f92672>(</span>parser.BlockState<span style=color:#f92672>=</span>2<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>%!s<span style=color:#f92672>(</span>*parser.paragraph<span style=color:#f92672>=</span>&amp;<span style=color:#f92672>{})</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>%!s<span style=color:#f92672>(</span>*main.line<span style=color:#f92672>=</span>&amp;<span style=color:#f92672>{</span>Hello Blog
+</span></span><span style=display:flex><span> H<span style=color:#f92672>})]}</span>
+</span></span><span style=display:flex><span>Walk out.
+</span></span><span style=display:flex><span><span style=color:#75715e># Out root</span>
+</span></span><span style=display:flex><span>Walk out.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Program exited.
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/commit/1d95a266b0290ad7b3b4459d6bd478659f3d12e9 title='最后修改者 sunwei | November 20, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>November 20, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content.zh/docs/chapter/03/code/site/markdown/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#markdown文件是如何被翻译成html的>Markdown文件是如何被翻译成HTML的</a><ul><li><a href=#goldmark工作原理>Goldmark工作原理</a><ul><li><a href=#commonmark-030>CommonMark 0.30</a></li><li><a href=#ast>AST</a></li><li><a href=#goldmark的魔法>goldmark的魔法</a></li></ul></li><li><a href=#markdown动手实践>Markdown动手实践</a></li></ul></li></ul></nav></div></aside></main></body></html>
