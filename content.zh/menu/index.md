@@ -29,23 +29,15 @@ headless: true
   - [3.2 Hugo本地环境搭建]({{< relref "/docs/chapter/03/prerequisite" >}})
   - [3.3 安装DDDPlayer]({{< relref "/docs/chapter/03/dddplayer" >}})
   - [3.4 Hugo架构设计]({{< relref "/docs/chapter/03/arch" >}})
-<br />
-
-- **Hugo架构**
-- [游乐场]({{< relref "/docs/how/游乐场" >}})
-- [事件风暴]({{< relref "/docs/how/事件风暴" >}})
-- [基础架构]({{< relref "/docs/how/基础架构" >}})
-<br />
-
-- [**源码解析**]({{< relref "/docs/code" >}})
-- [配置]({{< relref "/docs/code/配置" >}})
-- [依赖管理]({{< relref "/docs/code/依赖管理" >}})
-  - [PathSpec]({{< relref "/docs/code/依赖管理/路径规范" >}})
-  - [ContentSpec]({{< relref "/docs/code/依赖管理/内容规范" >}})
-- [站点创建]({{< relref "/docs/code/站点" >}})
-  - [创建站点]({{< relref "/docs/code/站点/创建" >}})
-  - [加载资源]({{< relref "/docs/code/站点/加载资源" >}})
-  - [Markdown]({{< relref "/docs/code/站点/markdown" >}})
-- [站点构建]({{< relref "/docs/code/构建" >}})
-  - [模板执行]({{< relref "/docs/code/构建/模板" >}})
+  - [3.5 Hugo源码精读]({{< relref "/docs/chapter/03/code" >}})
+    - [3.5.1 配置]({{< relref "/docs/chapter/03/code/config" >}})
+    - [3.5.2 依赖]({{< relref "/docs/chapter/03/code/deps" >}})
+      - [3.5.2.1 PathSpec]({{< relref "/docs/chapter/03/code/deps/pathSpec" >}})
+      - [3.5.2.2 ContentSpec]({{< relref "/docs/chapter/03/code/deps/contentSpec" >}})
+    - [3.5.3 站点]({{< relref "/docs/chapter/03/code/site" >}})
+      - [3.5.3.1 创建]({{< relref "/docs/chapter/03/code/site/create" >}})
+      - [3.5.3.2 加载]({{< relref "/docs/chapter/03/code/site/load" >}})
+      - [3.5.3.3 Markdown]({{< relref "/docs/chapter/03/code/site/markdown" >}})
+    - [3.5.4 构建]({{< relref "/docs/chapter/03/code/build" >}})
+      - [3.5.4.1 模板]({{< relref "/docs/chapter/03/code/build/template" >}})
 <br />
