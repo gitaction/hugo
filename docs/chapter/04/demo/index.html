@@ -1,0 +1,97 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Hugo 样例工程 # 在源码精读的 Hugo本地环境搭建环节，我们有搭建一个简单的样例博客。
+让我们继续使用这个样例，来打造我们的Hugoverse。
+创建Hugo样例项目Demo # 使用我们在上一节准备好的hugoverse命令行工具hugov，来帮助我们创建这个样例项目。
+➜ hugoverse git:(main) ✗ ./hugov demo demo dir: /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825 查看Demo项目结构:
+创建成功后，我们会得到一个临时项目路径，让我们用tree命令帮助查看一下文件结构。
+➜ hugoverse git:(main) ✗ cd /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825 ➜ hugoverse-temp-dir782641825 tree . ├── config.toml ├── layouts │ ├── _default │ │ └── single.html │ └── index.html ├── mycontent │ └── blog │ └── post.md ├── myproject.txt └── themes └── mytheme └── mytheme.txt 7 directories, 6 files 可以看到包含了:
+配置文件config.toml # ➜ hugoverse-temp-dir782641825 cat config."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content="4.2 样例工程"><meta property="og:description" content="Hugo 样例工程 # 在源码精读的 Hugo本地环境搭建环节，我们有搭建一个简单的样例博客。
+让我们继续使用这个样例，来打造我们的Hugoverse。
+创建Hugo样例项目Demo # 使用我们在上一节准备好的hugoverse命令行工具hugov，来帮助我们创建这个样例项目。
+➜ hugoverse git:(main) ✗ ./hugov demo demo dir: /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825 查看Demo项目结构:
+创建成功后，我们会得到一个临时项目路径，让我们用tree命令帮助查看一下文件结构。
+➜ hugoverse git:(main) ✗ cd /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825 ➜ hugoverse-temp-dir782641825 tree . ├── config.toml ├── layouts │ ├── _default │ │ └── single.html │ └── index.html ├── mycontent │ └── blog │ └── post.md ├── myproject.txt └── themes └── mytheme └── mytheme.txt 7 directories, 6 files 可以看到包含了:
+配置文件config.toml # ➜ hugoverse-temp-dir782641825 cat config."><meta property="og:type" content="article"><meta property="og:url" content="https://hugo.notes.sunwei.xyz/docs/chapter/04/demo/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-11-22T21:10:49+08:00"><title>4.2 样例工程 | Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png type=image/x-icon><link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.35de7fc157bc39cdcef2a3b7d8dadeea492103e1ea935a8c216f01e6baf1c4c3.js integrity="sha256-Nd5/wVe8Oc3O8qO32Nre6kkhA+Hqk1qMIW8B5rrxxMM=" crossorigin=anonymous></script>
+<script defer src=/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js integrity="sha256-b2+Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC+NdcPIvZhzk=" crossorigin=anonymous></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STPKPBQR5Y"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-STPKPBQR5Y",{anonymize_ip:!1})}</script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul class=book-languages><li><input type=checkbox id=languages class=toggle>
+<label for=languages class="flex justify-between"><a role=button class="flex align-center"><img src=/svg/translate.svg class=book-icon alt=Languages>
+Chinese</a></label><ul><li><a href=https://hugo.notes.sunwei.xyz/en/>English</a></li></ul></li></ul><ul><li><p><a href=/docs/introduction/><strong>引言</strong></a><br></p></li><li><p><a href=/docs/chapter/01/><strong>第一章 Hugo入门</strong></a></p><ul><li><a href=/docs/chapter/01/ssg/>1.1 静态站点的背景和重要性</a></li><li><a href=/docs/chapter/01/hugo/>1.2 Hugo简介</a></li><li><a href=/docs/chapter/01/install/>1.3 安装Hugo</a></li><li><a href=/docs/chapter/01/site/>1.4 创建第一个站点</a></li><li><a href=/docs/chapter/01/theme/>1.5 自定义主题</a></li><li><a href=/docs/chapter/01/sunweixyz/>1.6 个人站点实例</a><ul><li><a href=/docs/chapter/01/sunweixyz/site/>个人站点</a></li><li><a href=/docs/chapter/01/sunweixyz/theme/>创建新主题</a></li><li><a href=/docs/chapter/01/sunweixyz/deploy/>部署GitHub Pages</a></li></ul></li><li><a href=/docs/chapter/01/qa/>1.7 常见问题和资源</a><br></li></ul></li><li><p><strong>第二章 DDD简介</strong></p><ul><li><a href=/docs/chapter/02/ddd/>2.1 DDD简介</a></li><li><a href=/docs/chapter/02/dddplayer/>2.2 DDD在本书中的应用</a><br></li></ul></li><li><p><a href=/docs/chapter/03/><strong>第三章 Hugo源码精读</strong></a></p><ul><li><a href=/docs/chapter/03/read/>3.1 源码阅读步骤介绍</a></li><li><a href=/docs/chapter/03/prerequisite/>3.2 Hugo本地环境搭建</a></li><li><a href=/docs/chapter/03/dddplayer/>3.3 安装DDDPlayer</a></li><li><a href=/docs/chapter/03/arch/>3.4 Hugo架构设计</a></li><li><a href=/docs/chapter/03/code/>3.5 Hugo源码精读</a><ul><li><a href=/docs/chapter/03/code/config/>3.5.1 配置</a></li><li><a href=/docs/chapter/03/code/deps/>3.5.2 依赖</a><ul><li><a href=/docs/chapter/03/code/deps/pathSpec/>3.5.2.1 PathSpec</a></li><li><a href=/docs/chapter/03/code/deps/contentSpec/>3.5.2.2 ContentSpec</a></li></ul></li><li><a href=/docs/chapter/03/code/site/>3.5.3 站点</a><ul><li><a href=/docs/chapter/03/code/site/create/>3.5.3.1 创建</a></li><li><a href=/docs/chapter/03/code/site/load/>3.5.3.2 加载</a></li><li><a href=/docs/chapter/03/code/site/markdown/>3.5.3.3 Markdown</a></li></ul></li><li><a href=/docs/chapter/03/code/build/>3.5.4 构建</a><ul><li><a href=/docs/chapter/03/code/build/template/>3.5.4.1 模板</a><br></li></ul></li></ul></li></ul></li><li><p><a href=/docs/chapter/04/><strong>第四章 DDD Hugo</strong></a></p><ul><li><a href=/docs/chapter/04/hugoverse/>4.1 Hugoverse</a></li><li><a href=/docs/chapter/04/demo/ class=active>4.2 Hugo 样例工程</a></li><li><a href=/docs/chapter/04/config/>4.3 DDD Hugo 配置信息</a><br></li></ul></li></ul><ul><li><a href=/posts/>Blog</a></li><li><a href=https://github.com/sunwei/hugo-book target=_blank rel=noopener>Github</a></li><li><a href=https://themes.gohugo.io/hugo-book/ target=_blank rel=noopener>Hugo Themes</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>4.2 样例工程</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#hugo-样例工程>Hugo 样例工程</a><ul><li><a href=#创建hugo样例项目demo>创建Hugo样例项目Demo</a><ul><li><a href=#配置文件configtoml>配置文件config.toml</a></li><li><a href=#自定义面局目录layouts>自定义面局目录layouts</a></li><li><a href=#主题目录themes而且我们用到的是一个名为mytheme的主题>主题目录themes，而且我们用到的是一个名为mytheme的主题</a></li><li><a href=#内容目录mycontent>内容目录mycontent</a></li><li><a href=#根目录文件myprojecttxt>根目录文件myproject.txt</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=hugo-样例工程>Hugo 样例工程
+<a class=anchor href=#hugo-%e6%a0%b7%e4%be%8b%e5%b7%a5%e7%a8%8b>#</a></h1><p>在源码精读的
+<a href=/docs/chapter/03/prerequisite/#7-%e5%88%9b%e5%bb%ba%e6%a0%b7%e4%be%8b%e9%a1%b9%e7%9b%ae>Hugo本地环境搭建</a>环节，我们有搭建一个简单的样例博客。</p><p>让我们继续使用这个样例，来打造我们的Hugoverse。</p><h2 id=创建hugo样例项目demo>创建Hugo样例项目Demo
+<a class=anchor href=#%e5%88%9b%e5%bb%bahugo%e6%a0%b7%e4%be%8b%e9%a1%b9%e7%9b%aedemo>#</a></h2><p>使用我们在上一节准备好的hugoverse命令行工具hugov，来帮助我们创建这个样例项目。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  hugoverse git:<span style=color:#f92672>(</span>main<span style=color:#f92672>)</span> ✗ ./hugov demo
+</span></span><span style=display:flex><span>demo dir: /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825
+</span></span></code></pre></div><p><strong>查看Demo项目结构:</strong></p><p>创建成功后，我们会得到一个临时项目路径，让我们用<code>tree</code>命令帮助查看一下文件结构。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  hugoverse git:<span style=color:#f92672>(</span>main<span style=color:#f92672>)</span> ✗ cd /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825
+</span></span><span style=display:flex><span>➜  hugoverse-temp-dir782641825 tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── config.toml
+</span></span><span style=display:flex><span>├── layouts
+</span></span><span style=display:flex><span>│   ├── _default
+</span></span><span style=display:flex><span>│   │   └── single.html
+</span></span><span style=display:flex><span>│   └── index.html
+</span></span><span style=display:flex><span>├── mycontent
+</span></span><span style=display:flex><span>│   └── blog
+</span></span><span style=display:flex><span>│       └── post.md
+</span></span><span style=display:flex><span>├── myproject.txt
+</span></span><span style=display:flex><span>└── themes
+</span></span><span style=display:flex><span>    └── mytheme
+</span></span><span style=display:flex><span>        └── mytheme.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>7</span> directories, <span style=color:#ae81ff>6</span> files
+</span></span></code></pre></div><p>可以看到包含了:</p><h3 id=配置文件configtoml>配置文件config.toml
+<a class=anchor href=#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6configtoml>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  hugoverse-temp-dir782641825 cat config.toml
+</span></span><span style=display:flex><span>theme <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;mytheme&#34;</span>
+</span></span><span style=display:flex><span>contentDir <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;mycontent&#34;</span>%
+</span></span></code></pre></div><h3 id=自定义面局目录layouts>自定义面局目录layouts
+<a class=anchor href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e9%9d%a2%e5%b1%80%e7%9b%ae%e5%bd%95layouts>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  hugoverse-temp-dir782641825 cd layouts
+</span></span><span style=display:flex><span>➜  layouts tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── _default
+</span></span><span style=display:flex><span>│   └── single.html
+</span></span><span style=display:flex><span>└── index.html
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>2</span> directories, <span style=color:#ae81ff>2</span> files
+</span></span></code></pre></div><p>其中模板index.html有如下内容：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  layouts cat index.html
+</span></span><span style=display:flex><span><span style=color:#f92672>{{</span> $entries :<span style=color:#f92672>=</span> <span style=color:#f92672>(</span>readDir <span style=color:#e6db74>&#34;.&#34;</span><span style=color:#f92672>)</span> <span style=color:#f92672>}}</span>
+</span></span><span style=display:flex><span>START:|<span style=color:#f92672>{{</span> range $entry :<span style=color:#f92672>=</span> $entries <span style=color:#f92672>}}{{</span> <span style=color:#66d9ef>if</span> not $entry.IsDir <span style=color:#f92672>}}{{</span> $entry.Name <span style=color:#f92672>}}</span>|<span style=color:#f92672>{{</span> end <span style=color:#f92672>}}{{</span> end <span style=color:#f92672>}}</span>:END:%
+</span></span></code></pre></div><p>用来生成站点首页index.html，从源码了解到，这个模板会遍历根目录下的所有文件，如果不是文件夹，就显示文件名。</p><p>再来看看模板single.html：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  layouts cat _default/single.html
+</span></span><span style=display:flex><span>&lt;p&gt;hello single page&lt;/p&gt;
+</span></span><span style=display:flex><span><span style=color:#f92672>{{</span> .Content <span style=color:#f92672>}}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>===</span>
+</span></span><span style=display:flex><span>Static Content
+</span></span><span style=display:flex><span><span style=color:#f92672>===</span>
+</span></span></code></pre></div><p>这个模板会用来显示单页面内容，像blog等文章信息。</p><h3 id=主题目录themes而且我们用到的是一个名为mytheme的主题>主题目录themes，而且我们用到的是一个名为mytheme的主题
+<a class=anchor href=#%e4%b8%bb%e9%a2%98%e7%9b%ae%e5%bd%95themes%e8%80%8c%e4%b8%94%e6%88%91%e4%bb%ac%e7%94%a8%e5%88%b0%e7%9a%84%e6%98%af%e4%b8%80%e4%b8%aa%e5%90%8d%e4%b8%bamytheme%e7%9a%84%e4%b8%bb%e9%a2%98>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  hugoverse-temp-dir782641825 cd themes
+</span></span><span style=display:flex><span>➜  themes ls
+</span></span><span style=display:flex><span>mytheme
+</span></span><span style=display:flex><span>➜  themes tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>└── mytheme
+</span></span><span style=display:flex><span>    └── mytheme.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>2</span> directories, <span style=color:#ae81ff>1</span> file
+</span></span><span style=display:flex><span>➜  themes cat mytheme/mytheme.txt
+</span></span><span style=display:flex><span>Hello theme!%
+</span></span></code></pre></div><h3 id=内容目录mycontent>内容目录mycontent
+<a class=anchor href=#%e5%86%85%e5%ae%b9%e7%9b%ae%e5%bd%95mycontent>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  hugoverse-temp-dir782641825 cd mycontent
+</span></span><span style=display:flex><span>➜  mycontent tree
+</span></span><span style=display:flex><span>.
+</span></span><span style=display:flex><span>└── blog
+</span></span><span style=display:flex><span>    └── post.md
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>2</span> directories, <span style=color:#ae81ff>1</span> file
+</span></span></code></pre></div><p>有一篇博客post.md:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  mycontent cat blog/post.md
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>title: <span style=color:#e6db74>&#34;Post Title&#34;</span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span><span style=color:#75715e>### first blog</span>
+</span></span><span style=display:flex><span>Hello Blog%
+</span></span></code></pre></div><p>这个内容就会应用到上面的layouts/_default/single.html模板。</p><h3 id=根目录文件myprojecttxt>根目录文件myproject.txt
+<a class=anchor href=#%e6%a0%b9%e7%9b%ae%e5%bd%95%e6%96%87%e4%bb%b6myprojecttxt>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>➜  hugoverse-temp-dir782641825 cat myproject.txt
+</span></span><span style=display:flex><span>Hello project!%
+</span></span></code></pre></div><p>这个文件就是用来配合上面的index.html模板的，文件名myproject.txt会显示在模板中。</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/commit/0e07bde2e63d9f46bad8e44e325ecfc125acf5e8 title='最后修改者 sunwei | November 22, 2023' target=_blank rel=noopener><img src=/svg/calendar.svg class=book-icon alt=Calendar>
+<span>November 22, 2023</span></a></div><div><a class="flex align-center" href=https://github.com/sunwei/hugo-notes/edit/main/content.zh/docs/chapter/04/demo/index.md target=_blank rel=noopener><img src=/svg/edit.svg class=book-icon alt=Edit>
+<span>编辑本页</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#hugo-样例工程>Hugo 样例工程</a><ul><li><a href=#创建hugo样例项目demo>创建Hugo样例项目Demo</a><ul><li><a href=#配置文件configtoml>配置文件config.toml</a></li><li><a href=#自定义面局目录layouts>自定义面局目录layouts</a></li><li><a href=#主题目录themes而且我们用到的是一个名为mytheme的主题>主题目录themes，而且我们用到的是一个名为mytheme的主题</a></li><li><a href=#内容目录mycontent>内容目录mycontent</a></li><li><a href=#根目录文件myprojecttxt>根目录文件myproject.txt</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>

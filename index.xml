@@ -229,7 +229,22 @@ templ, err := prototype.New(info.name).Parse(info.template) 源码里用的是pr
 词法解析 - parse # 创建Deps的最后一步是loadResources，其中主要指的是Template资源。 在创建templateExec实例的过程中，就需要加载hugo默认和用户创建的模板。 加载模板后，获取了模板的字节信息，要想为我们所有，首先要读懂这些字节，这时，我们就用到了解析Parse，而且是由text模板提供的。 Parse为什么可以读懂这些字符信息呢，她依靠的是内部了词法分析器lex - lexer，分析器需要对action block的语义有充分的理解。 读懂后转换为方便后续操作的数据结构tree，在hugo中实际载体是listNode类型。
 我们拿一段模板举个例子：
 从上例中，我们可以看到，左上方是输入的信息。 包含一篇博客 - post.md，和一个模板 - single.html。 通过转换会得到最右边的输出网页内容。 其中，包含在模板中第一行的信息，剩下的是由博客提供的信息，其中的特殊字符，还被进行了转义。
-在左下方第一步中，创建templateExec过程中，读取到了模板single.html。 通过解析，利用词法分析器，会得到如下状态：</description></item><item><title>Config源码分析</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/code/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/code/config/</guid><description>Config源码解析 # 在 基础架构中，从基础架构的视角出发。 有提到配置模块，以及 配置和语言的关系。
+在左下方第一步中，创建templateExec过程中，读取到了模板single.html。 通过解析，利用词法分析器，会得到如下状态：</description></item><item><title>4.1 Hugoverse</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/04/hugoverse/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/04/hugoverse/</guid><description>Hugoverse # Hugoverse是一个静态站点生成领域的开源项目，是为本书所创建。
+当我尝试理解Hugo源码时，我不希望了解到的知识都是碎片状的，我更希望以有机的方式将他们全部都结合起来。 因为想完整的掌握静态站点生成这个领域，DDD就成了一个不错的方法。 我也是采用了领域驱动设计（DDD）的方式，来构建了一个被称为&amp;quot;Hugoverse&amp;quot;的项目。 这样一来，理论结合了实际，通过阅读源码，动手实战的方法，将帮助我们迈出成为领域专家过程中至关重要的一步。
+对我而言，“show me the code”不仅仅是获取理论知识，更重要的是通过实际编码和动手实践来理解和应用这些概念。 更是软件工程师追崇实干精神的一种具体体现。
+Hugoverse不仅是一个概念上的模型，更是一个通过实际代码来呈现和演示Hugo源码核心原理的实体。 通过实践，我将领域驱动设计的理念贯穿到源码中，以一种更贴近实际应用的方式来解释和展示Hugo的工作原理。 这种方式不仅使我们更深入地理解了源码，也使我们能够将这些理念和实践方便地分享给他人，帮助大家更好地理解和运用Hugo源码和静态站点领域技能。
+本地安装 Hugoverse # 先根据 Hugoverse Readme在本地准备好环境。
+准备好开发环境 # 下载源码
+git clone git@github.com:dddplayer/hugoverse.git 安装依赖
+go install 构建可执行文件hugov
+go build -o hugov 查看命令
+➜ hugoverse git:(main) ✗ ./hugov Usage: hugov [command] Commands: build: generate static site for Hugo project server: start the headless CMS server demo: create demo Hugo project version: show hugoverse command version Example: hugov build -p path/to/your/hugo/project 这样，我们就准备好了Hugoverse项目。</description></item><item><title>4.2 样例工程</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/04/demo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/04/demo/</guid><description>Hugo 样例工程 # 在源码精读的 Hugo本地环境搭建环节，我们有搭建一个简单的样例博客。
+让我们继续使用这个样例，来打造我们的Hugoverse。
+创建Hugo样例项目Demo # 使用我们在上一节准备好的hugoverse命令行工具hugov，来帮助我们创建这个样例项目。
+➜ hugoverse git:(main) ✗ ./hugov demo demo dir: /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825 查看Demo项目结构:
+创建成功后，我们会得到一个临时项目路径，让我们用tree命令帮助查看一下文件结构。
+➜ hugoverse git:(main) ✗ cd /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825 ➜ hugoverse-temp-dir782641825 tree . ├── config.toml ├── layouts │ ├── _default │ │ └── single.html │ └── index.html ├── mycontent │ └── blog │ └── post.md ├── myproject.txt └── themes └── mytheme └── mytheme.txt 7 directories, 6 files 可以看到包含了:
+配置文件config.toml # ➜ hugoverse-temp-dir782641825 cat config.</description></item><item><title>4.3 DDD配置信息</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/04/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/04/config/</guid><description> DDD Hugo 配置信息 #</description></item><item><title>Config源码分析</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/03/code/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/03/code/config/</guid><description>Config源码解析 # 在 基础架构中，从基础架构的视角出发。 有提到配置模块，以及 配置和语言的关系。
 下面我们从源码实现的角度，详细的来看看Hugo是如何设计和实现配置模块的。
 Config模块源码 # 从上一节的 allconfig信息流信息流中，我们了解到LoadConfig是配置模块入口:
 进一步查看LoadConfig函数，我们发现主要做了三件事：
