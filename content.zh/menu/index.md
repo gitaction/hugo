@@ -41,3 +41,9 @@ headless: true
     - [3.5.4 构建]({{< relref "/docs/chapter/03/code/build" >}})
       - [3.5.4.1 模板]({{< relref "/docs/chapter/03/code/build/template" >}})
 <br />
+
+- [**第四章 DDD Hugo**]({{< relref "/docs/chapter/04" >}})
+  - [4.1 Hugoverse]({{< relref "/docs/chapter/04/hugoverse" >}})
+  - [4.2 Hugo 样例工程]({{< relref "/docs/chapter/04/demo" >}})
+  - [4.3 DDD Hugo 配置信息]({{< relref "/docs/chapter/04/config" >}})
+<br />
