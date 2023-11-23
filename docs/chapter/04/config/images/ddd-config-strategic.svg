@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="434pt" height="1222pt" viewBox="0.00 0.00 434.00 1221.60">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1217.6)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1217.6 430,-1217.6 430,4 -4,4"/>
+<text text-anchor="middle" x="213" y="-82" font-family="Times,serif" font-size="20.00" fill="#000000">github.com/dddplayer/hugoverse</text>
+<text text-anchor="middle" x="213" y="-58" font-family="Times,serif" font-size="20.00" fill="#000000">Domain Model</text>
+<text text-anchor="middle" x="213" y="-10" font-family="Times,serif" font-size="20.00" fill="#000000">Powered by DDD Player</text>
+<g id="clust1" class="cluster">
+<title>cluster_dUQ30Z</title>
+<polygon fill="none" stroke="#000000" points="8,-160 8,-1205.6 418,-1205.6 418,-160 8,-160"/>
+<text text-anchor="middle" x="213" y="-1189" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_dctHGkf</title>
+<polygon fill="none" stroke="#000000" points="16,-168 16,-1056 410,-1056 410,-168 16,-168"/>
+<text text-anchor="middle" x="213" y="-1039.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config</text>
+</g>
+<!-- dUQ30Z -->
+<g id="node1" class="node">
+<title>dUQ30Z</title>
+<polygon fill="#ffffff" stroke="#000000" points="222.5359,-1172.8 149.4641,-1172.8 149.4641,-1136.8 222.5359,-1136.8 222.5359,-1172.8"/>
+<text text-anchor="middle" x="186" y="-1150.6" font-family="Times,serif" font-size="14.00" fill="#000000">hugoverse</text>
+</g>
+<!-- dco61II -->
+<g id="node2" class="node">
+<title>dco61II</title>
+<polygon fill="#ffd966" stroke="#000000" points="213.3879,-1023.2 158.6121,-1023.2 158.6121,-987.2 213.3879,-987.2 213.3879,-1023.2"/>
+<text text-anchor="middle" x="186" y="-1001" font-family="Times,serif" font-size="14.00" fill="#000000">Config</text>
+</g>
+<!-- dUQ30Z&#45;&gt;dco61II -->
+<g id="edge4" class="edge">
+<title>dUQ30Z-&gt;dco61II</title>
+<g id="a_edge4"><a xlink:title="hugoverse -&gt; Config: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M186,-1136.7547C186,-1111.7075 186,-1066.0633 186,-1035.6794"/>
+<polygon fill="#000000" stroke="#000000" points="186.0001,-1035.3093 182,-1029.3093 186,-1023.3093 190,-1029.3092 186.0001,-1035.3093"/>
+</a>
+</g>
+<text text-anchor="middle" x="189.5" y="-1087.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dezdQwX -->
+<g id="node3" class="node">
+<title>dezdQwX</title>
+<polygon fill="#a2c4c9" stroke="#000000" points="192.4386,-414.8 93.5614,-414.8 93.5614,-378.8 192.4386,-378.8 192.4386,-414.8"/>
+<text text-anchor="middle" x="143" y="-392.6" font-family="Times,serif" font-size="14.00" fill="#000000">ModuleConfig</text>
+</g>
+<!-- dco61II&#45;&gt;dezdQwX -->
+<g id="edge8" class="edge">
+<title>dco61II-&gt;dezdQwX</title>
+<g id="a_edge8"><a xlink:title="Config -&gt; ModuleConfig: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M213.5252,-1003.1309C267.277,-998.3298 381,-984.1067 381,-949.7 381,-949.7 381,-949.7 381,-838.9 381,-715.8967 358,-686.1033 358,-563.1 358,-563.1 358,-563.1 358,-452.3 358,-417.5094 239.6204,-423.747 206,-414.8 205.4504,-414.6537 204.8982,-414.5063 204.3437,-414.3578"/>
+<polygon fill="#000000" stroke="#000000" points="204.0523,-414.2784 197.2111,-416.5581 192.4755,-411.1199 199.3167,-408.8402 204.0523,-414.2784"/>
+</a>
+</g>
+<text text-anchor="middle" x="373.5" y="-696.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbgAW26 -->
+<g id="node4" class="node">
+<title>dbgAW26</title>
+<polygon fill="#a2c4c9" stroke="#000000" points="194.5828,-617.6 91.4172,-617.6 91.4172,-581.6 194.5828,-581.6 194.5828,-617.6"/>
+<text text-anchor="middle" x="143" y="-595.4" font-family="Times,serif" font-size="14.00" fill="#000000">moduleAdapter</text>
+</g>
+<!-- dco61II&#45;&gt;dbgAW26 -->
+<g id="edge10" class="edge">
+<title>dco61II-&gt;dbgAW26</title>
+<g id="a_edge10"><a xlink:title="Config -&gt; moduleAdapter: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M158.4804,-998.7289C121.949,-989.3236 62,-970.6913 62,-949.7 62,-949.7 62,-949.7 62,-655.1 62,-641.3879 69.9969,-630.8134 80.9653,-622.7585"/>
+<polygon fill="#000000" stroke="#000000" points="81.0767,-622.6887 84.0345,-616.1121 91.2429,-616.313 88.285,-622.8896 81.0767,-622.6887"/>
+</a>
+</g>
+<text text-anchor="middle" x="65.5" y="-798.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddJkLV8 -->
+<g id="node5" class="node">
+<title>ddJkLV8</title>
+<polygon fill="#a2c4c9" stroke="#000000" points="198.6486,-820.4 87.3514,-820.4 87.3514,-784.4 198.6486,-784.4 198.6486,-820.4"/>
+<text text-anchor="middle" x="143" y="-798.2" font-family="Times,serif" font-size="14.00" fill="#000000">ModuleCollector</text>
+</g>
+<!-- dco61II&#45;&gt;ddJkLV8 -->
+<g id="edge7" class="edge">
+<title>dco61II-&gt;ddJkLV8</title>
+<g id="a_edge7"><a xlink:title="Config -&gt; ModuleCollector: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M186,-986.7C186,-975.9083 186,-962.0333 186,-949.7 186,-949.7 186,-949.7 186,-857.9 186,-847.4746 181.2,-837.8203 174.8075,-829.5856"/>
+<polygon fill="#000000" stroke="#000000" points="174.7724,-829.5463 167.7892,-827.7475 166.7638,-820.6097 173.747,-822.4085 174.7724,-829.5463"/>
+</a>
+</g>
+<text text-anchor="middle" x="189.5" y="-899.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dco61II&#45;&gt;ddJkLV8 -->
+<g id="edge13" class="edge">
+<title>dco61II-&gt;ddJkLV8</title>
+<g id="a_edge13"><a xlink:title="Config -&gt; ModuleCollector: &#10;&#10;From: config.go (Line: 78, Column: 19) To: collect.go (Line: 15, Column: 28)&#10;">
+<path fill="none" stroke="#000000" d="M162.2362,-986.9903C152.2914,-977.2172 143,-964.2049 143,-949.7 143,-949.7 143,-949.7 143,-857.9 143,-849.1318 143,-839.5843 143,-830.9196"/>
+<polygon fill="#000000" stroke="#000000" points="146.5001,-830.9 143,-820.9 139.5001,-830.9 146.5001,-830.9"/>
+</a>
+</g>
+<text text-anchor="middle" x="146.5" y="-899.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbkVtat -->
+<g id="node6" class="node">
+<title>dbkVtat</title>
+<polygon fill="#a2c4c9" stroke="#000000" points="361.5744,-820.4 216.4256,-820.4 216.4256,-784.4 361.5744,-784.4 361.5744,-820.4"/>
+<text text-anchor="middle" x="289" y="-798.2" font-family="Times,serif" font-size="14.00" fill="#000000">DefaultConfigProvider</text>
+</g>
+<!-- dco61II&#45;&gt;dbkVtat -->
+<g id="edge3" class="edge">
+<title>dco61II-&gt;dbkVtat</title>
+<g id="a_edge3"><a xlink:title="Config -&gt; DefaultConfigProvider: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M213.5982,-996.6501C234.2705,-988.3309 259,-973.4215 259,-949.7 259,-949.7 259,-949.7 259,-857.9 259,-848.4565 262.4029,-839.0786 266.9165,-830.7934"/>
+<polygon fill="#000000" stroke="#000000" points="266.9222,-830.7842 266.7208,-823.5759 273.2971,-820.6175 273.4986,-827.8258 266.9222,-830.7842"/>
+</a>
+</g>
+<text text-anchor="middle" x="262.5" y="-899.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dclxj9q -->
+<g id="node7" class="node">
+<title>dclxj9q</title>
+<polygon fill="#a2c4c9" stroke="#000000" points="101.1025,-212 46.8975,-212 46.8975,-176 101.1025,-176 101.1025,-212"/>
+<text text-anchor="middle" x="74" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">Import</text>
+</g>
+<!-- dco61II&#45;&gt;dclxj9q -->
+<g id="edge12" class="edge">
+<title>dco61II-&gt;dclxj9q</title>
+<g id="a_edge12"><a xlink:title="Config -&gt; Import: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M158.3231,-1001.4711C112.2908,-994.4857 25,-977.5655 25,-949.7 25,-949.7 25,-949.7 25,-838.9 25,-716.0896 42,-685.9104 42,-563.1 42,-563.1 42,-563.1 42,-249.5 42,-239.9105 45.6297,-230.485 50.4442,-222.2008"/>
+<polygon fill="#000000" stroke="#000000" points="50.5674,-222.017 50.5865,-214.8059 57.2502,-212.05 57.2312,-219.2611 50.5674,-222.017"/>
+</a>
+</g>
+<text text-anchor="middle" x="44.5" y="-595.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dR7k1E -->
+<g id="node8" class="node">
+<title>dR7k1E</title>
+<polygon fill="#a2c4c9" stroke="#000000" points="255,-212 201,-212 201,-176 255,-176 255,-212"/>
+<text text-anchor="middle" x="228" y="-189.8" font-family="Times,serif" font-size="14.00" fill="#000000">Mount</text>
+</g>
+<!-- dco61II&#45;&gt;dR7k1E -->
+<g id="edge2" class="edge">
+<title>dco61II-&gt;dR7k1E</title>
+<g id="a_edge2"><a xlink:title="Config -&gt; Mount: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M213.6673,-1003.8487C271.7354,-1000.2558 401,-987.9609 401,-949.7 401,-949.7 401,-949.7 401,-746.9 401,-665.1676 395,-644.8324 395,-563.1 395,-563.1 395,-563.1 395,-249.5 395,-222.7294 316.7421,-206.6026 267.3693,-199.0921"/>
+<polygon fill="#000000" stroke="#000000" points="267.0785,-199.05 260.5659,-202.1462 255.2031,-197.3254 261.7157,-194.2292 267.0785,-199.05"/>
+</a>
+</g>
+<text text-anchor="middle" x="399.5" y="-595.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dezdQwX&#45;&gt;dclxj9q -->
+<g id="edge5" class="edge">
+<title>dezdQwX-&gt;dclxj9q</title>
+<g id="a_edge5"><a xlink:title="ModuleConfig -&gt; Import: &#10;&#10;From: module.go (Line: 20, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M131.2305,-378.5665C125.5717,-368.092 120,-354.4419 120,-341.3 120,-341.3 120,-341.3 120,-249.5 120,-238.1937 114.2711,-227.9554 106.8567,-219.4394"/>
+<polygon fill="#000000" stroke="#000000" points="109.1874,-216.817 99.6898,-212.1216 104.1863,-221.715 109.1874,-216.817"/>
+</a>
+</g>
+<text text-anchor="middle" x="123.5" y="-291.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dezdQwX&#45;&gt;dR7k1E -->
+<g id="edge6" class="edge">
+<title>dezdQwX-&gt;dR7k1E</title>
+<g id="a_edge6"><a xlink:title="ModuleConfig -&gt; Mount: &#10;&#10;From: module.go (Line: 19, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M172.0754,-378.7784C183.5286,-369.298 194,-356.4795 194,-341.3 194,-341.3 194,-341.3 194,-249.5 194,-239.1607 198.3435,-229.1223 203.9256,-220.4905"/>
+<polygon fill="#000000" stroke="#000000" points="206.7765,-222.5211 209.8056,-212.3685 201.1063,-218.4162 206.7765,-222.5211"/>
+</a>
+</g>
+<text text-anchor="middle" x="197.5" y="-291.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbgAW26&#45;&gt;dezdQwX -->
+<g id="edge9" class="edge">
+<title>dbgAW26-&gt;dezdQwX</title>
+<g id="a_edge9"><a xlink:title="moduleAdapter -&gt; ModuleConfig: &#10;&#10;From: module.go (Line: 40, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M143,-581.1C143,-570.3083 143,-556.4333 143,-544.1 143,-544.1 143,-544.1 143,-452.3 143,-443.5318 143,-433.9843 143,-425.3196"/>
+<polygon fill="#000000" stroke="#000000" points="146.5001,-425.3 143,-415.3 139.5001,-425.3 146.5001,-425.3"/>
+</a>
+</g>
+<text text-anchor="middle" x="146.5" y="-494" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbgAW26&#45;&gt;dR7k1E -->
+<g id="edge1" class="edge">
+<title>dbgAW26-&gt;dR7k1E</title>
+<g id="a_edge1"><a xlink:title="moduleAdapter -&gt; Mount: &#10;&#10;From: module.go (Line: 39, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M194.8934,-584.7191C212.5904,-576.2234 228,-563.3103 228,-544.1 228,-544.1 228,-544.1 228,-249.5 228,-240.7318 228,-231.1843 228,-222.5196"/>
+<polygon fill="#000000" stroke="#000000" points="231.5001,-222.5 228,-212.5 224.5001,-222.5 231.5001,-222.5"/>
+</a>
+</g>
+<text text-anchor="middle" x="231.5" y="-392.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddJkLV8&#45;&gt;dbgAW26 -->
+<g id="edge11" class="edge">
+<title>ddJkLV8-&gt;dbgAW26</title>
+<g id="a_edge11"><a xlink:title="ModuleCollector -&gt; moduleAdapter: &#10;&#10;From: collect.go (Line: 34, Column: 30) To: module.go (Line: 43, Column: 25)&#10;">
+<path fill="none" stroke="#000000" d="M143,-783.9C143,-773.1083 143,-759.2333 143,-746.9 143,-746.9 143,-746.9 143,-655.1 143,-646.3318 143,-636.7843 143,-628.1196"/>
+<polygon fill="#000000" stroke="#000000" points="146.5001,-628.1 143,-618.1 139.5001,-628.1 146.5001,-628.1"/>
+</a>
+</g>
+<text text-anchor="middle" x="146.5" y="-696.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+</g>
+</svg>

@@ -13,4 +13,16 @@ go build -o hugov 查看命令
 ➜ hugoverse git:(main) ✗ ./hugov demo demo dir: /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825 查看Demo项目结构:
 创建成功后，我们会得到一个临时项目路径，让我们用tree命令帮助查看一下文件结构。
 ➜ hugoverse git:(main) ✗ cd /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825 ➜ hugoverse-temp-dir782641825 tree . ├── config.toml ├── layouts │ ├── _default │ │ └── single.html │ └── index.html ├── mycontent │ └── blog │ └── post.md ├── myproject.txt └── themes └── mytheme └── mytheme.txt 7 directories, 6 files 可以看到包含了:
-配置文件config.toml # ➜ hugoverse-temp-dir782641825 cat config.</description></item><item><title>4.3 DDD配置信息</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/04/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/04/config/</guid><description> DDD Hugo 配置信息 #</description></item></channel></rss>
+配置文件config.toml # ➜ hugoverse-temp-dir782641825 cat config.</description></item><item><title>4.3 DDD配置信息</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/04/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/04/config/</guid><description>DDD Hugo 配置信息 # 在用DDD来驱动Hugo配置信息开发之前，让我们先来回顾一下 Hugo源码精读 配置中所描述到的主要实现思路。
+将配置文件config.toml转换成map:
+再将默认配置信息加入其中
+收集模块配置信息
+通过这些处理后，我们就能准备好完整的配置信息了。
+但在静态站点生成领域里，又需要怎么样去组织这些对象，才能让大家协同并高效合作呢？
+Hugoverse Config 信息流 # 先来看看在交六边型架构的Hugoverse中，Config模块是如何和处部交互的：
+➜ hugoverse git:(main) ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/config -mf 线上可缩放版本可 点这里查看。
+从图中可看到Config模块主要是通过实体Config的Load方法对外提供服务的，主要调用路径有两条：
+main -&amp;gt; cmd/New -&amp;gt; interface/buildCmd.Run -&amp;gt; application/GenerateStaticSite -&amp;gt; entity/Config.Load main -&amp;gt; cmd/New -&amp;gt; interface/serverCmd.Run -&amp;gt; interface/api/NewServer -&amp;gt; interface/api/Server.registerHandler -&amp;gt; interface/api/Server.handleConfig -&amp;gt; application/AllConfigurationInformation -&amp;gt; entity/Config.Load 第一条是用来构建静态站点的，通过提供的应用服务GenerateStaticSite发起的调用。
+第二条则是用来提供Headless CMS API服务发起的，通过提供的应用服务AllConfigurationInformation发起的调用。
+Config 内部组织结构 # 看完了流程图后，我们理解到外部和Config模块是怎么交互的。 接下来让我们一起来看看Config模块的内部组成。
+➜ hugoverse git:(main) ✗ ~/go/bin/dp normal -m .</description></item><item><title>4.3 六边形架构</title><link>https://hugo.notes.sunwei.xyz/docs/chapter/04/hexagon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hugo.notes.sunwei.xyz/docs/chapter/04/hexagon/</guid><description> 六边形架构 #</description></item></channel></rss>
