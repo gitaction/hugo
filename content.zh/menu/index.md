@@ -45,5 +45,6 @@ headless: true
 - [**第四章 DDD Hugo**]({{< relref "/docs/chapter/04" >}})
   - [4.1 Hugoverse]({{< relref "/docs/chapter/04/hugoverse" >}})
   - [4.2 Hugo 样例工程]({{< relref "/docs/chapter/04/demo" >}})
-  - [4.3 DDD Hugo 配置信息]({{< relref "/docs/chapter/04/config" >}})
+  - [4.3 Hugoverse 六边型架构]({{< relref "/docs/chapter/04/hexagon" >}})
+  - [4.4 DDD Hugo 配置信息]({{< relref "/docs/chapter/04/config" >}})
 <br />

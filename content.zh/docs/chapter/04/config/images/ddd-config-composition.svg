@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2380pt" height="1867pt" viewBox="0.00 0.00 2380.00 1867.40">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1863.4)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1863.4 2376,-1863.4 2376,4 -4,4"/>
+<text text-anchor="middle" x="1186" y="-82" font-family="Times,serif" font-size="20.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config</text>
+<text text-anchor="middle" x="1186" y="-58" font-family="Times,serif" font-size="20.00" fill="#000000">Domain Model</text>
+<text text-anchor="middle" x="1186" y="-10" font-family="Times,serif" font-size="20.00" fill="#000000">Powered by DDD Player</text>
+<g id="clust15" class="cluster">
+<title>cluster_dejlmEe</title>
+<polygon fill="none" stroke="#000000" points="1338,-455.6 1338,-1585.8 2364,-1585.8 2364,-455.6 1338,-455.6"/>
+<text text-anchor="middle" x="1851" y="-1569.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config/valueobject</text>
+</g>
+<g id="clust16" class="cluster">
+<title>cluster_ddfFZqV</title>
+<polygon fill="none" stroke="#000000" points="1910,-501.6 1910,-672.4 2356,-672.4 2356,-501.6 1910,-501.6"/>
+<text text-anchor="middle" x="2133" y="-655.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config/valueobject/general</text>
+</g>
+<g id="clust17" class="cluster">
+<title>cluster_dcRQkcD</title>
+<polygon fill="none" stroke="#000000" points="1346,-463.6 1346,-710.4 1902,-710.4 1902,-463.6 1346,-463.6"/>
+<text text-anchor="middle" x="1624" y="-693.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config/valueobject/function</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster_dctHGkf</title>
+<polygon fill="none" stroke="#000000" points="8,-160 8,-1851.4 1330,-1851.4 1330,-160 8,-160"/>
+<text text-anchor="middle" x="669" y="-1834.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_dbvalZB</title>
+<polygon fill="none" stroke="#000000" points="16,-168 16,-938 872,-938 872,-168 16,-168"/>
+<text text-anchor="middle" x="444" y="-921.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config/entity</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_dckGN2U</title>
+<polygon fill="none" stroke="#000000" points="445,-176 445,-346.8 864,-346.8 864,-176 445,-176"/>
+<text text-anchor="middle" x="654.5" y="-330.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config/entity/function</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_dcaPc4s</title>
+<polygon fill="none" stroke="#000000" points="24,-176 24,-346.8 437,-346.8 437,-176 24,-176"/>
+<text text-anchor="middle" x="230.5" y="-330.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config/entity/general</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_deIIOBk</title>
+<polygon fill="none" stroke="#000000" points="880,-168 880,-908 1322,-908 1322,-168 880,-168"/>
+<text text-anchor="middle" x="1101" y="-891.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config/factory</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_d6iVLZ</title>
+<polygon fill="none" stroke="#000000" points="888,-176 888,-346.8 1314,-346.8 1314,-176 888,-176"/>
+<text text-anchor="middle" x="1101" y="-330.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/config/factory/function</text>
+</g>
+<!-- dctHGkf -->
+<g id="node1" class="node">
+<title>dctHGkf</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1232,-1818.6 854,-1818.6 854,-1628.6 1232,-1628.6 1232,-1818.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="864,-1792.6 864,-1812.6 884,-1812.6 884,-1792.6 864,-1792.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="864,-1770.6 864,-1790.6 884,-1790.6 884,-1770.6 864,-1770.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="864,-1732.6 864,-1768.6 884,-1768.6 884,-1732.6 864,-1732.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="886,-1732.6 886,-1768.6 971,-1768.6 971,-1732.6 886,-1732.6"/>
+<text text-anchor="start" x="895.845" y="-1746" font-family="Times,serif" font-size="14.00" fill="#000000">SetDefaults</text>
+<polygon fill="#ead1dc" stroke="transparent" points="973,-1732.6 973,-1768.6 1010,-1768.6 1010,-1732.6 973,-1732.6"/>
+<text text-anchor="start" x="982.5561" y="-1746" font-family="Times,serif" font-size="14.00" fill="#000000">Set</text>
+<polygon fill="#ead1dc" stroke="transparent" points="1012,-1732.6 1012,-1768.6 1086,-1768.6 1086,-1732.6 1012,-1732.6"/>
+<text text-anchor="start" x="1038.8941" y="-1746" font-family="Times,serif" font-size="14.00" fill="#000000">Get</text>
+<polygon fill="#ffffff" stroke="transparent" points="1088,-1732.6 1088,-1768.6 1108,-1768.6 1108,-1732.6 1088,-1732.6"/>
+<polygon fill="#9fc5e8" stroke="transparent" points="1110,-1694.6 1110,-1768.6 1178,-1768.6 1178,-1694.6 1110,-1694.6"/>
+<text text-anchor="start" x="1119.8955" y="-1727.4" font-family="Times,serif" font-size="14.00" fill="#000000">Provider</text>
+<polygon fill="#ffffff" stroke="transparent" points="1180,-1732.6 1180,-1768.6 1200,-1768.6 1200,-1732.6 1180,-1732.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1202,-1732.6 1202,-1768.6 1222,-1768.6 1222,-1732.6 1202,-1732.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="864,-1694.6 864,-1730.6 884,-1730.6 884,-1694.6 864,-1694.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="886,-1694.6 886,-1730.6 971,-1730.6 971,-1694.6 886,-1694.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="973,-1694.6 973,-1730.6 1010,-1730.6 1010,-1694.6 973,-1694.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1012,-1694.6 1012,-1730.6 1086,-1730.6 1086,-1694.6 1012,-1694.6"/>
+<text text-anchor="start" x="1021.7819" y="-1708" font-family="Times,serif" font-size="14.00" fill="#000000">GetString</text>
+<polygon fill="#ffffff" stroke="transparent" points="1088,-1694.6 1088,-1730.6 1108,-1730.6 1108,-1694.6 1088,-1694.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1180,-1694.6 1180,-1730.6 1200,-1730.6 1200,-1694.6 1180,-1694.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1202,-1694.6 1202,-1730.6 1222,-1730.6 1222,-1694.6 1202,-1694.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="864,-1672.6 864,-1692.6 884,-1692.6 884,-1672.6 864,-1672.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="864,-1634.6 864,-1670.6 1222,-1670.6 1222,-1634.6 864,-1634.6"/>
+<text text-anchor="start" x="1025.1171" y="-1648" font-family="Times,serif" font-size="14.00" fill="#000000">config</text>
+</g>
+<!-- dbvalZB -->
+<g id="node2" class="node">
+<title>dbvalZB</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="864,-905.2 256,-905.2 256,-753.2 864,-753.2 864,-905.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="266,-879.2 266,-899.2 286,-899.2 286,-879.2 266,-879.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="266,-857.2 266,-877.2 286,-877.2 286,-857.2 266,-857.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="266,-819.2 266,-855.2 286,-855.2 286,-819.2 266,-819.2"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="288,-819.2 288,-855.2 427,-855.2 427,-819.2 288,-819.2"/>
+<text text-anchor="start" x="297.6157" y="-832.6" font-family="Times,serif" font-size="14.00" fill="#000000">loadConfigFromDisk</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="429,-819.2 429,-855.2 522,-855.2 522,-819.2 429,-819.2"/>
+<text text-anchor="start" x="438.9502" y="-832.6" font-family="Times,serif" font-size="14.00" fill="#000000">loadModules</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="524,-819.2 524,-855.2 572,-855.2 572,-819.2 524,-819.2"/>
+<text text-anchor="start" x="533.6164" y="-832.6" font-family="Times,serif" font-size="14.00" fill="#000000">Load</text>
+<polygon fill="#ffffff" stroke="transparent" points="574,-819.2 574,-855.2 594,-855.2 594,-819.2 574,-819.2"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="596,-819.2 596,-855.2 654,-855.2 654,-819.2 596,-819.2"/>
+<text text-anchor="start" x="605.5561" y="-832.6" font-family="Times,serif" font-size="14.00" fill="#000000">Config</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="656,-819.2 656,-855.2 700,-855.2 700,-819.2 656,-819.2"/>
+<text text-anchor="start" x="665.5561" y="-832.6" font-family="Times,serif" font-size="14.00" fill="#000000">Path</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="702,-819.2 702,-855.2 770,-855.2 770,-819.2 702,-819.2"/>
+<text text-anchor="start" x="711.5028" y="-832.6" font-family="Times,serif" font-size="14.00" fill="#000000">Modules</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="772,-819.2 772,-855.2 832,-855.2 832,-819.2 772,-819.2"/>
+<text text-anchor="start" x="781.7861" y="-832.6" font-family="Times,serif" font-size="14.00" fill="#000000">Logger</text>
+<polygon fill="#ffffff" stroke="transparent" points="834,-819.2 834,-855.2 854,-855.2 854,-819.2 834,-819.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="266,-797.2 266,-817.2 286,-817.2 286,-797.2 266,-797.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="266,-759.2 266,-795.2 854,-795.2 854,-759.2 266,-759.2"/>
+<text text-anchor="start" x="544.0568" y="-772.6" font-family="Times,serif" font-size="14.00" fill="#000000">entity</text>
+</g>
+<!-- dctHGkf&#45;&gt;dbvalZB -->
+<g id="edge8" class="edge">
+<title>dctHGkf-&gt;dbvalZB</title>
+<g id="a_edge8"><a xlink:title="config -&gt; entity: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M991.5394,-1628.3073C897.1719,-1453.5613 697.8002,-1084.3729 606.9206,-916.0857"/>
+<polygon fill="#000000" stroke="#000000" points="606.7957,-915.8544 600.4251,-912.4757 601.0937,-905.2956 607.4643,-908.6743 606.7957,-915.8544"/>
+</a>
+</g>
+<text text-anchor="middle" x="971.5" y="-1254.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- deIIOBk -->
+<g id="node5" class="node">
+<title>deIIOBk</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1087.5,-875.2 998.5,-875.2 998.5,-783.2 1087.5,-783.2 1087.5,-875.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1009,-849.2 1009,-869.2 1048,-869.2 1048,-849.2 1009,-849.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1009,-827.2 1009,-847.2 1048,-847.2 1048,-827.2 1009,-827.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1009,-789.2 1009,-825.2 1078,-825.2 1078,-789.2 1009,-789.2"/>
+<text text-anchor="start" x="1023.6795" y="-802.6" font-family="Times,serif" font-size="14.00" fill="#000000">factory</text>
+</g>
+<!-- dctHGkf&#45;&gt;deIIOBk -->
+<g id="edge5" class="edge">
+<title>dctHGkf-&gt;deIIOBk</title>
+<g id="a_edge5"><a xlink:title="config -&gt; factory: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1043,-1628.3073C1043,-1442.8964 1043,-1038.5848 1043,-887.6083"/>
+<polygon fill="#000000" stroke="#000000" points="1043.0001,-887.4864 1039,-881.4865 1043,-875.4864 1047,-881.4864 1043.0001,-887.4864"/>
+</a>
+</g>
+<text text-anchor="middle" x="1046.5" y="-1254.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe -->
+<g id="node7" class="node">
+<title>dejlmEe</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="2186.5,-1553 1363.5,-1553 1363.5,-965 2186.5,-965 2186.5,-1553"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1527 1374,-1547 1394,-1547 1394,-1527 1374,-1527"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1505 1374,-1525 1394,-1525 1394,-1505 1374,-1505"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1467 1374,-1503 1394,-1503 1394,-1467 1374,-1467"/>
+<polygon fill="#ffffff" stroke="transparent" points="1396,-1467 1396,-1503 1545,-1503 1545,-1467 1396,-1467"/>
+<polygon fill="#ffffff" stroke="transparent" points="1547,-1467 1547,-1503 1656,-1503 1656,-1467 1547,-1467"/>
+<polygon fill="#ffffff" stroke="transparent" points="1658,-1467 1658,-1503 1767,-1503 1767,-1467 1658,-1467"/>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1467 1769,-1503 1789,-1503 1789,-1467 1769,-1467"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1791,-1467 1791,-1503 1940,-1503 1940,-1467 1791,-1467"/>
+<text text-anchor="start" x="1846.4488" y="-1480.4" font-family="Times,serif" font-size="14.00" fill="#000000">Import</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1942,-1467 1942,-1503 2027,-1503 2027,-1467 1942,-1467"/>
+<text text-anchor="start" x="1972.0561" y="-1480.4" font-family="Times,serif" font-size="14.00" fill="#000000">Path</text>
+<polygon fill="#ffffff" stroke="transparent" points="2029,-1467 2029,-1503 2092,-1503 2092,-1467 2029,-1467"/>
+<polygon fill="#ffffff" stroke="transparent" points="2094,-1467 2094,-1503 2155,-1503 2155,-1467 2094,-1467"/>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1467 2157,-1503 2177,-1503 2177,-1467 2157,-1467"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1445 1374,-1465 1394,-1465 1394,-1445 1374,-1445"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1407 1374,-1443 1394,-1443 1394,-1407 1374,-1407"/>
+<polygon fill="#ffffff" stroke="transparent" points="1396,-1407 1396,-1443 1545,-1443 1545,-1407 1396,-1407"/>
+<polygon fill="#ffffff" stroke="transparent" points="1547,-1407 1547,-1443 1656,-1443 1656,-1407 1547,-1407"/>
+<polygon fill="#ffffff" stroke="transparent" points="1658,-1407 1658,-1443 1767,-1443 1767,-1407 1658,-1407"/>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1407 1769,-1443 1789,-1443 1789,-1407 1769,-1407"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1791,-1407 1791,-1443 1940,-1443 1940,-1407 1791,-1407"/>
+<text text-anchor="start" x="1846.8324" y="-1420.4" font-family="Times,serif" font-size="14.00" fill="#000000">Mount</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1942,-1407 1942,-1443 2027,-1443 2027,-1407 1942,-1407"/>
+<text text-anchor="start" x="1965.0638" y="-1420.4" font-family="Times,serif" font-size="14.00" fill="#000000">Source</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="2029,-1407 2029,-1443 2092,-1443 2092,-1407 2029,-1407"/>
+<text text-anchor="start" x="2042.2335" y="-1420.4" font-family="Times,serif" font-size="14.00" fill="#000000">Target</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="2094,-1407 2094,-1443 2155,-1443 2155,-1407 2094,-1407"/>
+<text text-anchor="start" x="2110.1164" y="-1420.4" font-family="Times,serif" font-size="14.00" fill="#000000">Lang</text>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1407 2157,-1443 2177,-1443 2177,-1407 2157,-1407"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1385 1374,-1405 1394,-1405 1394,-1385 1374,-1385"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1347 1374,-1383 1394,-1383 1394,-1347 1374,-1347"/>
+<polygon fill="#ffffff" stroke="transparent" points="1396,-1347 1396,-1383 1545,-1383 1545,-1347 1396,-1347"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="1547,-1347 1547,-1383 1656,-1383 1656,-1347 1547,-1347"/>
+<text text-anchor="start" x="1580.1101" y="-1360.4" font-family="Times,serif" font-size="14.00" fill="#000000">Mounts</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="1658,-1347 1658,-1383 1767,-1383 1767,-1347 1658,-1347"/>
+<text text-anchor="start" x="1693.0561" y="-1360.4" font-family="Times,serif" font-size="14.00" fill="#000000">Config</text>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1347 1769,-1383 1789,-1383 1789,-1347 1769,-1347"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1791,-1309 1791,-1383 1940,-1383 1940,-1309 1791,-1309"/>
+<text text-anchor="start" x="1821.9586" y="-1341.8" font-family="Times,serif" font-size="14.00" fill="#000000">moduleAdapter</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1942,-1347 1942,-1383 2027,-1383 2027,-1347 1942,-1347"/>
+<text text-anchor="start" x="1951.8422" y="-1360.4" font-family="Times,serif" font-size="14.00" fill="#000000">projectMod</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="2029,-1347 2029,-1383 2092,-1383 2092,-1347 2029,-1347"/>
+<text text-anchor="start" x="2043.0091" y="-1360.4" font-family="Times,serif" font-size="14.00" fill="#000000">owner</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="2094,-1347 2094,-1383 2155,-1383 2155,-1347 2094,-1347"/>
+<text text-anchor="start" x="2103.8871" y="-1360.4" font-family="Times,serif" font-size="14.00" fill="#000000">mounts</text>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1347 2157,-1383 2177,-1383 2177,-1347 2157,-1347"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1309 1374,-1345 1394,-1345 1394,-1309 1374,-1309"/>
+<polygon fill="#ffffff" stroke="transparent" points="1396,-1309 1396,-1345 1545,-1345 1545,-1309 1396,-1309"/>
+<polygon fill="#ffffff" stroke="transparent" points="1547,-1309 1547,-1345 1656,-1345 1656,-1309 1547,-1309"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="1658,-1309 1658,-1345 1767,-1345 1767,-1309 1658,-1309"/>
+<text text-anchor="start" x="1693.4558" y="-1322.4" font-family="Times,serif" font-size="14.00" fill="#000000">Owner</text>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1309 1769,-1345 1789,-1345 1789,-1309 1769,-1309"/>
+<polygon fill="#f3f3f3" stroke="transparent" points="1942,-1309 1942,-1345 2027,-1345 2027,-1309 1942,-1309"/>
+<text text-anchor="start" x="1966.6171" y="-1322.4" font-family="Times,serif" font-size="14.00" fill="#000000">config</text>
+<polygon fill="#ffffff" stroke="transparent" points="2029,-1309 2029,-1345 2092,-1345 2092,-1309 2029,-1309"/>
+<polygon fill="#ffffff" stroke="transparent" points="2094,-1309 2094,-1345 2155,-1345 2155,-1309 2094,-1309"/>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1309 2157,-1345 2177,-1345 2177,-1309 2157,-1309"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1287 1374,-1307 1394,-1307 1394,-1287 1374,-1287"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1249 1374,-1285 1394,-1285 1394,-1249 1374,-1249"/>
+<polygon fill="#ffffff" stroke="transparent" points="1396,-1249 1396,-1285 1545,-1285 1545,-1249 1396,-1249"/>
+<polygon fill="#ffffff" stroke="transparent" points="1547,-1249 1547,-1285 1656,-1285 1656,-1249 1547,-1249"/>
+<polygon fill="#ffffff" stroke="transparent" points="1658,-1249 1658,-1285 1767,-1285 1767,-1249 1658,-1249"/>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1249 1769,-1285 1789,-1285 1789,-1249 1769,-1249"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1791,-1249 1791,-1285 1940,-1285 1940,-1249 1791,-1249"/>
+<text text-anchor="start" x="1824.2812" y="-1262.4" font-family="Times,serif" font-size="14.00" fill="#000000">ModuleConfig</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1942,-1249 1942,-1285 2027,-1285 2027,-1249 1942,-1249"/>
+<text text-anchor="start" x="1963.1101" y="-1262.4" font-family="Times,serif" font-size="14.00" fill="#000000">Mounts</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="2029,-1249 2029,-1285 2092,-1285 2092,-1249 2029,-1249"/>
+<text text-anchor="start" x="2038.7265" y="-1262.4" font-family="Times,serif" font-size="14.00" fill="#000000">Imports</text>
+<polygon fill="#ffffff" stroke="transparent" points="2094,-1249 2094,-1285 2155,-1285 2155,-1249 2094,-1249"/>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1249 2157,-1285 2177,-1285 2177,-1249 2157,-1249"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1227 1374,-1247 1394,-1247 1394,-1227 1374,-1227"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1189 1374,-1225 1394,-1225 1394,-1189 1374,-1189"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="1396,-1189 1396,-1225 1545,-1225 1545,-1189 1396,-1189"/>
+<text text-anchor="start" x="1405.9684" y="-1202.4" font-family="Times,serif" font-size="14.00" fill="#000000">getNestedKeyAndMap</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="1547,-1189 1547,-1225 1656,-1225 1656,-1189 1547,-1189"/>
+<text text-anchor="start" x="1574.2819" y="-1202.4" font-family="Times,serif" font-size="14.00" fill="#000000">GetString</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="1658,-1189 1658,-1225 1767,-1225 1767,-1189 1658,-1189"/>
+<text text-anchor="start" x="1702.3941" y="-1202.4" font-family="Times,serif" font-size="14.00" fill="#000000">Get</text>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1189 1769,-1225 1789,-1225 1789,-1189 1769,-1189"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1791,-1151 1791,-1225 1940,-1225 1940,-1151 1791,-1151"/>
+<text text-anchor="start" x="1800.9628" y="-1183.8" font-family="Times,serif" font-size="14.00" fill="#000000">DefaultConfigProvider</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1942,-1189 1942,-1225 2027,-1225 2027,-1189 1942,-1189"/>
+<text text-anchor="start" x="1970.8864" y="-1202.4" font-family="Times,serif" font-size="14.00" fill="#000000">Root</text>
+<polygon fill="#ffffff" stroke="transparent" points="2029,-1189 2029,-1225 2092,-1225 2092,-1189 2029,-1189"/>
+<polygon fill="#ffffff" stroke="transparent" points="2094,-1189 2094,-1225 2155,-1225 2155,-1189 2094,-1189"/>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1189 2157,-1225 2177,-1225 2177,-1189 2157,-1189"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1151 1374,-1187 1394,-1187 1394,-1151 1374,-1151"/>
+<polygon fill="#ffffff" stroke="transparent" points="1396,-1151 1396,-1187 1545,-1187 1545,-1151 1396,-1151"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="1547,-1151 1547,-1187 1656,-1187 1656,-1151 1547,-1151"/>
+<text text-anchor="start" x="1568.845" y="-1164.4" font-family="Times,serif" font-size="14.00" fill="#000000">SetDefaults</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="1658,-1151 1658,-1187 1767,-1187 1767,-1151 1658,-1151"/>
+<text text-anchor="start" x="1703.5561" y="-1164.4" font-family="Times,serif" font-size="14.00" fill="#000000">Set</text>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1151 1769,-1187 1789,-1187 1789,-1151 1769,-1151"/>
+<polygon fill="#ffffff" stroke="transparent" points="1942,-1151 1942,-1187 2027,-1187 2027,-1151 1942,-1151"/>
+<polygon fill="#ffffff" stroke="transparent" points="2029,-1151 2029,-1187 2092,-1187 2092,-1151 2029,-1151"/>
+<polygon fill="#ffffff" stroke="transparent" points="2094,-1151 2094,-1187 2155,-1187 2155,-1151 2094,-1151"/>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1151 2157,-1187 2177,-1187 2177,-1151 2157,-1151"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1129 1374,-1149 1394,-1149 1394,-1129 1374,-1129"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1091 1374,-1127 1394,-1127 1394,-1091 1374,-1091"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="1396,-1091 1396,-1127 1545,-1127 1545,-1091 1396,-1091"/>
+<text text-anchor="start" x="1460.3927" y="-1104.4" font-family="Times,serif" font-size="14.00" fill="#000000">add</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="1547,-1091 1547,-1127 1656,-1127 1656,-1091 1547,-1091"/>
+<text text-anchor="start" x="1556.7966" y="-1104.4" font-family="Times,serif" font-size="14.00" fill="#000000">addAndRecurse</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="1658,-1091 1658,-1127 1767,-1127 1767,-1091 1658,-1091"/>
+<text text-anchor="start" x="1667.784" y="-1104.4" font-family="Times,serif" font-size="14.00" fill="#000000">CollectModules</text>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1091 1769,-1127 1789,-1127 1789,-1091 1769,-1091"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="1791,-1091 1791,-1127 1940,-1127 1940,-1091 1791,-1091"/>
+<text text-anchor="start" x="1817.676" y="-1104.4" font-family="Times,serif" font-size="14.00" fill="#000000">ModuleCollector</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="1942,-1091 1942,-1127 2027,-1127 2027,-1091 1942,-1091"/>
+<text text-anchor="start" x="1960.0028" y="-1104.4" font-family="Times,serif" font-size="14.00" fill="#000000">Modules</text>
+<polygon fill="#ffffff" stroke="transparent" points="2029,-1091 2029,-1127 2092,-1127 2092,-1091 2029,-1091"/>
+<polygon fill="#ffffff" stroke="transparent" points="2094,-1091 2094,-1127 2155,-1127 2155,-1091 2094,-1091"/>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1091 2157,-1127 2177,-1127 2177,-1091 2157,-1091"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1069 1374,-1089 1394,-1089 1394,-1069 1374,-1069"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1031 1374,-1067 1394,-1067 1394,-1031 1374,-1031"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1396,-1031 1396,-1067 1545,-1067 1545,-1031 1396,-1031"/>
+<text text-anchor="start" x="1449.1101" y="-1044.4" font-family="Times,serif" font-size="14.00" fill="#000000">Mounts</text>
+<polygon fill="#ead1dc" stroke="transparent" points="1547,-1031 1547,-1067 1656,-1067 1656,-1031 1547,-1031"/>
+<text text-anchor="start" x="1582.4558" y="-1044.4" font-family="Times,serif" font-size="14.00" fill="#000000">Owner</text>
+<polygon fill="#ead1dc" stroke="transparent" points="1658,-1031 1658,-1067 1767,-1067 1767,-1031 1658,-1031"/>
+<text text-anchor="start" x="1693.0561" y="-1044.4" font-family="Times,serif" font-size="14.00" fill="#000000">Config</text>
+<polygon fill="#ffffff" stroke="transparent" points="1769,-1031 1769,-1067 1789,-1067 1789,-1031 1769,-1031"/>
+<polygon fill="#9fc5e8" stroke="transparent" points="1791,-1031 1791,-1067 1940,-1067 1940,-1031 1791,-1031"/>
+<text text-anchor="start" x="1843.7251" y="-1044.4" font-family="Times,serif" font-size="14.00" fill="#000000">Module</text>
+<polygon fill="#ffffff" stroke="transparent" points="1942,-1031 1942,-1067 2027,-1067 2027,-1031 1942,-1031"/>
+<polygon fill="#ffffff" stroke="transparent" points="2029,-1031 2029,-1067 2092,-1067 2092,-1031 2029,-1031"/>
+<polygon fill="#ffffff" stroke="transparent" points="2094,-1031 2094,-1067 2155,-1067 2155,-1031 2094,-1031"/>
+<polygon fill="#ffffff" stroke="transparent" points="2157,-1031 2157,-1067 2177,-1067 2177,-1031 2157,-1031"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-1009 1374,-1029 1394,-1029 1394,-1009 1374,-1009"/>
+<polygon fill="#ffffff" stroke="transparent" points="1374,-971 1374,-1007 2177,-1007 2177,-971 1374,-971"/>
+<text text-anchor="start" x="1743.2349" y="-984.4" font-family="Times,serif" font-size="14.00" fill="#000000">valueobject</text>
+</g>
+<!-- dctHGkf&#45;&gt;dejlmEe -->
+<g id="edge7" class="edge">
+<title>dctHGkf-&gt;dejlmEe</title>
+<g id="a_edge7"><a xlink:title="config -&gt; valueobject: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1232.1087,-1640.6622C1266.6356,-1623.6709 1301.8768,-1605.0556 1334,-1585.8 1347.9762,-1577.4223 1362.0528,-1568.7057 1376.1542,-1559.7328"/>
+<polygon fill="#000000" stroke="#000000" points="1376.32,-1559.6267 1379.2155,-1553.0224 1386.4255,-1553.1551 1383.5299,-1559.7594 1376.32,-1559.6267"/>
+</a>
+</g>
+<text text-anchor="middle" x="1322.5" y="-1598" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dcaPc4s -->
+<g id="node3" class="node">
+<title>dcaPc4s</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="429,-314 299,-314 299,-184 429,-184 429,-314"/>
+<polygon fill="#ffffff" stroke="transparent" points="309,-288 309,-308 329,-308 329,-288 309,-288"/>
+<polygon fill="#ffffff" stroke="transparent" points="309,-250 309,-286 329,-286 329,-250 309,-250"/>
+<polygon fill="#f4cccc" stroke="transparent" points="331,-250 331,-286 397,-286 397,-250 331,-250"/>
+<text text-anchor="start" x="343.7805" y="-263.4" font-family="Times,serif" font-size="14.00" fill="#000000">Format</text>
+<polygon fill="#ffffff" stroke="transparent" points="399,-250 399,-286 419,-286 419,-250 399,-250"/>
+<polygon fill="#ffffff" stroke="transparent" points="309,-228 309,-248 329,-248 329,-228 309,-228"/>
+<polygon fill="#ffffff" stroke="transparent" points="309,-190 309,-226 419,-226 419,-190 309,-190"/>
+<text text-anchor="start" x="343.4025" y="-203.4" font-family="Times,serif" font-size="14.00" fill="#000000">general</text>
+</g>
+<!-- dbvalZB&#45;&gt;dcaPc4s -->
+<g id="edge13" class="edge">
+<title>dbvalZB-&gt;dcaPc4s</title>
+<g id="a_edge13"><a xlink:title="entity -&gt; general: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M502.636,-752.9896C471.7836,-704.5277 440,-638.9797 440,-574.6 440,-574.6 440,-574.6 440,-374.3 440,-356.3752 434.2438,-338.8263 425.8998,-322.8041"/>
+<polygon fill="#000000" stroke="#000000" points="428.9512,-321.0897 421.018,-314.0672 422.8404,-324.5042 428.9512,-321.0897"/>
+</a>
+</g>
+<text text-anchor="middle" x="443.5" y="-416" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dckGN2U -->
+<g id="node4" class="node">
+<title>dckGN2U</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="765,-314 453,-314 453,-184 765,-184 765,-314"/>
+<polygon fill="#ffffff" stroke="transparent" points="463,-288 463,-308 483,-308 483,-288 463,-288"/>
+<polygon fill="#ffffff" stroke="transparent" points="463,-250 463,-286 483,-286 483,-250 463,-250"/>
+<polygon fill="#ead1dc" stroke="transparent" points="485,-250 485,-286 611,-286 611,-250 485,-250"/>
+<text text-anchor="start" x="495.5014" y="-263.4" font-family="Times,serif" font-size="14.00" fill="#000000">FormatFromString</text>
+<polygon fill="#ffffff" stroke="transparent" points="613,-250 613,-286 633,-286 633,-250 613,-250"/>
+<polygon fill="#ead1dc" stroke="transparent" points="635,-250 635,-286 733,-286 733,-250 635,-250"/>
+<text text-anchor="start" x="645.5126" y="-263.4" font-family="Times,serif" font-size="14.00" fill="#000000">UnmarshalTo</text>
+<polygon fill="#ffffff" stroke="transparent" points="735,-250 735,-286 755,-286 755,-250 735,-250"/>
+<polygon fill="#ffffff" stroke="transparent" points="463,-228 463,-248 483,-248 483,-228 463,-228"/>
+<polygon fill="#ffffff" stroke="transparent" points="463,-190 463,-226 755,-226 755,-190 463,-190"/>
+<text text-anchor="start" x="585.6718" y="-203.4" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- dbvalZB&#45;&gt;dckGN2U -->
+<g id="edge4" class="edge">
+<title>dbvalZB-&gt;dckGN2U</title>
+<g id="a_edge4"><a xlink:title="entity -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M570.9465,-753.062C577.2763,-702.561 584,-634.7584 584,-574.6 584,-574.6 584,-574.6 584,-374.3 584,-357.951 586.0722,-340.63 589.0234,-324.2518"/>
+<polygon fill="#000000" stroke="#000000" points="592.5062,-324.6749 590.9639,-314.193 585.633,-323.3489 592.5062,-324.6749"/>
+</a>
+</g>
+<text text-anchor="middle" x="587.5" y="-416" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddfFZqV -->
+<g id="node8" class="node">
+<title>ddfFZqV</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="2138.5,-639.6 1917.5,-639.6 1917.5,-509.6 2138.5,-509.6 2138.5,-639.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1928,-613.6 1928,-633.6 1948,-633.6 1948,-613.6 1928,-613.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1928,-575.6 1928,-611.6 1948,-611.6 1948,-575.6 1928,-575.6"/>
+<polygon fill="#f4cccc" stroke="transparent" points="1950,-575.6 1950,-611.6 2020,-611.6 2020,-575.6 1950,-575.6"/>
+<text text-anchor="start" x="1960.5028" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">Modules</text>
+<polygon fill="#ffffff" stroke="transparent" points="2022,-575.6 2022,-611.6 2042,-611.6 2042,-575.6 2022,-575.6"/>
+<polygon fill="#f4cccc" stroke="transparent" points="2044,-575.6 2044,-611.6 2107,-611.6 2107,-575.6 2044,-575.6"/>
+<text text-anchor="start" x="2054.8962" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">Params</text>
+<polygon fill="#ffffff" stroke="transparent" points="2109,-575.6 2109,-611.6 2129,-611.6 2129,-575.6 2109,-575.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1928,-553.6 1928,-573.6 1948,-573.6 1948,-553.6 1928,-553.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1928,-515.6 1928,-551.6 2129,-551.6 2129,-515.6 1928,-515.6"/>
+<text text-anchor="start" x="2007.9025" y="-529" font-family="Times,serif" font-size="14.00" fill="#000000">general</text>
+</g>
+<!-- dbvalZB&#45;&gt;ddfFZqV -->
+<g id="edge1" class="edge">
+<title>dbvalZB:dcasrN4-&gt;ddfFZqV:dejLTri</title>
+<g id="a_edge1"><a xlink:title="Config.Modules -&gt; Modules: &#10;&#10;From: config.go (Line: 27, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M758.1076,-819.1658C784.3896,-798.9161 830.4473,-767.0768 876,-753.2 1021.1664,-708.9777 1406.351,-724.011 1558,-718.4 1577.3252,-717.685 1889.0247,-719.6636 1906,-710.4 1940.8324,-691.3915 1963.2268,-649.6277 1974.9694,-621.5457"/>
+<polygon fill="#000000" stroke="#000000" points="1978.368,-622.4715 1978.8169,-611.8862 1971.8649,-619.8812 1978.368,-622.4715"/>
+</a>
+</g>
+<text text-anchor="middle" x="1561.5" y="-722.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- d6iVLZ -->
+<g id="node6" class="node">
+<title>d6iVLZ</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1101,-314 985,-314 985,-184 1101,-184 1101,-314"/>
+<polygon fill="#ffffff" stroke="transparent" points="995,-288 995,-308 1015,-308 1015,-288 995,-288"/>
+<polygon fill="#ffffff" stroke="transparent" points="995,-250 995,-286 1015,-286 1015,-250 995,-250"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1017,-250 1017,-286 1069,-286 1069,-250 1017,-250"/>
+<text text-anchor="start" x="1029.7861" y="-263.4" font-family="Times,serif" font-size="14.00" fill="#000000">New</text>
+<polygon fill="#ffffff" stroke="transparent" points="1071,-250 1071,-286 1091,-286 1091,-250 1071,-250"/>
+<polygon fill="#ffffff" stroke="transparent" points="995,-228 995,-248 1015,-248 1015,-228 995,-228"/>
+<polygon fill="#ffffff" stroke="transparent" points="995,-190 995,-226 1091,-226 1091,-190 995,-190"/>
+<text text-anchor="start" x="1019.6718" y="-203.4" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- deIIOBk&#45;&gt;d6iVLZ -->
+<g id="edge14" class="edge">
+<title>deIIOBk-&gt;d6iVLZ</title>
+<g id="a_edge14"><a xlink:title="factory -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1043,-782.7414C1043,-731.7032 1043,-647.3113 1043,-574.6 1043,-574.6 1043,-574.6 1043,-374.3 1043,-358.0869 1043,-340.6937 1043,-324.1818"/>
+<polygon fill="#000000" stroke="#000000" points="1046.5001,-324.0331 1043,-314.0331 1039.5001,-324.0331 1046.5001,-324.0331"/>
+</a>
+</g>
+<text text-anchor="middle" x="1046.5" y="-416" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe&#45;&gt;dejlmEe -->
+<g id="edge6" class="edge">
+<title>dejlmEe:dejRT7D-&gt;dejlmEe:dcd3Jj1</title>
+<g id="a_edge6"><a xlink:title="moduleAdapter.config -&gt; ModuleConfig: &#10;&#10;From: module.go (Line: 40, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2020.0376,-1345.1734C2140.5864,-1404.2204 2204.5,-1395.8242 2204.5,-1297 2204.5,-1200.3955 2048.2126,-1190.2024 1912.7697,-1244.9502"/>
+<polygon fill="#000000" stroke="#000000" points="1911.3526,-1241.7489 1903.4686,-1248.8266 1914.0455,-1248.2102 1911.3526,-1241.7489"/>
+</a>
+</g>
+<text text-anchor="middle" x="2208" y="-1254.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe&#45;&gt;dejlmEe -->
+<g id="edge9" class="edge">
+<title>dejlmEe:deMsLTo-&gt;dejlmEe:db1R1fJ</title>
+<g id="a_edge9"><a xlink:title="moduleAdapter.owner -&gt; Module: &#10;&#10;From: module.go (Line: 38, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2091.9952,-1383.0949C2194.4524,-1441.2965 2204.5,-1422.9492 2204.5,-1207 2204.5,-995.9012 2048.2126,-973.6274 1912.7697,-1027.1006"/>
+<polygon fill="#000000" stroke="#000000" points="1911.3991,-1023.8796 1903.4686,-1030.9051 1914.0493,-1030.3586 1911.3991,-1023.8796"/>
+</a>
+</g>
+<text text-anchor="middle" x="2208" y="-1254.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe&#45;&gt;dejlmEe -->
+<g id="edge10" class="edge">
+<title>dejlmEe:dcGnKwt-&gt;dejlmEe:dcWkNDa</title>
+<g id="a_edge10"><a xlink:title="moduleAdapter.mounts -&gt; Mount: &#10;&#10;From: module.go (Line: 39, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2141.2003,-1346.6378C2194.4739,-1287.7976 2204.5,-1296.2813 2204.5,-1395 2204.5,-1491.6045 2048.2126,-1501.7976 1912.7697,-1447.0498"/>
+<polygon fill="#000000" stroke="#000000" points="1914.0455,-1443.7898 1903.4686,-1443.1734 1911.3526,-1450.2511 1914.0455,-1443.7898"/>
+</a>
+</g>
+<text text-anchor="middle" x="2208" y="-1254.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe&#45;&gt;dejlmEe -->
+<g id="edge15" class="edge">
+<title>dejlmEe:dbYLEHK-&gt;dejlmEe:dcWkNDa</title>
+<g id="a_edge15"><a xlink:title="ModuleConfig.Mounts -&gt; Mount: &#10;&#10;From: module.go (Line: 19, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2020.0376,-1248.8567C2140.5864,-1190.1333 2204.5,-1202.3389 2204.5,-1346 2204.5,-1486.4344 2048.2126,-1501.2521 1912.7697,-1446.9922"/>
+<polygon fill="#000000" stroke="#000000" points="1914.047,-1443.733 1903.4686,-1443.1433 1911.3704,-1450.2011 1914.047,-1443.733"/>
+</a>
+</g>
+<text text-anchor="middle" x="2208" y="-1254.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe&#45;&gt;dejlmEe -->
+<g id="edge16" class="edge">
+<title>dejlmEe:dePI7VK-&gt;dejlmEe:deNs2wq</title>
+<g id="a_edge16"><a xlink:title="ModuleConfig.Imports -&gt; Import: &#10;&#10;From: module.go (Line: 20, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2091.9952,-1248.8751C2194.4524,-1190.3498 2204.5,-1204.8877 2204.5,-1376 2204.5,-1543.269 2048.2126,-1560.9181 1912.7697,-1506.957"/>
+<polygon fill="#000000" stroke="#000000" points="1914.0479,-1503.6983 1903.4686,-1503.1249 1911.3813,-1510.1705 1914.0479,-1503.6983"/>
+</a>
+</g>
+<text text-anchor="middle" x="2208" y="-1254.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe&#45;&gt;ddfFZqV -->
+<g id="edge2" class="edge">
+<title>dejlmEe-&gt;ddfFZqV</title>
+<g id="a_edge2"><a xlink:title="valueobject -&gt; general: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1878.0837,-964.7396C1903.0626,-895.1834 1930.0569,-821.4135 1956,-753.2 1969.0881,-718.7868 1984.24,-680.9296 1997.258,-648.9603"/>
+<polygon fill="#000000" stroke="#000000" points="2000.5097,-650.2552 2001.0467,-639.674 1994.0284,-647.6109 2000.5097,-650.2552"/>
+</a>
+</g>
+<text text-anchor="middle" x="1959.5" y="-825" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe&#45;&gt;ddfFZqV -->
+<g id="edge11" class="edge">
+<title>dejlmEe:deyftu-&gt;ddfFZqV:dduDA4l</title>
+<g id="a_edge11"><a xlink:title="DefaultConfigProvider.Root -&gt; Params: &#10;&#10;From: provider.go (Line: 15, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1987.6742,-1188.9743C2000.5458,-1102.2109 2056.1425,-727.4527 2071.8516,-621.5626"/>
+<polygon fill="#000000" stroke="#000000" points="2075.3202,-622.0321 2073.3257,-611.6267 2068.396,-621.0048 2075.3202,-622.0321"/>
+</a>
+</g>
+<text text-anchor="middle" x="2054.5" y="-825" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dejlmEe&#45;&gt;ddfFZqV -->
+<g id="edge12" class="edge">
+<title>dejlmEe:dbikFvi-&gt;ddfFZqV:dejLTri</title>
+<g id="a_edge12"><a xlink:title="ModuleCollector.Modules -&gt; Modules: &#10;&#10;From: collect.go (Line: 6, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1985,-1090.9588C1985,-1014.3509 1985,-715.647 1985,-621.9061"/>
+<polygon fill="#000000" stroke="#000000" points="1988.5001,-621.7618 1985,-611.7619 1981.5001,-621.7619 1988.5001,-621.7618"/>
+</a>
+</g>
+<text text-anchor="middle" x="1988.5" y="-825" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dcRQkcD -->
+<g id="node9" class="node">
+<title>dcRQkcD</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1893.5,-677.6 1354.5,-677.6 1354.5,-471.6 1893.5,-471.6 1893.5,-677.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1365,-651.6 1365,-671.6 1385,-671.6 1385,-651.6 1365,-651.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1365,-613.6 1365,-649.6 1385,-649.6 1385,-613.6 1365,-613.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1387,-613.6 1387,-649.6 1490,-649.6 1490,-613.6 1387,-613.6"/>
+<text text-anchor="start" x="1396.5056" y="-627" font-family="Times,serif" font-size="14.00" fill="#000000">ToStringMapE</text>
+<polygon fill="#ffffff" stroke="transparent" points="1492,-613.6 1492,-649.6 1512,-649.6 1512,-613.6 1492,-613.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1514,-613.6 1514,-649.6 1656,-649.6 1656,-613.6 1514,-613.6"/>
+<text text-anchor="start" x="1555.8352" y="-627" font-family="Times,serif" font-size="14.00" fill="#000000">ToStringE</text>
+<polygon fill="#ffffff" stroke="transparent" points="1658,-613.6 1658,-649.6 1678,-649.6 1678,-613.6 1658,-613.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1680,-613.6 1680,-649.6 1860,-649.6 1860,-613.6 1680,-613.6"/>
+<text text-anchor="start" x="1708.1928" y="-627" font-family="Times,serif" font-size="14.00" fill="#000000">ToParamsAndPrepare</text>
+<polygon fill="#ffffff" stroke="transparent" points="1862,-613.6 1862,-649.6 1882,-649.6 1882,-613.6 1862,-613.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1365,-575.6 1365,-611.6 1385,-611.6 1385,-575.6 1365,-575.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1387,-575.6 1387,-611.6 1490,-611.6 1490,-575.6 1387,-575.6"/>
+<text text-anchor="start" x="1424.5035" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">IsNil</text>
+<polygon fill="#ffffff" stroke="transparent" points="1492,-575.6 1492,-611.6 1512,-611.6 1512,-575.6 1492,-575.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1514,-575.6 1514,-611.6 1656,-611.6 1656,-575.6 1514,-575.6"/>
+<text text-anchor="start" x="1523.9621" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">NewModuleCollector</text>
+<polygon fill="#ffffff" stroke="transparent" points="1658,-575.6 1658,-611.6 1678,-611.6 1678,-575.6 1658,-575.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1680,-575.6 1680,-611.6 1860,-611.6 1860,-575.6 1680,-575.6"/>
+<text text-anchor="start" x="1689.5196" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">ApplyProjectConfigDefaults</text>
+<polygon fill="#ffffff" stroke="transparent" points="1862,-575.6 1862,-611.6 1882,-611.6 1882,-575.6 1862,-575.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1365,-537.6 1365,-573.6 1385,-573.6 1385,-537.6 1365,-537.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1387,-537.6 1387,-573.6 1512,-573.6 1512,-537.6 1387,-537.6"/>
+<text text-anchor="start" x="1407.5224" y="-551" font-family="Times,serif" font-size="14.00" fill="#000000">PrepareParams</text>
+<polygon fill="#ffffff" stroke="transparent" points="1514,-537.6 1514,-573.6 1656,-573.6 1656,-537.6 1514,-537.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1658,-537.6 1658,-573.6 1860,-573.6 1860,-537.6 1658,-537.6"/>
+<text text-anchor="start" x="1685.1423" y="-551" font-family="Times,serif" font-size="14.00" fill="#000000">indirectToStringerOrError</text>
+<polygon fill="#ffffff" stroke="transparent" points="1862,-537.6 1862,-573.6 1882,-573.6 1882,-537.6 1862,-537.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1365,-515.6 1365,-535.6 1385,-535.6 1385,-515.6 1365,-515.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1365,-477.6 1365,-513.6 1884,-513.6 1884,-477.6 1365,-477.6"/>
+<text text-anchor="start" x="1601.1718" y="-491" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- dejlmEe&#45;&gt;dcRQkcD -->
+<g id="edge3" class="edge">
+<title>dejlmEe-&gt;dcRQkcD</title>
+<g id="a_edge3"><a xlink:title="valueobject -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1710.0861,-964.7809C1688.475,-866.8299 1665.6835,-763.5283 1648.9841,-687.8391"/>
+<polygon fill="#000000" stroke="#000000" points="1652.3447,-686.8253 1646.7723,-677.8142 1645.509,-688.3335 1652.3447,-686.8253"/>
+</a>
+</g>
+<text text-anchor="middle" x="1706.5" y="-825" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+</g>
+</svg>
