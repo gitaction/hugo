@@ -89,7 +89,7 @@ Config模块内部也可以自己决定要怎么去实现，并提供这些服�
 
 ![DDD Config Strategic](images/ddd-config-strategic.svg)
 
-线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.strategic.dot)查看。
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.strategic.config.dot)查看。
 
 果然如我们所料：
 
@@ -107,7 +107,7 @@ Config模块内部也可以自己决定要怎么去实现，并提供这些服�
 
 ![DDD Config Strategic](images/ddd-config-tactic-detail.svg)
 
-线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.tactic.detail.dot)查看。
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.tactic.detail.config.dot)查看。
 
 DDD战略图可以帮助我们直观的查看领域对象，以及对象之间的关联关系，以保证大家用的都是同一语言 - 统一语言。
 这样无论是在敏捷迭代IPM拉通等会议上，还是在架构设计的过程中，都能让消息高效准确的在团队内流通。

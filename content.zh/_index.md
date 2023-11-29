@@ -47,6 +47,7 @@ type: docs
 
 - 用领域驱动设计（DDD）将源码知识彻底吸收，从这里迈出成为领域专家坚实的一步 - Hugoverse
 - Hugoverse Demo 项目
+- Hugoverse 六边形架构
 - DDD配置信息
 - DDD依赖管理
 - DDD站点创建
