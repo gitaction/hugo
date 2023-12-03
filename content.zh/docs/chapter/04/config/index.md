@@ -23,9 +23,61 @@ type: docs
 
 但在静态站点生成领域里，又需要怎么样去组织这些对象，才能让大家协同并高效合作呢？
 
+## Hugoverse 加载配置信息源码运行
+
+运行以下命令：
+
+```shell
+➜  hugoverse git:(main) ✗ ./hugov build -p /var/folders/rt/bg5xpyj51f98w79j6s80wcr40000gn/T/hugoverse-temp-dir782641825
+--- start to create `mytheme` module
+--- theme: mytheme
+=== modules: [%!s(*valueobject.moduleAdapter=&{true <nil> [{mycontent content en} {data data } {layouts layouts } {i18n i18n } {archetypes archetypes } {assets assets } {static static }] {[] [{mytheme}]}}) %!s(*valueobject.moduleAdapter=&{false 0xc0000ae360 [] {[] []}})]
+```
+
+上面我们调用了Hugoverse的build命令，指定的Hugo项目就是我们前面生成的[样例项目](../demo)。
+输出的信息也就是样例项目中的配置信息。
+
+从日志中可以看到，我们的样例项目配置的主题是: `mytheme`。
+
+这样在加载模块的时候，就先要加载主模块，也就是样例项目本身，再加载主题模块`mytheme`。
+从日志中可以看到，承载模块信息的是值对象`moduleAdapter`:
+
+```go
+// moduleAdapter implemented Module interface
+type moduleAdapter struct {
+	projectMod bool
+	owner      config.Module
+	mounts     []config.Mount
+	config     config.ModuleConfig
+}
+```
+
+对应的第一个模块信息如下:
+
+```go
+(*valueobject.moduleAdapter=&{
+	true 
+	<nil>
+	[{mycontent content en} {data data } {layouts layouts } {i18n i18n } {archetypes archetypes } {assets assets } {static static }] 
+	{[] [{mytheme}]}
+})
+```
+
+说明是project模块，没有父结点，mounts里有详细的模块信息，其中我们配置的`contentDir = "mycontent"`内容目录信息也反应在了挂载信息里。
+
+下一个模块信息如下:
+
+```go
+(*valueobject.moduleAdapter=&{false 0xc0000ae360 [] {[] []}})
+```
+
+可以看出，这个不是project模块，父结点就是上一个模块，其它的信息为空。
+因为我们的主题很简单，就只有一个`mytheme.txt`文件，主要是用来简化主题模块的复杂度，这样可以让大家更容易理解Hugo主流程。
+
+
 ## Hugoverse Config 信息流
 
-先来看看在交六边型架构的Hugoverse中，Config模块是如何和处部交互的：
+让我们先来看看Config模块是怎么和外部交互的，这样可以帮助我们实际理解六边形架构是怎么真实工作的。
 
 ```shell
 ➜  hugoverse git:(main) ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/config -mf
@@ -40,14 +92,50 @@ type: docs
 1. main -> cmd/New -> interface/buildCmd.Run -> application/GenerateStaticSite -> entity/Config.Load
 2. main -> cmd/New -> interface/serverCmd.Run -> interface/api/NewServer -> interface/api/Server.registerHandler -> interface/api/Server.handleConfig -> application/AllConfigurationInformation -> entity/Config.Load
 
-第一条是用来构建静态站点的，通过提供的应用服务GenerateStaticSite发起的调用。
+第一条路径是用来构建静态站点的，通过提供的应用服务GenerateStaticSite发起的调用。
 
 第二条则是用来提供Headless CMS API服务发起的，通过提供的应用服务AllConfigurationInformation发起的调用。
 
+总的来看，Config模块和外部交互的规则，完全符合[六边形架构](../hexagon)。
+如果我们想要对外提供CMD和API的服务，那么internal application层就要提供支持，而具体的功能模块则由internal domain层的模块来负责。
+
+配置信息模块就在internal/domain/config下，并且有一个实体Config负责对外提供统一服务。
+
+下面我们就一起来看看模块内部的组成和实现。
+
+## Config DDD 战略图
+
+```shell
+➜  hugoverse git:(main) ✗ ~/go/bin/dp strategic -m ./ -p github.com/dddplayer/hugoverse                    
+```
+
+战略图能给我们直观的展示在领域内部，有哪些关键领域对象帮帮助提供这些服务的，他们之间又是如何关联在一起的。
+
+如谁是聚合根，负责统一对外提供服务。
+哪些是实体对象，负责较复杂的事物处理。
+又有哪些是值对象，负责承载数据和信息。
+
+又比如，来了新的业务需求，我们要对战略图进行修改了。
+那大家就可以拿出战略图，可视化对新的战略图进行讨论，用实际用例来测试，是否找到了准备的业务语言来描述，是否放在了合理的位置。
+
+![DDD Config Strategic](images/ddd-config-strategic.svg)
+
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.strategic.config.dot)查看。
+
+果然如我们所料：
+
+- 实体Config也是聚合根，对外提供服务，并帮助内部成员专注在内部实现
+- 值对象DefaultConfigProvider是实现了Provider接口的重要对象
+- 值对象ModuleCollector用moduleAdapter帮忙组织了ModuleConfig，并把Import和Mount信息都准备好
+  - Import指的是模块需要引入哪些模块，像我们的样例工程引用了Theme主题
+  - Mount指的是挂载点，当我们准备好一些引入的模块后，我们怎么把相关的内容，如layouts的文件都挂载到相应的位置，为后面的渲染准备好模板
+
+
 ## Config 内部组织结构
 
-看完了流程图后，我们理解到外部和Config模块是怎么交互的。
-接下来让我们一起来看看Config模块的内部组成。
+有了全局视角后，我们理解了外部和Config模块是怎么交互的，也从战略图中理解了各关键对象是如何协作的。
+那除了这些关键对象之外，要想实现完整的功能，肯定还有其它细节需要补充。
+接下来，就让我们一起来看看Config模块的内部具体组成。
 
 ```shell
 ➜  hugoverse git:(main) ✗ ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/config -c
@@ -81,29 +169,16 @@ Config模块内部也可以自己决定要怎么去实现，并提供这些服�
 
 在大家的配合下，最终实现了最开始的承诺 - 提供Provider服务。
 
-## Config DDD 战略图
-
-```shell
-➜  hugoverse git:(main) ✗ ~/go/bin/dp strategic -m ./ -p github.com/dddplayer/hugoverse                    
-```
-
-![DDD Config Strategic](images/ddd-config-strategic.svg)
-
-线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.strategic.config.dot)查看。
-
-果然如我们所料：
-
-- 实体Config也是聚合根，对外提供服务，并帮助内部成员专注在内部实现
-- 值对象DefaultConfigProvider是实现了Provider接口的重要对象
-- 值对象ModuleCollector用moduleAdapter帮忙组织了ModuleConfig，并把Import和Mount信息都准备好
-  - Import指的是模块需要引入哪些模块，像我们的样例工程引用了Theme主题
-  - Mount指的是挂载点，当我们准备好一些引入的模块后，我们怎么把相关的内容，如layouts的文件都挂载到相应的位置，为后面的渲染准备好模板
-
 ## Config DDD 战术图
 
 ```shell
 ➜  hugoverse git:(main) ✗ ~/go/bin/dp tactic -m ./ -p github.com/dddplayer/hugoverse -d                    
 ```
+
+战略图负责统一语言，方便治理领域模型。
+但软件的交付除了架构设计，还离不开具体实现。
+
+比如在代码走查的时候，我们还需要看到实现细节，像接口的实现，引用的关系，以及存放的位置，等等信息。
 
 ![DDD Config Strategic](images/ddd-config-tactic-detail.svg)
 
