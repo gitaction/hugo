@@ -47,4 +47,5 @@ headless: true
   - [4.2 Hugo 样例工程]({{< relref "/docs/chapter/04/demo" >}})
   - [4.3 Hugoverse 六边形架构]({{< relref "/docs/chapter/04/hexagon" >}})
   - [4.4 DDD Hugo 配置信息]({{< relref "/docs/chapter/04/config" >}})
+  - [4.5 DDD Hugo PathSpec]({{< relref "/docs/chapter/04/pathspec" >}})
 <br />
