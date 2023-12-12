@@ -89,32 +89,146 @@ PathSpec拥有着最全的路径信：
 - FilesystemCollector: 如何生成上面的SourceFilesystems，需要有这要一个文件系统收集器，进行收集。
   而收集器依赖的信息有RootMapping，通过对实体文件目录的映射，可以生成需要的RootMappingFs，最后封闭成具有装饰功能的文件系统帮助生成目标SourceFilesystem。
 
+### Fs Message Flow
+
+```shell
+~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/fs -mf
+```
+
+![Fs Message Flow](images/fs-mf.png)
+
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.internal.domain.fs.messageflow.dot).
+
+正是在NewPathSpec的时候，调用了NewBaseFs。
+
+### Fs 内部结构
+
+```shell
+~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/fs -c
+```
+![Fs Composition](images/fs-composition.svg)
+
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.internal.domain.fs.composition.dot).
+
+从上图中可以看出，当我们想要新建NewBaseFs的时候，同样在Factory里，有一个sourceFilesystemsBuilder。
+说明在新建BaseFs的时候，主要是由这个构建器来进行构建的，从其中的result指向的是SourceFilesystems，theBigFs指向中的是FilesystemsCollector也可以证明这一点。
+
+从左侧方法可以看出，这个构建器在构建的时候，需要创建重叠文件系统createOverlayFs。
+我们再来看看所引用的overlayfs包的相关信息，以帮助我们进一步理解PathSpec的具体实现细节。
+
+### OverlayFs Message Flow
+
+```shell
+~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/pkg/overlayfs -mf
+```
+
+![OverlayFs Message Flow](images/overlayfs-mf.png)
+
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.pkg.overlayfs.messageflow.dot)
+
+由构建器在创建主重叠文件createMainOverlayFs时，调用的新建。
+并在createOverlayFs时还调用了Append。
+说明OverlayFs可以组织多个文件系统，提供统一服务。
+就像是一个装饰器一样。
+
+
+### OverlayFs 内部结构
+
+```shell
+~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/pkg/overlayfs -c
+```
+
+![OverlayFs Composition](images/overlayfs-composition.svg)
+
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.pkg.overlayfs.composition.dot)
+
+可以清楚的看到，OverlayFs是由满足AbsStatFss接口的文件系统组成的，存储在fss里，而且是多个文件系统。
+
+那这些原始的文件系统都从哪儿来的呢？
+前面有提到构建器要createOverlayFs，那我们就顺着这个去找。
+
+### RadixTree Message Flow
+
+我们知道FilesystemsCollector是负责收集工作的，而他收集的正是RootMappingFs。
+为什么叫Root Mapping?
+因为在Hugo中，用户是可以灵活配置多重文件挂载点的。
+如静态文件夹，或者数据文件夹。
+都可以配置多个挂载点，这样我们就需创建一个逻辑根文件系统，来将这些有相同用途的文件都整合到一个文件系统中。
+
+Hugo中的RootMappingFs对象，用的就是基数树radix tree这种数据结构来实现这个需求的。
+对应RootMappingFs的RootMapToReal字段。
+
+```shell
+~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/pkg/radixtree -mf
+```
+
+![Radix Tree Message Flow](images/radixtree-mf.svg)
+
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.pkg.radixtree.messageflow.dot)
+
+可以看到以下调用顺序：
+
+`sourceFilesystemsBuilder.createOvlerlayFs -> 
+FilesystemsCollector.AddDir ->
+FilesystemsCollector.addDir ->
+RootMappingFs.Dirs ->
+RootMappingFs.getRootsWithPreix ->
+RootMappingFs.getRootsWithPreix ->
+GetRms ->
+radixtree/Tree.Get
+`
+
+看来RootMappingFs是以基数树的形式将所有Hugo组件(layouts, data, static等)给组织起来的。
+
+### RadixTree 内部结构
+
+```shell
+~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/pkg/radixtree -c
+```
+
+![Radix Tree Composition](images/radixtree-composition.svg)
+
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.pkg.radixtree.composition.dot)
+
+可以看到基数数的特点就是通过前缀，把具有相同前缀的对象都放在同一父结点下。
+这样能大大方便针对路径的查找速度。
+
 ## PathSpec 内部结构
+
+```shell
+~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/pathspec -c
+```
+
+![PathSpec Composition](images/pathspec-composition.svg)
+
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.internal.domain.pathspec.composition.dot).
+
+可以看出PathSpec的内部结构较为简单，这样对外提供的服务也将会更加清晰。
+让使用的成本变得更底。
+这正是得益于前面提到的Fs, OverlayFs, RadixTree等等的全力支持。
 
 ## PathSpec DDD 战术图更新
 
+```shell
+➜  hugoverse git:(main) ✗ ~/go/bin/dp tactic -m ./ -p github.com/dddplayer/hugoverse -d
+```
 
-源码运行结果
+![PathSpec Tactic](images/pathspec-tactic.svg)
 
-1. pathspec的功能，定位：9.10
-2. 采用总分总，从 ddd 战略图查看 pathspec 与 deps 之间的关系
-   1. 
-4. pathspec 对象组成
-   1. ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/pathspec -c
-   2. https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.internal.domain.pathspec.composition.dot
-5. fs message flow :
-   1. ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/fs -mf
-   2. https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.internal.domain.fs.messageflow.dot
-6. fs composition
-   1. ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/internal/domain/fs -c
-   2. https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.internal.domain.fs.composition.dot
-7. Overlay
-   1. ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/pkg/overlayfs -mf
-   2. https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.pkg.overlayfs.messageflow.dot
-   3. ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/pkg/overlayfs -c
-   2. https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.pkg.overlayfs.composition.dot
-8. Radix Tree
-   1. ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/pkg/radixtree -mf
-   2. https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.pkg.radixtree.messageflow.dot
-   3. ~/go/bin/dp normal -m ./ -p github.com/dddplayer/hugoverse/pkg/radixtree -c
-   4. https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.pkg.radixtree.composition.dot
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.tactic.dot)
+
+这里丰富了DDD战术图。
+到目前为止，包含了Config和Deps的PathSpec。
+
+## 小结
+
+Hugo提供了很强大的配置功能，并且支持主题嵌套。
+功能越强大，越灵活，对于实现来说，也就意味着越复杂。
+
+我们可以简单将PathSpec理解为统一后的Hugo文件系统，提供的服务很简单。
+这从PathSpec的内部组成对象也可以看出，就只有PathSpec和Paths两个主要对象。
+
+通过DDD领域战略图则可以看出，为了让用户使用起来足够方便，还需要来自其它领域，主要是文件系统Fs领域的强力支持。
+DDD战术图则为此提供了更详细的信息，让我们能看到Fs的具体实现细节。
+
+PathSpec完美体现了Hugo将困难留给自己，把方便留给他人的设计理念。

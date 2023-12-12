@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1348pt" height="770pt" viewBox="0.00 0.00 1348.00 770.40">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 766.4)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-766.4 1344,-766.4 1344,4 -4,4"/>
+<text text-anchor="middle" x="670" y="-82" font-family="Times,serif" font-size="20.00" fill="#000000">github.com/dddplayer/hugoverse/pkg/radixtree</text>
+<text text-anchor="middle" x="670" y="-58" font-family="Times,serif" font-size="20.00" fill="#000000">Domain Model</text>
+<text text-anchor="middle" x="670" y="-10" font-family="Times,serif" font-size="20.00" fill="#000000">Powered by DDD Player</text>
+<g id="clust6" class="cluster">
+<title>cluster_ddbU50u</title>
+<polygon fill="none" stroke="#000000" points="848,-160 848,-406.8 1332,-406.8 1332,-160 848,-160"/>
+<text text-anchor="middle" x="1090" y="-390.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/pkg/radixtree/function</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_dIGVl6</title>
+<polygon fill="none" stroke="#000000" points="516,-198 516,-368.8 840,-368.8 840,-198 516,-198"/>
+<text text-anchor="middle" x="678" y="-352.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/pkg/radixtree/general</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster_ddd_concept</title>
+<polygon fill="none" stroke="#000000" points="8,-515.6 8,-655.6 500,-655.6 500,-515.6 8,-515.6"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_ddgWHk3</title>
+<polygon fill="none" stroke="#000000" points="508,-441.6 508,-754.4 1134,-754.4 1134,-441.6 508,-441.6"/>
+<text text-anchor="middle" x="821" y="-737.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/pkg/radixtree</text>
+</g>
+<!-- ddd_concept -->
+<g id="node1" class="node">
+<title>ddd_concept</title>
+<polygon fill="none" stroke="#ffffff" stroke-dasharray="1,5" points="492,-647.6 16,-647.6 16,-523.6 492,-523.6 492,-647.6"/>
+<polygon fill="transparent" stroke="transparent" points="26,-605.6 26,-641.6 140,-641.6 140,-605.6 26,-605.6"/>
+<text text-anchor="start" x="35.5582" y="-619" font-family="Times,serif" font-size="14.00" fill="#000000">BoundedContext</text>
+<polygon fill="#ffd966" stroke="transparent" points="142,-605.6 142,-641.6 247,-641.6 247,-605.6 142,-605.6"/>
+<text text-anchor="start" x="151.7356" y="-619" font-family="Times,serif" font-size="14.00" fill="#000000">AggregateRoot</text>
+<polygon fill="#ffe599" stroke="transparent" points="249,-605.6 249,-641.6 318,-641.6 318,-605.6 249,-605.6"/>
+<text text-anchor="start" x="266.3878" y="-619" font-family="Times,serif" font-size="14.00" fill="#000000">Entity</text>
+<polygon fill="#a2c4c9" stroke="transparent" points="320,-605.6 320,-641.6 410,-641.6 410,-605.6 320,-605.6"/>
+<text text-anchor="start" x="329.6283" y="-619" font-family="Times,serif" font-size="14.00" fill="#000000">ValueObject</text>
+<polygon fill="#e69138" stroke="transparent" points="412,-605.6 412,-641.6 482,-641.6 482,-605.6 412,-605.6"/>
+<text text-anchor="start" x="426.0112" y="-619" font-family="Times,serif" font-size="14.00" fill="#000000">Service</text>
+<polygon fill="#ffffff" stroke="transparent" points="26,-567.6 26,-603.6 140,-603.6 140,-567.6 26,-567.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="142,-567.6 142,-603.6 247,-603.6 247,-567.6 142,-567.6"/>
+<text text-anchor="start" x="165.3338" y="-581" font-family="Times,serif" font-size="14.00" fill="#000000">Command</text>
+<polygon fill="#f6b26b" stroke="transparent" points="249,-567.6 249,-603.6 318,-603.6 318,-567.6 249,-567.6"/>
+<text text-anchor="start" x="267.1711" y="-581" font-family="Times,serif" font-size="14.00" fill="#000000">Event</text>
+<polygon fill="#cfe2f3" stroke="transparent" points="320,-567.6 320,-603.6 410,-603.6 410,-567.6 320,-567.6"/>
+<text text-anchor="start" x="343.6185" y="-581" font-family="Times,serif" font-size="14.00" fill="#000000">Factory</text>
+<polygon fill="#b4a7d6" stroke="transparent" points="412,-567.6 412,-603.6 482,-603.6 482,-567.6 412,-567.6"/>
+<text text-anchor="start" x="431.8345" y="-581" font-family="Times,serif" font-size="14.00" fill="#000000">Class</text>
+<polygon fill="#ffffff" stroke="transparent" points="26,-529.6 26,-565.6 140,-565.6 140,-529.6 26,-529.6"/>
+<polygon fill="#f4cccc" stroke="transparent" points="142,-529.6 142,-565.6 247,-565.6 247,-529.6 142,-529.6"/>
+<text text-anchor="start" x="172.3492" y="-543" font-family="Times,serif" font-size="14.00" fill="#000000">General</text>
+<polygon fill="#ead1dc" stroke="transparent" points="249,-529.6 249,-565.6 318,-565.6 318,-529.6 249,-529.6"/>
+<text text-anchor="start" x="258.6108" y="-543" font-family="Times,serif" font-size="14.00" fill="#000000">Function</text>
+<polygon fill="#9fc5e8" stroke="transparent" points="320,-529.6 320,-565.6 410,-565.6 410,-529.6 320,-529.6"/>
+<text text-anchor="start" x="340.1346" y="-543" font-family="Times,serif" font-size="14.00" fill="#000000">Interface</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="412,-529.6 412,-565.6 482,-565.6 482,-529.6 412,-529.6"/>
+<text text-anchor="start" x="421.7279" y="-543" font-family="Times,serif" font-size="14.00" fill="#000000">Attribute</text>
+</g>
+<!-- ddgWHk3 -->
+<g id="node2" class="node">
+<title>ddgWHk3</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1026,-721.6 516,-721.6 516,-449.6 1026,-449.6 1026,-721.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-695.6 526,-715.6 546,-715.6 546,-695.6 526,-695.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-673.6 526,-693.6 546,-693.6 546,-673.6 526,-673.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-635.6 526,-671.6 546,-671.6 546,-635.6 526,-635.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="548,-635.6 548,-671.6 613,-671.6 613,-635.6 548,-635.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="615,-635.6 615,-671.6 683,-671.6 683,-635.6 615,-635.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="685,-635.6 685,-671.6 750,-671.6 750,-635.6 685,-635.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="752,-635.6 752,-671.6 772,-671.6 772,-635.6 752,-635.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="774,-635.6 774,-671.6 821,-671.6 821,-635.6 774,-635.6"/>
+<text text-anchor="start" x="784.2854" y="-649" font-family="Times,serif" font-size="14.00" fill="#000000">edge</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="823,-635.6 823,-671.6 873,-671.6 873,-635.6 823,-635.6"/>
+<text text-anchor="start" x="832.8401" y="-649" font-family="Times,serif" font-size="14.00" fill="#000000">name</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="875,-635.6 875,-671.6 928,-671.6 928,-635.6 875,-635.6"/>
+<text text-anchor="start" x="889.4495" y="-649" font-family="Times,serif" font-size="14.00" fill="#000000">start</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="930,-635.6 930,-671.6 994,-671.6 994,-635.6 930,-635.6"/>
+<text text-anchor="start" x="951.8927" y="-649" font-family="Times,serif" font-size="14.00" fill="#000000">end</text>
+<polygon fill="#ffffff" stroke="transparent" points="996,-635.6 996,-671.6 1016,-671.6 1016,-635.6 996,-635.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-613.6 526,-633.6 546,-633.6 546,-613.6 526,-613.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-575.6 526,-611.6 546,-611.6 546,-575.6 526,-575.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-575.6 548,-611.6 613,-611.6 613,-575.6 548,-575.6"/>
+<text text-anchor="start" x="566.8878" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">Print</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="615,-575.6 615,-611.6 683,-611.6 683,-575.6 615,-575.6"/>
+<text text-anchor="start" x="633.0645" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">Insert</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="685,-575.6 685,-611.6 750,-611.6 750,-575.6 685,-575.6"/>
+<text text-anchor="start" x="707.3941" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">Get</text>
+<polygon fill="#ffffff" stroke="transparent" points="752,-575.6 752,-611.6 772,-611.6 772,-575.6 752,-575.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="774,-575.6 774,-611.6 821,-611.6 821,-575.6 774,-575.6"/>
+<text text-anchor="start" x="784.6788" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">Tree</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="823,-575.6 823,-611.6 873,-611.6 873,-575.6 823,-575.6"/>
+<text text-anchor="start" x="836.7244" y="-589" font-family="Times,serif" font-size="14.00" fill="#000000">root</text>
+<polygon fill="#ffffff" stroke="transparent" points="875,-575.6 875,-611.6 928,-611.6 928,-575.6 875,-575.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="930,-575.6 930,-611.6 994,-611.6 994,-575.6 930,-575.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="996,-575.6 996,-611.6 1016,-611.6 1016,-575.6 996,-575.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-553.6 526,-573.6 546,-573.6 546,-553.6 526,-553.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-515.6 526,-551.6 546,-551.6 546,-515.6 526,-515.6"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="548,-515.6 548,-551.6 613,-551.6 613,-515.6 548,-515.6"/>
+<text text-anchor="start" x="557.5638" y="-529" font-family="Times,serif" font-size="14.00" fill="#000000">delEdge</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="615,-515.6 615,-551.6 683,-551.6 683,-515.6 615,-515.6"/>
+<text text-anchor="start" x="624.5091" y="-529" font-family="Times,serif" font-size="14.00" fill="#000000">addEdge</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="685,-515.6 685,-551.6 750,-551.6 750,-515.6 685,-515.6"/>
+<text text-anchor="start" x="694.5638" y="-529" font-family="Times,serif" font-size="14.00" fill="#000000">getEdge</text>
+<polygon fill="#ffffff" stroke="transparent" points="752,-515.6 752,-551.6 772,-551.6 772,-515.6 752,-515.6"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="774,-515.6 774,-551.6 821,-551.6 821,-515.6 774,-515.6"/>
+<text text-anchor="start" x="783.8927" y="-529" font-family="Times,serif" font-size="14.00" fill="#000000">node</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="823,-515.6 823,-551.6 873,-551.6 873,-515.6 823,-515.6"/>
+<text text-anchor="start" x="839.4474" y="-529" font-family="Times,serif" font-size="14.00" fill="#000000">val</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="875,-515.6 875,-551.6 928,-551.6 928,-515.6 875,-515.6"/>
+<text text-anchor="start" x="884.7868" y="-529" font-family="Times,serif" font-size="14.00" fill="#000000">prefix</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="930,-515.6 930,-551.6 994,-551.6 994,-515.6 930,-515.6"/>
+<text text-anchor="start" x="939.8422" y="-529" font-family="Times,serif" font-size="14.00" fill="#000000">suffixes</text>
+<polygon fill="#ffffff" stroke="transparent" points="996,-515.6 996,-551.6 1016,-551.6 1016,-515.6 996,-515.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-493.6 526,-513.6 546,-513.6 546,-493.6 526,-493.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="526,-455.6 526,-491.6 1016,-491.6 1016,-455.6 526,-455.6"/>
+<text text-anchor="start" x="746.1269" y="-469" font-family="Times,serif" font-size="14.00" fill="#000000">radixtree</text>
+</g>
+<!-- ddgWHk3&#45;&gt;ddgWHk3 -->
+<g id="edge1" class="edge">
+<title>ddgWHk3:dclI0Ej-&gt;ddgWHk3:dcvnrBE</title>
+<g id="a_edge1"><a xlink:title="Tree.root -&gt; node: &#10;&#10;From: radixtree.go (Line: 24, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M873.0512,-603.61C957.2062,-633.5185 1044,-627.6972 1044,-563.6 1044,-501.0287 921.9034,-493.9917 830.8196,-521.5151"/>
+<polygon fill="#000000" stroke="#000000" points="829.7326,-518.188 821.2727,-524.5661 831.8636,-524.8557 829.7326,-518.188"/>
+</a>
+</g>
+<text text-anchor="middle" x="1047.5" y="-581.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddgWHk3&#45;&gt;ddgWHk3 -->
+<g id="edge4" class="edge">
+<title>ddgWHk3:dvaCYj-&gt;ddgWHk3:dBUFZN</title>
+<g id="a_edge4"><a xlink:title="node.prefix -&gt; edge: &#10;&#10;From: radixtree.go (Line: 19, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M928.4772,-522.5763C1002.8333,-494.1367 1044,-503.307 1044,-593.6 1044,-682.7974 921.9034,-692.8289 830.8196,-665.6423"/>
+<polygon fill="#000000" stroke="#000000" points="831.8628,-662.3014 821.2727,-662.618 829.7488,-668.9746 831.8628,-662.3014"/>
+</a>
+</g>
+<text text-anchor="middle" x="1047.5" y="-581.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddgWHk3&#45;&gt;ddgWHk3 -->
+<g id="edge6" class="edge">
+<title>ddgWHk3:dbLQz74-&gt;ddgWHk3:dcvnrBE</title>
+<g id="a_edge6"><a xlink:title="edge.start -&gt; node: &#10;&#10;From: radixtree.go (Line: 11, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M928.4772,-664.6237C1002.8333,-693.0633 1044,-683.893 1044,-593.6 1044,-504.4026 921.9034,-494.3711 830.8196,-521.5577"/>
+<polygon fill="#000000" stroke="#000000" points="829.7488,-518.2254 821.2727,-524.582 831.8628,-524.8986 829.7488,-518.2254"/>
+</a>
+</g>
+<text text-anchor="middle" x="1047.5" y="-581.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddgWHk3&#45;&gt;ddgWHk3 -->
+<g id="edge7" class="edge">
+<title>ddgWHk3:dmDsyZ-&gt;ddgWHk3:dcvnrBE</title>
+<g id="a_edge7"><a xlink:title="edge.end -&gt; node: &#10;&#10;From: radixtree.go (Line: 12, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M994.0859,-671.0197C1035.8866,-690.9253 1044,-676.2377 1044,-593.6 1044,-504.4026 921.9034,-494.3711 830.8196,-521.5577"/>
+<polygon fill="#000000" stroke="#000000" points="829.7488,-518.2254 821.2727,-524.582 831.8628,-524.8986 829.7488,-518.2254"/>
+</a>
+</g>
+<text text-anchor="middle" x="1047.5" y="-581.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dIGVl6 -->
+<g id="node3" class="node">
+<title>dIGVl6</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="831.5,-336 710.5,-336 710.5,-206 831.5,-206 831.5,-336"/>
+<polygon fill="#ffffff" stroke="transparent" points="721,-310 721,-330 741,-330 741,-310 721,-310"/>
+<polygon fill="#ffffff" stroke="transparent" points="721,-272 721,-308 741,-308 741,-272 721,-272"/>
+<polygon fill="#f4cccc" stroke="transparent" points="743,-272 743,-308 800,-308 800,-272 743,-272"/>
+<text text-anchor="start" x="755.5631" y="-285.4" font-family="Times,serif" font-size="14.00" fill="#000000">edges</text>
+<polygon fill="#ffffff" stroke="transparent" points="802,-272 802,-308 822,-308 822,-272 802,-272"/>
+<polygon fill="#ffffff" stroke="transparent" points="721,-250 721,-270 741,-270 741,-250 721,-250"/>
+<polygon fill="#ffffff" stroke="transparent" points="721,-212 721,-248 822,-248 822,-212 721,-212"/>
+<text text-anchor="start" x="750.9025" y="-225.4" font-family="Times,serif" font-size="14.00" fill="#000000">general</text>
+</g>
+<!-- ddgWHk3&#45;&gt;dIGVl6 -->
+<g id="edge2" class="edge">
+<title>ddgWHk3-&gt;dIGVl6</title>
+<g id="a_edge2"><a xlink:title="radixtree -&gt; general: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M771,-449.4416C771,-414.0818 771,-377.2705 771,-346.3305"/>
+<polygon fill="#000000" stroke="#000000" points="774.5001,-346.0735 771,-336.0735 767.5001,-346.0735 774.5001,-346.0735"/>
+</a>
+</g>
+<text text-anchor="middle" x="774.5" y="-419" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddgWHk3&#45;&gt;dIGVl6 -->
+<g id="edge5" class="edge">
+<title>ddgWHk3:ddldzoK-&gt;dIGVl6:ddOMDIQ</title>
+<g id="a_edge5"><a xlink:title="node.suffixes -&gt; edges: &#10;&#10;From: radixtree.go (Line: 20, Column: 2) To: . (Line: -1, Column: 0)&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M954.1843,-515.5977C941.783,-489.2359 915.0452,-440.4829 877,-414.8 864.4918,-406.3562 856.2112,-415.668 844,-406.8 813.236,-384.4586 792.8453,-344.5733 781.8515,-317.705"/>
+<polygon fill="#000000" stroke="#000000" points="784.9997,-316.1453 778.0961,-308.1085 778.481,-318.6963 784.9997,-316.1453"/>
+</a>
+</g>
+<text text-anchor="middle" x="898.5" y="-419" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddbU50u -->
+<g id="node4" class="node">
+<title>ddbU50u</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1323.5,-374 856.5,-374 856.5,-168 1323.5,-168 1323.5,-374"/>
+<polygon fill="#ffffff" stroke="transparent" points="867,-348 867,-368 887,-368 887,-348 867,-348"/>
+<polygon fill="#ffffff" stroke="transparent" points="867,-310 867,-346 887,-346 887,-310 867,-310"/>
+<polygon fill="#ead1dc" stroke="transparent" points="889,-310 889,-346 1053,-346 1053,-310 889,-310"/>
+<text text-anchor="start" x="898.6872" y="-323.4" font-family="Times,serif" font-size="14.00" fill="#000000">findEdgeWithSamePrefix</text>
+<polygon fill="#ffffff" stroke="transparent" points="1055,-310 1055,-346 1075,-346 1075,-310 1055,-310"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1077,-310 1077,-346 1177,-346 1177,-310 1077,-310"/>
+<text text-anchor="start" x="1089.6753" y="-323.4" font-family="Times,serif" font-size="14.00" fill="#000000">longestPrefix</text>
+<polygon fill="#ffffff" stroke="transparent" points="1179,-310 1179,-346 1199,-346 1199,-310 1179,-310"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1201,-310 1201,-346 1290,-346 1290,-310 1201,-310"/>
+<text text-anchor="start" x="1217.1185" y="-323.4" font-family="Times,serif" font-size="14.00" fill="#000000">printNode</text>
+<polygon fill="#ffffff" stroke="transparent" points="1292,-310 1292,-346 1312,-346 1312,-310 1292,-310"/>
+<polygon fill="#ffffff" stroke="transparent" points="867,-272 867,-308 887,-308 887,-272 867,-272"/>
+<polygon fill="#ead1dc" stroke="transparent" points="889,-272 889,-308 1053,-308 1053,-272 889,-272"/>
+<text text-anchor="start" x="957.7861" y="-285.4" font-family="Times,serif" font-size="14.00" fill="#000000">New</text>
+<polygon fill="#ffffff" stroke="transparent" points="1055,-272 1055,-308 1075,-308 1075,-272 1055,-272"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1077,-272 1077,-308 1177,-308 1177,-272 1077,-272"/>
+<text text-anchor="start" x="1086.5666" y="-285.4" font-family="Times,serif" font-size="14.00" fill="#000000">sortAscending</text>
+<polygon fill="#ffffff" stroke="transparent" points="1179,-272 1179,-308 1199,-308 1199,-272 1179,-272"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1201,-272 1201,-308 1290,-308 1290,-272 1201,-272"/>
+<text text-anchor="start" x="1210.892" y="-285.4" font-family="Times,serif" font-size="14.00" fill="#000000">getFirstByte</text>
+<polygon fill="#ffffff" stroke="transparent" points="1292,-272 1292,-308 1312,-308 1312,-272 1292,-272"/>
+<polygon fill="#ffffff" stroke="transparent" points="867,-234 867,-270 887,-270 887,-234 867,-234"/>
+<polygon fill="#ead1dc" stroke="transparent" points="889,-234 889,-270 1075,-270 1075,-234 889,-234"/>
+<text text-anchor="start" x="942.7377" y="-247.4" font-family="Times,serif" font-size="14.00" fill="#000000">recursivePrint</text>
+<polygon fill="#ffffff" stroke="transparent" points="1077,-234 1077,-270 1177,-270 1177,-234 1077,-234"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1179,-234 1179,-270 1290,-270 1290,-234 1179,-234"/>
+<text text-anchor="start" x="1193.2952" y="-247.4" font-family="Times,serif" font-size="14.00" fill="#000000">newNodeEdge</text>
+<polygon fill="#ffffff" stroke="transparent" points="1292,-234 1292,-270 1312,-270 1312,-234 1292,-234"/>
+<polygon fill="#ffffff" stroke="transparent" points="867,-212 867,-232 887,-232 887,-212 867,-212"/>
+<polygon fill="#ffffff" stroke="transparent" points="867,-174 867,-210 1314,-210 1314,-174 867,-174"/>
+<text text-anchor="start" x="1067.1718" y="-187.4" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- ddgWHk3&#45;&gt;ddbU50u -->
+<g id="edge3" class="edge">
+<title>ddgWHk3-&gt;ddbU50u</title>
+<g id="a_edge3"><a xlink:title="radixtree -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M840.9643,-449.388C849.6484,-437.1166 859.0174,-425.3572 869,-414.8 880.3706,-402.7749 892.9373,-391.2782 906.1357,-380.4005"/>
+<polygon fill="#000000" stroke="#000000" points="908.3954,-383.0745 913.9754,-374.0681 903.9968,-377.629 908.3954,-383.0745"/>
+</a>
+</g>
+<text text-anchor="middle" x="872.5" y="-419" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+</g>
+</svg>
