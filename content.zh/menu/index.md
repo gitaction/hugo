@@ -48,4 +48,5 @@ headless: true
   - [4.3 Hugoverse 六边形架构]({{< relref "/docs/chapter/04/hexagon" >}})
   - [4.4 DDD Hugo 配置信息]({{< relref "/docs/chapter/04/config" >}})
   - [4.5 DDD Hugo PathSpec]({{< relref "/docs/chapter/04/pathspec" >}})
+  - [4.6 DDD Hugo ContentSpec]({{< relref "/docs/chapter/04/contentspec" >}})
 <br />

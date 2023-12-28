@@ -1,5 +1,5 @@
 ---
-title: 4.4 DDD PathSpec
+title: 4.5 DDD PathSpec
 type: docs
 ---
 
@@ -67,7 +67,7 @@ PathSpec拥有着最全的路径信：
 
 ![DDD Config Strategic](images/pathspec-strategic.svg)
 
-线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.strategic.dot)查看。
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.strategic.pathspec.dot)查看。
 
 可以看到，对比Config时的战略图，到PathSpec时，战略图变得丰富了许多。
 基于上面的信息流，我们可以一起来看一看这一版的战略图。
@@ -210,12 +210,12 @@ radixtree/Tree.Get
 ## PathSpec DDD 战术图更新
 
 ```shell
-➜  hugoverse git:(main) ✗ ~/go/bin/dp tactic -m ./ -p github.com/dddplayer/hugoverse -d
+➜  hugoverse git:(main) ✗ ~/go/bin/dp tactic -m ./ -p github.com/dddplayer/hugoverse
 ```
 
 ![PathSpec Tactic](images/pathspec-tactic.svg)
 
-线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.tactic.dot)
+线上可缩放版本可[点这里](https://dddplayer.com/?path=https://assets.dddplayer.com/resource/hugov/github.com.dddplayer.hugoverse.tactic.pathspec.dot)
 
 这里丰富了DDD战术图。
 到目前为止，包含了Config和Deps的PathSpec。

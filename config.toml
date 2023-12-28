@@ -29,7 +29,7 @@ enableGitInfo = true
 
 [languages.en]
   languageName = 'English'
-  contentDir = 'content'
+  contentDir = 'content.zhbk'
   weight = 2
 
 [menu]
