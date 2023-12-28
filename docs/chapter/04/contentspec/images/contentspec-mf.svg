@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3474pt" height="5528pt" viewBox="0.00 0.00 3474.00 5527.80">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 5523.8)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-5523.8 3470,-5523.8 3470,4 -4,4"/>
+<text text-anchor="middle" x="1733" y="-82" font-family="Times,serif" font-size="20.00" fill="#000000">github.com/dddplayer/hugoverse</text>
+<text text-anchor="middle" x="1733" y="-58" font-family="Times,serif" font-size="20.00" fill="#000000">Domain Model</text>
+<text text-anchor="middle" x="1733" y="-10" font-family="Times,serif" font-size="20.00" fill="#000000">Powered by DDD Player</text>
+<g id="clust1" class="cluster">
+<title>cluster_ddd_concept</title>
+<polygon fill="none" stroke="#000000" points="8,-5363 8,-5503 500,-5503 500,-5363 8,-5363"/>
+</g>
+<g id="clust21" class="cluster">
+<title>cluster_dbPwjkq</title>
+<polygon fill="none" stroke="#000000" points="3207,-4290.6 3207,-4461.4 3458,-4461.4 3458,-4290.6 3207,-4290.6"/>
+<text text-anchor="middle" x="3332.5" y="-4444.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/function</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_dUQ30Z</title>
+<polygon fill="none" stroke="#000000" points="508,-160 508,-5511.8 3199,-5511.8 3199,-160 508,-160"/>
+<text text-anchor="middle" x="1853.5" y="-5495.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_d5iImG</title>
+<polygon fill="none" stroke="#000000" points="2896,-4077 2896,-4803 3191,-4803 3191,-4077 2896,-4077"/>
+<text text-anchor="middle" x="3043.5" y="-4786.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/cmd</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_ddREsL</title>
+<polygon fill="none" stroke="#000000" points="2904,-4085 2904,-4255.8 3183,-4255.8 3183,-4085 2904,-4085"/>
+<text text-anchor="middle" x="3043.5" y="-4239.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/cmd/function</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_di7GIv</title>
+<polygon fill="none" stroke="#000000" points="516,-168 516,-5290.2 2888,-5290.2 2888,-168 516,-168"/>
+<text text-anchor="middle" x="1702" y="-5273.6" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal</text>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_dbYmF3O</title>
+<polygon fill="none" stroke="#000000" points="524,-176 524,-4992.8 1989,-4992.8 1989,-176 524,-176"/>
+<text text-anchor="middle" x="1256.5" y="-4976.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain</text>
+</g>
+<g id="clust8" class="cluster">
+<title>cluster_dQal5L</title>
+<polygon fill="none" stroke="#000000" points="532,-184 532,-2931 1021,-2931 1021,-184 532,-184"/>
+<text text-anchor="middle" x="776.5" y="-2914.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/contentspec</text>
+</g>
+<g id="clust9" class="cluster">
+<title>cluster_dezIify</title>
+<polygon fill="none" stroke="#000000" points="540,-192 540,-2079.6 1013,-2079.6 1013,-192 540,-192"/>
+<text text-anchor="middle" x="776.5" y="-2063" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/contentspec/factory</text>
+</g>
+<g id="clust10" class="cluster">
+<title>cluster_dc4HJGF</title>
+<polygon fill="none" stroke="#000000" points="548,-200 548,-370.8 1005,-370.8 1005,-200 548,-200"/>
+<text text-anchor="middle" x="776.5" y="-354.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/contentspec/factory/function</text>
+</g>
+<g id="clust11" class="cluster">
+<title>cluster_ddaltgo</title>
+<polygon fill="none" stroke="#000000" points="1029,-1155.2 1029,-3976.2 1525,-3976.2 1525,-1155.2 1029,-1155.2"/>
+<text text-anchor="middle" x="1277" y="-3959.6" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/hugosites</text>
+</g>
+<g id="clust12" class="cluster">
+<title>cluster_dmhopf</title>
+<polygon fill="none" stroke="#000000" points="1037,-1163.2 1037,-2931 1517,-2931 1517,-1163.2 1037,-1163.2"/>
+<text text-anchor="middle" x="1277" y="-2914.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/hugosites/factory</text>
+</g>
+<g id="clust13" class="cluster">
+<title>cluster_ddyjrVs</title>
+<polygon fill="none" stroke="#000000" points="1045,-1171.2 1045,-1342 1509,-1342 1509,-1171.2 1045,-1171.2"/>
+<text text-anchor="middle" x="1277" y="-1325.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/hugosites/factory/function</text>
+</g>
+<g id="clust14" class="cluster">
+<title>cluster_dcsgz25</title>
+<polygon fill="none" stroke="#000000" points="1533,-669.6 1533,-3348.8 1981,-3348.8 1981,-669.6 1533,-669.6"/>
+<text text-anchor="middle" x="1757" y="-3332.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/deps</text>
+</g>
+<g id="clust15" class="cluster">
+<title>cluster_dbQLBV2</title>
+<polygon fill="none" stroke="#000000" points="1541,-677.6 1541,-2513.2 1973,-2513.2 1973,-677.6 1541,-677.6"/>
+<text text-anchor="middle" x="1757" y="-2496.6" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/deps/factory</text>
+</g>
+<g id="clust16" class="cluster">
+<title>cluster_dDvPFV</title>
+<polygon fill="none" stroke="#000000" points="1549,-685.6 1549,-856.4 1965,-856.4 1965,-685.6 1549,-685.6"/>
+<text text-anchor="middle" x="1757" y="-839.8" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/domain/deps/factory/function</text>
+</g>
+<g id="clust17" class="cluster">
+<title>cluster_dWutTC</title>
+<polygon fill="none" stroke="#000000" points="1997,-3805.4 1997,-4992.8 2493,-4992.8 2493,-3805.4 1997,-3805.4"/>
+<text text-anchor="middle" x="2245" y="-4976.2" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/interfaces</text>
+</g>
+<g id="clust18" class="cluster">
+<title>cluster_dcUGxVR</title>
+<polygon fill="none" stroke="#000000" points="2005,-3813.4 2005,-4006.2 2485,-4006.2 2485,-3813.4 2005,-3813.4"/>
+<text text-anchor="middle" x="2245" y="-3989.6" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/interfaces/cmd</text>
+</g>
+<g id="clust19" class="cluster">
+<title>cluster_dCbZAW</title>
+<polygon fill="none" stroke="#000000" points="2501,-3479.8 2501,-4613.2 2880,-4613.2 2880,-3479.8 2501,-3479.8"/>
+<text text-anchor="middle" x="2690.5" y="-4596.6" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/application</text>
+</g>
+<g id="clust20" class="cluster">
+<title>cluster_ddeNuT</title>
+<polygon fill="none" stroke="#000000" points="2509,-3487.8 2509,-3658.6 2872,-3658.6 2872,-3487.8 2509,-3487.8"/>
+<text text-anchor="middle" x="2690.5" y="-3642" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/dddplayer/hugoverse/internal/application/function</text>
+</g>
+<!-- ddd_concept -->
+<g id="node1" class="node">
+<title>ddd_concept</title>
+<polygon fill="none" stroke="#ffffff" stroke-dasharray="1,5" points="492,-5495 16,-5495 16,-5371 492,-5371 492,-5495"/>
+<polygon fill="transparent" stroke="transparent" points="26,-5453 26,-5489 140,-5489 140,-5453 26,-5453"/>
+<text text-anchor="start" x="35.5582" y="-5466.4" font-family="Times,serif" font-size="14.00" fill="#000000">BoundedContext</text>
+<polygon fill="#ffd966" stroke="transparent" points="142,-5453 142,-5489 247,-5489 247,-5453 142,-5453"/>
+<text text-anchor="start" x="151.7356" y="-5466.4" font-family="Times,serif" font-size="14.00" fill="#000000">AggregateRoot</text>
+<polygon fill="#ffe599" stroke="transparent" points="249,-5453 249,-5489 318,-5489 318,-5453 249,-5453"/>
+<text text-anchor="start" x="266.3878" y="-5466.4" font-family="Times,serif" font-size="14.00" fill="#000000">Entity</text>
+<polygon fill="#a2c4c9" stroke="transparent" points="320,-5453 320,-5489 410,-5489 410,-5453 320,-5453"/>
+<text text-anchor="start" x="329.6283" y="-5466.4" font-family="Times,serif" font-size="14.00" fill="#000000">ValueObject</text>
+<polygon fill="#e69138" stroke="transparent" points="412,-5453 412,-5489 482,-5489 482,-5453 412,-5453"/>
+<text text-anchor="start" x="426.0112" y="-5466.4" font-family="Times,serif" font-size="14.00" fill="#000000">Service</text>
+<polygon fill="#ffffff" stroke="transparent" points="26,-5415 26,-5451 140,-5451 140,-5415 26,-5415"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="142,-5415 142,-5451 247,-5451 247,-5415 142,-5415"/>
+<text text-anchor="start" x="165.3338" y="-5428.4" font-family="Times,serif" font-size="14.00" fill="#000000">Command</text>
+<polygon fill="#f6b26b" stroke="transparent" points="249,-5415 249,-5451 318,-5451 318,-5415 249,-5415"/>
+<text text-anchor="start" x="267.1711" y="-5428.4" font-family="Times,serif" font-size="14.00" fill="#000000">Event</text>
+<polygon fill="#cfe2f3" stroke="transparent" points="320,-5415 320,-5451 410,-5451 410,-5415 320,-5415"/>
+<text text-anchor="start" x="343.6185" y="-5428.4" font-family="Times,serif" font-size="14.00" fill="#000000">Factory</text>
+<polygon fill="#b4a7d6" stroke="transparent" points="412,-5415 412,-5451 482,-5451 482,-5415 412,-5415"/>
+<text text-anchor="start" x="431.8345" y="-5428.4" font-family="Times,serif" font-size="14.00" fill="#000000">Class</text>
+<polygon fill="#ffffff" stroke="transparent" points="26,-5377 26,-5413 140,-5413 140,-5377 26,-5377"/>
+<polygon fill="#f4cccc" stroke="transparent" points="142,-5377 142,-5413 247,-5413 247,-5377 142,-5377"/>
+<text text-anchor="start" x="172.3492" y="-5390.4" font-family="Times,serif" font-size="14.00" fill="#000000">General</text>
+<polygon fill="#ead1dc" stroke="transparent" points="249,-5377 249,-5413 318,-5413 318,-5377 249,-5377"/>
+<text text-anchor="start" x="258.6108" y="-5390.4" font-family="Times,serif" font-size="14.00" fill="#000000">Function</text>
+<polygon fill="#9fc5e8" stroke="transparent" points="320,-5377 320,-5413 410,-5413 410,-5377 320,-5377"/>
+<text text-anchor="start" x="340.1346" y="-5390.4" font-family="Times,serif" font-size="14.00" fill="#000000">Interface</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="412,-5377 412,-5413 482,-5413 482,-5377 412,-5377"/>
+<text text-anchor="start" x="421.7279" y="-5390.4" font-family="Times,serif" font-size="14.00" fill="#000000">Attribute</text>
+</g>
+<!-- dUQ30Z -->
+<g id="node2" class="node">
+<title>dUQ30Z</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="3117.5,-5479 3010.5,-5479 3010.5,-5387 3117.5,-5387 3117.5,-5479"/>
+<polygon fill="#ffffff" stroke="transparent" points="3021,-5453 3021,-5473 3069,-5473 3069,-5453 3021,-5453"/>
+<polygon fill="#ffffff" stroke="transparent" points="3021,-5431 3021,-5451 3069,-5451 3069,-5431 3021,-5431"/>
+<polygon fill="#ffffff" stroke="transparent" points="3021,-5393 3021,-5429 3108,-5429 3108,-5393 3021,-5393"/>
+<text text-anchor="start" x="3035.7328" y="-5406.4" font-family="Times,serif" font-size="14.00" fill="#000000">hugoverse</text>
+</g>
+<!-- dbPwjkq -->
+<g id="node3" class="node">
+<title>dbPwjkq</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="3332.5,-4428.6 3215.5,-4428.6 3215.5,-4298.6 3332.5,-4298.6 3332.5,-4428.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="3226,-4402.6 3226,-4422.6 3246,-4422.6 3246,-4402.6 3226,-4402.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="3226,-4364.6 3226,-4400.6 3246,-4400.6 3246,-4364.6 3226,-4364.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="3248,-4364.6 3248,-4400.6 3301,-4400.6 3301,-4364.6 3248,-4364.6"/>
+<text text-anchor="start" x="3260.5021" y="-4378" font-family="Times,serif" font-size="14.00" fill="#000000">main</text>
+<polygon fill="#ffffff" stroke="transparent" points="3303,-4364.6 3303,-4400.6 3323,-4400.6 3323,-4364.6 3303,-4364.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="3226,-4342.6 3226,-4362.6 3246,-4362.6 3246,-4342.6 3226,-4342.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="3226,-4304.6 3226,-4340.6 3323,-4340.6 3323,-4304.6 3226,-4304.6"/>
+<text text-anchor="start" x="3251.1718" y="-4318" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- dUQ30Z&#45;&gt;dbPwjkq -->
+<g id="edge1" class="edge">
+<title>dUQ30Z-&gt;dbPwjkq</title>
+<g id="a_edge1"><a xlink:title="hugoverse -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M3117.5862,-5423.8594C3169.6819,-5411.54 3241,-5384.0085 3241,-5325.6 3241,-5325.6 3241,-5325.6 3241,-4534.4 3241,-4502.6534 3246.5639,-4468.1804 3253.1225,-4438.5727"/>
+<polygon fill="#000000" stroke="#000000" points="3256.556,-4439.2585 3255.3783,-4428.7293 3249.7329,-4437.6948 3256.556,-4439.2585"/>
+</a>
+</g>
+<text text-anchor="middle" x="3244.5" y="-5005" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- d5iImG -->
+<g id="node4" class="node">
+<title>d5iImG</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="3101,-4770.2 3027,-4770.2 3027,-4678.2 3101,-4678.2 3101,-4770.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="3037,-4744.2 3037,-4764.2 3069,-4764.2 3069,-4744.2 3037,-4744.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="3037,-4722.2 3037,-4742.2 3069,-4742.2 3069,-4722.2 3037,-4722.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="3037,-4684.2 3037,-4720.2 3091,-4720.2 3091,-4684.2 3037,-4684.2"/>
+<text text-anchor="start" x="3051.9474" y="-4697.6" font-family="Times,serif" font-size="14.00" fill="#000000">cmd</text>
+</g>
+<!-- dUQ30Z&#45;&gt;d5iImG -->
+<g id="edge10" class="edge">
+<title>dUQ30Z-&gt;d5iImG</title>
+<g id="a_edge10"><a xlink:title="hugoverse -&gt; cmd: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M3064,-5386.7438C3064,-5367.7928 3064,-5345.6443 3064,-5325.6 3064,-5325.6 3064,-5325.6 3064,-4830.5 3064,-4814.9186 3064,-4798.0525 3064,-4782.4439"/>
+<polygon fill="#000000" stroke="#000000" points="3064.0001,-4782.2443 3060,-4776.2444 3064,-4770.2443 3068,-4776.2443 3064.0001,-4782.2443"/>
+</a>
+</g>
+<text text-anchor="middle" x="3067.5" y="-5077.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- di7GIv -->
+<g id="node6" class="node">
+<title>di7GIv</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="2560,-5257.4 2468,-5257.4 2468,-5165.4 2560,-5165.4 2560,-5257.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2478,-5231.4 2478,-5251.4 2519,-5251.4 2519,-5231.4 2478,-5231.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2478,-5209.4 2478,-5229.4 2519,-5229.4 2519,-5209.4 2478,-5209.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2478,-5171.4 2478,-5207.4 2550,-5207.4 2550,-5171.4 2478,-5171.4"/>
+<text text-anchor="start" x="2492.6192" y="-5184.8" font-family="Times,serif" font-size="14.00" fill="#000000">internal</text>
+</g>
+<!-- dUQ30Z&#45;&gt;di7GIv -->
+<g id="edge14" class="edge">
+<title>dUQ30Z-&gt;di7GIv</title>
+<g id="a_edge14"><a xlink:title="hugoverse -&gt; internal: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M3010.3794,-5430.02C2912.4667,-5422.107 2702.1194,-5393.4203 2564,-5290.2 2555.7912,-5284.0653 2548.5865,-5276.1518 2542.3909,-5267.7129"/>
+<polygon fill="#000000" stroke="#000000" points="2542.3022,-5267.5817 2535.628,-5264.8511 2535.5815,-5257.6402 2542.2557,-5260.3707 2542.3022,-5267.5817"/>
+</a>
+</g>
+<text text-anchor="middle" x="2637.5" y="-5321.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddREsL -->
+<g id="node5" class="node">
+<title>ddREsL</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="3122,-4223 3006,-4223 3006,-4093 3122,-4093 3122,-4223"/>
+<polygon fill="#ffffff" stroke="transparent" points="3016,-4197 3016,-4217 3036,-4217 3036,-4197 3016,-4197"/>
+<polygon fill="#ffffff" stroke="transparent" points="3016,-4159 3016,-4195 3036,-4195 3036,-4159 3016,-4159"/>
+<polygon fill="#ead1dc" stroke="transparent" points="3038,-4159 3038,-4195 3090,-4195 3090,-4159 3038,-4159"/>
+<text text-anchor="start" x="3050.7861" y="-4172.4" font-family="Times,serif" font-size="14.00" fill="#000000">New</text>
+<polygon fill="#ffffff" stroke="transparent" points="3092,-4159 3092,-4195 3112,-4195 3112,-4159 3092,-4159"/>
+<polygon fill="#ffffff" stroke="transparent" points="3016,-4137 3016,-4157 3036,-4157 3036,-4137 3016,-4137"/>
+<polygon fill="#ffffff" stroke="transparent" points="3016,-4099 3016,-4135 3112,-4135 3112,-4099 3016,-4099"/>
+<text text-anchor="start" x="3040.6718" y="-4112.4" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- dbPwjkq&#45;&gt;ddREsL -->
+<g id="edge17" class="edge">
+<title>dbPwjkq:dcdc8xt-&gt;ddREsL:dcvzibt</title>
+<g id="a_edge17"><a xlink:title="main -&gt; New: &#10;&#10;From: main.go (Line: 10, Column: 16) To: command.go (Line: 11, Column: 6)&#10;">
+<path fill="none" stroke="#000000" d="M3260.3765,-4364.2975C3244.8541,-4345.2353 3219.2628,-4314.8298 3195,-4290.6 3162.5695,-4258.2137 3122.3789,-4224.1691 3095.1292,-4201.8937"/>
+<polygon fill="#000000" stroke="#000000" points="3097.0775,-4198.9669 3087.1107,-4195.3734 3092.6612,-4204.398 3097.0775,-4198.9669"/>
+</a>
+</g>
+<text text-anchor="middle" x="3184.5" y="-4268" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- d5iImG&#45;&gt;ddREsL -->
+<g id="edge9" class="edge">
+<title>d5iImG-&gt;ddREsL</title>
+<g id="a_edge9"><a xlink:title="cmd -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M3064,-4677.8249C3064,-4665.7395 3064,-4652.7321 3064,-4640.7 3064,-4640.7 3064,-4640.7 3064,-4363.6 3064,-4320.5122 3064,-4272.3451 3064,-4233.4691"/>
+<polygon fill="#000000" stroke="#000000" points="3067.5001,-4233.2798 3064,-4223.2799 3060.5001,-4233.2799 3067.5001,-4233.2798"/>
+</a>
+</g>
+<text text-anchor="middle" x="3067.5" y="-4530.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dcUGxVR -->
+<g id="node18" class="node">
+<title>dcUGxVR</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="2476.5,-3973.4 2013.5,-3973.4 2013.5,-3821.4 2476.5,-3821.4 2476.5,-3973.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2024,-3947.4 2024,-3967.4 2044,-3967.4 2044,-3947.4 2024,-3947.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2024,-3925.4 2024,-3945.4 2044,-3945.4 2044,-3925.4 2024,-3925.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2024,-3887.4 2024,-3923.4 2044,-3923.4 2044,-3887.4 2024,-3887.4"/>
+<polygon fill="#a4c2f4" stroke="transparent" points="2046,-3887.4 2046,-3923.4 2089,-3923.4 2089,-3887.4 2046,-3887.4"/>
+<text text-anchor="start" x="2055.8317" y="-3900.8" font-family="Times,serif" font-size="14.00" fill="#000000">Run</text>
+<polygon fill="#a4c2f4" stroke="transparent" points="2091,-3887.4 2091,-3923.4 2145,-3923.4 2145,-3887.4 2091,-3887.4"/>
+<text text-anchor="start" x="2100.5098" y="-3900.8" font-family="Times,serif" font-size="14.00" fill="#000000">Usage</text>
+<polygon fill="#ffffff" stroke="transparent" points="2147,-3887.4 2147,-3923.4 2167,-3923.4 2167,-3887.4 2147,-3887.4"/>
+<polygon fill="#b4a7d6" stroke="transparent" points="2169,-3887.4 2169,-3923.4 2245,-3923.4 2245,-3887.4 2169,-3887.4"/>
+<text text-anchor="start" x="2178.9958" y="-3900.8" font-family="Times,serif" font-size="14.00" fill="#000000">buildCmd</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="2247,-3887.4 2247,-3923.4 2301,-3923.4 2301,-3887.4 2247,-3887.4"/>
+<text text-anchor="start" x="2256.5098" y="-3900.8" font-family="Times,serif" font-size="14.00" fill="#000000">parent</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="2303,-3887.4 2303,-3923.4 2347,-3923.4 2347,-3887.4 2303,-3887.4"/>
+<text text-anchor="start" x="2312.9474" y="-3900.8" font-family="Times,serif" font-size="14.00" fill="#000000">cmd</text>
+<polygon fill="#f3f3f3" stroke="transparent" points="2349,-3887.4 2349,-3923.4 2445,-3923.4 2445,-3887.4 2349,-3887.4"/>
+<text text-anchor="start" x="2358.8892" y="-3900.8" font-family="Times,serif" font-size="14.00" fill="#000000">hugoProjPath</text>
+<polygon fill="#ffffff" stroke="transparent" points="2447,-3887.4 2447,-3923.4 2467,-3923.4 2467,-3887.4 2447,-3887.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2024,-3865.4 2024,-3885.4 2044,-3885.4 2044,-3865.4 2024,-3865.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2024,-3827.4 2024,-3863.4 2467,-3863.4 2467,-3827.4 2024,-3827.4"/>
+<text text-anchor="start" x="2233.4474" y="-3840.8" font-family="Times,serif" font-size="14.00" fill="#000000">cmd</text>
+</g>
+<!-- ddREsL&#45;&gt;dcUGxVR -->
+<g id="edge6" class="edge">
+<title>ddREsL:dcvzibt-&gt;dcUGxVR:dFJoku</title>
+<g id="a_edge6"><a xlink:title="New -&gt; buildCmd.Run: &#10;&#10;From: command.go (Line: 69, Column: 25) To: build.go (Line: 38, Column: 21)&#10;">
+<path fill="none" stroke="#000000" d="M3040.7787,-4158.8351C3007.8729,-4134.0913 2944.883,-4090.3223 2884,-4068 2720.4659,-4008.0414 2667.9015,-4039.8317 2497,-4006.2 2347.1323,-3976.7076 2170.136,-3932.0793 2098.9751,-3913.7283"/>
+<polygon fill="#000000" stroke="#000000" points="2099.8175,-3910.3311 2089.2597,-3911.2164 2098.0652,-3917.1082 2099.8175,-3910.3311"/>
+</a>
+</g>
+<text text-anchor="middle" x="2831.5" y="-4037.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbYmF3O -->
+<g id="node7" class="node">
+<title>dbYmF3O</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1602.5,-4960 1511.5,-4960 1511.5,-4868 1602.5,-4868 1602.5,-4960"/>
+<polygon fill="#ffffff" stroke="transparent" points="1522,-4934 1522,-4954 1562,-4954 1562,-4934 1522,-4934"/>
+<polygon fill="#ffffff" stroke="transparent" points="1522,-4912 1522,-4932 1562,-4932 1562,-4912 1522,-4912"/>
+<polygon fill="#ffffff" stroke="transparent" points="1522,-4874 1522,-4910 1593,-4910 1593,-4874 1522,-4874"/>
+<text text-anchor="start" x="1536.5021" y="-4887.4" font-family="Times,serif" font-size="14.00" fill="#000000">domain</text>
+</g>
+<!-- di7GIv&#45;&gt;dbYmF3O -->
+<g id="edge20" class="edge">
+<title>di7GIv-&gt;dbYmF3O</title>
+<g id="a_edge20"><a xlink:title="internal -&gt; domain: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2467.8795,-5210.5161C2316.2815,-5207.0068 1843,-5190.998 1843,-5127.9 1843,-5127.9 1843,-5127.9 1843,-5036.1 1843,-4986.8936 1697.9931,-4945.8553 1614.484,-4926.3015"/>
+<polygon fill="#000000" stroke="#000000" points="1614.328,-4926.2657 1607.5837,-4928.8179 1602.6338,-4923.574 1609.3781,-4921.0217 1614.328,-4926.2657"/>
+</a>
+</g>
+<text text-anchor="middle" x="1846.5" y="-5077.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dWutTC -->
+<g id="node17" class="node">
+<title>dWutTC</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="2413,-4960 2309,-4960 2309,-4868 2413,-4868 2413,-4960"/>
+<polygon fill="#ffffff" stroke="transparent" points="2319,-4934 2319,-4954 2366,-4954 2366,-4934 2319,-4934"/>
+<polygon fill="#ffffff" stroke="transparent" points="2319,-4912 2319,-4932 2366,-4932 2366,-4912 2319,-4912"/>
+<polygon fill="#ffffff" stroke="transparent" points="2319,-4874 2319,-4910 2403,-4910 2403,-4874 2319,-4874"/>
+<text text-anchor="start" x="2333.7973" y="-4887.4" font-family="Times,serif" font-size="14.00" fill="#000000">interfaces</text>
+</g>
+<!-- di7GIv&#45;&gt;dWutTC -->
+<g id="edge8" class="edge">
+<title>di7GIv-&gt;dWutTC</title>
+<g id="a_edge8"><a xlink:title="internal -&gt; interfaces: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2491.8726,-5165.1143C2487.9033,-5153.2539 2485,-5140.3302 2485,-5127.9 2485,-5127.9 2485,-5127.9 2485,-5036.1 2485,-5000.2708 2442.9707,-5017.4831 2417,-4992.8 2409.8215,-4985.9774 2402.977,-4978.1134 2396.6939,-4970.0505"/>
+<polygon fill="#000000" stroke="#000000" points="2396.5004,-4969.7911 2389.7062,-4967.3746 2389.3237,-4960.1736 2396.1179,-4962.5901 2396.5004,-4969.7911"/>
+</a>
+</g>
+<text text-anchor="middle" x="2488.5" y="-5077.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dCbZAW -->
+<g id="node19" class="node">
+<title>dCbZAW</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="2645,-4580.4 2533,-4580.4 2533,-4488.4 2645,-4488.4 2645,-4580.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2543,-4554.4 2543,-4574.4 2594,-4574.4 2594,-4554.4 2543,-4554.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2543,-4532.4 2543,-4552.4 2594,-4552.4 2594,-4532.4 2543,-4532.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="2543,-4494.4 2543,-4530.4 2635,-4530.4 2635,-4494.4 2543,-4494.4"/>
+<text text-anchor="start" x="2557.8969" y="-4507.8" font-family="Times,serif" font-size="14.00" fill="#000000">application</text>
+</g>
+<!-- di7GIv&#45;&gt;dCbZAW -->
+<g id="edge4" class="edge">
+<title>di7GIv-&gt;dCbZAW</title>
+<g id="a_edge4"><a xlink:title="internal -&gt; application: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2535.3644,-5165.0506C2539.1968,-5153.1918 2542,-5140.2848 2542,-5127.9 2542,-5127.9 2542,-5127.9 2542,-4640.7 2542,-4623.9757 2546.9266,-4606.9382 2553.5897,-4591.5435"/>
+<polygon fill="#000000" stroke="#000000" points="2553.6032,-4591.5146 2552.5321,-4584.3834 2558.7028,-4580.652 2559.7739,-4587.7831 2553.6032,-4591.5146"/>
+</a>
+</g>
+<text text-anchor="middle" x="2545.5" y="-4909.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dQal5L -->
+<g id="node8" class="node">
+<title>dQal5L</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1009,-2898.2 893,-2898.2 893,-2806.2 1009,-2806.2 1009,-2898.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="903,-2872.2 903,-2892.2 956,-2892.2 956,-2872.2 903,-2872.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="903,-2850.2 903,-2870.2 956,-2870.2 956,-2850.2 903,-2850.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="903,-2812.2 903,-2848.2 999,-2848.2 999,-2812.2 903,-2812.2"/>
+<text text-anchor="start" x="917.9579" y="-2825.6" font-family="Times,serif" font-size="14.00" fill="#000000">contentspec</text>
+</g>
+<!-- dbYmF3O&#45;&gt;dQal5L -->
+<g id="edge22" class="edge">
+<title>dbYmF3O-&gt;dQal5L</title>
+<g id="a_edge22"><a xlink:title="domain -&gt; contentspec: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1511.0829,-4912.1971C1374.1371,-4906.2149 978,-4884.2637 978,-4830.5 978,-4830.5 978,-4830.5 978,-2958.5 978,-2942.4923 975.0881,-2925.5344 971.1769,-2909.9767"/>
+<polygon fill="#000000" stroke="#000000" points="971.1752,-2909.9701 965.7395,-2905.2316 968.0229,-2898.3915 973.4586,-2903.1301 971.1752,-2909.9701"/>
+</a>
+</g>
+<text text-anchor="middle" x="981.5" y="-3556.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddaltgo -->
+<g id="node11" class="node">
+<title>ddaltgo</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1453,-3943.4 1351,-3943.4 1351,-3851.4 1453,-3851.4 1453,-3943.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="1361,-3917.4 1361,-3937.4 1407,-3937.4 1407,-3917.4 1361,-3917.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="1361,-3895.4 1361,-3915.4 1407,-3915.4 1407,-3895.4 1361,-3895.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="1361,-3857.4 1361,-3893.4 1443,-3893.4 1443,-3857.4 1361,-3857.4"/>
+<text text-anchor="start" x="1375.5575" y="-3870.8" font-family="Times,serif" font-size="14.00" fill="#000000">hugosites</text>
+</g>
+<!-- dbYmF3O&#45;&gt;ddaltgo -->
+<g id="edge24" class="edge">
+<title>dbYmF3O-&gt;ddaltgo</title>
+<g id="a_edge24"><a xlink:title="domain -&gt; hugosites: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1511.4855,-4907.9239C1467.6673,-4899.2156 1408,-4878.538 1408,-4830.5 1408,-4830.5 1408,-4830.5 1408,-4041.6 1408,-4013.2638 1406.8291,-3981.8225 1405.5218,-3955.5493"/>
+<polygon fill="#000000" stroke="#000000" points="1405.5179,-3955.472 1401.2116,-3949.6879 1404.8946,-3943.4882 1409.2008,-3949.2724 1405.5179,-3955.472"/>
+</a>
+</g>
+<text text-anchor="middle" x="1411.5" y="-4530.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dcsgz25 -->
+<g id="node14" class="node">
+<title>dcsgz25</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1622.5,-3316 1547.5,-3316 1547.5,-3224 1622.5,-3224 1622.5,-3316"/>
+<polygon fill="#ffffff" stroke="transparent" points="1558,-3290 1558,-3310 1590,-3310 1590,-3290 1558,-3290"/>
+<polygon fill="#ffffff" stroke="transparent" points="1558,-3268 1558,-3288 1590,-3288 1590,-3268 1558,-3268"/>
+<polygon fill="#ffffff" stroke="transparent" points="1558,-3230 1558,-3266 1613,-3266 1613,-3230 1558,-3230"/>
+<text text-anchor="start" x="1572.6704" y="-3243.4" font-family="Times,serif" font-size="14.00" fill="#000000">deps</text>
+</g>
+<!-- dbYmF3O&#45;&gt;dcsgz25 -->
+<g id="edge19" class="edge">
+<title>dbYmF3O-&gt;dcsgz25</title>
+<g id="a_edge19"><a xlink:title="domain -&gt; deps: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1562.2697,-4867.6828C1563.2642,-4855.5965 1564,-4842.5743 1564,-4830.5 1564,-4830.5 1564,-4830.5 1564,-3376.3 1564,-3360.5659 1566.2417,-3343.766 1569.2602,-3328.2762"/>
+<polygon fill="#000000" stroke="#000000" points="1569.3355,-3327.9201 1566.6642,-3321.222 1571.8196,-3316.18 1574.4909,-3322.8781 1569.3355,-3327.9201"/>
+</a>
+</g>
+<text text-anchor="middle" x="1567.5" y="-3893.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dezIify -->
+<g id="node9" class="node">
+<title>dezIify</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="967.5,-2046.8 878.5,-2046.8 878.5,-1954.8 967.5,-1954.8 967.5,-2046.8"/>
+<polygon fill="#ffffff" stroke="transparent" points="889,-2020.8 889,-2040.8 928,-2040.8 928,-2020.8 889,-2020.8"/>
+<polygon fill="#ffffff" stroke="transparent" points="889,-1998.8 889,-2018.8 928,-2018.8 928,-1998.8 889,-1998.8"/>
+<polygon fill="#ffffff" stroke="transparent" points="889,-1960.8 889,-1996.8 958,-1996.8 958,-1960.8 889,-1960.8"/>
+<text text-anchor="start" x="903.6795" y="-1974.2" font-family="Times,serif" font-size="14.00" fill="#000000">factory</text>
+</g>
+<!-- dQal5L&#45;&gt;dezIify -->
+<g id="edge11" class="edge">
+<title>dQal5L-&gt;dezIify</title>
+<g id="a_edge11"><a xlink:title="contentspec -&gt; factory: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M932.0518,-2806.1103C928.565,-2794.1349 926,-2781.1085 926,-2768.7 926,-2768.7 926,-2768.7 926,-2107.1 926,-2091.5124 925.6737,-2074.6442 925.2363,-2059.0356"/>
+<polygon fill="#000000" stroke="#000000" points="925.2302,-2058.8308 921.0498,-2052.955 924.8658,-2046.8363 929.0462,-2052.7121 925.2302,-2058.8308"/>
+</a>
+</g>
+<text text-anchor="middle" x="929.5" y="-2430.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dc4HJGF -->
+<g id="node10" class="node">
+<title>dc4HJGF</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="997.5,-338 810.5,-338 810.5,-208 997.5,-208 997.5,-338"/>
+<polygon fill="#ffffff" stroke="transparent" points="821,-312 821,-332 841,-332 841,-312 821,-312"/>
+<polygon fill="#ffffff" stroke="transparent" points="821,-274 821,-310 841,-310 841,-274 821,-274"/>
+<polygon fill="#ead1dc" stroke="transparent" points="843,-274 843,-310 966,-310 966,-274 843,-274"/>
+<text text-anchor="start" x="855.514" y="-287.4" font-family="Times,serif" font-size="14.00" fill="#000000">NewContentSpec</text>
+<polygon fill="#ffffff" stroke="transparent" points="968,-274 968,-310 988,-310 988,-274 968,-274"/>
+<polygon fill="#ffffff" stroke="transparent" points="821,-252 821,-272 841,-272 841,-252 821,-252"/>
+<polygon fill="#ffffff" stroke="transparent" points="821,-214 821,-250 988,-250 988,-214 821,-214"/>
+<text text-anchor="start" x="881.1718" y="-227.4" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- dezIify&#45;&gt;dc4HJGF -->
+<g id="edge21" class="edge">
+<title>dezIify-&gt;dc4HJGF</title>
+<g id="a_edge21"><a xlink:title="factory -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M913.2135,-1954.6235C911.3665,-1942.5354 910,-1929.4771 910,-1917.3 910,-1917.3 910,-1917.3 910,-398.3 910,-382.0683 909.4914,-364.6673 908.7704,-348.1538"/>
+<polygon fill="#000000" stroke="#000000" points="912.2593,-347.8307 908.2967,-338.0048 905.2669,-348.1572 912.2593,-347.8307"/>
+</a>
+</g>
+<text text-anchor="middle" x="913.5" y="-1240" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dmhopf -->
+<g id="node12" class="node">
+<title>dmhopf</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1358.5,-2898.2 1269.5,-2898.2 1269.5,-2806.2 1358.5,-2806.2 1358.5,-2898.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1280,-2872.2 1280,-2892.2 1319,-2892.2 1319,-2872.2 1280,-2872.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1280,-2850.2 1280,-2870.2 1319,-2870.2 1319,-2850.2 1280,-2850.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1280,-2812.2 1280,-2848.2 1349,-2848.2 1349,-2812.2 1280,-2812.2"/>
+<text text-anchor="start" x="1294.6795" y="-2825.6" font-family="Times,serif" font-size="14.00" fill="#000000">factory</text>
+</g>
+<!-- ddaltgo&#45;&gt;dmhopf -->
+<g id="edge3" class="edge">
+<title>ddaltgo-&gt;dmhopf</title>
+<g id="a_edge3"><a xlink:title="hugosites -&gt; factory: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1380.8966,-3851.3158C1372.0427,-3835.4157 1360.6107,-3818.3614 1347,-3805.4 1341.5285,-3800.1895 1336.6677,-3803.3413 1332,-3797.4 1326.4727,-3790.3645 1327,-3786.847 1327,-3777.9 1327,-3777.9 1327,-3777.9 1327,-2958.5 1327,-2942.8759 1325.5992,-2926.0549 1323.7172,-2910.5064"/>
+<polygon fill="#000000" stroke="#000000" points="1323.6842,-2910.2548 1318.9373,-2904.8265 1322.1223,-2898.3568 1326.8692,-2903.7852 1323.6842,-2910.2548"/>
+</a>
+</g>
+<text text-anchor="middle" x="1330.5" y="-3265.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddyjrVs -->
+<g id="node13" class="node">
+<title>ddyjrVs</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1451,-1309.2 1053,-1309.2 1053,-1179.2 1451,-1179.2 1451,-1309.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1063,-1283.2 1063,-1303.2 1083,-1303.2 1083,-1283.2 1063,-1283.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1063,-1245.2 1063,-1281.2 1083,-1281.2 1083,-1245.2 1063,-1245.2"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1085,-1245.2 1085,-1281.2 1164,-1281.2 1164,-1245.2 1085,-1245.2"/>
+<text text-anchor="start" x="1094.5645" y="-1258.6" font-family="Times,serif" font-size="14.00" fill="#000000">applyDeps</text>
+<polygon fill="#ffffff" stroke="transparent" points="1166,-1245.2 1166,-1281.2 1186,-1281.2 1186,-1245.2 1166,-1245.2"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1188,-1245.2 1188,-1281.2 1292,-1281.2 1292,-1245.2 1188,-1245.2"/>
+<text text-anchor="start" x="1197.6213" y="-1258.6" font-family="Times,serif" font-size="14.00" fill="#000000">NewHugoSites</text>
+<polygon fill="#ffffff" stroke="transparent" points="1294,-1245.2 1294,-1281.2 1314,-1281.2 1314,-1245.2 1294,-1245.2"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1316,-1245.2 1316,-1281.2 1417,-1281.2 1417,-1245.2 1316,-1245.2"/>
+<text text-anchor="start" x="1325.6746" y="-1258.6" font-family="Times,serif" font-size="14.00" fill="#000000">newHugoSites</text>
+<polygon fill="#ffffff" stroke="transparent" points="1419,-1245.2 1419,-1281.2 1439,-1281.2 1439,-1245.2 1419,-1245.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1063,-1223.2 1063,-1243.2 1083,-1243.2 1083,-1223.2 1063,-1223.2"/>
+<polygon fill="#ffffff" stroke="transparent" points="1063,-1185.2 1063,-1221.2 1441,-1221.2 1441,-1185.2 1063,-1185.2"/>
+<text text-anchor="start" x="1228.6718" y="-1198.6" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- dmhopf&#45;&gt;ddyjrVs -->
+<g id="edge23" class="edge">
+<title>dmhopf-&gt;ddyjrVs</title>
+<g id="a_edge23"><a xlink:title="factory -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1285.5815,-2806.0531C1280.6133,-2794.2959 1277,-2781.3848 1277,-2768.7 1277,-2768.7 1277,-2768.7 1277,-1369.5 1277,-1353.151 1274.9278,-1335.83 1271.9766,-1319.4518"/>
+<polygon fill="#000000" stroke="#000000" points="1275.367,-1318.5489 1270.0361,-1309.393 1268.4938,-1319.8749 1275.367,-1318.5489"/>
+</a>
+</g>
+<text text-anchor="middle" x="1280.5" y="-1996.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddyjrVs&#45;&gt;ddyjrVs -->
+<g id="edge15" class="edge">
+<title>ddyjrVs:dc2o0aH-&gt;ddyjrVs:ddmxdgz</title>
+<g id="a_edge15"><a xlink:title="NewHugoSites -&gt; newHugoSites: &#10;&#10;From: sites.go (Line: 21, Column: 21) To: sites.go (Line: 50, Column: 6)&#10;">
+<path fill="none" stroke="#000000" d="M1292.214,-1274.8125C1369.2712,-1286.2193 1469,-1282.3484 1469,-1263.2 1469,-1247.4654 1456.2486,-1242.0465 1427.0824,-1246.9434"/>
+<polygon fill="#000000" stroke="#000000" points="1426.1805,-1243.5531 1417.0314,-1248.8958 1427.5153,-1250.4247 1426.1805,-1243.5531"/>
+</a>
+</g>
+<text text-anchor="middle" x="1472.5" y="-1240" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddyjrVs&#45;&gt;ddyjrVs -->
+<g id="edge25" class="edge">
+<title>ddyjrVs:ddmxdgz-&gt;ddyjrVs:dcdFe5C</title>
+<g id="a_edge25"><a xlink:title="newHugoSites -&gt; applyDeps: &#10;&#10;From: sites.go (Line: 78, Column: 21) To: sites.go (Line: 91, Column: 6)&#10;">
+<path fill="none" stroke="#000000" d="M1417.0314,-1277.5042C1453.3392,-1285.4056 1469,-1280.6375 1469,-1263.2 1469,-1243.1716 1279.1105,-1239.8572 1174.225,-1253.2568"/>
+<polygon fill="#000000" stroke="#000000" points="1173.4729,-1249.8271 1164.04,-1254.6511 1174.4223,-1256.7624 1173.4729,-1249.8271"/>
+</a>
+</g>
+<text text-anchor="middle" x="1472.5" y="-1240" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dDvPFV -->
+<g id="node16" class="node">
+<title>dDvPFV</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1673,-823.6 1557,-823.6 1557,-693.6 1673,-693.6 1673,-823.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1567,-797.6 1567,-817.6 1587,-817.6 1587,-797.6 1567,-797.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1567,-759.6 1567,-795.6 1587,-795.6 1587,-759.6 1567,-759.6"/>
+<polygon fill="#ead1dc" stroke="transparent" points="1589,-759.6 1589,-795.6 1641,-795.6 1641,-759.6 1589,-759.6"/>
+<text text-anchor="start" x="1601.7861" y="-773" font-family="Times,serif" font-size="14.00" fill="#000000">New</text>
+<polygon fill="#ffffff" stroke="transparent" points="1643,-759.6 1643,-795.6 1663,-795.6 1663,-759.6 1643,-759.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1567,-737.6 1567,-757.6 1587,-757.6 1587,-737.6 1567,-737.6"/>
+<polygon fill="#ffffff" stroke="transparent" points="1567,-699.6 1567,-735.6 1663,-735.6 1663,-699.6 1567,-699.6"/>
+<text text-anchor="start" x="1591.6718" y="-713" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- ddyjrVs&#45;&gt;dDvPFV -->
+<g id="edge5" class="edge">
+<title>ddyjrVs:dcdFe5C-&gt;dDvPFV:dbP4wDx</title>
+<g id="a_edge5"><a xlink:title="applyDeps -&gt; New: &#10;&#10;From: sites.go (Line: 126, Column: 27) To: deps.go (Line: 23, Column: 6)&#10;">
+<path fill="none" stroke="#000000" d="M1164.1508,-1257.9364C1229.827,-1246.8274 1353,-1214.4317 1353,-1127.7 1353,-1127.7 1353,-1127.7 1353,-883.9 1353,-835.71 1507.1188,-798.9105 1578.948,-784.3765"/>
+<polygon fill="#000000" stroke="#000000" points="1579.7945,-787.7768 1588.9206,-782.3949 1578.4302,-780.911 1579.7945,-787.7768"/>
+</a>
+</g>
+<text text-anchor="middle" x="1356.5" y="-1001.6" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbQLBV2 -->
+<g id="node15" class="node">
+<title>dbQLBV2</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="1648.5,-2480.4 1559.5,-2480.4 1559.5,-2388.4 1648.5,-2388.4 1648.5,-2480.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="1570,-2454.4 1570,-2474.4 1609,-2474.4 1609,-2454.4 1570,-2454.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="1570,-2432.4 1570,-2452.4 1609,-2452.4 1609,-2432.4 1570,-2432.4"/>
+<polygon fill="#ffffff" stroke="transparent" points="1570,-2394.4 1570,-2430.4 1639,-2430.4 1639,-2394.4 1570,-2394.4"/>
+<text text-anchor="start" x="1584.6795" y="-2407.8" font-family="Times,serif" font-size="14.00" fill="#000000">factory</text>
+</g>
+<!-- dcsgz25&#45;&gt;dbQLBV2 -->
+<g id="edge12" class="edge">
+<title>dcsgz25-&gt;dbQLBV2</title>
+<g id="a_edge12"><a xlink:title="deps -&gt; factory: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1591.7753,-3223.7204C1593.0539,-3211.6337 1594,-3198.6018 1594,-3186.5 1594,-3186.5 1594,-3186.5 1594,-2540.7 1594,-2525.123 1595.0776,-2508.3181 1596.5252,-2492.7702"/>
+<polygon fill="#000000" stroke="#000000" points="1596.5466,-2492.5572 1593.1696,-2486.1857 1597.7521,-2480.6179 1601.1291,-2486.9893 1596.5466,-2492.5572"/>
+</a>
+</g>
+<text text-anchor="middle" x="1597.5" y="-2848" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dbQLBV2&#45;&gt;dDvPFV -->
+<g id="edge2" class="edge">
+<title>dbQLBV2-&gt;dDvPFV</title>
+<g id="a_edge2"><a xlink:title="factory -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1607.764,-2388.0545C1608.4744,-2375.9686 1609,-2362.9537 1609,-2350.9 1609,-2350.9 1609,-2350.9 1609,-883.9 1609,-867.6683 1609.5086,-850.2673 1610.2296,-833.7538"/>
+<polygon fill="#000000" stroke="#000000" points="1613.7331,-833.7572 1610.7033,-823.6048 1606.7407,-833.4307 1613.7331,-833.7572"/>
+</a>
+</g>
+<text text-anchor="middle" x="1612.5" y="-1639.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dDvPFV&#45;&gt;dc4HJGF -->
+<g id="edge7" class="edge">
+<title>dDvPFV:dbP4wDx-&gt;dc4HJGF:dqFkjP</title>
+<g id="a_edge7"><a xlink:title="New -&gt; NewContentSpec: &#10;&#10;From: deps.go (Line: 56, Column: 46) To: contentspec.go (Line: 11, Column: 6)&#10;">
+<path fill="none" stroke="#000000" d="M1588.7503,-772.7469C1510.4618,-757.5328 1284,-707.8419 1284,-642.1 1284,-642.1 1284,-642.1 1284,-398.3 1284,-335.0961 1086.1268,-307.7309 976.3309,-297.4115"/>
+<polygon fill="#000000" stroke="#000000" points="976.5916,-293.9209 966.3141,-296.4943 975.9533,-300.8917 976.5916,-293.9209"/>
+</a>
+</g>
+<text text-anchor="middle" x="1287.5" y="-516" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dWutTC&#45;&gt;dcUGxVR -->
+<g id="edge18" class="edge">
+<title>dWutTC-&gt;dcUGxVR</title>
+<g id="a_edge18"><a xlink:title="interfaces -&gt; cmd: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2315.0176,-4867.6539C2307.9782,-4856.3861 2303,-4843.7379 2303,-4830.5 2303,-4830.5 2303,-4830.5 2303,-4041.6 2303,-4022.6955 2298.6562,-4003.3384 2292.3461,-3985.1923"/>
+<polygon fill="#000000" stroke="#000000" points="2292.2743,-3985.0006 2286.4233,-3980.7857 2288.0636,-3973.7636 2293.9146,-3977.9785 2292.2743,-3985.0006"/>
+</a>
+</g>
+<text text-anchor="middle" x="2306.5" y="-4530.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddeNuT -->
+<g id="node20" class="node">
+<title>ddeNuT</title>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="2711,-3625.8 2517,-3625.8 2517,-3495.8 2711,-3495.8 2711,-3625.8"/>
+<polygon fill="#ffffff" stroke="transparent" points="2527,-3599.8 2527,-3619.8 2547,-3619.8 2547,-3599.8 2527,-3599.8"/>
+<polygon fill="#ffffff" stroke="transparent" points="2527,-3561.8 2527,-3597.8 2547,-3597.8 2547,-3561.8 2527,-3561.8"/>
+<polygon fill="#ead1dc" stroke="transparent" points="2549,-3561.8 2549,-3597.8 2679,-3597.8 2679,-3561.8 2549,-3561.8"/>
+<text text-anchor="start" x="2561.9109" y="-3575.2" font-family="Times,serif" font-size="14.00" fill="#000000">GenerateStaticSite</text>
+<polygon fill="#ffffff" stroke="transparent" points="2681,-3561.8 2681,-3597.8 2701,-3597.8 2701,-3561.8 2681,-3561.8"/>
+<polygon fill="#ffffff" stroke="transparent" points="2527,-3539.8 2527,-3559.8 2547,-3559.8 2547,-3539.8 2527,-3539.8"/>
+<polygon fill="#ffffff" stroke="transparent" points="2527,-3501.8 2527,-3537.8 2701,-3537.8 2701,-3501.8 2527,-3501.8"/>
+<text text-anchor="start" x="2590.6718" y="-3515.2" font-family="Times,serif" font-size="14.00" fill="#000000">function</text>
+</g>
+<!-- dcUGxVR&#45;&gt;ddeNuT -->
+<g id="edge13" class="edge">
+<title>dcUGxVR:dFJoku-&gt;ddeNuT:d6GWrL</title>
+<g id="a_edge13"><a xlink:title="buildCmd.Run -&gt; GenerateStaticSite: &#10;&#10;From: build.go (Line: 54, Column: 41) To: ssg.go (Line: 13, Column: 6)&#10;">
+<path fill="none" stroke="#000000" d="M2089.0965,-3904.5398C2150.8931,-3900.8405 2321,-3881.2696 2321,-3777.9 2321,-3777.9 2321,-3777.9 2321,-3686.1 2321,-3639.7743 2452.0691,-3607.865 2538.8811,-3591.811"/>
+<polygon fill="#000000" stroke="#000000" points="2539.7598,-3595.2087 2548.9738,-3589.9787 2538.5094,-3588.3213 2539.7598,-3595.2087"/>
+</a>
+</g>
+<text text-anchor="middle" x="2324.5" y="-3727.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- dCbZAW&#45;&gt;ddeNuT -->
+<g id="edge26" class="edge">
+<title>dCbZAW-&gt;ddeNuT</title>
+<g id="a_edge26"><a xlink:title="application -&gt; function: &#10;&#10;">
+<path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M2594.0196,-4488.0666C2597.3079,-4453.7454 2601,-4405.8107 2601,-4363.6 2601,-4363.6 2601,-4363.6 2601,-3686.1 2601,-3669.8904 2602.0897,-3652.5639 2603.6381,-3636.126"/>
+<polygon fill="#000000" stroke="#000000" points="2607.1357,-3636.3243 2604.6558,-3626.0238 2600.171,-3635.6226 2607.1357,-3636.3243"/>
+</a>
+</g>
+<text text-anchor="middle" x="2604.5" y="-3893.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- ddeNuT&#45;&gt;ddyjrVs -->
+<g id="edge16" class="edge">
+<title>ddeNuT:d6GWrL-&gt;ddyjrVs:dc2o0aH</title>
+<g id="a_edge16"><a xlink:title="GenerateStaticSite -&gt; NewHugoSites: &#10;&#10;From: ssg.go (Line: 32, Column: 49) To: sites.go (Line: 15, Column: 6)&#10;">
+<path fill="none" stroke="#000000" d="M2548.7844,-3566.2086C2459.4592,-3545.6833 2310,-3503.6655 2310,-3452.3 2310,-3452.3 2310,-3452.3 2310,-1369.5 2310,-1318.5383 1531.277,-1277.1645 1302.4872,-1266.1086"/>
+<polygon fill="#000000" stroke="#000000" points="1302.4892,-1262.6048 1292.3327,-1265.6204 1302.153,-1269.5967 1302.4892,-1262.6048"/>
+</a>
+</g>
+<text text-anchor="middle" x="2313.5" y="-2300.8" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+</g>
+</svg>
