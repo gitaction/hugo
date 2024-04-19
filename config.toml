@@ -1,6 +1,5 @@
 baseURL = 'https://hugo.notes.sunwei.xyz/'
 title = 'Deep Dive into Hugo: Becoming an Expert in the Static Site Generator Domain'
-theme = "github.com/sunwei/hugo-book"
 publishDir = "public"
 defaultContentLanguage = "zh"
 googleAnalytics = "G-STPKPBQR5Y"
@@ -17,10 +16,10 @@ enableGitInfo = true
 [markup.tableOfContents]
   startLevel = 1
 
-# Multi-lingual mode config
-# There are different options to translate files
-# See https://gohugo.io/content-management/multilingual/#translation-by-filename
-# And https://gohugo.io/content-management/multilingual/#translation-by-content-directory
+[module]
+[[module.imports]]
+  path = 'github.com/sunwei/hugo-book'
+
 [languages]
 [languages.zh]
   languageName = 'Chinese'
